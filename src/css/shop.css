@@ -1,0 +1,241 @@
+/**
+ * Shop Archive & Product Listing Styles - Pixel-Perfect Figma 1:4229
+ *
+ * @package Dharmgyan
+ */
+
+/* ─── Full-Width Breadcrumb Bar ─────────────────────────── */
+.shop-breadcrumb-bar {
+    background-color: #FFF9F4;
+    border-bottom: 1px solid #F5EBE1;
+}
+
+.shop-breadcrumb-bar a,
+.shop-breadcrumb-bar span {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: #444444;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.shop-breadcrumb-bar a:hover {
+    color: #CC5600;
+}
+
+/* ─── Filter Sidebar Panel ──────────────────────────────── */
+.shop-archive-page aside .filter-sidebar-panel {
+    background: #ffffff;
+    border: 1px solid #EAE3DC;
+    border-radius: 5px;
+    padding: 1.25rem 1.25rem 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+/* Accordion toggles */
+.filter-accordion-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+.filter-accordion-toggle svg {
+    transition: transform 0.2s ease;
+}
+
+/* Scrollable category list custom scrollbar */
+.filter-accordion-content .overflow-y-auto::-webkit-scrollbar {
+    width: 3px;
+}
+.filter-accordion-content .overflow-y-auto::-webkit-scrollbar-track {
+    background: transparent;
+}
+.filter-accordion-content .overflow-y-auto::-webkit-scrollbar-thumb {
+    background-color: #EAE3DC;
+    border-radius: 99px;
+}
+
+/* Custom Checkbox Accents */
+.filter-category-checkbox,
+.filter-type-checkbox,
+.filter-shape-checkbox,
+.filter-status-checkbox {
+    accent-color: #CC5600;
+    cursor: pointer;
+}
+
+/* ─── Price Range Slider (Figma spec: dark thumb & track) ─── */
+#price-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(
+        to right,
+        #383838 0%,
+        #383838 var(--slider-pct, 100%),
+        #D8D8D8 var(--slider-pct, 100%),
+        #D8D8D8 100%
+    );
+    border-radius: 99px;
+    outline: none;
+    cursor: pointer;
+}
+
+#price-range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #383838;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+#price-range-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 2px solid #383838;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+#price-range-slider:hover::-webkit-slider-thumb,
+#price-range-slider:focus::-webkit-slider-thumb {
+    box-shadow: 0 0 0 4px rgba(204, 86, 0, 0.15);
+    transform: scale(1.1);
+}
+
+/* ─── Product Card ──────────────────────────────────────── */
+.product-card {
+    border: 1px solid transparent;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.product-card:hover {
+    border-color: #EAE3DC;
+    box-shadow: 0 4px 20px rgba(17, 17, 17, 0.06);
+    transform: translateY(-2px);
+}
+
+/* ─── Wishlist Heart (YITH) ─────────────────────────────── */
+.product-card-wishlist .yith-wcwl-add-to-wishlist {
+    margin: 0 !important;
+}
+
+.product-card-wishlist .add_to_wishlist,
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse a,
+.product-card-wishlist .yith-wcwl-wishlistexistsbrowse a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 50% !important;
+    border: none !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+    color: #717171 !important;
+    font-size: 0 !important;
+    transition: all 0.15s ease !important;
+}
+
+.product-card-wishlist .add_to_wishlist:hover,
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse a:hover {
+    background: #ffffff !important;
+    color: #CC5600 !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.16) !important;
+}
+
+.product-card-wishlist .add_to_wishlist::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-color: currentColor;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E");
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-position: center;
+    mask-position: center;
+    color: #717171;
+}
+
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse .add_to_wishlist::before {
+    background-color: #CC5600;
+}
+
+.product-card-wishlist .add_to_wishlist i,
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse i,
+.product-card-wishlist span.feedback {
+    display: none !important;
+}
+
+/* ─── Loading Overlay ───────────────────────────────────── */
+#shop-loading-overlay {
+    border-radius: 4px;
+}
+
+#shop-products-grid-wrapper.is-loading .product-card {
+    pointer-events: none;
+    opacity: 0.5;
+    filter: blur(1px);
+}
+
+/* ─── Active Filter Chips ───────────────────────────────── */
+#active-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#active-filter-chips .remove-chip-btn {
+    line-height: 1;
+    padding: 0;
+}
+
+/* ─── Pagination ────────────────────────────────────────── */
+.shop-ajax-pagination .pagination-btn,
+.shop-ajax-pagination span[aria-current="page"] {
+    min-width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+}
+
+/* ─── Mobile Filter Drawer ──────────────────────────────── */
+#mobile-filter-drawer {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#mobile-filter-backdrop {
+    transition: opacity 0.3s ease;
+}
+
+#mobile-filter-drawer:not(.translate-x-full) #mobile-filter-backdrop {
+    opacity: 1;
+}
+
+/* ─── Sticky Sidebar Shadow ─────────────────────────────── */
+@media (min-width: 1024px) {
+    .shop-archive-page aside.sticky {
+        filter: drop-shadow(0 4px 12px rgba(0,0,0,0.04));
+    }
+}

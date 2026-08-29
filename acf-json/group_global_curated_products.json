@@ -1,0 +1,159 @@
+{
+    "key": "group_global_curated_products",
+    "title": "Curated Product Sections",
+    "fields": [
+        {
+            "key": "field_tab_curated_most_viewed",
+            "label": "Our Most Viewed",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_most_viewed_title",
+            "label": "Section Title",
+            "name": "most_viewed_title",
+            "type": "text",
+            "default_value": "Our Most Viewed",
+            "placeholder": "Our Most Viewed",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_most_viewed_products",
+            "label": "Select Most Viewed Products",
+            "name": "most_viewed_products",
+            "type": "relationship",
+            "instructions": "Select products to display in the 'Our Most Viewed' section (Drag to reorder)",
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": 0,
+            "max": 20,
+            "return_format": "id",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_tab_curated_discount_sale",
+            "label": "Our Most Discount Sale",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_discount_sale_title_curated",
+            "label": "Section Title",
+            "name": "discount_sale_title",
+            "type": "text",
+            "default_value": "Our Most Discount Sale",
+            "placeholder": "Our Most Discount Sale",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_discount_sale_products",
+            "label": "Select Discount Sale Products",
+            "name": "discount_sale_products",
+            "type": "relationship",
+            "instructions": "Select products to display in the 'Our Most Discount Sale' section",
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": 0,
+            "max": 20,
+            "return_format": "id",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_tab_curated_trending",
+            "label": "Trending Products",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_trending_products_title_curated",
+            "label": "Section Title",
+            "name": "trending_products_title",
+            "type": "text",
+            "default_value": "Trending Products",
+            "placeholder": "Trending Products",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_trending_products",
+            "label": "Select Trending Products",
+            "name": "trending_products",
+            "type": "relationship",
+            "instructions": "Select products to display in the 'Trending Products' section",
+            "post_type": [
+                "product"
+            ],
+            "taxonomy": [],
+            "filters": [
+                "search",
+                "post_type",
+                "taxonomy"
+            ],
+            "elements": [
+                "featured_image"
+            ],
+            "min": 0,
+            "max": 20,
+            "return_format": "id",
+            "wrapper": {
+                "width": "100"
+            }
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "global-curated-products"
+            }
+        ],
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-homepage.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Global ACF Relationship fields for Curated Products across the storefront"
+}

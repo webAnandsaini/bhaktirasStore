@@ -1,0 +1,716 @@
+/**
+ * Comprehensive Styles for Cart, Checkout, Wishlist, My Account & Static Pages
+ * Pixel-Perfect Typography & Aesthetics matching Figma Design System.
+ *
+ * @package Dharmgyan
+ */
+
+/* ─── Hide ALL YITH Popup Messages, Tooltips & Notices ───── */
+#yith-wcwl-popup-message,
+.yith-wcwl-popup-message,
+#yith-wcwl-message,
+.yith-wcwl-tooltip,
+.yith-wcwl-custom-button-tooltip,
+.yith-wcwl-add-to-wishlist .yith-wcwl-tooltip,
+.yith-wcwl-add-to-wishlist .feedback,
+.yith-wcwl-add-to-wishlist .separator,
+.yith-wcwl-add-to-wishlist img.ajax-loading {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* ─── Hide WooCommerce added_to_cart Text under buttons ─── */
+.added_to_cart,
+a.added_to_cart,
+.wc-forward.added_to_cart,
+.product-card a.added_to_cart,
+.product-card .added_to_cart,
+.ajax_add_to_cart + .added_to_cart {
+    display: none !important;
+}
+
+/* ─── Wishlist Heart Icon Styling (Universal on all cards) ─ */
+.product-card-wishlist,
+.product-card-wishlist * {
+    font-size: 0 !important;
+    line-height: 1 !important;
+}
+
+.product-card-wishlist {
+    position: absolute !important;
+    top: 10px !important;
+    right: 10px !important;
+    z-index: 20 !important;
+}
+
+.product-card-wishlist .yith-wcwl-add-to-wishlist,
+.product-card-wishlist .yith-wcwl-add-button,
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse,
+.product-card-wishlist .yith-wcwl-wishlistexistsbrowse {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    line-height: 1 !important;
+}
+
+/* Hide all text, span, feedback and fontawesome icons inside card wishlist */
+.product-card-wishlist span,
+.product-card-wishlist i,
+.product-card-wishlist .yith-wcwl-icon {
+    display: none !important;
+    visibility: hidden !important;
+    font-size: 0 !important;
+    text-indent: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
+    overflow: hidden !important;
+}
+
+/* Circular Button Shell (32px) */
+.product-card-wishlist a,
+.product-card-wishlist button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    max-width: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #EAE3DC !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+    color: #444444 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 0 !important;
+    text-indent: 0 !important;
+    text-decoration: none !important;
+    position: relative !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+}
+
+.product-card-wishlist a:hover,
+.product-card-wishlist button:hover {
+    background: #ffffff !important;
+    border-color: #CC5600 !important;
+    color: #CC5600 !important;
+    transform: scale(1.1) !important;
+    box-shadow: 0 4px 10px rgba(204, 86, 0, 0.2) !important;
+}
+
+/* Default Heart Icon Outline */
+.product-card-wishlist a::after,
+.product-card-wishlist button::after {
+    content: '' !important;
+    display: block !important;
+    width: 15px !important;
+    height: 15px !important;
+    background-color: currentColor !important;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-size: contain !important;
+    mask-size: contain !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+}
+
+/* SOLID FILLED SAFFRON HEART WHEN IN WISHLIST */
+.product-card-wishlist a.is-in-wishlist,
+.product-card-wishlist button.is-in-wishlist,
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse a,
+.product-card-wishlist .yith-wcwl-wishlistexistsbrowse a,
+.product-card-wishlist .yith-wcwl-add-to-wishlist.exists a,
+.product-card-wishlist .yith-wcwl-add-to-wishlist.added a {
+    border-color: #CC5600 !important;
+    color: #CC5600 !important;
+    background: #ffffff !important;
+}
+
+.product-card-wishlist a.is-in-wishlist::after,
+.product-card-wishlist button.is-in-wishlist::after,
+.product-card-wishlist .yith-wcwl-wishlistaddedbrowse a::after,
+.product-card-wishlist .yith-wcwl-wishlistexistsbrowse a::after,
+.product-card-wishlist .yith-wcwl-add-to-wishlist.exists a::after,
+.product-card-wishlist .yith-wcwl-add-to-wishlist.added a::after {
+    background-color: #CC5600 !important;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23CC5600'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23CC5600'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") !important;
+}
+
+/* ─── Add to Cart Loading Spinner & Feedback ─────────────── */
+.add_to_cart_button.loading {
+    opacity: 0.92 !important;
+    pointer-events: none !important;
+    background-color: #B34B00 !important;
+}
+
+.add_to_cart_button.loading svg.cart-icon {
+    display: none !important;
+}
+
+.add_to_cart_button.loading::before {
+    content: '' !important;
+    display: inline-block !important;
+    width: 13px !important;
+    height: 13px !important;
+    border: 2px solid rgba(255, 255, 255, 0.35) !important;
+    border-top-color: #ffffff !important;
+    border-radius: 50% !important;
+    animation: cart-spinner 0.6s linear infinite !important;
+    flex-shrink: 0 !important;
+    margin-right: 6px !important;
+}
+
+@keyframes cart-spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.add_to_cart_button.is-added,
+.add_to_cart_button.added {
+    background-color: #2E7D32 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25) !important;
+}
+
+.add_to_cart_button.is-added svg.cart-icon,
+.add_to_cart_button.added svg.cart-icon {
+    display: none !important;
+}
+
+.add_to_cart_button.is-added::before,
+.add_to_cart_button.added::before {
+    content: '✓' !important;
+    font-weight: 700 !important;
+    font-size: 13px !important;
+    margin-right: 4px !important;
+}
+
+/* ─── Breadcrumb Bars ────────────────────────────────────── */
+.cart-breadcrumb-bar,
+.checkout-breadcrumb-bar,
+.myaccount-breadcrumb-bar,
+.page-breadcrumb-bar {
+    background-color: #FFF9F4 !important;
+    border-bottom: 1px solid #F5EBE1 !important;
+}
+
+.cart-breadcrumb-bar a,
+.checkout-breadcrumb-bar a,
+.myaccount-breadcrumb-bar a,
+.page-breadcrumb-bar a,
+.cart-breadcrumb-bar span,
+.checkout-breadcrumb-bar span,
+.myaccount-breadcrumb-bar span,
+.page-breadcrumb-bar span {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 15px !important;
+    font-weight: 400 !important;
+    color: #444444 !important;
+    text-decoration: none !important;
+    line-height: 1.5 !important;
+}
+
+.cart-breadcrumb-bar a:hover,
+.checkout-breadcrumb-bar a:hover,
+.myaccount-breadcrumb-bar a:hover,
+.page-breadcrumb-bar a:hover {
+    color: #CC5600 !important;
+}
+
+/* ─── WooCommerce Primary Buttons (Force Saffron #CC5600) ── */
+.woocommerce a.button.alt,
+.woocommerce button.button.alt,
+.woocommerce input.button.alt,
+.woocommerce #respond input#submit.alt,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button,
+.woocommerce #respond input#submit,
+.woocommerce a.checkout-button,
+.woocommerce button.checkout-button,
+.checkout-button,
+a.checkout-button,
+button.checkout-button,
+.woocommerce-form-login__submit,
+.woocommerce-form-register__submit,
+.woocommerce-Button,
+button#place_order {
+    background-color: #CC5600 !important;
+    background-image: none !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    box-shadow: 0 2px 8px rgba(204, 86, 0, 0.15) !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.woocommerce a.button.alt:hover,
+.woocommerce button.button.alt:hover,
+.woocommerce input.button.alt:hover,
+.woocommerce #respond input#submit.alt:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover,
+.woocommerce #respond input#submit:hover,
+.woocommerce a.checkout-button:hover,
+.woocommerce button.checkout-button:hover,
+.checkout-button:hover,
+a.checkout-button:hover,
+button.checkout-button:hover,
+.woocommerce-form-login__submit:hover,
+.woocommerce-form-register__submit:hover,
+.woocommerce-Button:hover,
+button#place_order:hover {
+    background-color: #B34B00 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(179, 75, 0, 0.3) !important;
+}
+
+/* Secondary Button Overrides (Apply coupon, update cart) */
+.woocommerce button[name="apply_coupon"],
+.woocommerce input[name="apply_coupon"] {
+    background-color: #242424 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 4px !important;
+}
+.woocommerce button[name="apply_coupon"]:hover,
+.woocommerce input[name="apply_coupon"]:hover {
+    background-color: #000000 !important;
+}
+
+.woocommerce button[name="update_cart"],
+.woocommerce input[name="update_cart"] {
+    background-color: #ffffff !important;
+    color: #242424 !important;
+    border: 1px solid #CCCCCC !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    padding: 0.6rem 1.2rem !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+}
+.woocommerce button[name="update_cart"]:hover,
+.woocommerce input[name="update_cart"]:hover {
+    background-color: #F9F5EB !important;
+    border-color: #CC5600 !important;
+    color: #CC5600 !important;
+}
+
+/* ─── WooCommerce Alert Notices (Info, Message, Error) ───── */
+.woocommerce-info,
+.woocommerce-message,
+.woocommerce-error {
+    background-color: #FFF9F4 !important;
+    border: 1px solid #EAE3DC !important;
+    border-left: 4px solid #CC5600 !important;
+    border-radius: 6px !important;
+    padding: 14px 20px 14px 44px !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 14px !important;
+    color: #444444 !important;
+    margin-bottom: 1.5rem !important;
+    position: relative !important;
+}
+
+.woocommerce-info::before,
+.woocommerce-message::before {
+    color: #CC5600 !important;
+}
+
+.woocommerce-error {
+    border-left-color: #DC2626 !important;
+    background-color: #FEF2F2 !important;
+    color: #991B1B !important;
+}
+
+.woocommerce-info a,
+.woocommerce-message a,
+.woocommerce-error a {
+    color: #CC5600 !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+}
+
+/* ─── Universal Form Fields & Inputs ─────────────────────── */
+.woocommerce form .form-row {
+    margin-bottom: 1.15rem;
+}
+
+.woocommerce form .form-row label {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #111111 !important;
+    display: block !important;
+    margin-bottom: 0.35rem !important;
+}
+
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row textarea,
+.woocommerce form .form-row select,
+.woocommerce-input-wrapper input,
+.woocommerce-input-wrapper select,
+.woocommerce-input-wrapper textarea,
+.select2-container--default .select2-selection--single {
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+    color: #111111 !important;
+    background-color: #ffffff !important;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 4px !important;
+    outline: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.woocommerce form .form-row input.input-text:focus,
+.woocommerce form .form-row textarea:focus,
+.woocommerce form .form-row select:focus,
+.woocommerce-input-wrapper input:focus,
+.woocommerce-input-wrapper select:focus,
+.woocommerce-input-wrapper textarea:focus {
+    border-color: #CC5600 !important;
+    box-shadow: 0 0 0 3px rgba(204, 86, 0, 0.12) !important;
+}
+
+/* ─── Checkout Order Review Table ────────────────────────── */
+#order_review table.shop_table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 1.5rem !important;
+}
+
+#order_review table.shop_table th,
+#order_review table.shop_table td {
+    padding: 0.85rem 0 !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    font-size: 14px !important;
+    color: #444444 !important;
+}
+
+#order_review table.shop_table th {
+    font-weight: 600 !important;
+    color: #111111 !important;
+}
+
+#order_review table.shop_table tr.order-total td,
+#order_review table.shop_table tr.order-total th {
+    border-top: 2px solid #EAE3DC !important;
+    border-bottom: none !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    padding-top: 1rem !important;
+}
+
+#order_review table.shop_table tr.order-total td strong {
+    color: #CC5600 !important;
+    font-size: 22px !important;
+}
+
+/* Payment Methods Box */
+#order_review #payment {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+#order_review #payment ul.payment_methods {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 0 1.5rem 0 !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 6px !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+}
+
+#order_review #payment ul.payment_methods li {
+    padding: 1rem 1.25rem !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    font-size: 14px !important;
+}
+
+#order_review #payment ul.payment_methods li:last-child {
+    border-bottom: none !important;
+}
+
+#order_review #payment ul.payment_methods li label {
+    font-weight: 600 !important;
+    color: #111111 !important;
+    cursor: pointer !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+#order_review #payment ul.payment_methods li input[type="radio"] {
+    accent-color: #CC5600 !important;
+    cursor: pointer !important;
+}
+
+#order_review #payment div.payment_box {
+    background-color: #FFF9F4 !important;
+    border: 1px solid #F5EBE1 !important;
+    border-radius: 4px !important;
+    padding: 0.85rem 1rem !important;
+    margin-top: 0.65rem !important;
+    font-size: 13px !important;
+    color: #555555 !important;
+    line-height: 1.5 !important;
+}
+
+#order_review #payment div.payment_box::before {
+    border-bottom-color: #FFF9F4 !important;
+}
+
+/* ─── Wishlist Table Styling (YITH) ──────────────────────── */
+.wishlist-page-wrapper,
+.yith-wcwl-form {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+}
+
+.wishlist_table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    margin-bottom: 2rem !important;
+}
+
+.wishlist_table th {
+    background-color: #F9F5EB !important;
+    color: #111111 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    text-transform: uppercase !important;
+    padding: 14px 18px !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    text-align: left !important;
+}
+
+.wishlist_table td {
+    padding: 18px !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    vertical-align: middle !important;
+    font-size: 14px !important;
+    color: #444444 !important;
+}
+
+.wishlist_table td.product-thumbnail img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover !important;
+    border-radius: 4px !important;
+    border: 1px solid #EAE3DC !important;
+}
+
+.wishlist_table td.product-name a {
+    color: #111111 !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    text-decoration: none !important;
+}
+
+.wishlist_table td.product-name a:hover {
+    color: #CC5600 !important;
+}
+
+.wishlist_table td.product-price .amount {
+    color: #CC5600 !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+}
+
+.wishlist_table td.product-add-to-cart a.button {
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.wishlist_table td.product-add-to-cart a.button:hover {
+    background-color: #B34B00 !important;
+}
+
+.wishlist_table td.product-remove a.remove {
+    color: #999999 !important;
+    font-size: 20px !important;
+}
+
+.wishlist_table td.product-remove a.remove:hover {
+    color: #DC2626 !important;
+}
+
+/* ─── My Account Orders & Address Cards ──────────────────── */
+table.woocommerce-orders-table,
+table.woocommerce-table--order-details {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-bottom: 1.5rem !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+}
+
+table.woocommerce-orders-table th,
+table.woocommerce-table--order-details th {
+    background-color: #F9F5EB !important;
+    color: #111111 !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 12px 16px !important;
+    border-bottom: 1px solid #EAE3DC !important;
+}
+
+table.woocommerce-orders-table td,
+table.woocommerce-table--order-details td {
+    padding: 14px 16px !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    font-size: 14px !important;
+    color: #444444 !important;
+}
+
+table.woocommerce-orders-table td a.woocommerce-button {
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    padding: 6px 14px !important;
+    border-radius: 4px !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+}
+
+table.woocommerce-orders-table td a.woocommerce-button:hover {
+    background-color: #B34B00 !important;
+}
+
+.woocommerce-Address address {
+    background-color: #FCFAF7 !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 6px !important;
+    padding: 1.25rem !important;
+    font-style: normal !important;
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #444444 !important;
+}
+
+/* ─── Prose & Static Pages Styling ───────────────────────── */
+.prose-container {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+}
+
+.page-content h2,
+.prose-container h2 {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    margin-top: 2.25rem !important;
+    margin-bottom: 0.85rem !important;
+    padding-bottom: 0.35rem !important;
+    border-bottom: 1px solid #EAE3DC !important;
+}
+
+.page-content h3,
+.prose-container h3 {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    color: #222222 !important;
+    margin-top: 1.75rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.page-content p,
+.prose-container p {
+    color: #444444 !important;
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.page-content ul,
+.prose-container ul {
+    list-style: disc !important;
+    padding-left: 1.5rem !important;
+    margin-bottom: 1.25rem !important;
+    color: #444444 !important;
+    font-size: 15px !important;
+    line-height: 1.75 !important;
+}
+
+.page-content ul li::marker {
+    color: #CC5600 !important;
+}
+
+.page-content blockquote,
+.prose-container blockquote {
+    border-left: 3px solid #CC5600 !important;
+    padding: 0.85rem 1.35rem !important;
+    background-color: #FFF9F4 !important;
+    border-radius: 0 4px 4px 0 !important;
+    margin: 1.5rem 0 !important;
+    font-style: italic !important;
+    color: #555555 !important;
+}
+
+.page-content a,
+.prose-container a {
+    color: #CC5600 !important;
+    text-decoration: underline !important;
+    transition: color 0.15s ease !important;
+}
+
+.page-content a:hover,
+.prose-container a:hover {
+    color: #B34B00 !important;
+}

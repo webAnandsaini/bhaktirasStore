@@ -1,0 +1,401 @@
+/**
+ * Single Product Page Styles - Pixel-Perfect Figma 1:3218 & Buy Box
+ *
+ * @package Dharmgyan
+ */
+
+/* ─── Breadcrumbs Full-Width Bar (Section @ y=243 in Figma) ─── */
+.single-product-breadcrumb-bar {
+    background-color: #FFF9F4;
+    border-bottom: 1px solid #F5EBE1;
+}
+
+.single-product-breadcrumb-bar a,
+.single-product-breadcrumb-bar span {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: #444444;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.single-product-breadcrumb-bar a:hover {
+    color: #CC5600;
+}
+
+/* ─── Main Gallery ───────────────────────────────────────── */
+.dharmgyan-product-gallery .main-gallery-viewport {
+    border: 1px solid #EAE3DC;
+    border-radius: 5px;
+    background-color: #F9F9F9;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.dharmgyan-product-gallery .main-gallery-viewport img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.25s ease;
+}
+
+.gallery-thumbnails-strip {
+    scrollbar-width: thin;
+    scrollbar-color: #EAE3DC transparent;
+}
+
+.gallery-thumbnails-strip::-webkit-scrollbar {
+    height: 4px;
+}
+
+.gallery-thumbnails-strip::-webkit-scrollbar-thumb {
+    background-color: #EAE3DC;
+    border-radius: 99px;
+}
+
+.gallery-thumb-item {
+    cursor: pointer;
+    border: 2px solid #E5E5E5;
+    border-radius: 4px;
+    transition: border-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.gallery-thumb-item:hover {
+    border-color: #CC5600;
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.gallery-thumb-item.active-thumb {
+    border-color: #111111 !important;
+    opacity: 1 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ─── Product Summary / Buy Box ──────────────────────────── */
+.product-summary-column h1.product_title {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-weight: 500;
+    font-size: clamp(19px, 1.8vw, 22px);
+    color: #212121;
+    line-height: 1.35;
+    margin: 0 0 0.35rem 0;
+}
+
+/* Price Row */
+.single-product-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 0.65rem;
+    margin: 0.35rem 0 0.5rem 0;
+}
+
+.single-product-price-row .single-price,
+.single-product-price-row .single-price span.woocommerce-Price-amount {
+    color: #CC5600;
+    font-weight: 500;
+    font-size: 22px;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    line-height: 1;
+}
+
+@media (min-width: 768px) {
+    .single-product-price-row .single-price,
+    .single-product-price-row .single-price span.woocommerce-Price-amount {
+        font-size: 24px;
+    }
+}
+
+.single-product-price-row .single-regular-price,
+.single-product-price-row .single-regular-price span.woocommerce-Price-amount {
+    color: #717171;
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: line-through;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    line-height: 1;
+}
+
+.single-product-price-row .save-discount-badge {
+    background-color: #242424;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2.5px 9px;
+    border-radius: 9999px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+/* Prepaid Pill */
+.prepaid-offer-pill {
+    background-color: #EFEFEF;
+    color: #444444;
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.65rem;
+}
+
+/* Money Back & Gift Boxes */
+.money-back-promise-box {
+    border: 1px solid #E2E8F0;
+    background-color: #F8FAFC;
+}
+
+.free-gift-offer-box {
+    border-top: 1px dotted #CCCCCC;
+    border-bottom: 1px dotted #CCCCCC;
+}
+
+/* Stock Urgency */
+.stock-urgency-wrap {
+    margin: 0.65rem 0;
+}
+
+/* Variations Pill Styling */
+.product-custom-variations .variant-pill {
+    border-radius: 8px;
+    transition: all 0.15s ease;
+}
+
+/* ─── Add to Cart Form & Dual CTA Buttons ────────────────── */
+.product-summary-column form.cart {
+    margin: 0.75rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* Quantity Row */
+.product-summary-column form.cart div.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.product-summary-column form.cart div.quantity {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #444444;
+    border-radius: 4px;
+    height: 46px;
+    width: 125px;
+    background-color: #ffffff;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.product-summary-column form.cart .quantity input.qty {
+    width: 44px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 500;
+    color: #111111;
+    padding: 0;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+.product-summary-column form.cart .quantity input.qty::-webkit-outer-spin-button,
+.product-summary-column form.cart .quantity input.qty::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.product-summary-column form.cart .quantity button.plus,
+.product-summary-column form.cart .quantity button.minus {
+    width: 36px;
+    height: 100%;
+    background: transparent;
+    border: none;
+    font-size: 17px;
+    font-weight: 500;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.product-summary-column form.cart .quantity button.plus:hover,
+.product-summary-column form.cart .quantity button.minus:hover {
+    color: #CC5600;
+    background-color: #F9F9F9;
+}
+
+/* Dual Buttons Container */
+.product-summary-column form.cart .woocommerce-variation-add-to-cart,
+.product-summary-column form.cart {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+}
+
+/* "Add to cart" outlined Saffron Button */
+.product-summary-column form.cart button.single_add_to_cart_button,
+.product-summary-column form.cart .single_add_to_cart_button {
+    height: 48px;
+    min-height: 48px;
+    border: 1.5px solid #CC5600 !important;
+    background-color: #ffffff !important;
+    color: #CC5600 !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    border-radius: 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 0 1.25rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important;
+    text-decoration: none !important;
+    width: 100%;
+}
+
+.product-summary-column form.cart button.single_add_to_cart_button:hover,
+.product-summary-column form.cart .single_add_to_cart_button:hover {
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+}
+
+/* "Buy it now" solid Saffron Button */
+.product-summary-column form.cart button.buy_now_button,
+.product-summary-column form.cart .buy_now_button {
+    height: 48px;
+    min-height: 48px;
+    border: 1.5px solid #CC5600 !important;
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    border-radius: 4px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 0 1.25rem !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(204, 86, 0, 0.2) !important;
+    text-decoration: none !important;
+    width: 100%;
+}
+
+.product-summary-column form.cart button.buy_now_button:hover,
+.product-summary-column form.cart .buy_now_button:hover {
+    background-color: #B34B00 !important;
+    border-color: #B34B00 !important;
+    box-shadow: 0 6px 16px rgba(179, 75, 0, 0.3) !important;
+}
+
+/* ─── Highlights & Guarantee Box ─────────────────────────── */
+.product-features-checklist ul li {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    color: #444444;
+    font-size: 13px;
+    line-height: 1.45;
+}
+
+/* ─── Tabs Module (Figma Section @ y=2409) ────────────────── */
+.single-product-tabs-section .woocommerce-tabs {
+    margin-top: 1.5rem;
+}
+
+.single-product-tabs-section ul.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    border-bottom: 1px solid #E3E3E3;
+    padding: 0 0 0.5rem 0;
+    margin: 0 0 2rem 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.single-product-tabs-section ul.tabs::-webkit-scrollbar {
+    display: none;
+}
+
+.single-product-tabs-section ul.tabs li {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.single-product-tabs-section ul.tabs li a {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-size: 16px;
+    font-weight: 500;
+    color: #717171;
+    padding: 0.5rem 0.25rem 0.85rem 0.25rem;
+    display: block;
+    position: relative;
+    border-bottom: 2px solid transparent;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.single-product-tabs-section ul.tabs li a:hover,
+.single-product-tabs-section ul.tabs li.active a {
+    color: #111111 !important;
+    border-bottom-color: #111111 !important;
+}
+
+/* Tab Panels */
+.single-product-tabs-section .woocommerce-Tabs-panel {
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #444444;
+    font-size: 15px;
+    line-height: 1.75;
+}
+
+.single-product-tabs-section .woocommerce-Tabs-panel h2:first-child {
+    display: none;
+}
+
+.single-product-tabs-section .woocommerce-Tabs-panel h3,
+.single-product-tabs-section .woocommerce-Tabs-panel h4 {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-weight: 700;
+    font-size: 16px;
+    color: #444444;
+    margin: 1.5rem 0 0.5rem 0;
+}
+
+.single-product-tabs-section .woocommerce-Tabs-panel ul.size-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0.75rem 0 1.25rem 0;
+    padding: 0;
+    list-style: none;
+}
+
+.single-product-tabs-section .woocommerce-Tabs-panel ul.size-pills li {
+    border: 1px solid #666666;
+    border-radius: 5px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666666;
+}
+
+/* ─── Sticky summary for Desktop ─────────────────────────── */
+@media (min-width: 1024px) {
+    .product-summary-column.lg\:sticky {
+        top: 130px;
+    }
+}

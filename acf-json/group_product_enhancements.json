@@ -1,0 +1,218 @@
+{
+    "key": "group_product_enhancements",
+    "title": "Product Enhancements",
+    "fields": [
+        {
+            "key": "field_product_spiritual_significance",
+            "label": "Spiritual Significance",
+            "name": "spiritual_significance",
+            "type": "textarea",
+            "instructions": "Describe the spiritual or religious significance of this product",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Enter the spiritual significance...",
+            "maxlength": "",
+            "rows": 4,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_product_ritual_usage",
+            "label": "Ritual Usage",
+            "name": "ritual_usage",
+            "type": "textarea",
+            "instructions": "Describe how this product is used in rituals or ceremonies",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Enter ritual usage instructions...",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_product_materials",
+            "label": "Materials Used",
+            "name": "materials",
+            "type": "text",
+            "instructions": "List the materials used in making this product",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g., Brass, Copper, Wood",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_product_dimensions",
+            "label": "Dimensions",
+            "name": "dimensions",
+            "type": "text",
+            "instructions": "Product dimensions (Length x Width x Height)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g., 10cm x 8cm x 5cm",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_product_weight",
+            "label": "Weight",
+            "name": "weight",
+            "type": "text",
+            "instructions": "Product weight",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "e.g., 500g",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_product_care_instructions",
+            "label": "Care Instructions",
+            "name": "care_instructions",
+            "type": "textarea",
+            "instructions": "Instructions for maintaining and caring for this product",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Enter care instructions...",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": "br"
+        },
+        {
+            "key": "field_product_gallery",
+            "label": "Additional Product Images",
+            "name": "product_gallery",
+            "type": "gallery",
+            "instructions": "Additional images showing different angles or details",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "insert": "append",
+            "library": "all",
+            "min": 0,
+            "max": 10,
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": ""
+        },
+        {
+            "key": "field_product_video",
+            "label": "Product Video",
+            "name": "product_video",
+            "type": "url",
+            "instructions": "URL to product demonstration video",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "https://"
+        },
+        {
+            "key": "field_product_featured",
+            "label": "Featured Product",
+            "name": "featured_product",
+            "type": "true_false",
+            "instructions": "Mark this product as featured on homepage",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_product_best_seller",
+            "label": "Best Seller",
+            "name": "best_seller",
+            "type": "true_false",
+            "instructions": "Mark this product as a best seller",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "product"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Enhanced fields for WooCommerce products with spiritual significance"
+}

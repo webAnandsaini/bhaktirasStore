@@ -1,0 +1,75 @@
+{
+    "key": "group_global_instagram",
+    "title": "Global Instagram Gallery",
+    "fields": [
+        {
+            "key": "field_global_insta_title",
+            "label": "Section Title",
+            "name": "instagram_title",
+            "type": "text",
+            "default_value": "Our Instagram",
+            "placeholder": "Our Instagram",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_global_insta_items",
+            "label": "Instagram Gallery Photos",
+            "name": "instagram_items",
+            "type": "repeater",
+            "instructions": "Add Instagram photos with links (Displays 14 photos in 2 rows of 7)",
+            "required": 0,
+            "layout": "table",
+            "button_label": "Add Instagram Photo",
+            "sub_fields": [
+                {
+                    "key": "field_insta_photo",
+                    "label": "Instagram Image",
+                    "name": "instagram_image",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_insta_link",
+                    "label": "Post URL / Link",
+                    "name": "instagram_link",
+                    "type": "url",
+                    "required": 0,
+                    "default_value": "https://instagram.com",
+                    "placeholder": "https://instagram.com/p/...",
+                    "wrapper": {
+                        "width": "50"
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "global-instagram-gallery"
+            }
+        ],
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Global Instagram Gallery repeater settings"
+}

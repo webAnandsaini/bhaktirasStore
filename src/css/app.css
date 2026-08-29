@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Germania+One&family=Karla:ital,wght@0,400..700;1,400..700&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rosarivo:ital@0;1&display=swap');
+@import "tailwindcss";
+@import "globals/header.css";
+@import "globals/footer.css";
+@import "woocommerce.css";
+@import "globals/mini-cart.css";
+@import "homepage.css";
+@import "single-product.css";
+@import "shop.css";
+@import "pages.css";
+
+@import "../../node_modules/swiper/swiper-bundle.min.css";
+
+@theme {
+  /* Fonts */
+  --font-body: "Noto Sans", sans-serif;
+  --font-serif: "Rosarivo", serif;
+  --font-sub: "Karla", sans-serif;
+  --font-logo: "Germania One", cursive;
+
+  /* Custom Colors from Figma */
+  --color-primary-50: #fff8f2;
+  --color-primary-100: #ffecd9;
+  --color-primary-200: #ffd8b3;
+  --color-primary-300: #ffb23d;
+  --color-primary-400: #e67300;
+  --color-primary-500: #cc5600;
+  --color-primary-600: #b34b00;
+  --color-primary-700: #8c3b00;
+  --color-primary: #cc5600;
+  --color-primary-hover: #b34b00;
+
+  --color-secondary-500: #6d5490;
+  --color-secondary-600: #594377;
+  --color-spiritual-purple: #6d5490;
+  --color-spiritual-light: #a191b8;
+  --color-spiritual-bg: #f5f3f8;
+
+  --color-bg-warm: #f9f5eb;
+  --color-bg-cream: #faf7f2;
+  --color-border-light: #e5e5e5;
+  --color-text-main: #111111;
+  --color-text-body: #444444;
+  --color-text-muted: #717171;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-body);
+  background-color: #ffffff;
+}
+
+h1, h2, h3, .font-serif-display {
+  font-family: var(--font-serif);
+}
+
+.dg-search-form form {
+  width: 100%;
+}
+
+/* Contact Form 7 Footer Newsletter Styling */
+.footer-newsletter-cf7 form.wpcf7-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.footer-newsletter-cf7 .newsletter-cf7-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+.footer-newsletter-cf7 .wpcf7-form-control-wrap {
+  display: block;
+  width: 100%;
+}
+.footer-newsletter-cf7 input.newsletter-email-input {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  padding: 0.5rem 0.875rem;
+  font-size: 0.875rem;
+  color: #242424;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.footer-newsletter-cf7 input.newsletter-email-input:focus {
+  border-color: #cc5600;
+}
+.footer-newsletter-cf7 input.newsletter-submit-btn {
+  background-color: #cc5600;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease;
+}
+.footer-newsletter-cf7 input.newsletter-submit-btn:hover {
+  background-color: #b34b00;
+}
+.footer-newsletter-cf7 .wpcf7-response-output {
+  margin: 0.5rem 0 0 0 !important;
+  padding: 0.35rem 0.65rem !important;
+  font-size: 0.75rem !important;
+  border-radius: 4px !important;
+}
+.footer-newsletter-cf7 .wpcf7-not-valid-tip {
+  font-size: 0.75rem !important;
+  color: #ef4444 !important;
+  margin-top: 0.25rem !important;
+}
+.footer-newsletter-cf7 .wpcf7-spinner {
+  margin: 0.25rem 0 0 0 !important;
+}

@@ -1,0 +1,669 @@
+{
+    "key": "group_homepage",
+    "title": "Homepage Settings",
+    "fields": [
+        {
+            "key": "field_tab_hero",
+            "label": "Hero Banner",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_hero_showcase_sets",
+            "label": "Hero 3-Card Showcase Sets (Full Slider)",
+            "name": "hero_showcase_sets",
+            "type": "repeater",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add 3-Card Showcase Set",
+            "sub_fields": [
+                {
+                    "key": "field_set_card_1_image",
+                    "label": "Card 1 (Left Large) - Image",
+                    "name": "card_1_image",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_set_card_1_link",
+                    "label": "Card 1 - Target Link",
+                    "name": "card_1_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_set_card_1_eyebrow",
+                    "label": "Card 1 - Eyebrow Text",
+                    "name": "card_1_eyebrow",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_set_card_1_title",
+                    "label": "Card 1 - Main Title",
+                    "name": "card_1_title",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_set_card_1_cta_text",
+                    "label": "Card 1 - CTA Button Text",
+                    "name": "card_1_cta_text",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                },
+                {
+                    "key": "field_set_card_1_subtitle",
+                    "label": "Card 1 - Subtitle Description",
+                    "name": "card_1_subtitle",
+                    "type": "textarea",
+                    "required": 0,
+                    "rows": 2,
+                    "wrapper": {
+                        "width": "100"
+                    }
+                },
+                {
+                    "key": "field_set_card_2_image",
+                    "label": "Card 2 (Right Top) - Image",
+                    "name": "card_2_image",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_set_card_2_title",
+                    "label": "Card 2 - Title Badge",
+                    "name": "card_2_title",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_set_card_2_link",
+                    "label": "Card 2 - Target Link",
+                    "name": "card_2_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                },
+                {
+                    "key": "field_set_card_3_image",
+                    "label": "Card 3 (Right Bottom) - Image",
+                    "name": "card_3_image",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_set_card_3_title",
+                    "label": "Card 3 - Title Badge",
+                    "name": "card_3_title",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_set_card_3_link",
+                    "label": "Card 3 - Target Link",
+                    "name": "card_3_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_tab_categories",
+            "label": "Divine Collections",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_categories_title",
+            "label": "Section Title",
+            "name": "categories_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Divine Collections",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_categories_subtitle",
+            "label": "Section Subtitle",
+            "name": "categories_subtitle",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Handcrafted spiritual idols, pooja essentials and sacred decor",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_categories_items",
+            "label": "Category Showcase Items",
+            "name": "categories_items",
+            "type": "repeater",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add Category Item",
+            "sub_fields": [
+                {
+                    "key": "field_cat_item_image",
+                    "label": "Category Image",
+                    "name": "category_image",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_cat_item_link",
+                    "label": "Target Link",
+                    "name": "category_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_cat_item_title",
+                    "label": "Category Title",
+                    "name": "category_title",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "50"
+                    }
+                },
+                {
+                    "key": "field_cat_item_count",
+                    "label": "Products Count Label",
+                    "name": "category_count_text",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "50"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_tab_promo_banners",
+            "label": "Middle Promo Banners",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_promo_banner_1_image",
+            "label": "Left Banner Image",
+            "name": "promo_banner_1_image",
+            "type": "image",
+            "required": 1,
+            "return_format": "array",
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_promo_banner_1_title",
+            "label": "Left Banner Title Overlay",
+            "name": "promo_banner_1_title",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_promo_banner_1_link",
+            "label": "Left Banner Target Link",
+            "name": "promo_banner_1_link",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "34"
+            }
+        },
+        {
+            "key": "field_promo_banner_2_image",
+            "label": "Right Banner Image",
+            "name": "promo_banner_2_image",
+            "type": "image",
+            "required": 1,
+            "return_format": "array",
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_promo_banner_2_title",
+            "label": "Right Banner Title Overlay",
+            "name": "promo_banner_2_title",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "33"
+            }
+        },
+        {
+            "key": "field_promo_banner_2_link",
+            "label": "Right Banner Target Link",
+            "name": "promo_banner_2_link",
+            "type": "text",
+            "required": 0,
+            "wrapper": {
+                "width": "34"
+            }
+        },
+        {
+            "key": "field_tab_most_viewed",
+            "label": "Our Most Viewed",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_trending_title",
+            "label": "Section Title",
+            "name": "trending_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Our Most Viewed",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_trending_count",
+            "label": "Number of Products to Display",
+            "name": "trending_count",
+            "type": "number",
+            "required": 0,
+            "placeholder": "10",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_tab_divine_energies",
+            "label": "Discover Divine Energies",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_energies_title",
+            "label": "Section Title",
+            "name": "energies_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Discover Divine Energies",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_energies_items",
+            "label": "Divine Energies Cards (Slider)",
+            "name": "energies_items",
+            "type": "repeater",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add Energy Card",
+            "sub_fields": [
+                {
+                    "key": "field_energy_card_image",
+                    "label": "Card Image",
+                    "name": "energy_image",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_energy_card_label",
+                    "label": "Energy Label (e.g. Prosperity)",
+                    "name": "energy_label",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_energy_card_link",
+                    "label": "Target Collection Link",
+                    "name": "energy_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_tab_discount_sale",
+            "label": "Our Most Discount Sale",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_discount_sale_title",
+            "label": "Section Title",
+            "name": "discount_sale_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Our Most Discount Sale",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_discount_sale_count",
+            "label": "Number of Products to Display",
+            "name": "discount_sale_count",
+            "type": "number",
+            "required": 0,
+            "placeholder": "10",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_tab_feature_banner",
+            "label": "Feature Banner (Ganesha Banner)",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_feature_banner_image",
+            "label": "Banner Image",
+            "name": "feature_banner_image",
+            "type": "image",
+            "instructions": "Full-width devotional banner image",
+            "required": 0,
+            "return_format": "array",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_feature_banner_link",
+            "label": "Banner Link",
+            "name": "feature_banner_link",
+            "type": "url",
+            "instructions": "Target URL when user clicks banner",
+            "required": 0,
+            "default_value": "",
+            "placeholder": "https://bhaktirastore.com/product-category/collections/",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_feature_banner_alt",
+            "label": "Banner Alt / Title",
+            "name": "feature_banner_alt",
+            "type": "text",
+            "required": 0,
+            "default_value": "Lord Ganesha Temple Collection",
+            "placeholder": "Lord Ganesha Temple Collection",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_tab_rashi",
+            "label": "Products by Your Rashi",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_rashi_title",
+            "label": "Section Title",
+            "name": "rashi_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Discover Divine Products by Your Rashi",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_rashi_items",
+            "label": "12 Rashi Signs",
+            "name": "rashi_items",
+            "type": "repeater",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add Rashi Sign",
+            "sub_fields": [
+                {
+                    "key": "field_rashi_icon",
+                    "label": "Circular Rashi Illustration",
+                    "name": "rashi_icon",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_rashi_name",
+                    "label": "Rashi Name (e.g. Aries (\u092e\u0947\u0937))",
+                    "name": "rashi_name",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_rashi_link",
+                    "label": "Target Collection Link",
+                    "name": "rashi_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                }
+            ]
+        },
+        {
+            "key": "field_tab_trending_products",
+            "label": "Trending Products",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_trending_products_title",
+            "label": "Section Title",
+            "name": "trending_products_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Trending Products",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_trending_products_count",
+            "label": "Number of Products to Display",
+            "name": "trending_products_count",
+            "type": "number",
+            "required": 0,
+            "placeholder": "10",
+            "wrapper": {
+                "width": "50"
+            }
+        },
+        {
+            "key": "field_tab_product_videos",
+            "label": "Product Videos",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_product_videos_title",
+            "label": "Section Title",
+            "name": "product_videos_title",
+            "type": "text",
+            "required": 0,
+            "placeholder": "Product Videos",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_product_videos_items",
+            "label": "Video Reels with Floating Product Card",
+            "name": "product_videos_items",
+            "type": "repeater",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add Product Video Reel",
+            "sub_fields": [
+                {
+                    "key": "field_pv_reel_poster",
+                    "label": "Video Poster Image",
+                    "name": "video_poster",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_pv_views",
+                    "label": "Views Count (e.g. 7L, 65k, 2L)",
+                    "name": "video_views",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_pv_video_url",
+                    "label": "Video URL / MP4 (Optional)",
+                    "name": "video_url",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                },
+                {
+                    "key": "field_pv_prod_img",
+                    "label": "Product Thumbnail",
+                    "name": "product_image",
+                    "type": "image",
+                    "required": 0,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                },
+                {
+                    "key": "field_pv_prod_title",
+                    "label": "Product Name",
+                    "name": "product_title",
+                    "type": "text",
+                    "required": 0,
+                    "placeholder": "Handcrafted Brass Idol",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                },
+                {
+                    "key": "field_pv_prod_price",
+                    "label": "Price Text (e.g. \u20b98,999 \u20b94,409)",
+                    "name": "product_price",
+                    "type": "text",
+                    "required": 0,
+                    "placeholder": "\u20b98,999 \u20b94,409",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                },
+                {
+                    "key": "field_pv_prod_link",
+                    "label": "Product Link",
+                    "name": "product_link",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "25"
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-homepage.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Unified Master Field Group for all Homepage Sections"
+}

@@ -1,0 +1,47 @@
+/* Clean Header Styles matching Figma 1:1 */
+
+.site-topbar {
+    background-color: #FFF8F3;
+    border-bottom: 1px solid #EAE3DC;
+}
+
+.site-header-middle-bar {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.site-navigation-bar {
+    border-bottom: none !important;
+}
+
+/* Categories Dropdown styling */
+.categories-btn {
+    background-color: #CC5600;
+    transition: background-color 0.15s ease;
+}
+
+.categories-btn:hover {
+    background-color: #B34B00;
+}
+
+/* Header Actions Hover */
+.header-action-item {
+    transition: color 0.15s ease;
+}
+
+.header-action-item:hover {
+    color: #CC5600;
+}
+
+.header-action-item:hover svg {
+    color: #CC5600;
+    stroke: #CC5600;
+}
+
+/* Navigation Links */
+.main-navigation a {
+    transition: color 0.15s ease;
+}
+
+.main-navigation a:hover {
+    color: #CC5600;
+}
