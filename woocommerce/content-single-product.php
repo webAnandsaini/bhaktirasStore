@@ -98,7 +98,7 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                     </div>
 
                     <!-- 4. Razorpay Money Back Promise Card -->
-                    <div class="money-back-promise-box border border-[#CBD5E1] rounded-[6px] p-3 bg-white my-3.5 shadow-2xs">
+                    <!-- <div class="money-back-promise-box border border-[#CBD5E1] rounded-[6px] p-3 bg-white my-3.5 shadow-2xs">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2.5">
                                 <div class="w-8 h-8 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center font-bold text-sm shrink-0">
@@ -120,7 +120,7 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                             <svg class="w-4 h-4 text-[#4F46E5] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                             <span>Get 100% refund on non-delivery or defects</span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- 5. Dotted Top/Bottom Free Gift Box -->
                     <div class="free-gift-offer-box border-t border-b border-dotted border-[#CCCCCC] py-3 my-3">
@@ -189,7 +189,7 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                     </form>
 
                     <!-- 8. EMI & Offers Card -->
-                    <div class="emi-offers-card border border-[#CBD5E1] rounded-[6px] p-2.5 bg-white my-3 shadow-2xs">
+                    <!-- <div class="emi-offers-card border border-[#CBD5E1] rounded-[6px] p-2.5 bg-white my-3 shadow-2xs">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div class="border border-[#CBD5E1] rounded-[4px] p-2.5 flex items-center justify-between">
                                 <div>
@@ -209,10 +209,10 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                         <div class="pt-1.5 mt-1.5 border-t border-[#F1F5F9] text-[10px] text-[#64748B] flex items-center justify-between">
                             <span>Secured by <strong class="text-[#0F172A]">Razorpay</strong></span>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- 9. Gradient Banner ("ELEGANT HANDMADE WALLART") -->
-                    <div class="elegant-wallart-banner bg-gradient-to-r from-[#EAFFEA] to-[#E2FBF5] border border-[#D1F2E8] rounded-[6px] p-3 flex items-center gap-3 my-3">
+                    <!-- <div class="elegant-wallart-banner bg-gradient-to-r from-[#EAFFEA] to-[#E2FBF5] border border-[#D1F2E8] rounded-[6px] p-3 flex items-center gap-3 my-3">
                         <div class="w-9 h-9 rounded-full bg-white text-[#242424] flex items-center justify-center shrink-0 shadow-xs">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
                         </div>
@@ -220,7 +220,7 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                             <h5 class="text-xs font-bold uppercase tracking-wider text-[#111111] font-body leading-tight">ELEGANT HANDMADE WALLART</h5>
                             <p class="text-xs text-[#444444] font-body mt-0.5">Crafted with care, designed for timeless beauty.</p>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- 10. Guarantee Safe Checkout -->
                     <div class="product-guarantee-box border border-[#E2E8F0] rounded-[6px] p-3.5 bg-white my-3.5">
