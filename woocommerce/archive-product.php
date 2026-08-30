@@ -40,10 +40,10 @@ $archive_title = woocommerce_page_title(false);
         <?php get_template_part('template-parts/shop/shop-header'); ?>
 
         <!-- Main 2-Column Listing Layout (Left: 314px Sidebar, Right: 4-Column Grid) -->
-        <div class="flex flex-col lg:flex-row gap-8 xl:gap-12 items-start mt-6">
+        <div class="flex flex-col lg:flex-row gap-4 xl:gap-8 items-start mt-6">
 
             <!-- Left Sticky Filter Sidebar (Desktop: 314px matching Figma) -->
-            <aside class="hidden lg:block w-[314px] shrink-0 sticky top-28 self-start">
+            <aside class="hidden lg:block w-[314px] shrink-0 sticky top-15 self-start">
                 <?php get_template_part('template-parts/shop/shop-filters'); ?>
             </aside>
 
