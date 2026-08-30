@@ -5,7 +5,8 @@
  */
 function dharmgyan_enqueue_scripts()
 {
-    $theme_version = wp_get_theme()->get('Version');
+    // $theme_version = wp_get_theme()->get('Version');
+    $theme_version = '1.0.0';
 
     // Google Fonts: Noto Sans, Rosarivo, Karla, Germania One
     wp_enqueue_style(
