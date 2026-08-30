@@ -9,7 +9,7 @@
 $icon_base = get_theme_file_uri('/assets/images/icons');
 ?>
 
-<section class="home-trust-badges-section w-full bg-white py-10 md:py-14" aria-label="<?php esc_attr_e('Store Highlights & Badges', 'dharmgyan'); ?>">
+<section class="home-trust-badges-section w-full bg-white my-12 md:my-16" aria-label="<?php esc_attr_e('Store Highlights & Badges', 'dharmgyan'); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         
         <!-- 4-Column Responsive Grid matching Figma (Y: 8865 to 9080) -->

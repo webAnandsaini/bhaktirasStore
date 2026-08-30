@@ -33,7 +33,7 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-instagram-gallery w-full bg-white pb-10 md:pb-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-instagram-gallery w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         
         <!-- Section Header matching Figma Rosarivo 36px -->

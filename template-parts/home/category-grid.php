@@ -14,7 +14,7 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-divine-collections-section w-full bg-white pb-8 md:pb-14" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-divine-collections-section w-full bg-white my-8 md:my-14" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
         <!-- Section Header matching Figma Rosarivo 36px -->

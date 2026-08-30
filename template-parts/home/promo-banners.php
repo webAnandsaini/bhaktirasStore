@@ -22,7 +22,7 @@ if (empty($b1_url) && empty($b2_url)) {
 }
 ?>
 
-<section class="home-promo-banners-section w-full bg-white pb-8 md:pb-12" aria-label="<?php esc_attr_e('Promotional Banners', 'dharmgyan'); ?>">
+<section class="home-promo-banners-section w-full bg-white my-6 md:my-8" aria-label="<?php esc_attr_e('Promotional Banners', 'dharmgyan'); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7">
             

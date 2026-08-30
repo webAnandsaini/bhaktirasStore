@@ -1,94 +1,112 @@
 <?php
 /**
- * Homepage 'Product Videos' Showcase Template Part - Full-Width Playable Video Slider
- * Sourced purely from ACF Homepage Settings (Tab: Product Videos) with fallback.
+ * Dynamic Product Videos Slider (Reels with Floating Attached Product Cards)
+ * Full-width continuous slider with real video playback & sound toggle.
  *
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('product_videos_title') ?: __('Product Videos', 'dharmgyan');
+$title = dharmgyan_get_field('product_videos_title') ?: (dharmgyan_get_field('product_videos_title', 'option') ?: __('Product Videos', 'dharmgyan'));
 $items = dharmgyan_get_field('product_videos_items');
+
+if (empty($items)) {
+    $items = dharmgyan_get_field('product_videos_items', 'option');
+}
 
 $default_demo_video = get_theme_file_uri('/assets/videos/demo-reel-1.mp4');
 
+// Default fallback items matching Figma 1:1 if ACF is empty
 if (empty($items) || !is_array($items)) {
     $items = array(
         array(
-            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
-            'video_views'   => '7L',
+            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
             'video_url'     => $default_demo_video,
+            'view_count'    => '2L',
+            'product_title' => 'Handcrafted Ganesha Idol',
+            'product_price' => '₹ 3,706.00',
+            'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-1.png'),
-            'product_title' => 'Lord Venkateswara Swamy Acrylic Wall Art',
-            'product_price' => '₹1,466.00',
-            'product_link'  => home_url('/product-category/wall-art/'),
         ),
         array(
-            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-2.png'),
-            'video_views'   => '65k',
+            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-2.png'),
             'video_url'     => $default_demo_video,
+            'view_count'    => '96k',
+            'product_title' => 'Divine Krishna Murti',
+            'product_price' => '₹ 3,706.00',
+            'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-2.png'),
-            'product_title' => 'Premium Brass Aarti Diya with Handle',
-            'product_price' => '₹3,706.00',
-            'product_link'  => home_url('/product-category/aarti-diya/'),
         ),
         array(
-            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-3.png'),
-            'video_views'   => '2L',
+            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-3.png'),
             'video_url'     => $default_demo_video,
+            'view_count'    => '3L',
+            'product_title' => 'Seven Running Horses Vastu',
+            'product_price' => '₹ 3,706.00',
+            'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-3.png'),
-            'product_title' => 'Handcrafted Ganesha Temple Idol',
-            'product_price' => '₹3,706.00',
-            'product_link'  => home_url('/product-category/collections/'),
         ),
         array(
-            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-4.png'),
-            'video_views'   => '96k',
+            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-4.png'),
             'video_url'     => $default_demo_video,
+            'view_count'    => '1.5L',
+            'product_title' => 'Brass Pooja Thali Set',
+            'product_price' => '₹ 2,499.00',
+            'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-4.png'),
-            'product_title' => 'Divine Krishna Illumination Wall Decor',
-            'product_price' => '₹3,706.00',
-            'product_link'  => home_url('/product-category/home-decor/'),
         ),
         array(
-            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-5.png'),
-            'video_views'   => '3L',
+            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-5.png'),
             'video_url'     => $default_demo_video,
+            'view_count'    => '50k',
+            'product_title' => 'Marble Shivling with Trishul',
+            'product_price' => '₹ 4,199.00',
+            'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-5.png'),
-            'product_title' => 'Seven Running White Horses Wall Art',
-            'product_price' => '₹3,706.00',
-            'product_link'  => home_url('/product-category/wall-art/'),
+        ),
+        array(
+            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
+            'video_url'     => $default_demo_video,
+            'view_count'    => '80k',
+            'product_title' => 'Sacred Brass Aarti Lamp',
+            'product_price' => '₹ 1,899.00',
+            'product_link'  => home_url('/shop/'),
+            'product_image' => get_theme_file_uri('/assets/images/products/prod-1.png'),
         ),
     );
 }
 ?>
 
-<section class="home-product-videos-section w-full bg-white pb-10 md:pb-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
-
-    <!-- Section Header (Centered in Container) -->
-    <div class="max-w-[1580px] mx-auto px-4 text-center mb-6 md:mb-10">
-        <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
+<section class="home-product-videos-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
+    
+    <!-- Section Header (Centered with clean padding) -->
+    <div class="max-w-[1580px] mx-auto px-4 mb-6 md:mb-10">
+        <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight text-center">
             <?php echo esc_html($title); ?>
         </h2>
     </div>
 
-    <!-- Full-Width Product Videos Swiper Slider -->
+    <!-- Full-Width Edge-to-Edge Swiper Reel Slider -->
     <div class="w-full px-3 sm:px-6 lg:px-8">
-        <div class="swiper productVideosSwiper relative w-full overflow-hidden">
-            <div class="swiper-wrapper">
+        <div class="swiper productVideosSwiper relative w-full overflow-visible py-2">
+            <div class="swiper-wrapper items-center">
                 <?php foreach ($items as $item): ?>
                     <?php
                     $poster_url = '';
-                    if (is_array($item['video_poster']) && !empty($item['video_poster']['url'])) {
-                        $poster_url = $item['video_poster']['url'];
-                    } elseif (is_numeric($item['video_poster'])) {
-                        $poster_url = wp_get_attachment_image_url($item['video_poster'], 'large');
-                    } elseif (is_string($item['video_poster'])) {
-                        $poster_url = $item['video_poster'];
+                    if (!empty($item['poster_image'])) {
+                        if (is_array($item['poster_image']) && !empty($item['poster_image']['url'])) {
+                            $poster_url = $item['poster_image']['url'];
+                        } elseif (is_numeric($item['poster_image'])) {
+                            $poster_url = wp_get_attachment_image_url($item['poster_image'], 'large');
+                        } elseif (is_string($item['poster_image'])) {
+                            $poster_url = $item['poster_image'];
+                        }
                     }
 
-                    if (empty($poster_url)) continue;
+                    if (empty($poster_url)) {
+                        $poster_url = get_theme_file_uri('/assets/images/reels/reel-1.png');
+                    }
 
-                    $views       = !empty($item['video_views']) ? $item['video_views'] : '65k';
+                    $views       = !empty($item['view_count']) ? $item['view_count'] : '10k';
                     $prod_title  = !empty($item['product_title']) ? $item['product_title'] : '';
                     $prod_price  = !empty($item['product_price']) ? $item['product_price'] : '';
                     $prod_link   = !empty($item['product_link']) ? $item['product_link'] : home_url('/shop/');
@@ -107,7 +125,7 @@ if (empty($items) || !is_array($items)) {
                     ?>
 
                     <div class="swiper-slide">
-                        <div class="product-reel-card relative aspect-[9/16] w-full rounded-[6px] overflow-hidden bg-black shadow-md group cursor-pointer select-none" data-video-url="<?php echo esc_url($video_url); ?>">
+                        <div class="product-reel-card relative aspect-[9/16] w-full rounded-[8px] overflow-hidden bg-black shadow-md group cursor-pointer select-none" data-video-url="<?php echo esc_url($video_url); ?>">
 
                             <!-- Video Element (Hidden until clicked) -->
                             <video
@@ -191,9 +209,17 @@ if (empty($items) || !is_array($items)) {
                 <?php endforeach; ?>
             </div>
 
-            <!-- Navigation Buttons -->
-            <div class="swiper-button-next !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
-            <div class="swiper-button-prev !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
+            <!-- Custom Styled Slider Navigation Arrows (Spiritual Luxury Aesthetic) -->
+            <button type="button" class="swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !left-2 md:!left-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Previous Video', 'dharmgyan'); ?>">
+                <svg class="w-5 h-5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button type="button" class="swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !right-2 md:!right-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Next Video', 'dharmgyan'); ?>">
+                <svg class="w-5 h-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
         </div>
     </div>
 

@@ -21,7 +21,7 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-divine-energies-section w-full bg-white pb-10 md:pb-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-divine-energies-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
 
     <!-- Section Header matching Figma Rosarivo 36px (Centered in Container) -->
     <div class="max-w-[1580px] mx-auto px-4 text-center mb-6 md:mb-10">

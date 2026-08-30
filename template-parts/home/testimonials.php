@@ -1,14 +1,15 @@
 <?php
 /**
- * Global Customer Testimonials & Reviews Component - Matching Figma 1:1
- * Sourced purely from Global ACF Theme Settings (Option: global-testimonials).
- *
+ * Customer Testimonials & Reviews Section (5-Card Swiper Carousel with Devotee Photos)
+ * Purely sourced dynamically from ACF Global Theme Settings (Option: global-testimonials).
+ * 
  * @package Dharmgyan
  */
 
 $title = dharmgyan_get_field('testimonials_title', 'option') ?: (dharmgyan_get_field('testimonials_title') ?: __('What our clients Say', 'dharmgyan'));
 $items = dharmgyan_get_field('testimonials_items', 'option');
 
+// Fallback to page-level or standard demo items if option is empty
 if (empty($items)) {
     $items = dharmgyan_get_field('testimonials_items');
 }
@@ -17,25 +18,25 @@ if (empty($items) || !is_array($items)) {
     $items = array(
         array(
             'customer_photo'    => get_theme_file_uri('/assets/images/testimonials/testi-1.png'),
-            'author_name'       => 'Babita C.',
+            'author_name'       => 'Pooja R.',
             'rating'            => 5,
-            'review_text'       => 'Very comfortable and beautiful. Fabric really good and spiritually uplifting.',
+            'review_text'       => 'The quality and spiritual aura of the idol are truly divine. Highly recommended!',
             'product_thumbnail' => get_theme_file_uri('/assets/images/products/prod-1.png'),
-            'product_title'     => 'Lord Venkateswara Swamy Acrylic Wall Art',
+            'product_title'     => 'Handcrafted Marble Peacock Flower Vase',
         ),
         array(
             'customer_photo'    => get_theme_file_uri('/assets/images/testimonials/testi-2.png'),
-            'author_name'       => 'Reema R.',
+            'author_name'       => 'Rahul M.',
             'rating'            => 5,
-            'review_text'       => 'The handcrafted details on the brass diya are exquisite. Perfect for daily evening aarti.',
+            'review_text'       => 'Flawless finish and fast delivery. It brought peace and prosperity to our home.',
             'product_thumbnail' => get_theme_file_uri('/assets/images/products/prod-2.png'),
-            'product_title'     => 'Premium Brass Akhand Diya Lamp',
+            'product_title'     => 'Divine Brass Krishna Murti with Flute',
         ),
         array(
             'customer_photo'    => get_theme_file_uri('/assets/images/testimonials/testi-3.png'),
-            'author_name'       => 'Ananya B.',
+            'author_name'       => 'Sneha K.',
             'rating'            => 5,
-            'review_text'       => 'Exceptional packaging and swift delivery. The idol radiates sheer peace and grace.',
+            'review_text'       => 'Exquisite craftsmanship! The details on the sculpture are beyond expectations.',
             'product_thumbnail' => get_theme_file_uri('/assets/images/products/prod-3.png'),
             'product_title'     => 'Traditional Ganesha Temple Sculpture',
         ),
@@ -59,7 +60,7 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-testimonials-section w-full bg-white pb-10 md:pb-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-testimonials-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
         <!-- Section Header matching Figma Rosarivo 36px -->
@@ -161,9 +162,17 @@ if (empty($items) || !is_array($items)) {
                 <?php endforeach; ?>
             </div>
 
-            <!-- Navigation Buttons matching Figma -->
-            <div class="swiper-button-next !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
-            <div class="swiper-button-prev !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
+            <!-- Custom Styled Slider Navigation Arrows (Matching Figma spiritual luxury aesthetic) -->
+            <button type="button" class="swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !left-2 md:!left-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Previous Review', 'dharmgyan'); ?>">
+                <svg class="w-5 h-5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button type="button" class="swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !right-2 md:!right-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Next Review', 'dharmgyan'); ?>">
+                <svg class="w-5 h-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
         </div>
 
     </div>
