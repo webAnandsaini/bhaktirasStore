@@ -2,7 +2,7 @@
 /**
  * Homepage 'Discover Divine Energies' Full-Width Scroller Template Part
  * Sourced purely from ACF Homepage Settings (Tab: Discover Divine Energies) with fallback.
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -21,10 +21,10 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-divine-energies-section w-full bg-white py-10 md:py-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
-    
+<section class="home-divine-energies-section w-full bg-white pb-10 md:pb-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
+
     <!-- Section Header matching Figma Rosarivo 36px (Centered in Container) -->
-    <div class="max-w-[1580px] mx-auto px-4 text-center mb-8 md:mb-12">
+    <div class="max-w-[1580px] mx-auto px-4 text-center mb-6 md:mb-10">
         <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
             <?php echo esc_html($title); ?>
         </h2>
@@ -50,18 +50,18 @@ if (empty($items) || !is_array($items)) {
                     $label = !empty($item['energy_label']) ? $item['energy_label'] : '';
                     $link  = !empty($item['energy_link']) ? $item['energy_link'] : home_url('/shop/');
                     ?>
-                    
+
                     <div class="swiper-slide">
                         <a href="<?php echo esc_url($link); ?>" class="group block relative aspect-[3/4] w-full rounded-[6px] overflow-hidden bg-[#F8F8F8] border border-[#EAE3DC] hover:border-[#CC5600] shadow-2xs hover:shadow-md transition-all duration-300 focus:outline-none">
-                            
+
                             <!-- Card Image with smooth hover zoom -->
-                            <img 
-                                src="<?php echo esc_url($img_url); ?>" 
-                                alt="<?php echo esc_attr($label ?: __('Divine Energy', 'dharmgyan')); ?>" 
+                            <img
+                                src="<?php echo esc_url($img_url); ?>"
+                                alt="<?php echo esc_attr($label ?: __('Divine Energy', 'dharmgyan')); ?>"
                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                                 loading="lazy"
                             />
-                            
+
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
 
                             <!-- White Box / Pill Label at Bottom matching Figma -->

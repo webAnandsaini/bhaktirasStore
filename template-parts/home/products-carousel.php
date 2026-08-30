@@ -2,7 +2,7 @@
 /**
  * Homepage 'Our Most Viewed' Showcase Template Part - 10 Products in 2 Rows of 5
  * Sourced from ACF Relationship fields (Global Option or Page Level) with fallback.
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -46,18 +46,18 @@ if (!$query->have_posts()) {
 }
 ?>
 
-<section class="home-most-viewed-section w-full bg-white py-10 md:py-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-most-viewed-section w-full bg-white pb-10 md:pb-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
-        
+
         <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-8 md:mb-12">
+        <div class="text-center mb-6 md:mb-10">
             <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
                 <?php echo esc_html($title); ?>
             </h2>
         </div>
 
         <!-- 5-Column Responsive Product Grid (2 rows of 5 = 10 products matching Figma) -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-4 gap-x-2">
             <?php while ($query->have_posts()): $query->the_post(); ?>
                 <?php get_template_part('template-parts/shop/product-card'); ?>
             <?php endwhile; wp_reset_postdata(); ?>

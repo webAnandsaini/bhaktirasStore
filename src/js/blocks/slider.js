@@ -43,7 +43,6 @@ if (energiesSwiperEl) {
       768: { slidesPerView: 4.5, spaceBetween: 22 },
       1024: { slidesPerView: 5.5, spaceBetween: 24 },
       1280: { slidesPerView: 6.5, spaceBetween: 26 },
-      1536: { slidesPerView: 7.2, spaceBetween: 28 },
     },
   });
 }

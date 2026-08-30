@@ -2,7 +2,7 @@
 /**
  * Homepage 'Sacred Darshan & Video Reels' Showcase Template Part
  * Sourced purely from ACF Homepage Settings (Tab: Video Reels).
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -16,9 +16,9 @@ if (empty($reels) || !is_array($reels)) {
 
 <section class="home-video-reels-section w-full bg-white py-10 md:py-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
-        
+
         <!-- Section Header -->
-        <div class="text-center mb-8 md:mb-12">
+        <div class="text-center mb-6 md:mb-10">
             <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
                 <?php echo esc_html($title); ?>
             </h2>
@@ -45,21 +45,21 @@ if (empty($reels) || !is_array($reels)) {
                     $product_title = !empty($reel['reel_product_title']) ? $reel['reel_product_title'] : '';
                     $product_link  = !empty($reel['reel_product_link']) ? $reel['reel_product_link'] : home_url('/shop/');
                     ?>
-                    
+
                     <div class="swiper-slide">
                         <div class="relative aspect-[9/16] w-full rounded-[6px] overflow-hidden bg-black shadow-md group">
-                            
+
                             <!-- Poster Image -->
-                            <img 
-                                src="<?php echo esc_url($poster_url); ?>" 
-                                alt="<?php echo esc_attr($product_title); ?>" 
+                            <img
+                                src="<?php echo esc_url($poster_url); ?>"
+                                alt="<?php echo esc_attr($product_title); ?>"
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                 loading="lazy"
                             />
-                            
+
                             <!-- Dark Overlay -->
                             <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
-                            
+
                             <!-- View Count Badge (Top Left) -->
                             <div class="absolute top-3 left-3 bg-black/50 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5 z-10">
                                 <svg class="w-3.5 h-3.5 text-[#FFB23D]" viewBox="0 0 24 24" fill="currentColor">
@@ -90,7 +90,7 @@ if (empty($reels) || !is_array($reels)) {
                     </div>
                 <?php endforeach; ?>
             </div>
-            
+
             <!-- Navigation Arrows -->
             <div class="swiper-button-next !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
             <div class="swiper-button-prev !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>

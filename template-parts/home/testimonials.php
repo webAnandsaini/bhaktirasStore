@@ -2,7 +2,7 @@
 /**
  * Global Customer Testimonials & Reviews Component - Matching Figma 1:1
  * Sourced purely from Global ACF Theme Settings (Option: global-testimonials).
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -59,11 +59,11 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-testimonials-section w-full bg-white py-10 md:py-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-testimonials-section w-full bg-white pb-10 md:pb-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
-        
+
         <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-8 md:mb-12">
+        <div class="text-center mb-6 md:mb-10">
             <h2 class="font-serif text-3xl md:text-[36px] text-[#242424] font-normal leading-tight">
                 <?php echo esc_html($title); ?>
             </h2>
@@ -103,16 +103,16 @@ if (empty($items) || !is_array($items)) {
                         }
                     }
                     ?>
-                    
+
                     <div class="swiper-slide">
                         <div class="group flex flex-col justify-between h-full bg-white border border-[#EAE3DC] hover:border-[#CC5600] rounded-[6px] p-3 shadow-2xs hover:shadow-md transition-all duration-300 focus:outline-none">
-                            
+
                             <div>
                                 <!-- Customer Devotee Photo -->
                                 <div class="relative aspect-[3/4] w-full rounded-[4px] overflow-hidden bg-gray-100 shadow-xs mb-3">
-                                    <img 
-                                        src="<?php echo esc_url($photo_url); ?>" 
-                                        alt="<?php echo esc_attr($author_name); ?>" 
+                                    <img
+                                        src="<?php echo esc_url($photo_url); ?>"
+                                        alt="<?php echo esc_attr($author_name); ?>"
                                         class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                                         loading="lazy"
                                     />

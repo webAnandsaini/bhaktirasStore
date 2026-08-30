@@ -39,31 +39,16 @@ a.added_to_cart,
     display: none !important;
 }
 
-/* ─── Wishlist Heart Icon Styling (Universal on all cards) ─ */
-.product-card-wishlist,
-.product-card-wishlist * {
-    font-size: 0 !important;
-    line-height: 1 !important;
-}
-
+/* ─── Wishlist Heart Icon Styling (Single Centered Icon) ─── */
 .product-card-wishlist {
     position: absolute !important;
     top: 10px !important;
     right: 10px !important;
     z-index: 20 !important;
-}
-
-.product-card-wishlist .yith-wcwl-add-to-wishlist,
-.product-card-wishlist .yith-wcwl-add-button,
-.product-card-wishlist .yith-wcwl-wishlistaddedbrowse,
-.product-card-wishlist .yith-wcwl-wishlistexistsbrowse {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: block !important;
     line-height: 1 !important;
 }
 
-/* Hide all text, span, feedback and fontawesome icons inside card wishlist */
+/* Hide all extraneous text, span, feedback and fontawesome icons */
 .product-card-wishlist span,
 .product-card-wishlist i,
 .product-card-wishlist .yith-wcwl-icon {
@@ -79,7 +64,8 @@ a.added_to_cart,
 
 /* Circular Button Shell (32px) */
 .product-card-wishlist a,
-.product-card-wishlist button {
+.product-card-wishlist button,
+.dharmgyan-wishlist-toggle-btn {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -93,20 +79,29 @@ a.added_to_cart,
     background: rgba(255, 255, 255, 0.95) !important;
     border: 1px solid #EAE3DC !important;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
-    color: #444444 !important;
+    color: #555555 !important;
     padding: 0 !important;
     margin: 0 !important;
-    font-size: 0 !important;
-    text-indent: 0 !important;
-    text-decoration: none !important;
     position: relative !important;
     overflow: hidden !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
 }
 
+/* Ensure NO pseudo-element renders duplicate hearts */
+.product-card-wishlist a::before,
+.product-card-wishlist a::after,
+.product-card-wishlist button::before,
+.product-card-wishlist button::after,
+.dharmgyan-wishlist-toggle-btn::before,
+.dharmgyan-wishlist-toggle-btn::after {
+    display: none !important;
+    content: none !important;
+}
+
 .product-card-wishlist a:hover,
-.product-card-wishlist button:hover {
+.product-card-wishlist button:hover,
+.dharmgyan-wishlist-toggle-btn:hover {
     background: #ffffff !important;
     border-color: #CC5600 !important;
     color: #CC5600 !important;
@@ -114,45 +109,30 @@ a.added_to_cart,
     box-shadow: 0 4px 10px rgba(204, 86, 0, 0.2) !important;
 }
 
-/* Default Heart Icon Outline */
-.product-card-wishlist a::after,
-.product-card-wishlist button::after {
-    content: '' !important;
-    display: block !important;
+.product-card-wishlist .heart-icon,
+.dharmgyan-wishlist-toggle-btn .heart-icon {
     width: 15px !important;
     height: 15px !important;
-    background-color: currentColor !important;
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") !important;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'/%3E%3C/svg%3E") !important;
-    -webkit-mask-repeat: no-repeat !important;
-    mask-repeat: no-repeat !important;
-    -webkit-mask-size: contain !important;
-    mask-size: contain !important;
-    -webkit-mask-position: center !important;
-    mask-position: center !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+    transition: all 0.2s ease !important;
 }
 
 /* SOLID FILLED SAFFRON HEART WHEN IN WISHLIST */
 .product-card-wishlist a.is-in-wishlist,
 .product-card-wishlist button.is-in-wishlist,
-.product-card-wishlist .yith-wcwl-wishlistaddedbrowse a,
-.product-card-wishlist .yith-wcwl-wishlistexistsbrowse a,
-.product-card-wishlist .yith-wcwl-add-to-wishlist.exists a,
-.product-card-wishlist .yith-wcwl-add-to-wishlist.added a {
+.dharmgyan-wishlist-toggle-btn.is-in-wishlist {
     border-color: #CC5600 !important;
     color: #CC5600 !important;
     background: #ffffff !important;
 }
 
-.product-card-wishlist a.is-in-wishlist::after,
-.product-card-wishlist button.is-in-wishlist::after,
-.product-card-wishlist .yith-wcwl-wishlistaddedbrowse a::after,
-.product-card-wishlist .yith-wcwl-wishlistexistsbrowse a::after,
-.product-card-wishlist .yith-wcwl-add-to-wishlist.exists a::after,
-.product-card-wishlist .yith-wcwl-add-to-wishlist.added a::after {
-    background-color: #CC5600 !important;
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23CC5600'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") !important;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23CC5600'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") !important;
+.product-card-wishlist a.is-in-wishlist .heart-icon,
+.product-card-wishlist button.is-in-wishlist .heart-icon,
+.dharmgyan-wishlist-toggle-btn.is-in-wishlist .heart-icon {
+    fill: #CC5600 !important;
+    stroke: #CC5600 !important;
+    color: #CC5600 !important;
 }
 
 /* ─── Add to Cart Loading Spinner & Feedback ─────────────── */

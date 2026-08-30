@@ -1,7 +1,7 @@
 <?php
 /**
  * Divine Collections (4-Category Grid Showcase) - Pixel Perfect Figma
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -14,11 +14,11 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-divine-collections-section w-full bg-white py-8 md:py-14" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-divine-collections-section w-full bg-white pb-8 md:pb-14" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
-        
+
         <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-8 md:mb-12">
+        <div class="text-center mb-6 md:mb-10">
             <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
                 <?php echo esc_html($title); ?>
             </h2>
@@ -48,13 +48,13 @@ if (empty($items) || !is_array($items)) {
                 $cat_count = !empty($item['category_count_text']) ? $item['category_count_text'] : '';
                 $cat_link  = !empty($item['category_link']) ? $item['category_link'] : home_url('/shop/');
                 ?>
-                
+
                 <div class="category-card group flex flex-col items-center text-center focus:outline-none">
                     <!-- Square Image Thumbnail with hover zoom -->
                     <a href="<?php echo esc_url($cat_link); ?>" class="block w-full aspect-square rounded-[5px] overflow-hidden bg-gray-100 shadow-sm relative">
-                        <img 
-                            src="<?php echo esc_url($img_url); ?>" 
-                            alt="<?php echo esc_attr($cat_title); ?>" 
+                        <img
+                            src="<?php echo esc_url($img_url); ?>"
+                            alt="<?php echo esc_attr($cat_title); ?>"
                             class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                             loading="lazy"
                         />

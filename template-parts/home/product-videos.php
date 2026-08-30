@@ -2,7 +2,7 @@
 /**
  * Homepage 'Product Videos' Showcase Template Part - Full-Width Playable Video Slider
  * Sourced purely from ACF Homepage Settings (Tab: Product Videos) with fallback.
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -62,10 +62,10 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-product-videos-section w-full bg-white py-10 md:py-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
-    
+<section class="home-product-videos-section w-full bg-white pb-10 md:pb-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
+
     <!-- Section Header (Centered in Container) -->
-    <div class="max-w-[1580px] mx-auto px-4 text-center mb-8 md:mb-12">
+    <div class="max-w-[1580px] mx-auto px-4 text-center mb-6 md:mb-10">
         <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
             <?php echo esc_html($title); ?>
         </h2>
@@ -93,7 +93,7 @@ if (empty($items) || !is_array($items)) {
                     $prod_price  = !empty($item['product_price']) ? $item['product_price'] : '';
                     $prod_link   = !empty($item['product_link']) ? $item['product_link'] : home_url('/shop/');
                     $video_url   = !empty($item['video_url']) ? $item['video_url'] : $default_demo_video;
-                    
+
                     $prod_img_url = '';
                     if (!empty($item['product_image'])) {
                         if (is_array($item['product_image']) && !empty($item['product_image']['url'])) {
@@ -105,30 +105,30 @@ if (empty($items) || !is_array($items)) {
                         }
                     }
                     ?>
-                    
+
                     <div class="swiper-slide">
                         <div class="product-reel-card relative aspect-[9/16] w-full rounded-[6px] overflow-hidden bg-black shadow-md group cursor-pointer select-none" data-video-url="<?php echo esc_url($video_url); ?>">
-                            
+
                             <!-- Video Element (Hidden until clicked) -->
-                            <video 
-                                class="reel-video absolute inset-0 w-full h-full object-cover z-0 hidden" 
-                                src="<?php echo esc_url($video_url); ?>" 
-                                playsinline 
-                                loop 
+                            <video
+                                class="reel-video absolute inset-0 w-full h-full object-cover z-0 hidden"
+                                src="<?php echo esc_url($video_url); ?>"
+                                playsinline
+                                loop
                                 preload="metadata"
                             ></video>
 
                             <!-- Video Poster Image -->
-                            <img 
-                                src="<?php echo esc_url($poster_url); ?>" 
-                                alt="<?php echo esc_attr($prod_title ?: __('Product Video', 'dharmgyan')); ?>" 
+                            <img
+                                src="<?php echo esc_url($poster_url); ?>"
+                                alt="<?php echo esc_attr($prod_title ?: __('Product Video', 'dharmgyan')); ?>"
                                 class="reel-poster w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                                 loading="lazy"
                             />
-                            
+
                             <!-- Gradient Overlay -->
                             <div class="reel-overlay absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35 pointer-events-none transition-opacity duration-300"></div>
-                            
+
                             <!-- Top View Count Badge -->
                             <div class="absolute top-3.5 left-3.5 bg-black/50 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5 z-10 font-body pointer-events-none">
                                 <svg class="w-3.5 h-3.5 text-[#FFB23D]" viewBox="0 0 24 24" fill="currentColor">
@@ -190,7 +190,7 @@ if (empty($items) || !is_array($items)) {
                     </div>
                 <?php endforeach; ?>
             </div>
-            
+
             <!-- Navigation Buttons -->
             <div class="swiper-button-next !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
             <div class="swiper-button-prev !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>

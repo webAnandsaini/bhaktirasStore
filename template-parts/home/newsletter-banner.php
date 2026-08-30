@@ -8,7 +8,7 @@
 $bg_url = get_theme_file_uri('/assets/images/banners/newslettter-bg.jpg');
 ?>
 
-<section class="home-newsletter-banner-section w-full bg-white py-6 md:py-10" aria-label="<?php esc_attr_e('Newsletter Subscription Banner', 'dharmgyan'); ?>">
+<section class="home-newsletter-banner-section w-full bg-white pb-10 md:pb-16" aria-label="<?php esc_attr_e('Newsletter Subscription Banner', 'dharmgyan'); ?>">
     <div class="max-w-[1444px] mx-auto px-4">
         
         <!-- Main Banner Container matching Figma (1444x318px) -->

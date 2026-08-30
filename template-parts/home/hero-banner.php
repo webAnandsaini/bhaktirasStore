@@ -2,7 +2,7 @@
 /**
  * Homepage Hero Banner (Full 3-Card Set Auto-Slider)
  * Sourced purely from ACF fields on Homepage (Post ID: 109).
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -13,9 +13,9 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
 }
 ?>
 
-<section class="home-hero-section w-full bg-white py-4 md:py-6" aria-label="<?php esc_attr_e('Featured Hero Collections', 'dharmgyan'); ?>">
+<section class="home-hero-section w-full bg-white py-4 md:py-6 md:pt-1" aria-label="<?php esc_attr_e('Featured Hero Collections', 'dharmgyan'); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
-        
+
         <!-- Master Swiper Container (Sliding the full 3-card grid together) -->
         <div class="swiper heroSwiper w-full relative">
             <div class="swiper-wrapper">
@@ -73,41 +73,41 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
                     $c3_title = !empty($set['card_3_title']) ? $set['card_3_title'] : '';
                     $c3_link  = !empty($set['card_3_link']) ? $set['card_3_link'] : '';
                     ?>
-                    
+
                     <div class="swiper-slide w-full">
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-7 items-stretch">
-                            
+
                             <!-- Left Large Primary Card (lg:col-span-7) -->
                             <div class="lg:col-span-7 w-full h-[420px] sm:h-[480px] md:h-[540px] lg:h-[695px]">
                                 <<?php echo $c1_link ? 'a href="' . esc_url($c1_link) . '"' : 'div'; ?> class="group block w-full h-full relative overflow-hidden rounded-[5px] shadow-sm focus:outline-none">
-                                    <img 
-                                        src="<?php echo esc_url($c1_img); ?>" 
-                                        alt="<?php echo esc_attr($c1_alt ?: $c1_title); ?>" 
+                                    <img
+                                        src="<?php echo esc_url($c1_img); ?>"
+                                        alt="<?php echo esc_attr($c1_alt ?: $c1_title); ?>"
                                         class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                                     />
-                                    
+
                                     <?php if ($c1_eyebrow || $c1_title || $c1_subtitle || $c1_cta): ?>
                                         <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/5 group-hover:from-black/90 transition-colors duration-300"></div>
-                                        
+
                                         <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8 md:p-10 lg:p-12 z-10 flex flex-col justify-end text-left">
                                             <?php if ($c1_eyebrow): ?>
                                                 <p class="text-[#FFB23D] text-xs sm:text-[13px] font-bold tracking-widest uppercase mb-2 font-body">
                                                     <?php echo esc_html($c1_eyebrow); ?>
                                                 </p>
                                             <?php endif; ?>
-                                            
+
                                             <?php if ($c1_title): ?>
                                                 <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[44px] text-white font-normal leading-[1.15] mb-3 tracking-tight">
                                                     <?php echo esc_html($c1_title); ?>
                                                 </h2>
                                             <?php endif; ?>
-                                            
+
                                             <?php if ($c1_subtitle): ?>
                                                 <p class="text-white/90 text-sm sm:text-base font-sub max-w-xl mb-6 line-clamp-2 leading-relaxed">
                                                     <?php echo esc_html($c1_subtitle); ?>
                                                 </p>
                                             <?php endif; ?>
-                                            
+
                                             <?php if ($c1_cta): ?>
                                                 <div>
                                                     <span class="inline-flex items-center gap-2 bg-[#CC5600] group-hover:bg-[#B34B00] text-white font-medium px-6 py-2.5 sm:py-3 rounded-[4px] text-sm sm:text-base transition-all duration-200 shadow-md">
@@ -128,14 +128,14 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
 
                             <!-- Right Secondary Stacked Cards (lg:col-span-5) -->
                             <div class="lg:col-span-5 flex flex-col gap-5 md:gap-7 w-full h-[420px] sm:h-[480px] md:h-[540px] lg:h-[695px] justify-between">
-                                
+
                                 <!-- Card 2 (Right Top) -->
                                 <?php if ($c2_img): ?>
                                     <div class="w-full h-[200px] sm:h-[230px] md:h-[260px] lg:h-[334px]">
                                         <<?php echo $c2_link ? 'a href="' . esc_url($c2_link) . '"' : 'div'; ?> class="group block w-full h-full relative rounded-[5px] overflow-hidden shadow-sm focus:outline-none">
-                                            <img 
-                                                src="<?php echo esc_url($c2_img); ?>" 
-                                                alt="<?php echo esc_attr($c2_alt ?: $c2_title); ?>" 
+                                            <img
+                                                src="<?php echo esc_url($c2_img); ?>"
+                                                alt="<?php echo esc_attr($c2_alt ?: $c2_title); ?>"
                                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                                             />
                                             <?php if ($c2_title): ?>
@@ -156,9 +156,9 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
                                 <?php if ($c3_img): ?>
                                     <div class="w-full h-[200px] sm:h-[230px] md:h-[260px] lg:h-[334px]">
                                         <<?php echo $c3_link ? 'a href="' . esc_url($c3_link) . '"' : 'div'; ?> class="group block w-full h-full relative rounded-[5px] overflow-hidden shadow-sm focus:outline-none">
-                                            <img 
-                                                src="<?php echo esc_url($c3_img); ?>" 
-                                                alt="<?php echo esc_attr($c3_alt ?: $c3_title); ?>" 
+                                            <img
+                                                src="<?php echo esc_url($c3_img); ?>"
+                                                alt="<?php echo esc_attr($c3_alt ?: $c3_title); ?>"
                                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
                                             />
                                             <?php if ($c3_title): ?>

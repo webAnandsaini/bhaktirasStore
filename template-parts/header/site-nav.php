@@ -1,7 +1,7 @@
 <?php
 /**
  * Site Primary Navigation & Categories Dropdown Bar - Pixel Perfect Figma
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -21,8 +21,8 @@ $social_tw  = dharmgyan_get_field('social_twitter', 'option');
 ?>
 
 <div class="site-navigation-bar hidden lg:block w-full bg-white">
-    <div class="max-w-[1580px] mx-auto px-4 flex items-center justify-between min-h-[58px]">
-        
+    <div class="max-w-[1580px] mx-auto px-4 flex items-center justify-between min-h-20">
+
         <div class="flex items-center gap-7 xl:gap-10">
             <!-- Categories Dropdown Button (161x46 px matching Figma) -->
             <div class="categories-dropdown-wrapper relative group py-1.5">
@@ -46,7 +46,7 @@ $social_tw  = dharmgyan_get_field('social_twitter', 'option');
                 <?php if (!empty($categories) && !is_wp_error($categories)): ?>
                     <div class="categories-dropdown-menu absolute top-full left-0 w-64 bg-white border border-[#E5E5E5] rounded-[4px] shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50 transform group-hover:translate-y-0 translate-y-1">
                         <?php foreach ($categories as $cat): ?>
-                            <?php 
+                            <?php
                             $cat_link = get_term_link($cat);
                             $cat_count = $cat->count;
                             ?>
@@ -55,7 +55,7 @@ $social_tw  = dharmgyan_get_field('social_twitter', 'option');
                                 <span class="text-xs text-[#717171] bg-gray-100 px-2 py-0.5 rounded-full"><?php echo esc_html($cat_count); ?></span>
                             </a>
                         <?php endforeach; ?>
-                        
+
                         <div class="border-t border-[#E5E5E5] mt-1 pt-1">
                             <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" class="block px-4 py-2 text-xs font-semibold text-[#CC5600] hover:underline">
                                 <?php esc_html_e('View All Collections →', 'dharmgyan'); ?>

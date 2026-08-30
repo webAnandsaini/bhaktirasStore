@@ -26,7 +26,7 @@ if (empty($bg_url)) {
 }
 ?>
 
-<section class="home-feature-banner-section w-full bg-white py-8 md:py-12" aria-label="<?php echo esc_attr($banner_alt); ?>">
+<section class="home-feature-banner-section w-full bg-white pb-10 md:pb-16" aria-label="<?php echo esc_attr($banner_alt); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         <a href="<?php echo esc_url($banner_link); ?>" class="block w-full min-h-[220px] md:h-[420px] lg:h-[500px] rounded-[5px] overflow-hidden shadow-sm relative group focus:outline-none">
             <img 

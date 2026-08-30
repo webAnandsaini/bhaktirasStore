@@ -8,7 +8,7 @@
 get_template_part('template-parts/header/site-topbar');
 ?>
 
-<header class="site-header bg-white sticky top-0 z-40">
+<header class="site-header bg-white relative z-40">
     <!-- Middle Main Header Row (Full Width Border Bottom only here!) -->
     <div class="site-header-middle-bar w-full border-b border-[#E5E5E5]">
         <div class="max-w-[1580px] mx-auto px-4">

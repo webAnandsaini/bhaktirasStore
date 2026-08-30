@@ -32,7 +32,7 @@ if (empty($rashi_items) || !is_array($rashi_items)) {
 }
 ?>
 
-<section class="home-rashi-section w-full bg-white py-10 md:py-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-rashi-section w-full bg-white pb-10 md:pb-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         
         <!-- Section Header matching Figma Rosarivo 36px -->
