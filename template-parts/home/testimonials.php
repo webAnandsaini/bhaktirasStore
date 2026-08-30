@@ -6,7 +6,7 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('testimonials_title', 'option') ?: (dharmgyan_get_field('testimonials_title') ?: __('What our clients Say', 'dharmgyan'));
+$title = dharmgyan_get_field('testimonials_title', 'option') ?: dharmgyan_get_field('testimonials_title');
 $items = dharmgyan_get_field('testimonials_items', 'option');
 
 // Fallback to page-level or standard demo items if option is empty
@@ -60,15 +60,17 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-testimonials-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-testimonials-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Testimonials', 'dharmgyan')); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
-        <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-6 md:mb-10">
-            <h2 class="font-serif text-3xl md:text-[36px] text-[#242424] font-normal leading-tight">
-                <?php echo esc_html($title); ?>
-            </h2>
-        </div>
+        <!-- Section Header (Only rendered if title exists in backend) -->
+        <?php if ($title): ?>
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="font-serif text-3xl md:text-[36px] text-[#242424] font-normal leading-tight">
+                    <?php echo esc_html($title); ?>
+                </h2>
+            </div>
+        <?php endif; ?>
 
         <!-- 5-Card Customer Testimonials Swiper Carousel -->
         <div class="swiper testimonialSwiper relative w-full overflow-hidden">
@@ -88,7 +90,7 @@ if (empty($items) || !is_array($items)) {
 
                     if (empty($photo_url)) continue;
 
-                    $author_name = !empty($item['author_name']) ? $item['author_name'] : __('Devotee', 'dharmgyan');
+                    $author_name = !empty($item['author_name']) ? $item['author_name'] : '';
                     $rating      = !empty($item['rating']) ? intval($item['rating']) : 5;
                     $prod_title  = !empty($item['product_title']) ? $item['product_title'] : '';
                     $review_text = !empty($item['review_text']) ? $item['review_text'] : '';
@@ -113,16 +115,18 @@ if (empty($items) || !is_array($items)) {
                                 <div class="relative aspect-[3/4] w-full rounded-[4px] overflow-hidden bg-gray-100 shadow-xs mb-3">
                                     <img
                                         src="<?php echo esc_url($photo_url); ?>"
-                                        alt="<?php echo esc_attr($author_name); ?>"
+                                        alt="<?php echo esc_attr($author_name ?: __('Devotee', 'dharmgyan')); ?>"
                                         class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
                                         loading="lazy"
                                     />
                                 </div>
 
                                 <!-- Devotee Name (Rosarivo 17px) -->
-                                <h3 class="font-serif text-[#333333] text-base md:text-[17px] font-normal leading-tight">
-                                    <?php echo esc_html($author_name); ?>
-                                </h3>
+                                <?php if ($author_name): ?>
+                                    <h3 class="font-serif text-[#333333] text-base md:text-[17px] font-normal leading-tight">
+                                        <?php echo esc_html($author_name); ?>
+                                    </h3>
+                                <?php endif; ?>
 
                                 <!-- 5 Stars Rating -->
                                 <div class="flex items-center gap-1 text-[#CC5600] mt-1.5 mb-2">

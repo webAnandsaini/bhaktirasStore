@@ -1,15 +1,12 @@
 <?php
 /**
  * Homepage 'Our Most Viewed' Showcase Template Part - 10 Products in 2 Rows of 5
- * Sourced from ACF Relationship fields (Global Option or Page Level) with fallback.
+ * Sourced dynamically from ACF fields (Global Option or Page Level).
  *
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('most_viewed_title');
-if (empty($title)) {
-    $title = dharmgyan_get_field('trending_title') ?: __('Our Most Viewed', 'dharmgyan');
-}
+$title = dharmgyan_get_field('most_viewed_title') ?: (dharmgyan_get_field('trending_title') ?: (dharmgyan_get_field('most_viewed_title', 'option') ?: dharmgyan_get_field('trending_title', 'option')));
 
 $selected_products = dharmgyan_get_field('most_viewed_products');
 if (empty($selected_products)) {
@@ -29,7 +26,7 @@ if (!empty($selected_products) && is_array($selected_products)) {
         'post_status'    => 'publish',
     );
 } else {
-    $count = dharmgyan_get_field('trending_count') ? intval(dharmgyan_get_field('trending_count')) : 10;
+    $count = dharmgyan_get_field('trending_count') ? intval(dharmgyan_get_field('trending_count')) : (dharmgyan_get_field('trending_count', 'option') ? intval(dharmgyan_get_field('trending_count', 'option')) : 10);
     $args = array(
         'post_type'      => 'product',
         'posts_per_page' => $count,
@@ -46,15 +43,17 @@ if (!$query->have_posts()) {
 }
 ?>
 
-<section class="home-most-viewed-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-most-viewed-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Most Viewed Products', 'dharmgyan')); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
-        <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-6 md:mb-10">
-            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
-                <?php echo esc_html($title); ?>
-            </h2>
-        </div>
+        <!-- Section Header (Only rendered if title exists in backend) -->
+        <?php if ($title): ?>
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
+                    <?php echo esc_html($title); ?>
+                </h2>
+            </div>
+        <?php endif; ?>
 
         <!-- 5-Column Responsive Product Grid (2 rows of 5 = 10 products matching Figma) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-4 gap-x-2">

@@ -6,7 +6,7 @@
  * @package Dharmgyan
  */
 
-$title       = dharmgyan_get_field('rashi_title') ?: (dharmgyan_get_field('rashi_title', 'option') ?: __('Discover Divine Products by Your Rashi', 'dharmgyan'));
+$title       = dharmgyan_get_field('rashi_title') ?: dharmgyan_get_field('rashi_title', 'option');
 $rashi_items = dharmgyan_get_field('rashi_items');
 
 if (empty($rashi_items)) {
@@ -32,15 +32,17 @@ if (empty($rashi_items) || !is_array($rashi_items)) {
 }
 ?>
 
-<section class="home-rashi-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-rashi-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Zodiac Products', 'dharmgyan')); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         
-        <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-10 md:mb-14">
-            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
-                <?php echo esc_html($title); ?>
-            </h2>
-        </div>
+        <!-- Section Header (Only rendered if title exists in backend) -->
+        <?php if ($title): ?>
+            <div class="text-center mb-10 md:mb-14">
+                <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
+                    <?php echo esc_html($title); ?>
+                </h2>
+            </div>
+        <?php endif; ?>
 
         <!-- 12 Zodiac Circular Cards in 2 Rows of 6 (Figma 1:1) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-x-4 md:gap-x-8 gap-y-8 md:gap-y-12">

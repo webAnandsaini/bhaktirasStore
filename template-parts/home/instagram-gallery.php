@@ -6,7 +6,7 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('instagram_title', 'option') ?: (dharmgyan_get_field('instagram_title') ?: __('Our Instagram', 'dharmgyan'));
+$title = dharmgyan_get_field('instagram_title', 'option') ?: dharmgyan_get_field('instagram_title');
 $items = dharmgyan_get_field('instagram_items', 'option');
 
 if (empty($items)) {
@@ -33,15 +33,17 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-instagram-gallery w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-instagram-gallery w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Instagram Gallery', 'dharmgyan')); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
         
-        <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-8 md:mb-10">
-            <h2 class="font-serif text-2xl md:text-[36px] text-[#242424] font-normal leading-tight">
-                <?php echo esc_html($title); ?>
-            </h2>
-        </div>
+        <!-- Section Header (Only rendered if title exists in backend) -->
+        <?php if ($title): ?>
+            <div class="text-center mb-8 md:mb-10">
+                <h2 class="font-serif text-2xl md:text-[36px] text-[#242424] font-normal leading-tight">
+                    <?php echo esc_html($title); ?>
+                </h2>
+            </div>
+        <?php endif; ?>
 
         <!-- 2 Rows of 7 Square Photos Grid matching Figma (ID: 224:1277 to 224:1299) -->
         <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-2.5 md:gap-3">

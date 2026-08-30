@@ -1,13 +1,13 @@
 <?php
 /**
  * Homepage 'Discover Divine Energies' Full-Width Scroller Template Part
- * Sourced purely from ACF Homepage Settings (Tab: Discover Divine Energies) with fallback.
+ * Sourced dynamically from ACF Settings (Tab: Discover Divine Energies).
  *
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('energies_title') ?: __('Discover Divine Energies', 'dharmgyan');
-$items = dharmgyan_get_field('energies_items');
+$title = dharmgyan_get_field('energies_title') ?: (dharmgyan_get_field('divine_energies_title') ?: (dharmgyan_get_field('energies_title', 'option') ?: dharmgyan_get_field('divine_energies_title', 'option')));
+$items = dharmgyan_get_field('energies_items') ?: (dharmgyan_get_field('divine_energies_items') ?: (dharmgyan_get_field('energies_items', 'option') ?: dharmgyan_get_field('divine_energies_items', 'option')));
 
 if (empty($items) || !is_array($items)) {
     $items = array(
@@ -21,14 +21,16 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-divine-energies-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-divine-energies-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title ?: __('Divine Energies', 'dharmgyan')); ?>">
 
-    <!-- Section Header matching Figma Rosarivo 36px (Centered in Container) -->
-    <div class="max-w-[1580px] mx-auto px-4 text-center mb-6 md:mb-10">
-        <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
-            <?php echo esc_html($title); ?>
-        </h2>
-    </div>
+    <!-- Section Header (Only rendered if title exists in backend) -->
+    <?php if ($title): ?>
+        <div class="max-w-[1580px] mx-auto px-4 text-center mb-6 md:mb-10">
+            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
+                <?php echo esc_html($title); ?>
+            </h2>
+        </div>
+    <?php endif; ?>
 
     <!-- Full-Width Continuous Edge-to-Edge Swiper Scroller -->
     <div class="w-full px-3 sm:px-6 lg:px-8">

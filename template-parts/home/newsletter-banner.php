@@ -1,14 +1,32 @@
 <?php
 /**
  * Homepage 'Join Our Newsletter Now' Banner Template Part - Matching Figma 1:1
+ * Sourced dynamically from ACF Homepage fields.
  * 
  * @package Dharmgyan
  */
 
-$bg_url = get_theme_file_uri('/assets/images/banners/newslettter-bg.jpg');
+$title     = dharmgyan_get_field('newsletter_title');
+$subtitle  = dharmgyan_get_field('newsletter_subtitle');
+$bg_image  = dharmgyan_get_field('newsletter_bg_image');
+
+$bg_url = '';
+if (!empty($bg_image)) {
+    if (is_array($bg_image) && !empty($bg_image['url'])) {
+        $bg_url = $bg_image['url'];
+    } elseif (is_numeric($bg_image)) {
+        $bg_url = wp_get_attachment_image_url($bg_image, 'full');
+    } elseif (is_string($bg_image)) {
+        $bg_url = $bg_image;
+    }
+}
+
+if (empty($bg_url)) {
+    $bg_url = get_theme_file_uri('/assets/images/banners/newslettter-bg.jpg');
+}
 ?>
 
-<section class="home-newsletter-banner-section w-full bg-white my-6 md:my-10" aria-label="<?php esc_attr_e('Newsletter Subscription Banner', 'dharmgyan'); ?>">
+<section class="home-newsletter-banner-section w-full bg-white my-6 md:my-10" aria-label="<?php echo esc_attr($title ?: __('Newsletter Banner', 'dharmgyan')); ?>">
     <div class="max-w-[1444px] mx-auto px-4">
         
         <!-- Main Banner Container matching Figma (1444x318px) -->
@@ -28,15 +46,19 @@ $bg_url = get_theme_file_uri('/assets/images/banners/newslettter-bg.jpg');
             <!-- Foreground Content -->
             <div class="relative z-10 w-full max-w-xl mx-auto px-4 py-8">
                 
-                <!-- Heading matching Figma Rosarivo 36px White -->
-                <h2 class="font-serif text-2xl md:text-[36px] text-white font-normal leading-tight mb-2 tracking-wide">
-                    <?php esc_html_e('Join Our Newsletter Now', 'dharmgyan'); ?>
-                </h2>
+                <!-- Heading (Only rendered if exists in backend) -->
+                <?php if ($title): ?>
+                    <h2 class="font-serif text-2xl md:text-[36px] text-white font-normal leading-tight mb-2 tracking-wide">
+                        <?php echo esc_html($title); ?>
+                    </h2>
+                <?php endif; ?>
 
-                <!-- Subtitle matching Figma Karla 14px White -->
-                <p class="text-xs md:text-sm text-white/90 font-body mb-6 max-w-md mx-auto leading-relaxed">
-                    <?php esc_html_e('Vivamus scelerisque nunc non sem laoreet, id cursus ante mollis.', 'dharmgyan'); ?>
-                </p>
+                <!-- Subtitle (Only rendered if exists in backend) -->
+                <?php if ($subtitle): ?>
+                    <p class="text-xs md:text-sm text-white/90 font-body mb-6 max-w-md mx-auto leading-relaxed">
+                        <?php echo esc_html($subtitle); ?>
+                    </p>
+                <?php endif; ?>
 
                 <!-- Newsletter Form matching Figma -->
                 <div class="newsletter-banner-form flex items-center justify-center gap-2 max-w-md mx-auto">

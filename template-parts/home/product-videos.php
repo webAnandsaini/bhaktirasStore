@@ -6,7 +6,7 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('product_videos_title') ?: (dharmgyan_get_field('product_videos_title', 'option') ?: __('Product Videos', 'dharmgyan'));
+$title = dharmgyan_get_field('product_videos_title') ?: dharmgyan_get_field('product_videos_title', 'option');
 $items = dharmgyan_get_field('product_videos_items');
 
 if (empty($items)) {
@@ -76,14 +76,16 @@ if (empty($items) || !is_array($items)) {
 }
 ?>
 
-<section class="home-product-videos-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-product-videos-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title ?: __('Product Videos', 'dharmgyan')); ?>">
     
-    <!-- Section Header (Centered with clean padding) -->
-    <div class="max-w-[1580px] mx-auto px-4 mb-6 md:mb-10">
-        <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight text-center">
-            <?php echo esc_html($title); ?>
-        </h2>
-    </div>
+    <!-- Section Header (Only rendered if title exists in backend) -->
+    <?php if ($title): ?>
+        <div class="max-w-[1580px] mx-auto px-4 mb-6 md:mb-10">
+            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight text-center">
+                <?php echo esc_html($title); ?>
+            </h2>
+        </div>
+    <?php endif; ?>
 
     <!-- Full-Width Edge-to-Edge Swiper Reel Slider -->
     <div class="w-full px-3 sm:px-6 lg:px-8">
@@ -106,7 +108,7 @@ if (empty($items) || !is_array($items)) {
                         $poster_url = get_theme_file_uri('/assets/images/reels/reel-1.png');
                     }
 
-                    $views       = !empty($item['view_count']) ? $item['view_count'] : '10k';
+                    $views       = !empty($item['view_count']) ? $item['view_count'] : '';
                     $prod_title  = !empty($item['product_title']) ? $item['product_title'] : '';
                     $prod_price  = !empty($item['product_price']) ? $item['product_price'] : '';
                     $prod_link   = !empty($item['product_link']) ? $item['product_link'] : home_url('/shop/');
@@ -148,12 +150,14 @@ if (empty($items) || !is_array($items)) {
                             <div class="reel-overlay absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35 pointer-events-none transition-opacity duration-300"></div>
 
                             <!-- Top View Count Badge -->
-                            <div class="absolute top-3.5 left-3.5 bg-black/50 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5 z-10 font-body pointer-events-none">
-                                <svg class="w-3.5 h-3.5 text-[#FFB23D]" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                                </svg>
-                                <span><?php echo esc_html($views); ?></span>
-                            </div>
+                            <?php if ($views): ?>
+                                <div class="absolute top-3.5 left-3.5 bg-black/50 backdrop-blur-sm text-white text-xs px-2.5 py-1 rounded-full flex items-center gap-1.5 z-10 font-body pointer-events-none">
+                                    <svg class="w-3.5 h-3.5 text-[#FFB23D]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                                    </svg>
+                                    <span><?php echo esc_html($views); ?></span>
+                                </div>
+                            <?php endif; ?>
 
                             <!-- Mute/Unmute Sound Button (shown when playing) -->
                             <button type="button" class="reel-mute-btn absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center z-20 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:bg-[#CC5600] transition-all cursor-pointer" aria-label="Toggle Mute" onclick="event.stopPropagation();">

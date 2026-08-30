@@ -1,15 +1,12 @@
 <?php
 /**
  * Homepage 'Our Most Discount Sale' Showcase Template Part - 5 Products in 1 Row
- * Sourced from ACF Relationship fields (Global Option or Page Level) with fallback.
+ * Sourced dynamically from ACF fields (Global Option or Page Level).
  *
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('discount_sale_title');
-if (empty($title)) {
-    $title = dharmgyan_get_field('discount_sale_title', 'option') ?: __('Our Most Discount Sale', 'dharmgyan');
-}
+$title = dharmgyan_get_field('discount_sale_title') ?: dharmgyan_get_field('discount_sale_title', 'option');
 
 $selected_products = dharmgyan_get_field('discount_sale_products');
 if (empty($selected_products)) {
@@ -29,7 +26,7 @@ if (!empty($selected_products) && is_array($selected_products)) {
         'post_status'    => 'publish',
     );
 } else {
-    $count = dharmgyan_get_field('discount_sale_count') ? intval(dharmgyan_get_field('discount_sale_count')) : 5;
+    $count = dharmgyan_get_field('discount_sale_count') ? intval(dharmgyan_get_field('discount_sale_count')) : (dharmgyan_get_field('discount_sale_count', 'option') ? intval(dharmgyan_get_field('discount_sale_count', 'option')) : 5);
     $args = array(
         'post_type'      => 'product',
         'posts_per_page' => $count,
@@ -46,15 +43,17 @@ if (!$query->have_posts()) {
 }
 ?>
 
-<section class="home-discount-sale-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="home-discount-sale-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Discount Sale', 'dharmgyan')); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
-        <!-- Section Header matching Figma Rosarivo 36px -->
-        <div class="text-center mb-6 md:mb-10">
-            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
-                <?php echo esc_html($title); ?>
-            </h2>
-        </div>
+        <!-- Section Header (Only rendered if title exists in backend) -->
+        <?php if ($title): ?>
+            <div class="text-center mb-6 md:mb-10">
+                <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
+                    <?php echo esc_html($title); ?>
+                </h2>
+            </div>
+        <?php endif; ?>
 
         <!-- 5-Column Responsive Product Grid (1 Row of 5 Products) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-4 gap-x-2">
