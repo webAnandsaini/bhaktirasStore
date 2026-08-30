@@ -694,3 +694,83 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
 .prose-container a:hover {
     color: #B34B00 !important;
 }
+
+
+/* ─── My Account & Addresses Styling ──────────────────────── */
+.my-addresses-wrapper .address-card {
+    background-color: #ffffff;
+    border: 1px solid #EAE3DC;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.my-addresses-wrapper .address-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-color: #D6CCC2;
+}
+
+.my-addresses-wrapper address {
+    font-style: normal;
+    color: #444444;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Edit Address / Account Form Fields */
+.woocommerce-EditAddressForm .form-row,
+.woocommerce-EditAccountForm .form-row {
+    margin-bottom: 1rem;
+}
+
+.woocommerce-EditAddressForm .form-row label,
+.woocommerce-EditAccountForm .form-row label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #242424;
+    margin-bottom: 0.35rem;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+}
+
+.woocommerce-EditAddressForm input.input-text,
+.woocommerce-EditAccountForm input.input-text,
+.woocommerce-EditAddressForm select,
+.woocommerce-EditAccountForm select {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    background-color: #ffffff;
+    border: 1px solid #D4D4D4;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #242424;
+    outline: none;
+    transition: border-color 0.2s ease;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+}
+
+.woocommerce-EditAddressForm input.input-text:focus,
+.woocommerce-EditAccountForm input.input-text:focus,
+.woocommerce-EditAddressForm select:focus,
+.woocommerce-EditAccountForm select:focus {
+    border-color: #CC5600;
+}
+
+.woocommerce-EditAddressForm button.button,
+.woocommerce-EditAccountForm button.button {
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 10px 24px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.woocommerce-EditAddressForm button.button:hover,
+.woocommerce-EditAccountForm button.button:hover {
+    background-color: #B34B00 !important;
+}

@@ -614,3 +614,10 @@ function dharmgyan_related_products_args($args)
     return $args;
 }
 add_filter('woocommerce_output_related_products_args', 'dharmgyan_related_products_args');
+
+/**
+ * Set Products per page limit to 24 on Shop Archive / PLP
+ */
+add_filter('loop_shop_per_page', function($cols) {
+    return 24;
+}, 20);

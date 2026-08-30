@@ -16,7 +16,7 @@ $archive_title = woocommerce_page_title(false);
 ?>
 
 <main id="primary" class="site-main shop-archive-page bg-white min-h-screen">
-    
+
     <!-- Full-Width Centered Breadcrumb Bar matching Figma Section (1920x68px #FFF9F4) -->
     <div class="shop-breadcrumb-bar w-full bg-[#FFF9F4] border-b border-[#F5EBE1] py-4 md:py-0 md:h-[68px] flex items-center justify-center mb-6 md:mb-10">
         <div class="max-w-[1580px] mx-auto px-4 flex items-center justify-center text-center flex-wrap gap-2 text-[15px] md:text-[16px] text-[#444444] font-body leading-tight">
@@ -35,13 +35,13 @@ $archive_title = woocommerce_page_title(false);
     </div>
 
     <div class="max-w-[1580px] mx-auto px-4 pb-12 md:pb-16">
-        
+
         <!-- Shop Header (Title, Active Filter Chips, Sort Controls) -->
         <?php get_template_part('template-parts/shop/shop-header'); ?>
 
         <!-- Main 2-Column Listing Layout (Left: 314px Sidebar, Right: 4-Column Grid) -->
         <div class="flex flex-col lg:flex-row gap-8 xl:gap-12 items-start mt-6">
-            
+
             <!-- Left Sticky Filter Sidebar (Desktop: 314px matching Figma) -->
             <aside class="hidden lg:block w-[314px] shrink-0 sticky top-28 self-start">
                 <?php get_template_part('template-parts/shop/shop-filters'); ?>
@@ -49,9 +49,9 @@ $archive_title = woocommerce_page_title(false);
 
             <!-- Right Product Grid Area -->
             <div class="flex-1 w-full min-w-0">
-                
+
                 <div id="shop-products-grid-wrapper" class="relative min-h-[400px]">
-                    
+
                     <!-- Loading Skeleton Overlay -->
                     <div id="shop-loading-overlay" class="hidden absolute inset-0 bg-white/70 backdrop-blur-xs z-20 flex items-center justify-center">
                         <div class="inline-flex items-center gap-3 px-6 py-3 bg-white border border-[#EAE3DC] rounded-full shadow-lg text-[#CC5600] font-medium text-sm">
@@ -64,7 +64,7 @@ $archive_title = woocommerce_page_title(false);
                     </div>
 
                     <!-- Products Grid (4 Columns on Desktop) -->
-                    <div id="shop-products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-8 md:gap-y-10">
+                    <div id="shop-products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-x-2 gap-y-8 md:gap-y-10">
                         <?php
                         if (woocommerce_product_loop()) {
                             if (wc_get_loop_prop('total')) {
@@ -96,7 +96,7 @@ $archive_title = woocommerce_page_title(false);
     <div id="mobile-filter-drawer-wrapper" class="fixed inset-0 z-50 lg:hidden pointer-events-none opacity-0 transition-opacity duration-300" aria-hidden="true">
         <!-- Backdrop (Click Outside to Close) -->
         <div id="mobile-filter-backdrop" class="absolute inset-0 bg-black/50 cursor-pointer"></div>
-        
+
         <!-- Drawer Panel (Slides in from Right) -->
         <div id="mobile-filter-drawer-panel" class="absolute inset-y-0 right-0 w-full max-w-[340px] sm:max-w-[380px] bg-white shadow-2xl flex flex-col h-full transform translate-x-full transition-transform duration-300 ease-out z-10">
             <!-- Drawer Header -->

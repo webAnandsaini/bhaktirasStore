@@ -35,11 +35,12 @@ function dharmgyan_ajax_filter_products() {
     $orderby     = isset($_POST['orderby']) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'menu_order';
     $paged       = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
     $search      = isset($_POST['search']) ? sanitize_text_field(wp_unslash($_POST['search'])) : '';
+    $per_page    = 24;
 
     $args = array(
         'post_type'      => 'product',
         'post_status'    => 'publish',
-        'posts_per_page' => 12,
+        'posts_per_page' => $per_page,
         'paged'          => $paged,
         'tax_query'      => array('relation' => 'AND'),
         'meta_query'     => array('relation' => 'AND'),
@@ -158,8 +159,8 @@ function dharmgyan_ajax_filter_products() {
 
     // Count text
     $total_count = $query->found_posts;
-    $start_index = ($paged - 1) * 12 + 1;
-    $end_index   = min($paged * 12, $total_count);
+    $start_index = ($paged - 1) * $per_page + 1;
+    $end_index   = min($paged * $per_page, $total_count);
 
     if ($total_count > 0) {
         $count_text = sprintf(__('Showing %1$d–%2$d of %3$d results', 'dharmgyan'), $start_index, $end_index, $total_count);
