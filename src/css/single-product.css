@@ -1,3 +1,134 @@
+/* Lightbox Modal (30% Dark Overlay & Centered Slider) */
+.product-gallery-lightbox {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.product-gallery-lightbox .swiper.productLightboxSwiper {
+    width: 100% !important;
+    height: 85vh !important;
+    max-width: 1200px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.product-gallery-lightbox .swiper-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    height: 100% !important;
+}
+
+.product-gallery-lightbox .swiper-slide {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.product-gallery-lightbox .swiper-slide img {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-height: 80vh !important;
+    max-width: 80vw !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important;
+    border-radius: 6px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35) !important;
+}
+
+.product-gallery-lightbox .swiper-button-prev,
+.product-gallery-lightbox .swiper-button-next {
+    background: rgba(17, 17, 17, 0.8) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+.product-gallery-lightbox .swiper-button-prev:hover,
+.product-gallery-lightbox .swiper-button-next:hover {
+    background: #CC5600 !important;
+    border-color: #CC5600 !important;
+}
+
+/* ─── Single Product Gallery & Zoom ──────────────────────── */
+.main-gallery-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden !important;
+    border-radius: 6px;
+    background-color: #F9F9F9;
+    border: 1px solid #EAE3DC;
+}
+
+.main-gallery-viewport .productMainSwiper {
+    width: 100%;
+    height: 100%;
+}
+
+.main-gallery-viewport .swiper-slide {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F9F9F9;
+}
+
+.main-gallery-viewport .gallery-slide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transform: scale(1);
+    transform-origin: center center;
+}
+
+.main-gallery-viewport:hover .gallery-slide-img {
+    transform: scale(1.05) !important;
+}
+
+/* Thumbnail Strip - Prevents any border cut/clipping */
+.gallery-thumbnails-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding: 6px 4px 10px 4px !important;
+}
+
+.gallery-thumb-item {
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+    transition: all 0.2s ease !important;
+}
+
+.gallery-thumb-item.active-thumb {
+    border-color: #CC5600 !important;
+    box-shadow: 0 1px 4px rgba(204, 86, 0, 0.25) !important;
+    opacity: 1 !important;
+}
+
+
+
+
+
+
+
+/* Suppress default WooCommerce round onsale badge on PDP */
+.single-product-entry > .onsale,
+.product-image-column > .onsale,
+.single-product-page-wrapper .onsale:not(.custom-sale-badge),
+.single-product span.onsale {
+    display: none !important;
+}
 /**
  * Single Product Page Styles - Pixel-Perfect Figma 1:3218 & Buy Box
  *
@@ -398,4 +529,97 @@
     .product-summary-column.lg\:sticky {
         top: 130px;
     }
+}
+
+
+/* ─── Customer Reviews Module Styling ──────────────────────── */
+.woocommerce-Reviews #comments ol.commentlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review {
+    background-color: #FCFAF7;
+    border: 1px solid #EAE3DC;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review .comment_container {
+    display: flex;
+    gap: 1rem;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review img.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1.5px solid #EAE3DC;
+    flex-shrink: 0;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review .comment-text {
+    flex: 1;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review .star-rating {
+    float: right;
+    color: #CC5600;
+    font-size: 13px;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review .meta {
+    font-size: 13px;
+    color: #242424;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review .meta time {
+    font-size: 11px;
+    color: #717171;
+    font-weight: 400;
+    margin-left: 0.5rem;
+}
+
+.woocommerce-Reviews #comments ol.commentlist li.review .description {
+    font-size: 13px;
+    color: #555555;
+    line-height: 1.6;
+}
+
+/* Star rating selector */
+.comment-form-rating p.stars {
+    display: inline-flex;
+    gap: 4px;
+    margin: 0;
+}
+
+.comment-form-rating p.stars a {
+    color: #CC5600 !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+}
+
+/* Submit review button */
+#review_form input#submit,
+#review_form .submit-review-btn {
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    padding: 10px 24px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    box-shadow: 0 2px 6px rgba(204, 86, 0, 0.25) !important;
+}
+
+#review_form input#submit:hover,
+#review_form .submit-review-btn:hover {
+    background-color: #B34B00 !important;
 }

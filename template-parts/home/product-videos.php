@@ -1,16 +1,17 @@
 <?php
 /**
  * Dynamic Product Videos Slider (Reels with Floating Attached Product Cards)
+ * Sourced dynamically from ACF Theme Settings (Option: global-product-videos) or Page-level.
  * Full-width continuous slider with real video playback & sound toggle.
  *
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('product_videos_title') ?: dharmgyan_get_field('product_videos_title', 'option');
-$items = dharmgyan_get_field('product_videos_items');
+$title = dharmgyan_get_field('product_videos_title', 'option') ?: (dharmgyan_get_field('product_videos_title') ?: __('Product Videos', 'dharmgyan'));
+$items = dharmgyan_get_field('product_videos_items', 'option');
 
 if (empty($items)) {
-    $items = dharmgyan_get_field('product_videos_items', 'option');
+    $items = dharmgyan_get_field('product_videos_items');
 }
 
 $default_demo_video = get_theme_file_uri('/assets/videos/demo-reel-1.mp4');
@@ -19,54 +20,54 @@ $default_demo_video = get_theme_file_uri('/assets/videos/demo-reel-1.mp4');
 if (empty($items) || !is_array($items)) {
     $items = array(
         array(
-            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
+            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
             'video_url'     => $default_demo_video,
-            'view_count'    => '2L',
+            'video_views'   => '2L',
             'product_title' => 'Handcrafted Ganesha Idol',
             'product_price' => '₹ 3,706.00',
             'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-1.png'),
         ),
         array(
-            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-2.png'),
+            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-2.png'),
             'video_url'     => $default_demo_video,
-            'view_count'    => '96k',
+            'video_views'   => '96k',
             'product_title' => 'Divine Krishna Murti',
             'product_price' => '₹ 3,706.00',
             'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-2.png'),
         ),
         array(
-            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-3.png'),
+            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-3.png'),
             'video_url'     => $default_demo_video,
-            'view_count'    => '3L',
+            'video_views'   => '3L',
             'product_title' => 'Seven Running Horses Vastu',
             'product_price' => '₹ 3,706.00',
             'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-3.png'),
         ),
         array(
-            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-4.png'),
+            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-4.png'),
             'video_url'     => $default_demo_video,
-            'view_count'    => '1.5L',
+            'video_views'   => '1.5L',
             'product_title' => 'Brass Pooja Thali Set',
             'product_price' => '₹ 2,499.00',
             'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-4.png'),
         ),
         array(
-            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-5.png'),
+            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-5.png'),
             'video_url'     => $default_demo_video,
-            'view_count'    => '50k',
+            'video_views'   => '50k',
             'product_title' => 'Marble Shivling with Trishul',
             'product_price' => '₹ 4,199.00',
             'product_link'  => home_url('/shop/'),
             'product_image' => get_theme_file_uri('/assets/images/products/prod-5.png'),
         ),
         array(
-            'poster_image'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
+            'video_poster'  => get_theme_file_uri('/assets/images/reels/reel-1.png'),
             'video_url'     => $default_demo_video,
-            'view_count'    => '80k',
+            'video_views'   => '80k',
             'product_title' => 'Sacred Brass Aarti Lamp',
             'product_price' => '₹ 1,899.00',
             'product_link'  => home_url('/shop/'),
@@ -78,14 +79,12 @@ if (empty($items) || !is_array($items)) {
 
 <section class="home-product-videos-section w-full bg-white my-10 md:my-16 overflow-hidden" aria-label="<?php echo esc_attr($title ?: __('Product Videos', 'dharmgyan')); ?>">
     
-    <!-- Section Header (Only rendered if title exists in backend) -->
-    <?php if ($title): ?>
-        <div class="max-w-[1580px] mx-auto px-4 mb-6 md:mb-10">
-            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight text-center">
-                <?php echo esc_html($title); ?>
-            </h2>
-        </div>
-    <?php endif; ?>
+    <!-- Section Header (Rendered with Section Title) -->
+    <div class="max-w-[1580px] mx-auto px-4 mb-6 md:mb-10">
+        <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight text-center">
+            <?php echo esc_html($title ?: __('Product Videos', 'dharmgyan')); ?>
+        </h2>
+    </div>
 
     <!-- Full-Width Edge-to-Edge Swiper Reel Slider -->
     <div class="w-full px-3 sm:px-6 lg:px-8">
@@ -93,14 +92,15 @@ if (empty($items) || !is_array($items)) {
             <div class="swiper-wrapper items-center">
                 <?php foreach ($items as $item): ?>
                     <?php
+                    $poster_raw = !empty($item['video_poster']) ? $item['video_poster'] : (!empty($item['poster_image']) ? $item['poster_image'] : '');
                     $poster_url = '';
-                    if (!empty($item['poster_image'])) {
-                        if (is_array($item['poster_image']) && !empty($item['poster_image']['url'])) {
-                            $poster_url = $item['poster_image']['url'];
-                        } elseif (is_numeric($item['poster_image'])) {
-                            $poster_url = wp_get_attachment_image_url($item['poster_image'], 'large');
-                        } elseif (is_string($item['poster_image'])) {
-                            $poster_url = $item['poster_image'];
+                    if (!empty($poster_raw)) {
+                        if (is_array($poster_raw) && !empty($poster_raw['url'])) {
+                            $poster_url = $poster_raw['url'];
+                        } elseif (is_numeric($poster_raw)) {
+                            $poster_url = wp_get_attachment_image_url($poster_raw, 'large');
+                        } elseif (is_string($poster_raw)) {
+                            $poster_url = $poster_raw;
                         }
                     }
 
@@ -108,20 +108,21 @@ if (empty($items) || !is_array($items)) {
                         $poster_url = get_theme_file_uri('/assets/images/reels/reel-1.png');
                     }
 
-                    $views       = !empty($item['view_count']) ? $item['view_count'] : '';
+                    $views       = !empty($item['video_views']) ? $item['video_views'] : (!empty($item['view_count']) ? $item['view_count'] : '2L');
                     $prod_title  = !empty($item['product_title']) ? $item['product_title'] : '';
                     $prod_price  = !empty($item['product_price']) ? $item['product_price'] : '';
                     $prod_link   = !empty($item['product_link']) ? $item['product_link'] : home_url('/shop/');
                     $video_url   = !empty($item['video_url']) ? $item['video_url'] : $default_demo_video;
 
+                    $prod_img_raw = !empty($item['product_image']) ? $item['product_image'] : '';
                     $prod_img_url = '';
-                    if (!empty($item['product_image'])) {
-                        if (is_array($item['product_image']) && !empty($item['product_image']['url'])) {
-                            $prod_img_url = $item['product_image']['url'];
-                        } elseif (is_numeric($item['product_image'])) {
-                            $prod_img_url = wp_get_attachment_image_url($item['product_image'], 'thumbnail');
-                        } elseif (is_string($item['product_image'])) {
-                            $prod_img_url = $item['product_image'];
+                    if (!empty($prod_img_raw)) {
+                        if (is_array($prod_img_raw) && !empty($prod_img_raw['url'])) {
+                            $prod_img_url = $prod_img_raw['url'];
+                        } elseif (is_numeric($prod_img_raw)) {
+                            $prod_img_url = wp_get_attachment_image_url($prod_img_raw, 'thumbnail');
+                        } elseif (is_string($prod_img_raw)) {
+                            $prod_img_url = $prod_img_raw;
                         }
                     }
                     ?>

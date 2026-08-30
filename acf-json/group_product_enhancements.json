@@ -196,6 +196,53 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
+        },
+        {
+            "key": "field_product_faqs",
+            "label": "Product FAQs",
+            "name": "product_faqs",
+            "type": "repeater",
+            "instructions": "Add product-specific Frequently Asked Questions and Answers for this item's FAQ tab.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_faq_question",
+            "min": 0,
+            "max": 0,
+            "layout": "block",
+            "button_label": "Add FAQ Question",
+            "sub_fields": [
+                {
+                    "key": "field_faq_question",
+                    "label": "Question",
+                    "name": "question",
+                    "type": "text",
+                    "instructions": "Enter the FAQ question",
+                    "required": 1,
+                    "placeholder": "e.g., How to clean and care for this sacred idol?",
+                    "wrapper": {
+                        "width": "100"
+                    }
+                },
+                {
+                    "key": "field_faq_answer",
+                    "label": "Answer",
+                    "name": "answer",
+                    "type": "textarea",
+                    "instructions": "Enter the answer",
+                    "required": 1,
+                    "placeholder": "Enter detailed answer here...",
+                    "rows": 3,
+                    "new_lines": "wpautop",
+                    "wrapper": {
+                        "width": "100"
+                    }
+                }
+            ]
         }
     ],
     "location": [

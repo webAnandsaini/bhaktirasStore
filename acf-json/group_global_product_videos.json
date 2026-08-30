@@ -1,0 +1,128 @@
+{
+    "key": "group_global_product_videos",
+    "title": "Global Product Videos & Reels",
+    "fields": [
+        {
+            "key": "field_global_pv_title",
+            "label": "Section Title",
+            "name": "product_videos_title",
+            "type": "text",
+            "default_value": "Product Videos",
+            "placeholder": "Product Videos",
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_global_pv_items",
+            "label": "Video Reels with Floating Attached Product Card",
+            "name": "product_videos_items",
+            "type": "repeater",
+            "instructions": "Add reel videos with product badges for Homepage, Product Pages & across the site.",
+            "required": 0,
+            "layout": "block",
+            "button_label": "Add Product Video Reel",
+            "sub_fields": [
+                {
+                    "key": "field_gpv_poster",
+                    "label": "Video Poster Image",
+                    "name": "video_poster",
+                    "type": "image",
+                    "required": 1,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_gpv_views",
+                    "label": "Views Count (e.g. 2L, 96k, 3L)",
+                    "name": "video_views",
+                    "type": "text",
+                    "required": 0,
+                    "default_value": "2L",
+                    "wrapper": {
+                        "width": "33"
+                    }
+                },
+                {
+                    "key": "field_gpv_video_url",
+                    "label": "Video URL / MP4 (Optional)",
+                    "name": "video_url",
+                    "type": "text",
+                    "required": 0,
+                    "wrapper": {
+                        "width": "34"
+                    }
+                },
+                {
+                    "key": "field_gpv_prod_img",
+                    "label": "Attached Product Image",
+                    "name": "product_image",
+                    "type": "image",
+                    "required": 0,
+                    "return_format": "array",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                },
+                {
+                    "key": "field_gpv_prod_title",
+                    "label": "Product Title",
+                    "name": "product_title",
+                    "type": "text",
+                    "required": 0,
+                    "placeholder": "Handcrafted Ganesha Idol",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                },
+                {
+                    "key": "field_gpv_prod_price",
+                    "label": "Price (e.g. ₹ 3,706.00)",
+                    "name": "product_price",
+                    "type": "text",
+                    "required": 0,
+                    "placeholder": "₹ 3,706.00",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                },
+                {
+                    "key": "field_gpv_prod_link",
+                    "label": "Product Link",
+                    "name": "product_link",
+                    "type": "url",
+                    "required": 0,
+                    "placeholder": "https://...",
+                    "wrapper": {
+                        "width": "25"
+                    }
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "global-product-videos"
+            }
+        ],
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "theme-general-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Global Product Videos & Reels settings for site-wide use"
+}

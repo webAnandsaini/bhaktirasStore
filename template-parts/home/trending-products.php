@@ -1,16 +1,16 @@
 <?php
 /**
- * Homepage 'Trending Products' Showcase Template Part - 1 Row of 5 Products matching Figma
+ * Homepage & PDP 'Trending Products' Showcase Template Part - 1 Row of 5 Products matching Figma
  * Sourced dynamically from ACF fields (Global Option or Page Level).
  *
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('trending_products_title') ?: dharmgyan_get_field('trending_products_title', 'option');
+$title = dharmgyan_get_field('trending_products_title', 'option') ?: (dharmgyan_get_field('trending_products_title') ?: __('Trending Products', 'dharmgyan'));
 
-$selected_products = dharmgyan_get_field('trending_products');
+$selected_products = dharmgyan_get_field('trending_products', 'option');
 if (empty($selected_products)) {
-    $selected_products = dharmgyan_get_field('trending_products', 'option');
+    $selected_products = dharmgyan_get_field('trending_products');
 }
 
 if (!empty($selected_products) && is_array($selected_products)) {
@@ -26,7 +26,7 @@ if (!empty($selected_products) && is_array($selected_products)) {
         'post_status'    => 'publish',
     );
 } else {
-    $count = dharmgyan_get_field('trending_products_count') ? intval(dharmgyan_get_field('trending_products_count')) : (dharmgyan_get_field('trending_products_count', 'option') ? intval(dharmgyan_get_field('trending_products_count', 'option')) : 5);
+    $count = dharmgyan_get_field('trending_products_count', 'option') ? intval(dharmgyan_get_field('trending_products_count', 'option')) : (dharmgyan_get_field('trending_products_count') ? intval(dharmgyan_get_field('trending_products_count')) : 5);
     $args = array(
         'post_type'      => 'product',
         'posts_per_page' => $count,
@@ -42,19 +42,17 @@ if (!$query->have_posts()) {
 }
 ?>
 
-<section class="home-trending-products-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Trending Products', 'dharmgyan')); ?>">
+<section class="home-trending-products-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
-        <!-- Section Header (Only rendered if title exists in backend) -->
-        <?php if ($title): ?>
-            <div class="text-center mb-6 md:mb-10">
-                <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
-                    <?php echo esc_html($title); ?>
-                </h2>
-            </div>
-        <?php endif; ?>
+        <!-- Section Header matching Figma Rosarivo 36px -->
+        <div class="text-center mb-6 md:mb-10">
+            <h2 class="font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-tight">
+                <?php echo esc_html($title); ?>
+            </h2>
+        </div>
 
-        <!-- 5-Column Responsive Product Grid (1 Row of 5 Products) -->
+        <!-- 5-Column Responsive Product Grid (1 Row of 5 Products matching Figma) -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-y-4 gap-x-2">
             <?php while ($query->have_posts()): $query->the_post(); ?>
                 <?php get_template_part('template-parts/shop/product-card'); ?>

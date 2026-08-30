@@ -45,6 +45,13 @@ function dharmgyan_register_acf_options_page()
         ));
 
         acf_add_options_sub_page(array(
+            'page_title'  => 'Global Product Videos & Reels',
+            'menu_title'  => 'Product Videos',
+            'parent_slug' => 'theme-general-settings',
+            'menu_slug'   => 'global-product-videos',
+        ));
+
+        acf_add_options_sub_page(array(
             'page_title'  => 'Global Testimonials & Reviews',
             'menu_title'  => 'Testimonials',
             'parent_slug' => 'theme-general-settings',

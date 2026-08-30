@@ -16,6 +16,9 @@ add_filter('woocommerce_enqueue_styles', '__return_false');
 remove_action('woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10);
 remove_action('woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10);
 
+// Remove default WooCommerce sale flash badge on single product
+remove_action('woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10);
+
 // Remove default short description excerpt, rating, and meta to avoid messy duplicate layout
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_excerpt', 20);
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
@@ -404,34 +407,100 @@ add_action('woocommerce_single_product_summary', 'dharmgyan_single_product_bulle
  */
 function dharmgyan_custom_product_tabs($tabs)
 {
-    // Description tab
+    // 1. Description tab
     if (isset($tabs['description'])) {
         $tabs['description']['title'] = __('Product Description', 'dharmgyan');
         $tabs['description']['priority'] = 10;
         $tabs['description']['callback'] = 'dharmgyan_tab_description_content';
     }
 
-    // Shipping & Delivery Policy tab
+    // 2. Shipping & Delivery Policy tab
     $tabs['shipping_policy'] = array(
         'title'    => __('Shipping & Delivery Policy', 'dharmgyan'),
         'priority' => 20,
         'callback' => 'dharmgyan_tab_shipping_policy_content',
     );
 
-    // Returns & Exchange Policy tab
+    // 3. Returns & Exchange Policy tab
     $tabs['returns_policy'] = array(
         'title'    => __('Returns & Exchange Policy', 'dharmgyan'),
         'priority' => 30,
         'callback' => 'dharmgyan_tab_returns_policy_content',
     );
 
-    // Reviews & FAQ tab
+    // 4. Product-Specific FAQs tab
+    $tabs['product_faqs'] = array(
+        'title'    => __('FAQs', 'dharmgyan'),
+        'priority' => 40,
+        'callback' => 'dharmgyan_tab_faqs_content',
+    );
+
+    // 5. Customer Reviews tab
     if (isset($tabs['reviews'])) {
-        $tabs['reviews']['title'] = __('Reviews & FAQ', 'dharmgyan');
-        $tabs['reviews']['priority'] = 40;
+        $tabs['reviews']['title'] = __('Reviews', 'dharmgyan');
+        $tabs['reviews']['priority'] = 50;
     }
 
     return $tabs;
+}
+
+/**
+ * Tab Content: Product-Specific FAQs (Custom per product via ACF)
+ */
+function dharmgyan_tab_faqs_content()
+{
+    global $product;
+    $product_id = $product ? $product->get_id() : get_the_ID();
+    $faqs = dharmgyan_get_field('product_faqs', $product_id);
+
+    // If no custom FAQs set on this specific product, provide standard devotional FAQs
+    if (empty($faqs) || !is_array($faqs)) {
+        $faqs = array(
+            array(
+                'question' => __('Is this sacred idol/item authentic and energized?', 'dharmgyan'),
+                'answer'   => __('Yes, all our sacred murtis, spiritual art, and temple items are handcrafted with devotion by experienced traditional artisans using pure materials and undergo auspicious Vedic quality checks before safe dispatch.', 'dharmgyan'),
+            ),
+            array(
+                'question' => __('How should I clean and care for this product?', 'dharmgyan'),
+                'answer'   => __('For brass and marble idols, gently wipe with a dry soft microfiber cloth or soft brush to remove dust. Avoid harsh chemical detergents or abrasive scrubbers to preserve the consecrated luster.', 'dharmgyan'),
+            ),
+            array(
+                'question' => __('Is Cash on Delivery (COD) available for my order?', 'dharmgyan'),
+                'answer'   => __('Yes, Cash on Delivery is available across most pincodes in India. We also offer an instant extra 7% discount on all Prepaid orders.', 'dharmgyan'),
+            ),
+            array(
+                'question' => __('What if the product gets damaged during transit?', 'dharmgyan'),
+                'answer'   => __('We pack all devotional items in reinforced multi-layer protective packaging. In the rare event of transit damage, simply contact our support within 7 days for a 100% hassle-free replacement or refund.', 'dharmgyan'),
+            ),
+        );
+    }
+    ?>
+    <div class="faq-accordion-container max-w-4xl mx-auto space-y-3 font-body">
+        <?php foreach ($faqs as $index => $faq): ?>
+            <?php
+            $q = !empty($faq['question']) ? $faq['question'] : '';
+            $a = !empty($faq['answer']) ? $faq['answer'] : '';
+            if (empty($q)) continue;
+            ?>
+            <details class="faq-accordion-item group border border-[#EAE3DC] rounded-[6px] bg-[#FCFAF7] overflow-hidden transition-all duration-200 open:bg-white open:border-[#CC5600] open:shadow-xs" <?php echo $index === 0 ? 'open' : ''; ?>>
+                <summary class="flex items-center justify-between p-4 cursor-pointer list-none select-none font-medium text-[#242424] group-hover:text-[#CC5600] transition-colors">
+                    <span class="text-sm md:text-[15px] font-semibold flex items-center gap-2.5 pr-3">
+                        <span class="w-6 h-6 rounded-full bg-[#FFF1E5] text-[#CC5600] text-xs font-bold flex items-center justify-center shrink-0">Q</span>
+                        <?php echo esc_html($q); ?>
+                    </span>
+                    <span class="w-7 h-7 rounded-full bg-white border border-[#EAE3DC] flex items-center justify-center shrink-0 text-[#717171] group-open:rotate-180 group-open:text-[#CC5600] group-open:border-[#CC5600] transition-transform duration-300">
+                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </span>
+                </summary>
+                <div class="px-5 pb-4 pt-1 text-xs md:text-sm text-[#555555] leading-relaxed border-t border-[#F0EAE4]/60">
+                    <?php echo wp_kses_post(wpautop($a)); ?>
+                </div>
+            </details>
+        <?php endforeach; ?>
+    </div>
+    <?php
 }
 add_filter('woocommerce_product_tabs', 'dharmgyan_custom_product_tabs', 98);
 
