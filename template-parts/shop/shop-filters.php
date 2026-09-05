@@ -128,9 +128,10 @@ $store_max_price = $price_query && $price_query->max_price ? ceil($price_query->
                         max="<?php echo esc_attr($store_max_price); ?>" 
                         value="<?php echo esc_attr($store_min_price); ?>" 
                         class="filter-min-price-input w-full px-2.5 py-1 text-xs text-[#444444] border border-[#CCCCCC] rounded-[3px] focus:border-[#CC5600] focus:outline-none text-center"
+                        aria-label="<?php esc_attr_e('Minimum price filter', 'dharmgyan'); ?>"
                     />
                 </div>
-                <span class="text-[#717171] text-xs font-bold">-</span>
+                <span class="text-[#717171] text-xs font-bold" aria-hidden="true">-</span>
                 <div class="flex-1 relative">
                     <input 
                         type="number" 
@@ -139,6 +140,7 @@ $store_max_price = $price_query && $price_query->max_price ? ceil($price_query->
                         max="<?php echo esc_attr($store_max_price); ?>" 
                         value="<?php echo esc_attr($store_max_price); ?>" 
                         class="filter-max-price-input w-full px-2.5 py-1 text-xs text-[#444444] border border-[#CCCCCC] rounded-[3px] focus:border-[#CC5600] focus:outline-none text-center"
+                        aria-label="<?php esc_attr_e('Maximum price filter', 'dharmgyan'); ?>"
                     />
                 </div>
             </div>
@@ -152,6 +154,7 @@ $store_max_price = $price_query && $price_query->max_price ? ceil($price_query->
                     value="<?php echo esc_attr($store_max_price); ?>" 
                     step="50" 
                     class="price-range-slider-input w-full accent-[#383838] cursor-pointer"
+                    aria-label="<?php esc_attr_e('Price range slider filter', 'dharmgyan'); ?>"
                 />
             </div>
 

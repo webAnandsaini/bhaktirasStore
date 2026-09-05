@@ -4,12 +4,15 @@
  * 
  * @package Dharmgyan
  */
+
+$context  = isset($args['context']) ? sanitize_html_class($args['context']) : 'desktop';
+$input_id = 'header-search-input-' . $context;
 ?>
 <div class="site-search-form flex-1 max-w-[735px] mx-auto px-2 lg:px-6">
-    <form role="search" method="get" class="relative flex items-center w-full" action="<?php echo esc_url(home_url('/')); ?>">
-        <label for="header-search-input" class="sr-only"><?php esc_html_e('Search products', 'dharmgyan'); ?></label>
+    <form role="search" method="get" class="relative flex items-center w-full" action="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php esc_attr_e('Site Search', 'dharmgyan'); ?>">
+        <label for="<?php echo esc_attr($input_id); ?>" class="sr-only"><?php esc_html_e('Search products', 'dharmgyan'); ?></label>
         <input 
-            id="header-search-input"
+            id="<?php echo esc_attr($input_id); ?>"
             type="search" 
             name="s" 
             value="<?php echo get_search_query(); ?>" 
@@ -20,10 +23,10 @@
         <input type="hidden" name="post_type" value="product" />
         <button 
             type="submit" 
-            class="absolute right-0 top-0 bottom-0 px-3.5 flex items-center justify-center text-[#737373] hover:text-[#CC5600] transition-colors"
+            class="absolute right-0 top-0 bottom-0 px-3.5 flex items-center justify-center text-[#737373] hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600]"
             aria-label="<?php esc_attr_e('Submit Search', 'dharmgyan'); ?>"
         >
-            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="w-5 h-5" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="11" cy="11" r="8"></circle>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>

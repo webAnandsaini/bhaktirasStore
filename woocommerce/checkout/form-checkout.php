@@ -14,7 +14,7 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
 }
 ?>
 
-<div class="checkout-page-wrapper bg-white min-h-screen">
+<div class="checkout-page-wrapper bg-white min-h-screen overflow-x-clip w-full max-w-full">
     
     <!-- Full-Width Centered Breadcrumb Bar -->
     <div class="checkout-breadcrumb-bar w-full bg-[#FFF9F4] border-b border-[#F5EBE1] py-4 md:py-0 md:h-[68px] flex items-center justify-center mb-8 md:mb-12">
@@ -28,10 +28,13 @@ if (!$checkout->is_registration_enabled() && $checkout->is_registration_required
     </div>
 
     <div class="max-w-[1400px] mx-auto px-4 pb-16">
+        <h1 class="sr-only"><?php esc_html_e('Checkout', 'dharmgyan'); ?></h1>
         
-        <?php do_action('woocommerce_before_checkout_form', $checkout); ?>
+        <div class="checkout-before-form-wrapper mb-6 clear-both">
+            <?php do_action('woocommerce_before_checkout_form', $checkout); ?>
+        </div>
 
-        <form name="checkout" method="post" class="checkout woocommerce-checkout" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
+        <form name="checkout" method="post" class="checkout woocommerce-checkout clear-both block w-full" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data">
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-start">
                 

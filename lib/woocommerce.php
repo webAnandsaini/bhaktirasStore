@@ -120,18 +120,18 @@ function dharmgyan_single_product_money_back_box()
                 </div>
                 <div>
                     <span class="block text-xs text-[#64748B] font-body leading-none">Razorpay</span>
-                    <h5 class="text-sm md:text-[15px] font-bold text-[#0F172A] font-body leading-tight mt-0.5"><?php esc_html_e('Money Back Promise', 'dharmgyan'); ?></h5>
+                    <p class="text-sm md:text-[15px] font-bold text-[#0F172A] font-body leading-tight mt-0.5"><?php esc_html_e('Money Back Promise', 'dharmgyan'); ?></p>
                 </div>
             </div>
             <div class="flex items-center gap-1.5">
                 <span class="bg-[#1E1B4B] text-white text-[10px] font-semibold px-2.5 py-1 rounded-[4px]">
                     <?php esc_html_e('On Prepaid Orders', 'dharmgyan'); ?>
                 </span>
-                <span class="text-[#64748B] text-xs">›</span>
+                <span class="text-[#64748B] text-xs" aria-hidden="true">›</span>
             </div>
         </div>
         <div class="flex items-center gap-2 mt-2 pt-2 border-t border-[#EDF2F7] text-xs text-[#4F46E5] font-medium font-body">
-            <svg class="w-4 h-4 text-[#4F46E5] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            <svg class="w-4 h-4 text-[#4F46E5] shrink-0" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
             <span><?php esc_html_e('Get 100% refund on non-delivery or defects', 'dharmgyan'); ?></span>
         </div>
     </div>
@@ -148,10 +148,10 @@ function dharmgyan_single_product_gift_box()
     <div class="free-gift-offer-box border-t border-b border-dotted border-[#CCCCCC] py-3 my-3">
         <div class="flex items-center gap-3">
             <div class="text-[#242424] shrink-0">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V6a2 2 0 10-2 2h2zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+                <svg class="w-6 h-6" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V6a2 2 0 10-2 2h2zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
             </div>
             <div>
-                <h5 class="text-xs md:text-sm font-bold text-[#CC5600] font-body leading-tight"><?php esc_html_e('Get free Wire art worth ₹999', 'dharmgyan'); ?></h5>
+                <p class="text-xs md:text-sm font-bold text-[#CC5600] font-body leading-tight"><?php esc_html_e('Get free Wire art worth ₹999', 'dharmgyan'); ?></p>
                 <p class="text-[11px] text-[#717171] font-body mt-0.5"><?php esc_html_e('on every prepaid purchase worth ₹3,999', 'dharmgyan'); ?></p>
             </div>
         </div>
@@ -284,7 +284,7 @@ function dharmgyan_single_product_gradient_banner()
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
         </div>
         <div>
-            <h5 class="text-xs font-bold uppercase tracking-wider text-[#111111] font-body leading-tight"><?php esc_html_e('ELEGANT HANDMADE WALLART', 'dharmgyan'); ?></h5>
+            <p class="text-xs font-bold uppercase tracking-wider text-[#111111] font-body leading-tight"><?php esc_html_e('ELEGANT HANDMADE WALLART', 'dharmgyan'); ?></p>
             <p class="text-xs text-[#444444] font-body mt-0.5"><?php esc_html_e('Crafted with care, designed for timeless beauty.', 'dharmgyan'); ?></p>
         </div>
     </div>
@@ -347,7 +347,7 @@ function dharmgyan_single_product_custom_size_banner()
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
             </div>
             <div>
-                <h5 class="text-xs font-bold text-[#111111] font-body leading-tight"><?php esc_html_e('Size customisation available', 'dharmgyan'); ?></h5>
+                <p class="text-xs font-bold text-[#111111] font-body leading-tight"><?php esc_html_e('Size customisation available', 'dharmgyan'); ?></p>
                 <p class="text-[10px] text-[#64748B] font-body mt-0.5"><?php esc_html_e('To enquire for a custom size, please reach out to us.', 'dharmgyan'); ?></p>
             </div>
         </div>
@@ -366,7 +366,7 @@ function dharmgyan_single_product_bullet_features()
 {
     ?>
     <div class="product-features-checklist my-3 pt-2">
-        <h4 class="font-body text-xs font-bold text-[#111111] mb-2.5"><?php esc_html_e('Designed By XYZ (Made In India)', 'dharmgyan'); ?></h4>
+        <p class="font-body text-xs font-bold text-[#111111] mb-2.5"><?php esc_html_e('Designed By XYZ (Made In India)', 'dharmgyan'); ?></p>
         <ul class="space-y-1.5 text-xs md:text-[13px] text-[#444444] font-body">
             <li class="flex items-center gap-2">
                 <svg class="w-3.5 h-3.5 text-[#555555] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5 5-5"/></svg>
@@ -520,10 +520,10 @@ function dharmgyan_tab_description_content()
             <p><strong><?php esc_html_e('It is also available in many sizes.', 'dharmgyan'); ?></strong> <?php esc_html_e('Explore the complete collection online and search for prices, discounts, sensibilities, and other details. This can transform plain or white walls into something that is worthy of interior design magazines.', 'dharmgyan'); ?></p>
         <?php endif; ?>
 
-        <h4 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('About Quality', 'dharmgyan'); ?></h4>
+        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('About Quality', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('All the products are designed by The Next Décor. We always check product quality carefully like colors, Bending, and Perfect Fit. We follow strict protocols and only deliver products that pass through our 3 quality checks before packing & shipping.', 'dharmgyan'); ?></p>
 
-        <h4 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Sizes Available', 'dharmgyan'); ?></h4>
+        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Sizes Available', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('We have 3 different sizes for acrylic wall art below:', 'dharmgyan'); ?></p>
         <ul class="size-pills flex flex-wrap gap-2.5 my-2">
             <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">43X29 CM or 17 X 11.5 Inch - Height x Width</li>
@@ -531,18 +531,18 @@ function dharmgyan_tab_description_content()
             <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">75X50 CM or 29.5 X 20 Inch - Height x Width</li>
         </ul>
 
-        <h4 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Thickness Available', 'dharmgyan'); ?></h4>
+        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Thickness Available', 'dharmgyan'); ?></h3>
         <ul class="size-pills flex flex-wrap gap-2.5 my-2">
             <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">3 MM</li>
         </ul>
 
-        <h4 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('How to Hang', 'dharmgyan'); ?></h4>
+        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('How to Hang', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('Our acrylic wall art is easy to hang. The ready-to-mount adhesive is included on the corners of your ordered wall art. You can simply remove the protective sheet and mount it to your wall or use stud mounts.', 'dharmgyan'); ?></p>
 
-        <h4 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('How to Care', 'dharmgyan'); ?></h4>
+        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('How to Care', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('Brush away dust particles with a soft brush. Wipe gently with a soft micro-fiber cloth.', 'dharmgyan'); ?></p>
 
-        <h4 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Delivery Time', 'dharmgyan'); ?></h4>
+        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Delivery Time', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('Delivered in 5–6 business days after order confirmation.', 'dharmgyan'); ?></p>
     </div>
     <?php
@@ -555,7 +555,7 @@ function dharmgyan_tab_shipping_policy_content()
 {
     ?>
     <div class="prose max-w-none text-[#444444] font-body text-[15px] leading-relaxed space-y-4">
-        <h4 class="font-serif text-xl text-[#111111] font-medium"><?php esc_html_e('Shipping & Safe Delivery', 'dharmgyan'); ?></h4>
+        <h3 class="font-serif text-xl text-[#111111] font-medium"><?php esc_html_e('Shipping & Safe Delivery', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('All orders are carefully packed in multi-layer protective packaging with tamper-proof seal to ensure your sacred items reach you safely and auspiciously.', 'dharmgyan'); ?></p>
         <ul class="list-disc pl-5 space-y-2">
             <li><strong><?php esc_html_e('Standard Delivery:', 'dharmgyan'); ?></strong> <?php esc_html_e('Delivered in 4–7 business days across India.', 'dharmgyan'); ?></li>
@@ -573,7 +573,7 @@ function dharmgyan_tab_returns_policy_content()
 {
     ?>
     <div class="prose max-w-none text-[#444444] font-body text-[15px] leading-relaxed space-y-4">
-        <h4 class="font-serif text-xl text-[#111111] font-medium"><?php esc_html_e('Hassle-Free Returns & Exchange', 'dharmgyan'); ?></h4>
+        <h3 class="font-serif text-xl text-[#111111] font-medium"><?php esc_html_e('Hassle-Free Returns & Exchange', 'dharmgyan'); ?></h3>
         <p><?php esc_html_e('We take immense pride in the craftsmanship of our sacred items. If you receive a damaged or defective product, we offer a 100% replacement or refund.', 'dharmgyan'); ?></p>
         <ul class="list-disc pl-5 space-y-2">
             <li><strong><?php esc_html_e('7-Day Replacement Window:', 'dharmgyan'); ?></strong> <?php esc_html_e('Report any defect within 7 days of delivery with an unboxing video.', 'dharmgyan'); ?></li>
@@ -590,14 +590,14 @@ function dharmgyan_tab_returns_policy_content()
 if (!function_exists('dharmgyan_quantity_button_plus')) :
     function dharmgyan_quantity_button_plus()
     { ?>
-        <button type="button" class="plus text-lg font-medium text-[#111111] hover:text-[#CC5600] w-9 h-full flex items-center justify-center transition-colors select-none focus:outline-none" aria-label="<?php esc_attr_e('Increase quantity', 'dharmgyan'); ?>">+</button>
+        <button type="button" class="plus text-lg font-medium text-[#111111] hover:text-[#CC5600] w-9 h-full flex items-center justify-center transition-colors select-none focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Increase quantity', 'dharmgyan'); ?>">+</button>
     <?php }
 endif;
 
 if (!function_exists('dharmgyan_quantity_button_minus')) :
     function dharmgyan_quantity_button_minus()
     { ?>
-        <button type="button" class="minus text-lg font-medium text-[#111111] hover:text-[#CC5600] w-9 h-full flex items-center justify-center transition-colors select-none focus:outline-none" aria-label="<?php esc_attr_e('Decrease quantity', 'dharmgyan'); ?>">−</button>
+        <button type="button" class="minus text-lg font-medium text-[#111111] hover:text-[#CC5600] w-9 h-full flex items-center justify-center transition-colors select-none focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Decrease quantity', 'dharmgyan'); ?>">−</button>
     <?php }
 endif;
 
@@ -621,3 +621,39 @@ add_filter('woocommerce_output_related_products_args', 'dharmgyan_related_produc
 add_filter('loop_shop_per_page', function($cols) {
     return 24;
 }, 20);
+
+/**
+ * ─── Cart AJAX Fragments Handler ──────────────────────────────
+ * Ensures Header Bag badge and trigger link update immediately on AJAX Add-to-Cart
+ */
+function dharmgyan_add_to_cart_fragments($fragments)
+{
+    $cart_count = 0;
+    $cart_url   = home_url('/cart/');
+    if (function_exists('WC') && WC()->cart) {
+        $cart_count = WC()->cart->get_cart_contents_count();
+        $cart_url   = wc_get_cart_url();
+    }
+
+    ob_start();
+    ?>
+    <a href="<?php echo esc_url($cart_url); ?>" class="header-action-item header-cart-trigger flex items-center gap-2 hover:text-[#CC5600] transition-colors text-[14px] leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm" aria-label="<?php echo esc_attr(sprintf(__('View Shopping Bag, %d items', 'dharmgyan'), $cart_count)); ?>">
+        <div class="relative flex items-center justify-center">
+            <svg class="w-5 h-5 flex-shrink-0 text-[#444444]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="mini-cart-count absolute -top-2.5 -right-2.5 bg-[#CC5600] text-white text-[10px] font-bold min-w-4 h-4 px-1 rounded-full flex items-center justify-center <?php echo $cart_count > 0 ? '' : 'hidden'; ?>" aria-hidden="true">
+                <?php echo esc_html($cart_count); ?>
+            </span>
+        </div>
+        <span class="header-cart-text hidden xl:inline"><?php esc_html_e('Bag', 'dharmgyan'); ?></span>
+    </a>
+    <?php
+    $fragments['a.header-cart-trigger'] = ob_get_clean();
+
+    return $fragments;
+}
+add_filter('woocommerce_add_to_cart_fragments', 'dharmgyan_add_to_cart_fragments');
+

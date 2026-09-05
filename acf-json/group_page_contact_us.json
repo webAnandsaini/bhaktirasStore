@@ -1,0 +1,242 @@
+{
+    "key": "group_page_contact_us",
+    "title": "Contact Us Page Settings",
+    "fields": [
+        {
+            "key": "field_contact_info_tab",
+            "label": "Support & Contact Info",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_support_card_title",
+            "label": "Support Card Title",
+            "name": "support_card_title",
+            "type": "text",
+            "instructions": "e.g. Customer Support",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Customer Support"
+        },
+        {
+            "key": "field_support_phone_number",
+            "label": "Support Phone Number",
+            "name": "support_phone_number",
+            "type": "text",
+            "instructions": "e.g. +91-9191919191919",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "+91-9191919191919"
+        },
+        {
+            "key": "field_email_card_title",
+            "label": "Email Card Title",
+            "name": "email_card_title",
+            "type": "text",
+            "instructions": "e.g. Email",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Email"
+        },
+        {
+            "key": "field_email_address",
+            "label": "Support Email Address",
+            "name": "email_address",
+            "type": "text",
+            "instructions": "e.g. myvaikunth@gmail.com",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "myvaikunth@gmail.com"
+        },
+        {
+            "key": "field_contact_form_tab",
+            "label": "Contact Form",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_contact_form_heading",
+            "label": "Contact Form Heading",
+            "name": "contact_form_heading",
+            "type": "text",
+            "instructions": "e.g. Contact Us",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Contact Us"
+        },
+        {
+            "key": "field_contact_form_shortcode",
+            "label": "Contact Form Shortcode (CF7)",
+            "name": "contact_form_shortcode",
+            "type": "text",
+            "instructions": "Optional Contact Form 7 shortcode, e.g. [contact-form-7 id=\"563\" title=\"Contact form 1\"]. If empty, the custom Figma-styled form will be used.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "[contact-form-7 id=\"563\" title=\"Contact form 1\"]"
+        },
+        {
+            "key": "field_contact_sections_tab",
+            "label": "Pre-Footer Sections",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_contact_show_discount_sale",
+            "label": "Show 'Our Most Discount Sale' Carousel",
+            "name": "show_discount_sale",
+            "type": "true_false",
+            "instructions": "Enable to display the Discount Sale product carousel before the footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_contact_show_trending_products",
+            "label": "Show 'Trending Products' Carousel",
+            "name": "show_trending_products",
+            "type": "true_false",
+            "instructions": "Enable to display the Trending Products carousel before the footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_contact_show_testimonials",
+            "label": "Show 'What Our Clients Say' Testimonials",
+            "name": "show_testimonials",
+            "type": "true_false",
+            "instructions": "Enable to display the Customer Testimonial cards",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_contact_show_trust_badges",
+            "label": "Show 4 Circular Trust Badges",
+            "name": "show_trust_badges",
+            "type": "true_false",
+            "instructions": "Enable to display Made In India, Best Quality, Secured Payment, Free Shipping badges",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-contact-us.php"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "603"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "ACF field group for Contact Us page without hardcoded default values"
+}

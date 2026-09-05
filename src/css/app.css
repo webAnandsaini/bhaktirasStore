@@ -44,10 +44,67 @@
   --color-text-muted: #717171;
 }
 
+html,
 body {
+  max-width: 100%;
+  overflow-x: clip;
   font-family: var(--font-body);
   color: var(--color-text-body);
   background-color: #ffffff;
+}
+
+/* ─── WCAG 2.1 AA Accessibility Utilities ────────────────── */
+:focus-visible {
+  outline: 2px solid #CC5600 !important;
+  outline-offset: 2px !important;
+}
+
+/* Skip link styling for high contrast keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  z-index: 999999;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  left: 1rem;
+  position: fixed;
+  background-color: #CC5600;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  text-decoration: none;
+  outline: 3px solid #ffffff !important;
+  outline-offset: 2px !important;
+}
+
+/* Screen reader only utility (cross-browser accessible) */
+.sr-only:not(:focus):not(:focus-within) {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 h1, h2, h3, .font-serif-display {

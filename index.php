@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main class="container py-8 mx-auto">
+<main id="primary" class="site-main container py-8 mx-auto" role="main">
   <?php if ( have_posts() ) : ?>
     <?php while ( have_posts() ) : the_post(); ?>
       <article <?php post_class('mb-8'); ?>>

@@ -25,7 +25,7 @@ do_action('woocommerce_before_cart'); ?>
 
         <h1 class="font-body text-2xl md:text-3xl text-[#111111] font-semibold mb-8">
             <?php esc_html_e('Your Shopping Bag', 'dharmgyan'); ?> 
-            <span class="text-sm md:text-base font-normal text-[#717171] ml-2">(<?php echo esc_html(WC()->cart->get_cart_contents_count()); ?> <?php esc_html_e('items', 'dharmgyan'); ?>)</span>
+            <span class="cart-header-count text-sm md:text-base font-normal text-[#717171] ml-2">(<?php echo esc_html(WC()->cart->get_cart_contents_count()); ?> <?php esc_html_e('items', 'dharmgyan'); ?>)</span>
         </h1>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-12 items-start">
@@ -35,7 +35,7 @@ do_action('woocommerce_before_cart'); ?>
                 <form class="woocommerce-cart-form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
                     <?php do_action('woocommerce_before_cart_table'); ?>
 
-                    <div class="border border-[#EAE3DC] rounded-[6px] overflow-hidden bg-white shadow-2xs">
+                    <div class="woocommerce-cart-form__contents border border-[#EAE3DC] rounded-[6px] overflow-hidden bg-white shadow-2xs">
                         
                         <!-- Table Header (Desktop) -->
                         <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-[#F9F5EB] border-b border-[#EAE3DC] text-xs font-semibold text-[#111111] uppercase tracking-wider font-body">
@@ -53,7 +53,7 @@ do_action('woocommerce_before_cart'); ?>
                                 if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)):
                                     $product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
                             ?>
-                                <div class="p-4 md:p-6 flex flex-col md:grid md:grid-cols-12 md:gap-4 md:items-center relative group">
+                                <div class="woocommerce-cart-form__cart-item cart_item p-4 md:p-6 flex flex-col md:grid md:grid-cols-12 md:gap-4 md:items-center relative group">
                                     
                                     <!-- Product Info & Thumbnail -->
                                     <div class="md:col-span-6 flex items-center gap-4">
@@ -96,13 +96,13 @@ do_action('woocommerce_before_cart'); ?>
 
                                     <!-- Quantity Stepper -->
                                     <div class="md:col-span-2 flex items-center md:justify-center mt-2 md:mt-0">
-                                        <div class="quantity border border-[#CCCCCC] rounded-[4px] h-[38px] w-[100px] flex items-center justify-between px-2 bg-white">
+                                        <div class="cart-quantity-stepper border border-[#CCCCCC] rounded-[4px] h-[38px] w-[104px] flex items-center justify-between px-1 bg-white">
                                             <?php
                                             if ($_product->is_sold_individually()) {
                                                 $min_quantity = 1;
                                                 $max_quantity = 1;
                                             } else {
-                                                $min_quantity = 0;
+                                                $min_quantity = 1;
                                                 $max_quantity = $_product->get_max_purchase_quantity();
                                             }
 
@@ -131,12 +131,12 @@ do_action('woocommerce_before_cart'); ?>
                                     </div>
 
                                     <!-- Remove Button -->
-                                    <div class="absolute top-4 right-4 md:static md:col-span-12 md:hidden">
+                                    <div class="product-remove absolute top-4 right-4 md:static md:col-span-12 md:hidden">
                                         <?php
                                         echo apply_filters(
                                             'woocommerce_cart_item_remove_link',
                                             sprintf(
-                                                '<a href="%s" class="text-[#717171] hover:text-red-600 p-1.5 inline-flex items-center justify-center transition-colors" aria-label="%s" data-product_id="%s" data-product_sku="%s"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></a>',
+                                                '<a href="%s" class="text-[#717171] hover:text-red-600 p-1.5 inline-flex items-center justify-center transition-colors" aria-label="%s" data-product_id="%s" data-product_sku="%s"><svg class="w-4 h-4" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></a>',
                                                 esc_url(wc_get_cart_remove_url($cart_item_key)),
                                                 /* translators: %s is the product name */
                                                 esc_attr(sprintf(__('Remove %s from cart', 'dharmgyan'), wp_strip_all_tags($_product->get_name()))),
@@ -157,6 +157,7 @@ do_action('woocommerce_before_cart'); ?>
                             
                             <?php if (wc_coupons_enabled()): ?>
                                 <div class="flex items-center gap-2 w-full sm:w-auto">
+                                    <label for="coupon_code" class="sr-only"><?php esc_html_e('Coupon code', 'dharmgyan'); ?></label>
                                     <input 
                                         type="text" 
                                         name="coupon_code" 
@@ -203,7 +204,7 @@ do_action('woocommerce_before_cart'); ?>
 
             <!-- Right: Sticky Cart Totals Card -->
             <div class="lg:col-span-4 w-full sticky top-28">
-                <div class="border border-[#EAE3DC] rounded-[6px] p-6 bg-[#FCFAF7] shadow-xs font-body">
+                <div class="cart_totals border border-[#EAE3DC] rounded-[6px] p-6 bg-[#FCFAF7] shadow-xs font-body">
                     
                     <h2 class="font-body text-lg font-bold text-[#111111] pb-3 border-b border-[#EAE3DC] mb-4">
                         <?php esc_html_e('Order Summary', 'dharmgyan'); ?>

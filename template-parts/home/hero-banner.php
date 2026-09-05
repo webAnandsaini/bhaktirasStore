@@ -19,7 +19,7 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
         <!-- Master Swiper Container (Sliding the full 3-card grid together) -->
         <div class="swiper heroSwiper w-full relative">
             <div class="swiper-wrapper">
-                <?php foreach ($hero_sets as $set): ?>
+                <?php foreach ($hero_sets as $set_index => $set): ?>
                     <?php
                     // Card 1 (Left Large)
                     $c1_img = '';
@@ -79,11 +79,19 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
 
                             <!-- Left Large Primary Card (lg:col-span-7) -->
                             <div class="lg:col-span-7 w-full h-[420px] sm:h-[480px] md:h-[540px] lg:h-[695px]">
-                                <<?php echo $c1_link ? 'a href="' . esc_url($c1_link) . '"' : 'div'; ?> class="group block w-full h-full relative overflow-hidden rounded-[5px] shadow-sm focus:outline-none">
+                                <<?php echo $c1_link ? 'a href="' . esc_url($c1_link) . '"' : 'div'; ?> class="group block w-full h-full relative overflow-hidden rounded-[5px] shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600]">
                                     <img
                                         src="<?php echo esc_url($c1_img); ?>"
                                         alt="<?php echo esc_attr($c1_alt ?: $c1_title); ?>"
                                         class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                                        <?php if ($set_index === 0): ?>
+                                            loading="eager"
+                                            fetchpriority="high"
+                                            decoding="sync"
+                                        <?php else: ?>
+                                            loading="lazy"
+                                            decoding="async"
+                                        <?php endif; ?>
                                     />
 
                                     <?php if ($c1_eyebrow || $c1_title || $c1_subtitle || $c1_cta): ?>
@@ -97,9 +105,15 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
                                             <?php endif; ?>
 
                                             <?php if ($c1_title): ?>
-                                                <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[44px] text-white font-normal leading-[1.15] mb-3 tracking-tight">
-                                                    <?php echo esc_html($c1_title); ?>
-                                                </h2>
+                                                <?php if ($set_index === 0): ?>
+                                                    <h1 class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[44px] text-white font-normal leading-[1.15] mb-3 tracking-tight">
+                                                        <?php echo esc_html($c1_title); ?>
+                                                    </h1>
+                                                <?php else: ?>
+                                                    <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[44px] text-white font-normal leading-[1.15] mb-3 tracking-tight">
+                                                        <?php echo esc_html($c1_title); ?>
+                                                    </h2>
+                                                <?php endif; ?>
                                             <?php endif; ?>
 
                                             <?php if ($c1_subtitle): ?>
@@ -112,7 +126,7 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
                                                 <div>
                                                     <span class="inline-flex items-center gap-2 bg-[#CC5600] group-hover:bg-[#B34B00] text-white font-medium px-6 py-2.5 sm:py-3 rounded-[4px] text-sm sm:text-base transition-all duration-200 shadow-md">
                                                         <span><?php echo esc_html($c1_cta); ?></span>
-                                                        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                                        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                                                             <line x1="5" y1="12" x2="19" y2="12"></line>
                                                             <polyline points="12 5 19 12 12 19"></polyline>
                                                         </svg>
@@ -132,11 +146,18 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
                                 <!-- Card 2 (Right Top) -->
                                 <?php if ($c2_img): ?>
                                     <div class="w-full h-[200px] sm:h-[230px] md:h-[260px] lg:h-[334px]">
-                                        <<?php echo $c2_link ? 'a href="' . esc_url($c2_link) . '"' : 'div'; ?> class="group block w-full h-full relative rounded-[5px] overflow-hidden shadow-sm focus:outline-none">
+                                        <<?php echo $c2_link ? 'a href="' . esc_url($c2_link) . '"' : 'div'; ?> class="group block w-full h-full relative rounded-[5px] overflow-hidden shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600]">
                                             <img
                                                 src="<?php echo esc_url($c2_img); ?>"
                                                 alt="<?php echo esc_attr($c2_alt ?: $c2_title); ?>"
                                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                                                <?php if ($set_index === 0): ?>
+                                                    loading="eager"
+                                                    decoding="sync"
+                                                <?php else: ?>
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                <?php endif; ?>
                                             />
                                             <?php if ($c2_title): ?>
                                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/70 transition-colors duration-300"></div>
@@ -155,11 +176,18 @@ if (empty($hero_sets) || !is_array($hero_sets)) {
                                 <!-- Card 3 (Right Bottom) -->
                                 <?php if ($c3_img): ?>
                                     <div class="w-full h-[200px] sm:h-[230px] md:h-[260px] lg:h-[334px]">
-                                        <<?php echo $c3_link ? 'a href="' . esc_url($c3_link) . '"' : 'div'; ?> class="group block w-full h-full relative rounded-[5px] overflow-hidden shadow-sm focus:outline-none">
+                                        <<?php echo $c3_link ? 'a href="' . esc_url($c3_link) . '"' : 'div'; ?> class="group block w-full h-full relative rounded-[5px] overflow-hidden shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600]">
                                             <img
                                                 src="<?php echo esc_url($c3_img); ?>"
                                                 alt="<?php echo esc_attr($c3_alt ?: $c3_title); ?>"
                                                 class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
+                                                <?php if ($set_index === 0): ?>
+                                                    loading="eager"
+                                                    decoding="sync"
+                                                <?php else: ?>
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                <?php endif; ?>
                                             />
                                             <?php if ($c3_title): ?>
                                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-black/70 transition-colors duration-300"></div>

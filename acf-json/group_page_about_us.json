@@ -1,0 +1,437 @@
+{
+    "key": "group_page_about_us",
+    "title": "About Us Page Settings",
+    "fields": [
+        {
+            "key": "field_about_story_tab",
+            "label": "Story (Who We Are)",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_story_subtitle",
+            "label": "Story Subtitle",
+            "name": "story_subtitle",
+            "type": "text",
+            "instructions": "e.g. Who We Are",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Who We Are"
+        },
+        {
+            "key": "field_story_title",
+            "label": "Story Title",
+            "name": "story_title",
+            "type": "text",
+            "instructions": "e.g. A Devotion Born in Vrindavan",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "A Devotion Born in Vrindavan"
+        },
+        {
+            "key": "field_story_content",
+            "label": "Story Narrative Content",
+            "name": "story_content",
+            "type": "wysiwyg",
+            "instructions": "Detailed paragraphs describing the origin and devotion of the brand.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_story_image",
+            "label": "Story Feature Image (Portrait)",
+            "name": "story_image",
+            "type": "image",
+            "instructions": "Vertical portrait image (e.g. Krishna flute/hands portrait)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_story_quote_badge",
+            "label": "Story Saffron Quote Badge",
+            "name": "story_quote_badge",
+            "type": "textarea",
+            "instructions": "Devotional quote rendered in the saffron badge over the image, e.g. \"हर मूर्ति में भगवान का वास है\" — Every idol is a divine abode.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 3,
+            "placeholder": "\"हर मूर्ति में भगवान का वास है\" — Every idol is a divine abode."
+        },
+        {
+            "key": "field_about_craft_tab",
+            "label": "The Craft & Artisans",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_craft_subtitle",
+            "label": "Craft Subtitle",
+            "name": "craft_subtitle",
+            "type": "text",
+            "instructions": "e.g. The Craft",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "The Craft"
+        },
+        {
+            "key": "field_craft_title",
+            "label": "Craft Title",
+            "name": "craft_title",
+            "type": "text",
+            "instructions": "e.g. Handcrafted by Devoted Artisans",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Handcrafted by Devoted Artisans"
+        },
+        {
+            "key": "field_craft_content",
+            "label": "Craft Narrative Content",
+            "name": "craft_content",
+            "type": "wysiwyg",
+            "instructions": "Story about the sculptors, workshops, and ethical artisan practices.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
+        },
+        {
+            "key": "field_craft_gallery",
+            "label": "Craft 2x2 Photo Gallery",
+            "name": "craft_gallery",
+            "type": "gallery",
+            "instructions": "Select 4 square artisan/process photos for the 2x2 mosaic collage.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "insert": "append",
+            "library": "all",
+            "min": 0,
+            "max": 4
+        },
+        {
+            "key": "field_craft_stats",
+            "label": "Craft Key Milestones & Stats",
+            "name": "craft_stats",
+            "type": "repeater",
+            "instructions": "Key statistics (up to 4 items matching Figma design)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "field_stat_number",
+            "min": 0,
+            "max": 4,
+            "layout": "table",
+            "button_label": "Add Stat",
+            "sub_fields": [
+                {
+                    "key": "field_stat_number",
+                    "label": "Number / Counter",
+                    "name": "stat_number",
+                    "type": "text",
+                    "instructions": "e.g. 500+",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "500+"
+                },
+                {
+                    "key": "field_stat_label",
+                    "label": "Label",
+                    "name": "stat_label",
+                    "type": "text",
+                    "instructions": "e.g. Happy Clients",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "50",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "Happy Clients"
+                }
+            ]
+        },
+        {
+            "key": "field_about_vision_tab",
+            "label": "Vision & Mission",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_vision_title",
+            "label": "Vision Card Title",
+            "name": "vision_title",
+            "type": "text",
+            "instructions": "e.g. Our Vision",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Our Vision"
+        },
+        {
+            "key": "field_vision_description",
+            "label": "Vision Description",
+            "name": "vision_description",
+            "type": "textarea",
+            "instructions": "Vision text statement",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 4,
+            "placeholder": "Our artisans — drawn from generations of sculptors in Mathura..."
+        },
+        {
+            "key": "field_mission_title",
+            "label": "Mission Card Title",
+            "name": "mission_title",
+            "type": "text",
+            "instructions": "e.g. Our Mission",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "Our Mission"
+        },
+        {
+            "key": "field_mission_description",
+            "label": "Mission Description",
+            "name": "mission_description",
+            "type": "textarea",
+            "instructions": "Mission text statement",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "rows": 4,
+            "placeholder": "Our artisans — drawn from generations of sculptors in Mathura..."
+        },
+        {
+            "key": "field_about_sections_tab",
+            "label": "Pre-Footer Sections",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_about_show_discount_sale",
+            "label": "Show 'Our Most Discount Sale' Carousel",
+            "name": "show_discount_sale",
+            "type": "true_false",
+            "instructions": "Enable to display the Discount Sale product carousel before the footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_about_show_trending_products",
+            "label": "Show 'Trending Products' Carousel",
+            "name": "show_trending_products",
+            "type": "true_false",
+            "instructions": "Enable to display the Trending Products carousel before the footer",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_about_show_testimonials",
+            "label": "Show 'What Our Clients Say' Testimonials",
+            "name": "show_testimonials",
+            "type": "true_false",
+            "instructions": "Enable to display the Customer Testimonial cards",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        },
+        {
+            "key": "field_about_show_trust_badges",
+            "label": "Show 4 Circular Trust Badges",
+            "name": "show_trust_badges",
+            "type": "true_false",
+            "instructions": "Enable to display Made In India, Best Quality, Secured Payment, Free Shipping badges",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-about-us.php"
+            }
+        ],
+        [
+            {
+                "param": "page",
+                "operator": "==",
+                "value": "602"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "ACF field group for About Us page without hardcoded default values"
+}

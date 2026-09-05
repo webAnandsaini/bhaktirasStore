@@ -61,7 +61,7 @@ $archive_title = woocommerce_page_title(false);
 
             <!-- Sort By Select -->
             <div class="flex items-center gap-2">
-                <label for="shop-orderby-select" class="hidden sm:inline-block text-xs text-[#717171] font-body whitespace-nowrap"><?php esc_html_e('Sort by:', 'dharmgyan'); ?></label>
+                <label for="shop-orderby-select" class="sr-only sm:not-sr-only sm:inline-block text-xs text-[#717171] font-body whitespace-nowrap"><?php esc_html_e('Sort by:', 'dharmgyan'); ?></label>
                 <div class="relative">
                     <select
                         id="shop-orderby-select"

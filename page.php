@@ -16,7 +16,7 @@ $is_special_wc_page = (function_exists('is_cart') && is_cart()) ||
                       (function_exists('is_account_page') && is_account_page());
 ?>
 
-<main id="main" class="site-main site-page-container bg-white min-h-screen font-body">
+<main id="primary" class="site-main site-page-container bg-white min-h-screen font-body" role="main">
 
     <?php while (have_posts()): the_post(); ?>
 

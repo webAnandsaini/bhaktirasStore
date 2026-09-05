@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<main id="main" class="site-main container mx-auto px-4 py-8" role="main">
+<main id="primary" class="site-main container mx-auto px-4 py-8" role="main">
     <?php while (have_posts()) : ?>
         <?php the_post(); ?>
         <article <?php post_class(); ?>>

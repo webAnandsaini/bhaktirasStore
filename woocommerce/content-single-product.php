@@ -97,30 +97,6 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                         </div>
                     </div>
 
-                    <!-- 4. Razorpay Money Back Promise Card -->
-                    <!-- <div class="money-back-promise-box border border-[#CBD5E1] rounded-[6px] p-3 bg-white my-3.5 shadow-2xs">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-2.5">
-                                <div class="w-8 h-8 rounded-full bg-[#1E1B4B] text-white flex items-center justify-center font-bold text-sm shrink-0">
-                                    ₹
-                                </div>
-                                <div>
-                                    <span class="block text-[11px] text-[#64748B] font-body leading-none">Razorpay</span>
-                                    <h5 class="text-sm md:text-[15px] font-bold text-[#0F172A] font-body leading-tight mt-0.5">Money Back Promise</h5>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-1.5">
-                                <span class="bg-[#1E1B4B] text-white text-[10px] font-semibold px-2.5 py-1 rounded-[4px]">
-                                    On Prepaid Orders
-                                </span>
-                                <span class="text-[#64748B] text-xs">›</span>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-2 mt-2 pt-2 border-t border-[#EDF2F7] text-xs text-[#4F46E5] font-medium font-body">
-                            <svg class="w-4 h-4 text-[#4F46E5] shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                            <span>Get 100% refund on non-delivery or defects</span>
-                        </div>
-                    </div> -->
 
                     <!-- 5. Dotted Top/Bottom Free Gift Box -->
                     <div class="free-gift-offer-box border-t border-b border-dotted border-[#CCCCCC] py-3 my-3">
@@ -129,7 +105,7 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                                 <svg class="w-6 h-6 text-[#CC5600]" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V6a2 2 0 10-2 2h2zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
                             </div>
                             <div>
-                                <h5 class="text-xs md:text-sm font-bold text-[#CC5600] font-body leading-tight">Get free Wire art worth ₹999</h5>
+                                <p class="text-xs md:text-sm font-bold text-[#CC5600] font-body leading-tight">Get free Wire art worth ₹999</p>
                                 <p class="text-[11px] text-[#717171] font-body mt-0.5">on every prepaid purchase worth ₹3,999</p>
                             </div>
                         </div>
@@ -211,16 +187,6 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                         </div>
                     </div> -->
 
-                    <!-- 9. Gradient Banner ("ELEGANT HANDMADE WALLART") -->
-                    <!-- <div class="elegant-wallart-banner bg-gradient-to-r from-[#EAFFEA] to-[#E2FBF5] border border-[#D1F2E8] rounded-[6px] p-3 flex items-center gap-3 my-3">
-                        <div class="w-9 h-9 rounded-full bg-white text-[#242424] flex items-center justify-center shrink-0 shadow-xs">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-                        </div>
-                        <div>
-                            <h5 class="text-xs font-bold uppercase tracking-wider text-[#111111] font-body leading-tight">ELEGANT HANDMADE WALLART</h5>
-                            <p class="text-xs text-[#444444] font-body mt-0.5">Crafted with care, designed for timeless beauty.</p>
-                        </div>
-                    </div> -->
 
                     <!-- 10. Guarantee Safe Checkout -->
                     <div class="product-guarantee-box border border-[#E2E8F0] rounded-[6px] p-3.5 bg-white my-3.5">
@@ -257,25 +223,10 @@ if ($regular_price > 0 && $sale_price > 0 && $is_on_sale) {
                         </div>
                     </div>
 
-                    <!-- 11. Size Customisation Available Banner -->
-                    <!-- <div class="size-customisation-banner bg-[#F1F5F9] border border-[#E2E8F0] rounded-[6px] p-3 flex items-center justify-between my-3">
-                        <div class="flex items-center gap-2.5">
-                            <div class="w-7 h-7 rounded bg-white text-[#CC5600] flex items-center justify-center shrink-0 border border-[#CBD5E1]">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-                            </div>
-                            <div>
-                                <h5 class="text-xs font-bold text-[#111111] font-body leading-tight">Size customisation available</h5>
-                                <p class="text-[10px] text-[#64748B] font-body mt-0.5">To enquire for a custom size, please reach out to us.</p>
-                            </div>
-                        </div>
-                        <div class="text-[#CC5600] font-bold text-xs md:text-sm font-body shrink-0">
-                            (+91) 9999999999
-                        </div>
-                    </div> -->
 
                     <!-- 12. Designed By XYZ (Made In India) + 7 Bullet Highlights -->
                     <div class="product-features-checklist my-3.5 pt-2">
-                        <h4 class="font-body text-xs md:text-sm font-bold text-[#111111] mb-2.5">Designed By XYZ (Made In India)</h4>
+                        <p class="font-body text-xs md:text-sm font-bold text-[#111111] mb-2.5">Designed By XYZ (Made In India)</p>
                         <ul class="space-y-2 text-xs md:text-[13px] text-[#444444] font-body">
                             <li class="flex items-center gap-2">
                                 <svg class="w-4 h-4 text-[#555555] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12l2.5 2.5 5-5"/></svg>

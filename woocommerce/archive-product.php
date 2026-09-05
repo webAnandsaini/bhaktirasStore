@@ -43,7 +43,7 @@ $archive_title = woocommerce_page_title(false);
         <div class="flex flex-col lg:flex-row gap-4 xl:gap-8 items-start mt-6">
 
             <!-- Left Sticky Filter Sidebar (Desktop: 314px matching Figma) -->
-            <aside class="hidden lg:block w-[314px] shrink-0 sticky top-15 self-start">
+            <aside class="hidden lg:block w-[314px] shrink-0 sticky top-15 self-start" role="complementary" aria-label="<?php esc_attr_e('Product Filters', 'dharmgyan'); ?>">
                 <?php get_template_part('template-parts/shop/shop-filters'); ?>
             </aside>
 

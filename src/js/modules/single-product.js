@@ -131,6 +131,9 @@ export function initSingleProduct() {
         if (!target) return;
 
         if (target.classList.contains('plus') || target.classList.contains('minus')) {
+            // Cart page has its own dedicated cart auto-update module
+            if (target.closest('.woocommerce-cart-form')) return;
+
             e.preventDefault();
             const qtyContainer = target.closest('.quantity');
             if (!qtyContainer) return;

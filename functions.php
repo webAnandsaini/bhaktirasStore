@@ -108,3 +108,10 @@ require_once(get_template_directory() . '/inc/ajax-shop-filter.php');
 
 // AJAX 2-Way Wishlist Toggle
 require_once(get_template_directory() . '/inc/ajax-wishlist.php');
+
+// Native Contact Form Submission Handler
+require_once(get_template_directory() . '/inc/contact-handler.php');
+
+// SEO Schema.org JSON-LD & Accessibility Enhancements
+require_once(get_template_directory() . '/inc/seo-schema.php');
+

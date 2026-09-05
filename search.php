@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<main id="main" class="site-main container mx-auto px-4 py-8" role="main">
+<main id="primary" class="site-main container mx-auto px-4 py-8" role="main">
     <header class="page-header mb-8">
         <h1 class="text-3xl font-bold">
             <?php

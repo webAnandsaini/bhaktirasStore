@@ -38,7 +38,7 @@ if ($max_value && $min_value === $max_value) {
     $label = ! empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'woocommerce'), wp_strip_all_tags($args['product_name'])) : esc_html__('Quantity', 'woocommerce');
 
 ?>
-    <div class="quantity">
+    <div class="quantity flex items-center justify-between w-full h-full">
         <?php
         /**
          * Hook to output something before the quantity input field.

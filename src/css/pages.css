@@ -342,6 +342,133 @@ button#place_order:hover {
     text-decoration: underline !important;
 }
 
+/* ─── Clearfix & Float Reset ─────────────────────────────── */
+.clear,
+.checkout-before-form-wrapper::after,
+form.checkout_coupon::after,
+form.checkout::after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
+}
+
+/* ─── Checkout Coupon Form & Toggle ──────────────────────── */
+.woocommerce-form-coupon-toggle {
+    margin-bottom: 1.25rem !important;
+    clear: both !important;
+}
+
+.woocommerce-form-coupon-toggle .woocommerce-info {
+    margin-bottom: 0.75rem !important;
+}
+
+.woocommerce-form-coupon-toggle .woocommerce-info a.showcoupon {
+    color: #CC5600 !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+    margin-left: 4px !important;
+}
+
+form.checkout_coupon.woocommerce-form-coupon {
+    background-color: #FFF9F4 !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 8px !important;
+    padding: 1.5rem !important;
+    margin: 0 0 2rem 0 !important;
+    max-width: 580px !important;
+    clear: both !important;
+    float: none !important;
+}
+
+form.checkout_coupon p {
+    font-size: 13.5px !important;
+    color: #555555 !important;
+    margin-bottom: 1rem !important;
+    clear: both !important;
+    float: none !important;
+    width: 100% !important;
+}
+
+form.checkout_coupon .form-row-first,
+form.checkout_coupon .form-row-last {
+    float: none !important;
+    margin: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+form.checkout_coupon .form-row-first {
+    width: calc(100% - 165px) !important;
+    max-width: 360px !important;
+    margin-right: 12px !important;
+}
+
+form.checkout_coupon .form-row-last {
+    width: auto !important;
+}
+
+form.checkout_coupon input.input-text {
+    width: 100% !important;
+    height: 44px !important;
+    padding: 0 14px !important;
+    background-color: #ffffff !important;
+    border: 1px solid #D5D5D5 !important;
+    border-radius: 6px !important;
+    font-size: 14px !important;
+    color: #242424 !important;
+    outline: none !important;
+    transition: all 0.2s ease !important;
+    box-sizing: border-box !important;
+}
+
+form.checkout_coupon input.input-text:focus {
+    border-color: #CC5600 !important;
+    box-shadow: 0 0 0 3px rgba(204, 86, 0, 0.12) !important;
+}
+
+form.checkout_coupon button.button[name="apply_coupon"] {
+    height: 44px !important;
+    line-height: 44px !important;
+    padding: 0 22px !important;
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.04em !important;
+    border-radius: 6px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    white-space: nowrap !important;
+    box-shadow: 0 2px 6px rgba(204, 86, 0, 0.2) !important;
+}
+
+form.checkout_coupon button.button[name="apply_coupon"]:hover {
+    background-color: #B34B00 !important;
+}
+
+@media (max-width: 640px) {
+    form.checkout_coupon .form-row-first,
+    form.checkout_coupon .form-row-last {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-right: 0 !important;
+        margin-bottom: 0.75rem !important;
+    }
+    form.checkout_coupon button.button[name="apply_coupon"] {
+        width: 100% !important;
+    }
+}
+
+/* Ensure Checkout form always clears floats */
+form.checkout.woocommerce-checkout {
+    clear: both !important;
+    width: 100% !important;
+    display: block !important;
+}
+
 /* ─── Universal Form Fields & Inputs ─────────────────────── */
 .woocommerce form .form-row {
     margin-bottom: 1.15rem;
@@ -392,24 +519,121 @@ button#place_order:hover {
     box-shadow: 0 0 0 3px rgba(204, 86, 0, 0.12) !important;
 }
 
-/* ─── Checkout Order Review Table ────────────────────────── */
+/* ─── Checkout Container & Table Overflow Fixes ───────────── */
+.checkout-page-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: clip !important;
+}
+
 #order_review table.shop_table {
     width: 100% !important;
-    border-collapse: collapse !important;
-    margin-bottom: 1.5rem !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 8px !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    margin: 0 0 1.5rem 0 !important;
+    table-layout: auto !important;
+    overflow: hidden !important;
+    word-break: break-word !important;
 }
 
 #order_review table.shop_table th,
 #order_review table.shop_table td {
-    padding: 0.85rem 0 !important;
     border-bottom: 1px solid #EAE3DC !important;
     font-size: 14px !important;
     color: #444444 !important;
+    vertical-align: top !important;
 }
 
-#order_review table.shop_table th {
+/* Header Cells */
+#order_review table.shop_table thead th {
+    background-color: #FAF7F2 !important;
+    font-weight: 700 !important;
+    color: #111111 !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    font-size: 13.5px !important;
+    letter-spacing: 0.02em !important;
+}
+
+#order_review table.shop_table thead th.product-name {
+    text-align: left !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1rem !important;
+}
+
+#order_review table.shop_table thead th.product-total {
+    text-align: right !important;
+    padding-left: 1rem !important;
+    padding-right: 1.25rem !important;
+    white-space: nowrap !important;
+    width: 1% !important;
+}
+
+/* Body / Cart Items */
+#order_review table.shop_table tbody td {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    border-bottom: 1px solid #F0EAE4 !important;
+    vertical-align: top !important;
+    line-height: 1.55 !important;
+    background: #ffffff !important;
+}
+
+#order_review table.shop_table tbody td.product-name {
+    text-align: left !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1rem !important;
+    color: #242424 !important;
+    font-size: 13.5px !important;
+}
+
+#order_review table.shop_table tbody td.product-total {
+    text-align: right !important;
+    white-space: nowrap !important;
+    padding-left: 1rem !important;
+    padding-right: 1.25rem !important;
+    color: #111111 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    width: 1% !important;
+    vertical-align: top !important;
+}
+
+/* Product Quantity */
+#order_review table.shop_table .product-quantity {
+    display: inline-block !important;
+    white-space: nowrap !important;
+    color: #717171 !important;
+    font-weight: 600 !important;
+    font-size: 12.5px !important;
+    margin-left: 4px !important;
+}
+
+/* Footer (Subtotal, Shipping, Taxes, Total) */
+#order_review table.shop_table tfoot th {
+    text-align: left !important;
+    font-weight: 500 !important;
+    color: #555555 !important;
+    padding: 0.85rem 1rem 0.85rem 1.25rem !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    font-size: 14px !important;
+    background: #FAF7F2 !important;
+}
+
+#order_review table.shop_table tfoot td {
+    text-align: right !important;
+    white-space: nowrap !important;
+    padding: 0.85rem 1.25rem 0.85rem 1rem !important;
     font-weight: 600 !important;
     color: #111111 !important;
+    border-bottom: 1px solid #EAE3DC !important;
+    font-size: 14px !important;
+    background: #FAF7F2 !important;
 }
 
 #order_review table.shop_table tr.order-total td,
@@ -419,12 +643,15 @@ button#place_order:hover {
     font-size: 16px !important;
     font-weight: 700 !important;
     color: #111111 !important;
-    padding-top: 1rem !important;
+    padding-top: 1.15rem !important;
+    padding-bottom: 1.15rem !important;
+    background: #FAF7F2 !important;
 }
 
 #order_review table.shop_table tr.order-total td strong {
     color: #CC5600 !important;
-    font-size: 22px !important;
+    font-size: 20px !important;
+    font-weight: 700 !important;
 }
 
 /* Payment Methods Box */
