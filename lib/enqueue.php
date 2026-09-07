@@ -16,13 +16,18 @@ function dharmgyan_enqueue_scripts()
         null
     );
 
+    $css_file = get_theme_file_path('/assets/css/style.css');
+    $css_version = file_exists($css_file) ? (string)filemtime($css_file) : $theme_version;
+    $js_file  = get_theme_file_path('/assets/js/app.js');
+    $js_version  = file_exists($js_file) ? (string)filemtime($js_file) : $theme_version;
+
     wp_enqueue_style('dharmgyan-style', get_stylesheet_uri(), array(), $theme_version);
     wp_style_add_data('dharmgyan-style', 'rtl', 'replace');
     wp_enqueue_style('dharmgyan-fontawesome', get_theme_file_uri('/assets/css/font-awesome.min.css'), array(), $theme_version);
-    wp_enqueue_style('dharmgyan', get_theme_file_uri('/assets/css/style.css'), array(), $theme_version);
+    wp_enqueue_style('dharmgyan', get_theme_file_uri('/assets/css/style.css'), array(), $css_version);
 
     // Global Modern App Bundle (Vite + Swiper + Header Drawer + AJAX Filters)
-    wp_enqueue_script('dharmgyan-app', get_theme_file_uri('/assets/js/app.js'), array('jquery'), $theme_version, true);
+    wp_enqueue_script('dharmgyan-app', get_theme_file_uri('/assets/js/app.js'), array('jquery'), $js_version, true);
 
     // Localize Script for AJAX Filter & Cart operations
     wp_localize_script('dharmgyan-app', 'dharmgyan_vars', array(

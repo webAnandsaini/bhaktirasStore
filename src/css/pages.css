@@ -1002,13 +1002,16 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
     background-color: #B34B00 !important;
 }
 
-/* ─── Contact Form 7 Pixel-Perfect Figma Styling ─────────── */
-.cf7-custom-wrapper {
+/* ─── Contact Form (CF7 & Native) Pixel-Perfect Figma Styling ─────────── */
+.cf7-custom-wrapper,
+.contact-custom-form {
     width: 100%;
+    max-width: 860px;
     margin: 0 auto;
 }
 
-.cf7-custom-wrapper form.wpcf7-form {
+.cf7-custom-wrapper form.wpcf7-form,
+.contact-custom-form {
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -1023,33 +1026,54 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
     width: 100%;
 }
 
-.cf7-custom-wrapper label {
+.cf7-custom-wrapper form.wpcf7-form br {
+    display: none;
+}
+
+.cf7-custom-wrapper label,
+.contact-custom-form label {
     display: block;
     font-family: var(--font-body, 'Noto Sans', sans-serif);
     font-size: 14px;
     font-weight: 500;
     color: #222222;
-    margin-bottom: 0.5rem;
     line-height: 1.4;
+    width: 100%;
+}
+
+.cf7-custom-wrapper .cf7-label-text,
+.contact-custom-form .label-text {
+    display: block;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+    line-height: 1.4;
+    margin-bottom: 8px;
 }
 
 .cf7-custom-wrapper .wpcf7-form-control-wrap {
     display: block;
     width: 100%;
     position: relative;
+    margin-top: 8px;
 }
 
 .cf7-custom-wrapper input[type="text"],
 .cf7-custom-wrapper input[type="email"],
 .cf7-custom-wrapper input[type="tel"],
 .cf7-custom-wrapper input[type="url"],
-.cf7-custom-wrapper select {
+.cf7-custom-wrapper select,
+.contact-custom-form input[type="text"],
+.contact-custom-form input[type="email"],
+.contact-custom-form input[type="tel"] {
     width: 100%;
-    padding: 0.875rem 1rem;
-    border-radius: 8px;
+    height: 48px;
+    padding: 0 1rem;
+    border-radius: 6px;
     border: 1px solid #D5D5D5;
     font-size: 14px;
-    color: #333333;
+    color: #222222;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     font-family: var(--font-body, 'Noto Sans', sans-serif);
@@ -1057,18 +1081,28 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
     box-sizing: border-box;
 }
 
-.cf7-custom-wrapper textarea {
+.cf7-custom-wrapper input::placeholder,
+.cf7-custom-wrapper textarea::placeholder,
+.contact-custom-form input::placeholder,
+.contact-custom-form textarea::placeholder {
+    color: #9E9E9E;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.cf7-custom-wrapper textarea,
+.contact-custom-form textarea {
     width: 100%;
     padding: 0.875rem 1rem;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px solid #D5D5D5;
     font-size: 14px;
-    color: #333333;
+    color: #222222;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     font-family: var(--font-body, 'Noto Sans', sans-serif);
     background-color: #ffffff;
-    min-height: 150px;
+    min-height: 160px;
     resize: vertical;
     box-sizing: border-box;
 }
@@ -1078,9 +1112,13 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
 .cf7-custom-wrapper input[type="tel"]:focus,
 .cf7-custom-wrapper input[type="url"]:focus,
 .cf7-custom-wrapper select:focus,
-.cf7-custom-wrapper textarea:focus {
-    border-color: #CC5600 !important;
-    box-shadow: 0 0 0 1px #CC5600 !important;
+.cf7-custom-wrapper textarea:focus,
+.contact-custom-form input[type="text"]:focus,
+.contact-custom-form input[type="email"]:focus,
+.contact-custom-form input[type="tel"]:focus,
+.contact-custom-form textarea:focus {
+    border-color: #C0570A !important;
+    box-shadow: 0 0 0 1px #C0570A !important;
 }
 
 .cf7-custom-wrapper input.wpcf7-not-valid,
@@ -1098,29 +1136,37 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
 
 .cf7-custom-wrapper input[type="submit"],
 .cf7-custom-wrapper button[type="submit"],
-.cf7-custom-wrapper .wpcf7-submit {
+.cf7-custom-wrapper .wpcf7-submit,
+.contact-custom-form button[type="submit"],
+.contact-custom-form .contact-submit-btn {
     width: 100%;
-    padding: 1rem 1.5rem;
-    background-color: #CC5600 !important;
+    height: 48px;
+    padding: 0 1.5rem;
+    background-color: #C0570A !important;
     color: #ffffff !important;
     font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
     font-weight: 600 !important;
-    font-size: 15px !important;
-    letter-spacing: 0.05em !important;
+    font-size: 14px !important;
+    letter-spacing: 0.08em !important;
     text-transform: uppercase !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     border: none !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
-    box-shadow: 0 2px 6px rgba(204, 86, 0, 0.2) !important;
+    box-shadow: 0 1px 3px rgba(192, 87, 10, 0.2) !important;
     box-sizing: border-box;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .cf7-custom-wrapper input[type="submit"]:hover,
 .cf7-custom-wrapper button[type="submit"]:hover,
-.cf7-custom-wrapper .wpcf7-submit:hover {
-    background-color: #B34B00 !important;
-    box-shadow: 0 4px 12px rgba(204, 86, 0, 0.3) !important;
+.cf7-custom-wrapper .wpcf7-submit:hover,
+.contact-custom-form button[type="submit"]:hover,
+.contact-custom-form .contact-submit-btn:hover {
+    background-color: #A34500 !important;
+    box-shadow: 0 4px 10px rgba(192, 87, 10, 0.3) !important;
     transform: translateY(-1px);
 }
 
@@ -1132,7 +1178,7 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
 .cf7-custom-wrapper .wpcf7-response-output {
     margin: 1rem 0 0 0 !important;
     padding: 0.875rem 1.25rem !important;
-    border-radius: 8px !important;
+    border-radius: 6px !important;
     font-size: 14px !important;
     font-weight: 500 !important;
     line-height: 1.4 !important;
@@ -1152,16 +1198,19 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
     color: #991B1B !important;
 }
 
-.cf7-custom-wrapper .cf7-grid-2 {
+.cf7-custom-wrapper .cf7-grid-2,
+.contact-custom-form .form-grid-2 {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1.25rem;
     width: 100%;
 }
 
-@media (min-width: 768px) {
-    .cf7-custom-wrapper .cf7-grid-2 {
+@media (min-width: 640px) {
+    .cf7-custom-wrapper .cf7-grid-2,
+    .contact-custom-form .form-grid-2 {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 

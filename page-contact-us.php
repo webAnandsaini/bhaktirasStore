@@ -116,7 +116,7 @@ $has_info_cards   = $has_support_card || $has_email_card;
                 </div>
             <?php endif; ?>
 
-            <div class="contact-form-box bg-white">
+            <div class="contact-form-box bg-white max-w-[860px] mx-auto">
                 <?php if (!empty($form_shortcode)): ?>
                     <div class="cf7-custom-wrapper">
                         <?php echo do_shortcode($form_shortcode); ?>
@@ -125,11 +125,36 @@ $has_info_cards   = $has_support_card || $has_email_card;
                     <div class="cf7-custom-wrapper">
                         <?php the_content(); ?>
                     </div>
-                <?php elseif (current_user_can('edit_pages')): ?>
-                    <div class="p-6 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium text-center">
-                        <p class="font-bold text-base mb-1"><?php esc_html_e('Contact Form Shortcode Missing', 'dharmgyan'); ?></p>
-                        <p><?php esc_html_e('Please edit this page in WP Admin and paste your Contact Form 7 shortcode in the "Contact Form Shortcode" field.', 'dharmgyan'); ?></p>
-                    </div>
+                <?php else: ?>
+                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="contact-custom-form" novalidate>
+                        <?php wp_nonce_field('dharmgyan_contact_nonce', 'contact_nonce'); ?>
+                        <input type="hidden" name="action" value="dharmgyan_contact_form">
+
+                        <div class="form-grid-2">
+                            <label for="fallback-name">
+                                <span class="label-text"><?php esc_html_e('Name', 'dharmgyan'); ?></span>
+                                <input type="text" id="fallback-name" name="contact_name" placeholder="<?php esc_attr_e('Your Name', 'dharmgyan'); ?>" required autocomplete="name" />
+                            </label>
+                            <label for="fallback-phone">
+                                <span class="label-text"><?php esc_html_e('Phone Number', 'dharmgyan'); ?></span>
+                                <input type="tel" id="fallback-phone" name="contact_phone" placeholder="<?php esc_attr_e('Your Phone Number', 'dharmgyan'); ?>" autocomplete="tel" />
+                            </label>
+                        </div>
+
+                        <label for="fallback-email">
+                            <span class="label-text"><?php esc_html_e('Email', 'dharmgyan'); ?></span>
+                            <input type="email" id="fallback-email" name="contact_email" placeholder="<?php esc_attr_e('Your Email', 'dharmgyan'); ?>" required autocomplete="email" />
+                        </label>
+
+                        <label for="fallback-message">
+                            <span class="label-text"><?php esc_html_e('Message', 'dharmgyan'); ?></span>
+                            <textarea id="fallback-message" name="contact_message" placeholder="<?php esc_attr_e('Your message here', 'dharmgyan'); ?>" required rows="6"></textarea>
+                        </label>
+
+                        <button type="submit" class="contact-submit-btn">
+                            <?php esc_html_e('SEND MESSAGE', 'dharmgyan'); ?>
+                        </button>
+                    </form>
                 <?php endif; ?>
             </div>
 
