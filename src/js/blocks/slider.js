@@ -28,7 +28,7 @@ const energiesSwiperEl = document.querySelector('.energiesSwiper');
 if (energiesSwiperEl) {
   new Swiper('.energiesSwiper', {
     modules: [Autoplay],
-    slidesPerView: 2.8,
+    slidesPerView: 1.5,
     spaceBetween: 16,
     loop: true,
     speed: 4000,
@@ -38,10 +38,10 @@ if (energiesSwiperEl) {
       pauseOnMouseEnter: true,
     },
     breakpoints: {
-      480: { slidesPerView: 2.8, spaceBetween: 18 },
-      640: { slidesPerView: 3.5, spaceBetween: 20 },
-      768: { slidesPerView: 4.5, spaceBetween: 22 },
-      1024: { slidesPerView: 5.5, spaceBetween: 24 },
+      480: { slidesPerView: 2.2, spaceBetween: 18 },
+      640: { slidesPerView: 2.5, spaceBetween: 20 },
+      768: { slidesPerView: 3.5, spaceBetween: 22 },
+      1024: { slidesPerView: 4.5, spaceBetween: 24 },
     },
   });
 }

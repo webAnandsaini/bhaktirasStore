@@ -11,7 +11,7 @@
             <?php the_custom_logo(); ?>
         </div>
     <?php else: ?>
-        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="site-title-text font-serif text-[34px] md:text-[38px] font-normal tracking-wide text-[#000000] hover:text-[#CC5600] transition-colors leading-none">
+        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" class="site-title-text font-serif text-[20px] md:text-[18px] font-normal tracking-wide text-[#000000] hover:text-[#CC5600] transition-colors leading-none">
             <?php bloginfo('name'); ?>
         </a>
     <?php endif; ?>

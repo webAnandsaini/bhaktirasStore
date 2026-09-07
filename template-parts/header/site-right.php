@@ -1,7 +1,7 @@
 <?php
 /**
  * Site Header Actions (Help, Wishlist, Bag, Login) - Pixel Perfect Figma
- * 
+ *
  * @package Dharmgyan
  */
 
@@ -24,7 +24,7 @@ $account_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink(
 $is_logged_in = is_user_logged_in();
 ?>
 
-<div class="site-header-actions flex items-center gap-6 xl:gap-8 text-[#444444] font-sub">
+<div class="site-header-actions flex items-center gap-4 md:gap-6 xl:gap-8 text-[#444444] font-sub">
     <!-- Help Action -->
     <a href="<?php echo esc_url($help_url); ?>" class="header-action-item flex items-center gap-2 hover:text-[#CC5600] transition-colors text-[14px] leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm" aria-label="<?php esc_attr_e('Help and Support', 'dharmgyan'); ?>">
         <svg class="w-5 h-5 flex-shrink-0 text-[#444444]" aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
