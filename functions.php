@@ -64,6 +64,13 @@ function dharmgyan_register_acf_options_page()
             'parent_slug' => 'theme-general-settings',
             'menu_slug'   => 'global-instagram-gallery',
         ));
+
+        acf_add_options_sub_page(array(
+            'page_title'  => 'Product Offers & Store Policies',
+            'menu_title'  => 'Offers & Policies',
+            'parent_slug' => 'theme-general-settings',
+            'menu_slug'   => 'global-product-offers',
+        ));
     }
 }
 add_action('acf/init', 'dharmgyan_register_acf_options_page');

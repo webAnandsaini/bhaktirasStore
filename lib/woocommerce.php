@@ -228,19 +228,62 @@ function dharmgyan_add_buy_now_button()
     </button>
     <?php
 }
-add_action('woocommerce_after_add_to_cart_button', 'dharmgyan_add_buy_now_button', 10);
+// Handled directly inside add-to-cart templates to guarantee Figma 2-column layout
+// add_action('woocommerce_after_add_to_cart_button', 'dharmgyan_add_buy_now_button', 10);
 
 /**
  * Handle Direct Checkout on "Buy It Now" submission
  */
 function dharmgyan_handle_buy_now_redirect($url)
 {
-    if (isset($_REQUEST['dharmgyan_buy_now']) && $_REQUEST['dharmgyan_buy_now'] === '1') {
+    if (!empty($_REQUEST['dharmgyan_buy_now'])) {
         return wc_get_checkout_url();
     }
     return $url;
 }
-add_filter('woocommerce_add_to_cart_redirect', 'dharmgyan_handle_buy_now_redirect');
+add_filter('woocommerce_add_to_cart_redirect', 'dharmgyan_handle_buy_now_redirect', 99);
+
+/**
+ * Clean up Woo Variation Swatches:
+ * 1. Disable appending selected attribute value text into <label> (prevents vertical line wrapping)
+ * 2. Set swatch disabled behavior to blur-no-cross (removes red cross SVG)
+ */
+add_action('after_setup_theme', function () {
+    add_theme_support('woo_variation_swatches', [
+        'attribute_behavior'   => 'blur-no-cross',
+        'show_variation_label' => 'no',
+    ]);
+});
+
+add_filter('option_woo_variation_swatches', function ($options) {
+    if (!is_array($options)) {
+        $options = [];
+    }
+    $options['attribute_behavior'] = 'blur-no-cross';
+    $options['show_variation_label'] = 'no';
+    return $options;
+});
+
+add_filter('woo_variation_swatches_js_options', function ($options) {
+    $options['show_variation_label'] = false;
+    return $options;
+});
+
+/**
+ * 2. Ensure every variable product has default attributes pre-selected on page load
+ */
+add_filter('woocommerce_product_get_default_attributes', function ($defaults, $product) {
+    if ($product && $product->is_type('variable') && empty($defaults)) {
+        $attributes = $product->get_variation_attributes();
+        foreach ($attributes as $attr_name => $options) {
+            if (!empty($options)) {
+                $defaults[$attr_name] = $options[0];
+            }
+        }
+    }
+    return $defaults;
+}, 10, 2);
+
 
 /**
  * 7. EMI & Offers Card (Razorpay)
@@ -445,15 +488,106 @@ function dharmgyan_custom_product_tabs($tabs)
 }
 
 /**
- * Tab Content: Product-Specific FAQs (Custom per product via ACF)
+ * Helper: Get SEO-Optimized Product Highlights
+ * 1. Checks ACF 'product_highlights' (custom bullets)
+ * 2. Checks native WooCommerce Short Description ('post_excerpt')
+ * 3. Checks product attributes (Material, Size, Dimensions)
+ * 4. Fallback to devotional craftsmanship highlights
+ */
+function dharmgyan_get_product_highlights($product = null)
+{
+    if (!$product) {
+        global $product;
+    }
+    if (!$product || !is_a($product, 'WC_Product')) {
+        return [];
+    }
+
+    $product_id = $product->get_id();
+    $highlights = [];
+
+    // 1. ACF Product Highlights field
+    $acf_highlights = dharmgyan_get_field('product_highlights', $product_id);
+    if (!empty($acf_highlights)) {
+        $lines = preg_split('/[\r\n]+/', trim($acf_highlights));
+        foreach ($lines as $line) {
+            $line = trim($line, " \t\n\r\0\x0B-•*");
+            if (!empty($line)) {
+                $highlights[] = $line;
+            }
+        }
+    }
+
+    // 2. Native WooCommerce Short Description (post_excerpt)
+    if (empty($highlights)) {
+        $short_desc = $product->get_short_description();
+        if (!empty($short_desc)) {
+            if (preg_match_all('/<li[^>]*>(.*?)<\/li>/is', $short_desc, $matches)) {
+                foreach ($matches[1] as $item) {
+                    $item = trim(wp_strip_all_tags($item));
+                    if (!empty($item)) {
+                        $highlights[] = $item;
+                    }
+                }
+            } else {
+                $lines = preg_split('/[\r\n]+|<br\s*\/?>/i', $short_desc);
+                foreach ($lines as $line) {
+                    $line = trim(wp_strip_all_tags($line), " \t\n\r\0\x0B-•*");
+                    if (!empty($line)) {
+                        $highlights[] = $line;
+                    }
+                }
+            }
+        }
+    }
+
+    // 3. Dynamic attributes from product if set
+    if (empty($highlights)) {
+        $attributes = $product->get_attributes();
+        if (!empty($attributes)) {
+            foreach ($attributes as $attr) {
+                if (is_object($attr) && method_exists($attr, 'get_name')) {
+                    $label = wc_attribute_label($attr->get_name(), $product);
+                    $values = wc_get_product_terms($product_id, $attr->get_name(), ['fields' => 'names']);
+                    if (!empty($values) && !is_wp_error($values)) {
+                        $highlights[] = sprintf('%s: %s', $label, implode(', ', $values));
+                    }
+                }
+            }
+        }
+    }
+
+    // 4. Fallback devotional craft specifications
+    if (empty($highlights)) {
+        $highlights = [
+            __('Crafted with divine devotion & authentic high-grade materials', 'dharmgyan'),
+            __('Undergoes 3 strict Vedic quality checks before sacred packing', 'dharmgyan'),
+            __('Protective moisture-proof and tamper-evident packaging', 'dharmgyan'),
+            __('Safe and insured delivery to your doorstep across India', 'dharmgyan'),
+            __('100% replacement guarantee in case of any transit defect', 'dharmgyan'),
+        ];
+    }
+
+    return array_slice($highlights, 0, 8);
+}
+
+/**
+ * Tab Content: Product-Specific FAQs (Custom per product via ACF or Global Theme Settings)
  */
 function dharmgyan_tab_faqs_content()
 {
     global $product;
     $product_id = $product ? $product->get_id() : get_the_ID();
+    
+    // 1. Check Product-specific FAQs
     $faqs = dharmgyan_get_field('product_faqs', $product_id);
 
-    // If no custom FAQs set on this specific product, provide standard devotional FAQs
+    // 2. Check Global FAQs from Theme Settings if product has none
+    if (empty($faqs) || !is_array($faqs)) {
+        $faqs = dharmgyan_get_field('global_product_faqs', 'option');
+    }
+
+    // 3. Fallback standard devotional FAQs
     if (empty($faqs) || !is_array($faqs)) {
         $faqs = array(
             array(
@@ -500,86 +634,187 @@ function dharmgyan_tab_faqs_content()
             </details>
         <?php endforeach; ?>
     </div>
+
+    <!-- Google Search Engine FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            <?php
+            $faq_schema_items = [];
+            foreach ($faqs as $faq) {
+                if (!empty($faq['question']) && !empty($faq['answer'])) {
+                    $faq_schema_items[] = json_encode([
+                        '@type' => 'Question',
+                        'name' => wp_strip_all_tags($faq['question']),
+                        'acceptedAnswer' => [
+                            '@type' => 'Answer',
+                            'text' => wp_strip_all_tags($faq['answer'])
+                        ]
+                    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+                }
+            }
+            echo implode(',', $faq_schema_items);
+            ?>
+        ]
+    }
+    </script>
     <?php
 }
 add_filter('woocommerce_product_tabs', 'dharmgyan_custom_product_tabs', 98);
 
 /**
- * Tab Content: Rich Product Description matching Figma
+ * Tab Content: Dynamic Product Description & Technical Specifications
  */
 function dharmgyan_tab_description_content()
 {
-    global $post;
+    global $post, $product;
+    if (!$product && $post) {
+        $product = wc_get_product($post->ID);
+    }
     $content = get_the_content();
+    $materials = dharmgyan_get_field('materials', $product ? $product->get_id() : get_the_ID());
+    $dimensions = dharmgyan_get_field('dimensions', $product ? $product->get_id() : get_the_ID());
+    $weight = dharmgyan_get_field('weight', $product ? $product->get_id() : get_the_ID());
+    $care = dharmgyan_get_field('care_instructions', $product ? $product->get_id() : get_the_ID());
+    $spiritual = dharmgyan_get_field('spiritual_significance', $product ? $product->get_id() : get_the_ID());
+    $ritual = dharmgyan_get_field('ritual_usage', $product ? $product->get_id() : get_the_ID());
     ?>
     <div class="prose max-w-none text-[#444444] font-body text-[15px] leading-relaxed space-y-4">
         <?php if (!empty($content)): ?>
             <?php echo wp_kses_post(wpautop($content)); ?>
         <?php else: ?>
-            <p><?php esc_html_e('The Acrylic Wall Art collection by The Next Decor is a lavish display of exuberance. These wall art display extravagant designs and are meticulously detailed. This acrylic wall art is a striking addition to any wall. It features bold colors and rich hues.', 'dharmgyan'); ?></p>
-            <p><strong><?php esc_html_e('It is also available in many sizes.', 'dharmgyan'); ?></strong> <?php esc_html_e('Explore the complete collection online and search for prices, discounts, sensibilities, and other details. This can transform plain or white walls into something that is worthy of interior design magazines.', 'dharmgyan'); ?></p>
+            <p><?php esc_html_e('Handcrafted with authentic craftsmanship and spiritual reverence. Designed to bring auspicious tranquility, positive vibes, and devotional beauty to your sacred space and home.', 'dharmgyan'); ?></p>
         <?php endif; ?>
 
-        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('About Quality', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('All the products are designed by The Next Décor. We always check product quality carefully like colors, Bending, and Perfect Fit. We follow strict protocols and only deliver products that pass through our 3 quality checks before packing & shipping.', 'dharmgyan'); ?></p>
+        <?php if (!empty($spiritual)): ?>
+            <div class="mt-6 p-4 rounded-lg bg-[#FFF9F4] border border-[#F5EBE1]">
+                <h3 class="text-base font-bold text-[#CC5600] mb-1.5"><?php esc_html_e('Spiritual Significance', 'dharmgyan'); ?></h3>
+                <p class="text-sm text-[#555555]"><?php echo wp_kses_post(nl2br($spiritual)); ?></p>
+            </div>
+        <?php endif; ?>
 
-        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Sizes Available', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('We have 3 different sizes for acrylic wall art below:', 'dharmgyan'); ?></p>
-        <ul class="size-pills flex flex-wrap gap-2.5 my-2">
-            <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">43X29 CM or 17 X 11.5 Inch - Height x Width</li>
-            <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">59X40 CM or 23.5 X 16 Inch - Height x Width</li>
-            <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">75X50 CM or 29.5 X 20 Inch - Height x Width</li>
-        </ul>
+        <?php if (!empty($ritual)): ?>
+            <div class="mt-4 p-4 rounded-lg bg-[#FAF8F5] border border-[#EAE3DC]">
+                <h3 class="text-base font-bold text-[#111111] mb-1.5"><?php esc_html_e('Ritual Usage & Placement', 'dharmgyan'); ?></h3>
+                <p class="text-sm text-[#555555]"><?php echo wp_kses_post(nl2br($ritual)); ?></p>
+            </div>
+        <?php endif; ?>
 
-        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Thickness Available', 'dharmgyan'); ?></h3>
-        <ul class="size-pills flex flex-wrap gap-2.5 my-2">
-            <li class="border border-[#666666] text-[#666666] text-xs font-medium px-3.5 py-1.5 rounded-[5px] bg-white">3 MM</li>
-        </ul>
+        <!-- Dynamic Product Attributes & Technical Specs -->
+        <?php
+        $has_specs = !empty($materials) || !empty($dimensions) || !empty($weight) || ($product && $product->has_attributes());
+        if ($has_specs):
+        ?>
+            <h3 class="text-base font-bold text-[#111111] mt-8 mb-3"><?php esc_html_e('Product Specifications', 'dharmgyan'); ?></h3>
+            <div class="overflow-x-auto my-3">
+                <table class="w-full text-left text-sm border border-[#EAE3DC] rounded-lg overflow-hidden">
+                    <tbody>
+                        <?php if (!empty($materials)): ?>
+                            <tr class="border-b border-[#F0EAE4] bg-[#FCFAF7]">
+                                <th class="py-2.5 px-4 font-medium text-[#717171] w-1/3"><?php esc_html_e('Material', 'dharmgyan'); ?></th>
+                                <td class="py-2.5 px-4 text-[#242424] font-semibold"><?php echo esc_html($materials); ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if (!empty($dimensions)): ?>
+                            <tr class="border-b border-[#F0EAE4]">
+                                <th class="py-2.5 px-4 font-medium text-[#717171]"><?php esc_html_e('Dimensions', 'dharmgyan'); ?></th>
+                                <td class="py-2.5 px-4 text-[#242424]"><?php echo esc_html($dimensions); ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if (!empty($weight)): ?>
+                            <tr class="border-b border-[#F0EAE4] bg-[#FCFAF7]">
+                                <th class="py-2.5 px-4 font-medium text-[#717171]"><?php esc_html_e('Weight', 'dharmgyan'); ?></th>
+                                <td class="py-2.5 px-4 text-[#242424]"><?php echo esc_html($weight); ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php
+                        if ($product) {
+                            $attributes = $product->get_attributes();
+                            foreach ($attributes as $attr) {
+                                if (is_object($attr) && method_exists($attr, 'get_name')) {
+                                    $label = wc_attribute_label($attr->get_name(), $product);
+                                    $values = wc_get_product_terms($product->get_id(), $attr->get_name(), ['fields' => 'names']);
+                                    if (!empty($values) && !is_wp_error($values)) {
+                                        ?>
+                                        <tr class="border-b border-[#F0EAE4]">
+                                            <th class="py-2.5 px-4 font-medium text-[#717171]"><?php echo esc_html($label); ?></th>
+                                            <td class="py-2.5 px-4 text-[#242424] font-medium"><?php echo esc_html(implode(', ', $values)); ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                            }
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php endif; ?>
 
-        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('How to Hang', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('Our acrylic wall art is easy to hang. The ready-to-mount adhesive is included on the corners of your ordered wall art. You can simply remove the protective sheet and mount it to your wall or use stud mounts.', 'dharmgyan'); ?></p>
-
-        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('How to Care', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('Brush away dust particles with a soft brush. Wipe gently with a soft micro-fiber cloth.', 'dharmgyan'); ?></p>
-
-        <h3 class="text-base font-bold text-[#444444] mt-6 mb-2"><?php esc_html_e('Delivery Time', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('Delivered in 5–6 business days after order confirmation.', 'dharmgyan'); ?></p>
+        <?php if (!empty($care)): ?>
+            <h3 class="text-base font-bold text-[#111111] mt-6 mb-2"><?php esc_html_e('Care Instructions', 'dharmgyan'); ?></h3>
+            <p><?php echo wp_kses_post(nl2br($care)); ?></p>
+        <?php else: ?>
+            <h3 class="text-base font-bold text-[#111111] mt-6 mb-2"><?php esc_html_e('Care & Maintenance', 'dharmgyan'); ?></h3>
+            <p><?php esc_html_e('Gently wipe with a soft dry microfiber cloth or soft brush to remove dust particles. Avoid abrasive cleaners or harsh chemicals to protect the sacred finish.', 'dharmgyan'); ?></p>
+        <?php endif; ?>
     </div>
     <?php
 }
 
 /**
- * Tab Content: Shipping & Delivery Policy
+ * Tab Content: Dynamic Shipping & Delivery Policy
  */
 function dharmgyan_tab_shipping_policy_content()
 {
+    global $product;
+    $product_id = $product ? $product->get_id() : get_the_ID();
+    $custom_shipping = dharmgyan_get_field('product_custom_shipping', $product_id);
+    $global_shipping = dharmgyan_get_field('global_shipping_policy', 'option');
     ?>
     <div class="prose max-w-none text-[#444444] font-body text-[15px] leading-relaxed space-y-4">
         <h3 class="font-serif text-xl text-[#111111] font-medium"><?php esc_html_e('Shipping & Safe Delivery', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('All orders are carefully packed in multi-layer protective packaging with tamper-proof seal to ensure your sacred items reach you safely and auspiciously.', 'dharmgyan'); ?></p>
-        <ul class="list-disc pl-5 space-y-2">
-            <li><strong><?php esc_html_e('Standard Delivery:', 'dharmgyan'); ?></strong> <?php esc_html_e('Delivered in 4–7 business days across India.', 'dharmgyan'); ?></li>
-            <li><strong><?php esc_html_e('Express Dispatch:', 'dharmgyan'); ?></strong> <?php esc_html_e('Dispatched within 24 hours of order confirmation.', 'dharmgyan'); ?></li>
-            <li><strong><?php esc_html_e('Tracking Details:', 'dharmgyan'); ?></strong> <?php esc_html_e('Real-time tracking link sent via SMS and Email once dispatched.', 'dharmgyan'); ?></li>
-        </ul>
+        <?php if (!empty($custom_shipping)): ?>
+            <div class="p-3.5 bg-[#FFF9F4] border border-[#F5EBE1] rounded-lg mb-4 text-sm text-[#444444]">
+                <?php echo wp_kses_post(wpautop($custom_shipping)); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($global_shipping)): ?>
+            <?php echo wp_kses_post(wpautop($global_shipping)); ?>
+        <?php else: ?>
+            <p><?php esc_html_e('All orders are carefully packed in multi-layer protective packaging with tamper-proof seal to ensure your sacred items reach you safely and auspiciously.', 'dharmgyan'); ?></p>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><strong><?php esc_html_e('Standard Delivery:', 'dharmgyan'); ?></strong> <?php esc_html_e('Delivered in 4–7 business days across India.', 'dharmgyan'); ?></li>
+                <li><strong><?php esc_html_e('Express Dispatch:', 'dharmgyan'); ?></strong> <?php esc_html_e('Dispatched within 24 hours of order confirmation.', 'dharmgyan'); ?></li>
+                <li><strong><?php esc_html_e('Tracking Details:', 'dharmgyan'); ?></strong> <?php esc_html_e('Real-time tracking link sent via SMS and Email once dispatched.', 'dharmgyan'); ?></li>
+            </ul>
+        <?php endif; ?>
     </div>
     <?php
 }
 
 /**
- * Tab Content: Returns & Exchange Policy
+ * Tab Content: Dynamic Returns & Exchange Policy
  */
 function dharmgyan_tab_returns_policy_content()
 {
+    $global_returns = dharmgyan_get_field('global_returns_policy', 'option');
     ?>
     <div class="prose max-w-none text-[#444444] font-body text-[15px] leading-relaxed space-y-4">
         <h3 class="font-serif text-xl text-[#111111] font-medium"><?php esc_html_e('Hassle-Free Returns & Exchange', 'dharmgyan'); ?></h3>
-        <p><?php esc_html_e('We take immense pride in the craftsmanship of our sacred items. If you receive a damaged or defective product, we offer a 100% replacement or refund.', 'dharmgyan'); ?></p>
-        <ul class="list-disc pl-5 space-y-2">
-            <li><strong><?php esc_html_e('7-Day Replacement Window:', 'dharmgyan'); ?></strong> <?php esc_html_e('Report any defect within 7 days of delivery with an unboxing video.', 'dharmgyan'); ?></li>
-            <li><strong><?php esc_html_e('100% Refund Assurance:', 'dharmgyan'); ?></strong> <?php esc_html_e('Instant refund processed upon return pickup verification.', 'dharmgyan'); ?></li>
-            <li><strong><?php esc_html_e('Customer Support:', 'dharmgyan'); ?></strong> <?php esc_html_e('Contact our dedicated care team at support@bhaktirastore.com or WhatsApp.', 'dharmgyan'); ?></li>
-        </ul>
+        <?php if (!empty($global_returns)): ?>
+            <?php echo wp_kses_post(wpautop($global_returns)); ?>
+        <?php else: ?>
+            <p><?php esc_html_e('We take immense pride in the craftsmanship of our sacred items. If you receive a damaged or defective product, we offer a 100% replacement or refund.', 'dharmgyan'); ?></p>
+            <ul class="list-disc pl-5 space-y-2">
+                <li><strong><?php esc_html_e('7-Day Replacement Window:', 'dharmgyan'); ?></strong> <?php esc_html_e('Report any defect within 7 days of delivery with an unboxing video.', 'dharmgyan'); ?></li>
+                <li><strong><?php esc_html_e('100% Refund Assurance:', 'dharmgyan'); ?></strong> <?php esc_html_e('Instant refund processed upon return pickup verification.', 'dharmgyan'); ?></li>
+                <li><strong><?php esc_html_e('Customer Support:', 'dharmgyan'); ?></strong> <?php esc_html_e('Contact our dedicated care team at support@bhaktirastore.com or WhatsApp.', 'dharmgyan'); ?></li>
+            </ul>
+        <?php endif; ?>
     </div>
     <?php
 }

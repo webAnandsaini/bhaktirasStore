@@ -121,52 +121,15 @@ $has_info_cards   = $has_support_card || $has_email_card;
                     <div class="cf7-custom-wrapper">
                         <?php echo do_shortcode($form_shortcode); ?>
                     </div>
-                <?php else: ?>
-                    <!-- Pixel-Perfect Figma Form Layout -->
-                    <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post" class="space-y-6" role="form" aria-label="<?php esc_attr_e('Contact Us Form', 'dharmgyan'); ?>">
-                        <input type="hidden" name="action" value="dharmgyan_contact_form">
-                        <?php wp_nonce_field('dharmgyan_contact_nonce', 'contact_nonce'); ?>
-
-                        <!-- Row 1: Name and Phone Number -->
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="contact-name" class="block text-sm font-medium text-[#222222] mb-2 font-body">
-                                    <?php esc_html_e('Name', 'dharmgyan'); ?> <span class="text-[#CC5600]" aria-hidden="true">*</span>
-                                </label>
-                                <input type="text" id="contact-name" name="contact_name" required aria-required="true" autocomplete="name" placeholder="<?php esc_attr_e('Your Name', 'dharmgyan'); ?>" class="w-full px-4 py-3.5 rounded-lg border border-[#D5D5D5] focus:border-[#CC5600] focus:ring-1 focus:ring-[#CC5600] outline-none text-sm text-[#333333] transition-colors">
-                            </div>
-                            <div>
-                                <label for="contact-phone" class="block text-sm font-medium text-[#222222] mb-2 font-body">
-                                    <?php esc_html_e('Phone Number', 'dharmgyan'); ?>
-                                </label>
-                                <input type="tel" id="contact-phone" name="contact_phone" autocomplete="tel" placeholder="<?php esc_attr_e('Your Phone Number', 'dharmgyan'); ?>" class="w-full px-4 py-3.5 rounded-lg border border-[#D5D5D5] focus:border-[#CC5600] focus:ring-1 focus:ring-[#CC5600] outline-none text-sm text-[#333333] transition-colors">
-                            </div>
-                        </div>
-
-                        <!-- Row 2: Email -->
-                        <div>
-                            <label for="contact-email" class="block text-sm font-medium text-[#222222] mb-2 font-body">
-                                <?php esc_html_e('Email', 'dharmgyan'); ?> <span class="text-[#CC5600]" aria-hidden="true">*</span>
-                            </label>
-                            <input type="email" id="contact-email" name="contact_email" required aria-required="true" autocomplete="email" placeholder="<?php esc_attr_e('Your Email', 'dharmgyan'); ?>" class="w-full px-4 py-3.5 rounded-lg border border-[#D5D5D5] focus:border-[#CC5600] focus:ring-1 focus:ring-[#CC5600] outline-none text-sm text-[#333333] transition-colors">
-                        </div>
-
-                        <!-- Row 3: Message -->
-                        <div>
-                            <label for="contact-message" class="block text-sm font-medium text-[#222222] mb-2 font-body">
-                                <?php esc_html_e('Message', 'dharmgyan'); ?> <span class="text-[#CC5600]" aria-hidden="true">*</span>
-                            </label>
-                            <textarea id="contact-message" name="contact_message" rows="6" required aria-required="true" placeholder="<?php esc_attr_e('Your message here', 'dharmgyan'); ?>" class="w-full px-4 py-3.5 rounded-lg border border-[#D5D5D5] focus:border-[#CC5600] focus:ring-1 focus:ring-[#CC5600] outline-none text-sm text-[#333333] transition-colors resize-y"></textarea>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div>
-                            <button type="submit" class="w-full py-4 px-6 bg-[#CC5600] hover:bg-[#B34B00] text-white font-medium text-base tracking-wider uppercase rounded-lg shadow transition duration-200 cursor-pointer text-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] focus-visible:ring-offset-2">
-                                <?php esc_html_e('SEND MESSAGE', 'dharmgyan'); ?>
-                            </button>
-                        </div>
-
-                    </form>
+                <?php elseif (has_shortcode(get_the_content(), 'contact-form-7')): ?>
+                    <div class="cf7-custom-wrapper">
+                        <?php the_content(); ?>
+                    </div>
+                <?php elseif (current_user_can('edit_pages')): ?>
+                    <div class="p-6 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm font-medium text-center">
+                        <p class="font-bold text-base mb-1"><?php esc_html_e('Contact Form Shortcode Missing', 'dharmgyan'); ?></p>
+                        <p><?php esc_html_e('Please edit this page in WP Admin and paste your Contact Form 7 shortcode in the "Contact Form Shortcode" field.', 'dharmgyan'); ?></p>
+                    </div>
                 <?php endif; ?>
             </div>
 

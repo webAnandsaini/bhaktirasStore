@@ -243,6 +243,28 @@
                     }
                 }
             ]
+        },
+        {
+            "key": "field_product_highlights",
+            "label": "Key Features & Highlights (Bullet Points)",
+            "name": "product_highlights",
+            "type": "textarea",
+            "instructions": "Enter product bullet points (one per line). For best SEO practice, you can also leave this empty and simply use the native WooCommerce Short Description field!",
+            "required": 0,
+            "placeholder": "Made with High Quality 3 MM acrylic sheet\nUnidirectional pixel perfect direct printing\nScratch Free & Unbreakable",
+            "rows": 5,
+            "new_lines": ""
+        },
+        {
+            "key": "field_product_custom_shipping",
+            "label": "Custom Shipping & Delivery Note",
+            "name": "product_custom_shipping",
+            "type": "textarea",
+            "instructions": "Optional: override the global shipping policy for this specific product.",
+            "required": 0,
+            "placeholder": "Delivered in 4-6 business days. Express dispatch available.",
+            "rows": 3,
+            "new_lines": "wpautop"
         }
     ],
     "location": [

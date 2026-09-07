@@ -1,0 +1,192 @@
+{
+    "key": "group_global_product_offers",
+    "title": "Product Offers & Store Policies",
+    "fields": [
+        {
+            "key": "field_offer_tab_promos",
+            "label": "Promotional Offers & Badges",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_enable_prepaid_discount",
+            "label": "Enable Prepaid Discount Pill",
+            "name": "enable_prepaid_discount",
+            "type": "true_false",
+            "instructions": "Show the prepaid discount badge above the add to cart button",
+            "default_value": 1,
+            "ui": 1,
+            "wrapper": {
+                "width": "30"
+            }
+        },
+        {
+            "key": "field_prepaid_discount_text",
+            "label": "Prepaid Discount Text",
+            "name": "prepaid_discount_text",
+            "type": "text",
+            "instructions": "Text displayed inside the prepaid offer pill",
+            "default_value": "Get 7% Additional Discount on Prepaid order",
+            "placeholder": "Get 7% Additional Discount on Prepaid order",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_prepaid_discount",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "70"
+            }
+        },
+        {
+            "key": "field_enable_free_gift_offer",
+            "label": "Enable Free Gift Offer Box",
+            "name": "enable_free_gift_offer",
+            "type": "true_false",
+            "instructions": "Show the free gift with purchase banner",
+            "default_value": 1,
+            "ui": 1,
+            "wrapper": {
+                "width": "30"
+            }
+        },
+        {
+            "key": "field_free_gift_title",
+            "label": "Free Gift Heading",
+            "name": "free_gift_title",
+            "type": "text",
+            "instructions": "e.g., Get free Wire art worth ₹999",
+            "default_value": "Get free Wire art worth ₹999",
+            "placeholder": "Get free Wire art worth ₹999",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_free_gift_offer",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "35"
+            }
+        },
+        {
+            "key": "field_free_gift_subtitle",
+            "label": "Free Gift Subtitle / Threshold",
+            "name": "free_gift_subtitle",
+            "type": "text",
+            "instructions": "e.g., on every prepaid purchase worth ₹3,999",
+            "default_value": "on every prepaid purchase worth ₹3,999",
+            "placeholder": "on every prepaid purchase worth ₹3,999",
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_enable_free_gift_offer",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "35"
+            }
+        },
+        {
+            "key": "field_enable_guarantee_box",
+            "label": "Enable Guarantee Safe Checkout Box",
+            "name": "enable_guarantee_box",
+            "type": "true_false",
+            "instructions": "Show the 4 trust badges (Satisfaction Guaranteed, Free Delivery, 7 Days Return, COD Available)",
+            "default_value": 1,
+            "ui": 1,
+            "wrapper": {
+                "width": "100"
+            }
+        },
+        {
+            "key": "field_offer_tab_policies",
+            "label": "Store Policies & Tabs",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_global_shipping_policy",
+            "label": "Shipping & Safe Delivery Policy",
+            "name": "global_shipping_policy",
+            "type": "wysiwyg",
+            "instructions": "Content displayed in the single product 'Shipping & Delivery' tab",
+            "default_value": "<p>All orders are carefully packed in multi-layer protective packaging with tamper-proof seal to ensure your sacred items reach you safely and auspiciously.</p><ul><li><strong>Standard Delivery:</strong> Delivered in 4–7 business days across India.</li><li><strong>Express Dispatch:</strong> Dispatched within 24 hours of order confirmation.</li><li><strong>Tracking Details:</strong> Real-time tracking link sent via SMS and Email once dispatched.</li></ul>",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_global_returns_policy",
+            "label": "Returns & Exchange Policy",
+            "name": "global_returns_policy",
+            "type": "wysiwyg",
+            "instructions": "Content displayed in the single product 'Returns & Exchange' tab",
+            "default_value": "<p>We take immense pride in the craftsmanship of our sacred items. If you receive a damaged or defective product, we offer a 100% replacement or refund.</p><ul><li><strong>7-Day Replacement Window:</strong> Report any defect within 7 days of delivery with an unboxing video.</li><li><strong>100% Refund Assurance:</strong> Instant refund processed upon return pickup verification.</li><li><strong>Customer Support:</strong> Contact our dedicated care team at support@bhaktirastore.com or WhatsApp.</li></ul>",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+        },
+        {
+            "key": "field_offer_tab_faqs",
+            "label": "Global Product FAQs",
+            "name": "",
+            "type": "tab",
+            "placement": "top"
+        },
+        {
+            "key": "field_global_product_faqs",
+            "label": "Global FAQs (Default for all products)",
+            "name": "global_product_faqs",
+            "type": "repeater",
+            "instructions": "These FAQs will show on all products unless a product has its own custom FAQs entered.",
+            "collapsed": "field_global_faq_q",
+            "layout": "block",
+            "button_label": "Add Global FAQ",
+            "sub_fields": [
+                {
+                    "key": "field_global_faq_q",
+                    "label": "Question",
+                    "name": "question",
+                    "type": "text",
+                    "required": 1
+                },
+                {
+                    "key": "field_global_faq_a",
+                    "label": "Answer",
+                    "name": "answer",
+                    "type": "textarea",
+                    "rows": 3,
+                    "new_lines": "wpautop",
+                    "required": 1
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "global-product-offers"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "active": true,
+    "description": "Global settings for promotional banners, free gifts, shipping policies and default FAQs"
+}

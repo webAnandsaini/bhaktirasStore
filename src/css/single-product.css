@@ -285,10 +285,222 @@
     margin: 0.65rem 0;
 }
 
-/* Variations Pill Styling */
-.product-custom-variations .variant-pill {
-    border-radius: 8px;
-    transition: all 0.15s ease;
+/* ─── Variable Products Table & Swatches ─────────────────── */
+.product-summary-column table.variations {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 0.5rem !important;
+    margin-bottom: 0.75rem !important;
+    border: none !important;
+}
+
+.product-summary-column table.variations tr,
+.product-summary-column table.variations tr.variation-row {
+    display: flex !important;
+    align-items: center !important;
+    margin-bottom: 0.75rem !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.product-summary-column table.variations th.label {
+    width: 90px !important;
+    min-width: 90px !important;
+    max-width: 90px !important;
+    flex-shrink: 0 !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    vertical-align: middle !important;
+}
+
+.product-summary-column table.variations th.label label {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #111111 !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    display: block !important;
+}
+
+/* Hide any dynamic selected attribute text inside <label> to prevent ugly multi-line text wrapping */
+.product-summary-column table.variations th.label .woo-selected-variation-item-name,
+.product-summary-column table.variations th.label .wvs-selected-item {
+    display: none !important;
+}
+
+.product-summary-column table.variations td.value {
+    flex: 1 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
+/* Reset / Clear variations link */
+.product-summary-column .reset_variations {
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    color: #717171 !important;
+    text-decoration: underline !important;
+    margin-left: 8px !important;
+    padding: 3px 8px !important;
+    border-radius: 4px !important;
+    background-color: #F3F4F6 !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+}
+
+.product-summary-column .reset_variations:hover {
+    color: #CC5600 !important;
+    background-color: #FFF2E8 !important;
+}
+
+/* Woo Variation Swatches Customization */
+.product-summary-column ul.variable-items-wrapper {
+    display: inline-flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.product-summary-column li.variable-item {
+    margin: 0 !important;
+    border-radius: 8px !important;
+    border: 1px solid #CCCCCC !important;
+    background-color: #ffffff !important;
+    color: #717171 !important;
+    box-shadow: none !important;
+    padding: 6px 14px !important;
+    min-width: unset !important;
+    min-height: 36px !important;
+    height: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.15s ease !important;
+    box-sizing: border-box !important;
+    position: relative !important;
+}
+
+.product-summary-column li.variable-item:hover:not(.disabled):not(.out-of-stock) {
+    border-color: #CC5600 !important;
+    color: #CC5600 !important;
+}
+
+.product-summary-column li.variable-item.selected,
+.product-summary-column li.variable-item:has(input:checked) {
+    border: 1.5px solid #CC5600 !important;
+    color: #CC5600 !important;
+    background-color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 3px rgba(204, 86, 0, 0.15) !important;
+}
+
+/* Eradicate the plugin cross variable */
+:root,
+.product-summary-column,
+.variable-items-wrapper,
+.variable-item {
+    --wvs-cross: none !important;
+}
+
+/* Remove all cross signs, masks, and pseudo-elements on disabled, out-of-stock, and no-stock swatches */
+.product-summary-column .variable-items-wrapper .variable-item.disabled::before,
+.product-summary-column .variable-items-wrapper .variable-item.disabled::after,
+.product-summary-column .variable-items-wrapper .variable-item.disabled .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.disabled .variable-item-contents::after,
+.product-summary-column .variable-items-wrapper .variable-item.disabled:hover .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock::before,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock::after,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock .variable-item-contents::after,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock:hover .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock::before,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock::after,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock .variable-item-contents::after,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock:hover .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled::before,
+.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled::after,
+.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled .variable-item-contents::after {
+    display: none !important;
+    content: none !important;
+    background: none !important;
+    background-image: none !important;
+}
+
+/* Clean, subtle Light Gray Pill with disabled interactions */
+.product-summary-column .variable-items-wrapper .variable-item.disabled,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock,
+.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled,
+.product-summary-column .variable-items-wrapper .variable-item.disabled:hover,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock:hover,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock:hover {
+    background-color: #F8FAFC !important;
+    background-image: none !important;
+    border: 1px solid #E2E8F0 !important;
+    color: #94A3B8 !important;
+    opacity: 0.55 !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    text-decoration: none !important;
+}
+
+.product-summary-column .variable-items-wrapper .variable-item.disabled .variable-item-contents,
+.product-summary-column .variable-items-wrapper .variable-item.disabled span,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock .variable-item-contents,
+.product-summary-column .variable-items-wrapper .variable-item.out-of-stock span,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock .variable-item-contents,
+.product-summary-column .variable-items-wrapper .variable-item.no-stock span {
+    color: #94A3B8 !important;
+    text-decoration: none !important;
+    opacity: 1 !important;
+}
+
+.product-summary-column li.variable-item .variable-item-span {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+}
+
+/* Fallback select if swatches plugin is off */
+.product-summary-column table.variations select:not(.woo-variation-raw-select) {
+    height: 38px;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 0 12px;
+    font-size: 13px;
+    color: #333333;
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+}
+
+.product-summary-column table.variations select:not(.woo-variation-raw-select):focus {
+    border-color: #CC5600;
+}
+
+/* ─── Selected Variation Wrap ──────────────────────────────── */
+/* Hide duplicate bottom price and availability text - top price and urgency bar handle this cleanly */
+.single_variation_wrap .woocommerce-variation {
+    display: none !important;
 }
 
 /* ─── Add to Cart Form & Dual CTA Buttons ────────────────── */
@@ -296,14 +508,13 @@
     margin: 0.75rem 0;
     display: flex;
     flex-direction: column;
-    gap: 0.65rem;
+    gap: 0.75rem;
 }
 
 /* Quantity Row */
-.product-summary-column form.cart div.quantity-wrapper {
+.product-summary-column .product-qty-row {
     display: flex;
     align-items: center;
-    margin-bottom: 0.35rem;
 }
 
 .product-summary-column form.cart div.quantity {
@@ -312,7 +523,7 @@
     border: 1px solid #444444;
     border-radius: 4px;
     height: 46px;
-    width: 125px;
+    width: 140px;
     background-color: #ffffff;
     overflow: hidden;
     flex-shrink: 0;
@@ -360,19 +571,20 @@
     background-color: #F9F9F9;
 }
 
-/* Dual Buttons Container */
-.product-summary-column form.cart .woocommerce-variation-add-to-cart,
-.product-summary-column form.cart {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
+/* Dual Buttons Container (Side-by-Side in 1 row matching Figma 1:1) */
+.product-summary-column .product-cta-buttons {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.875rem !important;
+    width: 100% !important;
+    padding-top: 0.25rem !important;
 }
 
 /* "Add to cart" outlined Saffron Button */
-.product-summary-column form.cart button.single_add_to_cart_button,
-.product-summary-column form.cart .single_add_to_cart_button {
-    height: 48px;
-    min-height: 48px;
+.product-summary-column button.single_add_to_cart_button,
+.product-summary-column .single_add_to_cart_button {
+    height: 50px !important;
+    min-height: 50px !important;
     border: 1.5px solid #CC5600 !important;
     background-color: #ffffff !important;
     color: #CC5600 !important;
@@ -384,25 +596,33 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
-    padding: 0 1.25rem !important;
+    padding: 0 1rem !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
     box-shadow: none !important;
     text-decoration: none !important;
-    width: 100%;
+    width: 100% !important;
 }
 
-.product-summary-column form.cart button.single_add_to_cart_button:hover,
-.product-summary-column form.cart .single_add_to_cart_button:hover {
+.product-summary-column button.single_add_to_cart_button:hover:not(:disabled),
+.product-summary-column .single_add_to_cart_button:hover:not(:disabled) {
     background-color: #CC5600 !important;
     color: #ffffff !important;
 }
 
+.product-summary-column button.single_add_to_cart_button:disabled,
+.product-summary-column button.single_add_to_cart_button.disabled {
+    opacity: 0.6 !important;
+    cursor: not-allowed !important;
+    border-color: #CCCCCC !important;
+    color: #999999 !important;
+}
+
 /* "Buy it now" solid Saffron Button */
-.product-summary-column form.cart button.buy_now_button,
-.product-summary-column form.cart .buy_now_button {
-    height: 48px;
-    min-height: 48px;
+.product-summary-column button.buy_now_button,
+.product-summary-column .buy_now_button {
+    height: 50px !important;
+    min-height: 50px !important;
     border: 1.5px solid #CC5600 !important;
     background-color: #CC5600 !important;
     color: #ffffff !important;
@@ -414,16 +634,16 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 8px !important;
-    padding: 0 1.25rem !important;
+    padding: 0 1rem !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
     box-shadow: 0 4px 12px rgba(204, 86, 0, 0.2) !important;
     text-decoration: none !important;
-    width: 100%;
+    width: 100% !important;
 }
 
-.product-summary-column form.cart button.buy_now_button:hover,
-.product-summary-column form.cart .buy_now_button:hover {
+.product-summary-column button.buy_now_button:hover,
+.product-summary-column .buy_now_button:hover {
     background-color: #B34B00 !important;
     border-color: #B34B00 !important;
     box-shadow: 0 6px 16px rgba(179, 75, 0, 0.3) !important;

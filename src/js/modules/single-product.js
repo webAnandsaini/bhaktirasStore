@@ -184,4 +184,154 @@ export function initSingleProduct() {
             });
         });
     }
+
+    // 5. Buy Now Direct Checkout Button Handler
+    document.addEventListener('click', (e) => {
+        const buyNowBtn = e.target.closest('.buy_now_button');
+        if (!buyNowBtn) return;
+
+        const form = buyNowBtn.closest('form.cart');
+        if (!form) return;
+
+        // Variable Product validation: ensure variation is selected
+        const variationIdInput = form.querySelector('input.variation_id');
+        if (variationIdInput) {
+            const varId = parseInt(variationIdInput.value, 10);
+            if (!varId || varId <= 0) {
+                e.preventDefault();
+                let notice = form.querySelector('.variation-select-notice');
+                if (!notice) {
+                    notice = document.createElement('div');
+                    notice.className = 'variation-select-notice text-xs font-semibold text-[#DC2626] bg-[#FEF2F2] border border-[#FECACA] rounded-[4px] p-2.5 my-2 animate-pulse';
+                    const variationsTable = form.querySelector('.variations');
+                    if (variationsTable) {
+                        variationsTable.parentNode.insertBefore(notice, variationsTable.nextSibling);
+                    } else {
+                        form.prepend(notice);
+                    }
+                }
+                notice.textContent = 'Please select all options (Size, Color, Thickness) before checkout.';
+                notice.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return;
+            } else {
+                const notice = form.querySelector('.variation-select-notice');
+                if (notice) notice.remove();
+            }
+        }
+
+        // Ensure hidden add-to-cart input exists with valid product ID
+        let addInput = form.querySelector('input[type="hidden"][name="add-to-cart"]');
+        if (!addInput) {
+            addInput = document.createElement('input');
+            addInput.type = 'hidden';
+            addInput.name = 'add-to-cart';
+            addInput.value = buyNowBtn.dataset.productId || form.dataset.productId || form.querySelector('.single_add_to_cart_button')?.value || '';
+            form.appendChild(addInput);
+        }
+
+        // Ensure hidden dharmgyan_buy_now input exists
+        let buyNowInput = form.querySelector('input[type="hidden"][name="dharmgyan_buy_now"]');
+        if (!buyNowInput) {
+            buyNowInput = document.createElement('input');
+            buyNowInput.type = 'hidden';
+            buyNowInput.name = 'dharmgyan_buy_now';
+            buyNowInput.value = '1';
+            form.appendChild(buyNowInput);
+        } else {
+            buyNowInput.value = '1';
+        }
+
+        // Visual loading state
+        buyNowBtn.classList.add('opacity-80', 'pointer-events-none');
+        buyNowBtn.innerHTML = '<span class="inline-flex items-center gap-2"><svg class="animate-spin w-4 h-4 text-white" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg> Proceeding...</span>';
+    });
+
+    // If Add to Cart button is clicked, remove dharmgyan_buy_now input if present
+    document.addEventListener('click', (e) => {
+        const addBtn = e.target.closest('.single_add_to_cart_button');
+        if (!addBtn) return;
+
+        const form = addBtn.closest('form.cart');
+        if (!form) return;
+
+        const buyNowInput = form.querySelector('input[name="dharmgyan_buy_now"]');
+        if (buyNowInput) {
+            buyNowInput.remove();
+        }
+    });
+
+    // 6. WooCommerce Variations Dynamic Price & Stock Sync
+    if (window.jQuery) {
+        const $ = window.jQuery;
+        const priceRow = document.getElementById('single-product-price-row');
+        const defaultPriceHtml = priceRow ? (priceRow.dataset.defaultHtml || priceRow.innerHTML) : '';
+        const urgencyText = document.querySelector('.stock-urgency-text');
+        const defaultUrgencyText = urgencyText ? urgencyText.textContent.trim() : '';
+
+        // Auto-select first available option of each attribute on page load if nothing is selected
+        setTimeout(() => {
+            const form = document.querySelector('form.variations_form');
+            if (form) {
+                const wrappers = form.querySelectorAll('ul.variable-items-wrapper');
+                let needTrigger = false;
+                wrappers.forEach(wrapper => {
+                    const selected = wrapper.querySelector('li.selected');
+                    if (!selected) {
+                        const firstAvailable = wrapper.querySelector('li.variable-item:not(.disabled):not(.out-of-stock):not(.wvs-disabled)');
+                        if (firstAvailable) {
+                            firstAvailable.click();
+                            needTrigger = true;
+                        }
+                    }
+                });
+                if (needTrigger) {
+                    $(form).trigger('check_variations');
+                }
+            }
+        }, 150);
+
+        $(document).on('found_variation', 'form.variations_form', function (event, variation) {
+            const form = this;
+            const notice = form.querySelector('.variation-select-notice');
+            if (notice) notice.remove();
+
+            if (priceRow && variation) {
+                const displayPrice = variation.display_price;
+                const regularPrice = variation.display_regular_price;
+                let discountPct = 0;
+
+                if (regularPrice > 0 && displayPrice > 0 && regularPrice > displayPrice) {
+                    discountPct = Math.round(((regularPrice - displayPrice) / regularPrice) * 100);
+                }
+
+                const formatINR = (num) => '₹' + Math.round(Number(num)).toLocaleString('en-IN');
+
+                let html = `<span class="single-price text-[#CC5600] font-medium text-2xl md:text-[25px] font-body leading-none">${formatINR(displayPrice)}</span>`;
+                if (discountPct > 0 && regularPrice > displayPrice) {
+                    html += ` <span class="single-regular-price text-[#717171] font-normal text-sm md:text-[15px] line-through font-body leading-none">${formatINR(regularPrice)}</span>`;
+                    html += ` <span class="save-discount-badge bg-[#242424] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider">SAVE ${discountPct}%</span>`;
+                }
+                priceRow.innerHTML = html;
+            }
+
+            if (urgencyText && variation) {
+                if (variation.max_qty && variation.max_qty > 0) {
+                    urgencyText.textContent = `Hurry Up! Only ${variation.max_qty} items left in stock!`;
+                } else if (variation.is_in_stock) {
+                    urgencyText.textContent = `In Stock - Ready to dispatch!`;
+                } else {
+                    urgencyText.textContent = `Out of stock`;
+                }
+            }
+        });
+
+        $(document).on('reset_data', 'form.variations_form', function () {
+            if (priceRow && defaultPriceHtml) {
+                priceRow.innerHTML = defaultPriceHtml;
+            }
+            if (urgencyText && defaultUrgencyText) {
+                urgencyText.textContent = defaultUrgencyText;
+            }
+        });
+    }
 }

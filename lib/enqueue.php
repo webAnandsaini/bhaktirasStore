@@ -31,6 +31,11 @@ function dharmgyan_enqueue_scripts()
         'home_url'   => home_url('/'),
         'shop_url'   => function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/'),
     ));
+
+    // WooCommerce Variable Product Scripts
+    if (function_exists('is_product') && is_product()) {
+        wp_enqueue_script('wc-add-to-cart-variation');
+    }
 }
 
 add_action('wp_enqueue_scripts', 'dharmgyan_enqueue_scripts');

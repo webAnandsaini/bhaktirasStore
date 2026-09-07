@@ -1001,3 +1001,167 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
 .woocommerce-EditAccountForm button.button:hover {
     background-color: #B34B00 !important;
 }
+
+/* ─── Contact Form 7 Pixel-Perfect Figma Styling ─────────── */
+.cf7-custom-wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.cf7-custom-wrapper form.wpcf7-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+}
+
+.cf7-custom-wrapper form.wpcf7-form p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cf7-custom-wrapper label {
+    display: block;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: #222222;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.cf7-custom-wrapper .wpcf7-form-control-wrap {
+    display: block;
+    width: 100%;
+    position: relative;
+}
+
+.cf7-custom-wrapper input[type="text"],
+.cf7-custom-wrapper input[type="email"],
+.cf7-custom-wrapper input[type="tel"],
+.cf7-custom-wrapper input[type="url"],
+.cf7-custom-wrapper select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #D5D5D5;
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.cf7-custom-wrapper textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #D5D5D5;
+    font-size: 14px;
+    color: #333333;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+    background-color: #ffffff;
+    min-height: 150px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.cf7-custom-wrapper input[type="text"]:focus,
+.cf7-custom-wrapper input[type="email"]:focus,
+.cf7-custom-wrapper input[type="tel"]:focus,
+.cf7-custom-wrapper input[type="url"]:focus,
+.cf7-custom-wrapper select:focus,
+.cf7-custom-wrapper textarea:focus {
+    border-color: #CC5600 !important;
+    box-shadow: 0 0 0 1px #CC5600 !important;
+}
+
+.cf7-custom-wrapper input.wpcf7-not-valid,
+.cf7-custom-wrapper textarea.wpcf7-not-valid {
+    border-color: #DC2626 !important;
+    box-shadow: 0 0 0 1px #DC2626 !important;
+}
+
+.cf7-custom-wrapper .wpcf7-not-valid-tip {
+    font-size: 12px;
+    color: #DC2626;
+    margin-top: 0.35rem;
+    font-weight: 500;
+}
+
+.cf7-custom-wrapper input[type="submit"],
+.cf7-custom-wrapper button[type="submit"],
+.cf7-custom-wrapper .wpcf7-submit {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-weight: 600 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    border-radius: 8px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 2px 6px rgba(204, 86, 0, 0.2) !important;
+    box-sizing: border-box;
+}
+
+.cf7-custom-wrapper input[type="submit"]:hover,
+.cf7-custom-wrapper button[type="submit"]:hover,
+.cf7-custom-wrapper .wpcf7-submit:hover {
+    background-color: #B34B00 !important;
+    box-shadow: 0 4px 12px rgba(204, 86, 0, 0.3) !important;
+    transform: translateY(-1px);
+}
+
+.cf7-custom-wrapper .wpcf7-spinner {
+    margin: 0.5rem auto 0 auto;
+    display: block;
+}
+
+.cf7-custom-wrapper .wpcf7-response-output {
+    margin: 1rem 0 0 0 !important;
+    padding: 0.875rem 1.25rem !important;
+    border-radius: 8px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+}
+
+.cf7-custom-wrapper form.sent .wpcf7-response-output {
+    background-color: #ECFDF5 !important;
+    border: 1px solid #A7F3D0 !important;
+    color: #065F46 !important;
+}
+
+.cf7-custom-wrapper form.invalid .wpcf7-response-output,
+.cf7-custom-wrapper form.unaccepted .wpcf7-response-output,
+.cf7-custom-wrapper form.failed .wpcf7-response-output {
+    background-color: #FEF2F2 !important;
+    border: 1px solid #FECACA !important;
+    color: #991B1B !important;
+}
+
+.cf7-custom-wrapper .cf7-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .cf7-custom-wrapper .cf7-grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
