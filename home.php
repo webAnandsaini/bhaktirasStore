@@ -1,7 +1,7 @@
 <?php
 /**
- * The template for displaying archive pages (Categories, Tags, Authors, Dates)
- * Styled matching Figma Blog Archive Layout 1:1
+ * Blog Listing Template - Pixel-Perfect Figma 1:1
+ * Matching Figma ID: 414:3383 (1920x5867px)
  *
  * @package Dharmgyan
  */
@@ -10,13 +10,15 @@ defined('ABSPATH') || exit;
 
 get_header();
 
-// Fetch ACF fields from blog page if available
-$blog_page_id           = get_option('page_for_posts');
+// Fetch ACF fields for Blog settings (with graceful defaults)
+$blog_page_id           = get_option('page_for_posts') ?: get_queried_object_id();
+$header_title           = get_field('blog_header_title', $blog_page_id) ?: __('Our Blogs', 'dharmgyan');
 $show_discount_sale     = get_field('show_discount_sale', $blog_page_id);
 $show_trending_products = get_field('show_trending_products', $blog_page_id);
 $show_testimonials      = get_field('show_testimonials', $blog_page_id);
 $show_trust_badges      = get_field('show_trust_badges', $blog_page_id);
 
+// Default to showing pre-footer sections if field is not explicitly 0/false
 $show_discount_sale     = $show_discount_sale !== false && $show_discount_sale !== '0';
 $show_trending_products = $show_trending_products !== false && $show_trending_products !== '0';
 $show_testimonials      = $show_testimonials !== false && $show_testimonials !== '0';
@@ -25,19 +27,15 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
 
 <main id="primary" class="site-main blog-archive-page bg-white min-h-screen">
 
-    <!-- ─── 1. Breadcrumb Bar ─── -->
+    <!-- ─── 1. Breadcrumb Bar (Matching Figma 1920x68px #FFF9F4) ─── -->
     <div class="page-breadcrumb-bar w-full bg-[#FFF9F4] border-b border-[#F5EBE1] py-4 md:py-0 md:h-[68px] flex items-center justify-center mb-8 md:mb-12">
         <div class="max-w-[1580px] mx-auto px-4 flex items-center justify-center text-center flex-wrap gap-2 text-[15px] md:text-[16px] text-[#444444] font-body leading-tight">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="text-[#444444] hover:text-[#CC5600] transition-colors">
                 <?php esc_html_e('Home', 'dharmgyan'); ?>
             </a>
             <span class="text-[#444444] select-none mx-0.5">›</span>
-            <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts')) ?: home_url('/blog/')); ?>" class="text-[#444444] hover:text-[#CC5600] transition-colors">
-                <?php esc_html_e('Our Blogs', 'dharmgyan'); ?>
-            </a>
-            <span class="text-[#444444] select-none mx-0.5">›</span>
             <span class="text-[#444444] font-medium">
-                <?php the_archive_title(); ?>
+                <?php echo esc_html($header_title); ?>
             </span>
         </div>
     </div>
@@ -54,17 +52,6 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
 
             <!-- Right Content: Blog Post Cards Grid (8 Cols / 1040px in Figma) -->
             <div class="lg:col-span-8 xl:col-span-8 w-full">
-
-                <div class="archive-header mb-8 pb-4 border-b border-[#F2EAE3]">
-                    <h1 class="text-2xl sm:text-3xl font-serif text-[#111111] font-medium">
-                        <?php the_archive_title(); ?>
-                    </h1>
-                    <?php if (get_the_archive_description()) : ?>
-                        <div class="archive-description text-sm text-[#666666] font-body mt-2">
-                            <?php the_archive_description(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
 
                 <?php if (have_posts()) : ?>
 
@@ -94,6 +81,7 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
 
                         if (is_array($pages)) {
                             foreach ($pages as $page) {
+                                // Add square styling to pagination links
                                 $page = str_replace(
                                     array('page-numbers current', 'page-numbers'),
                                     array('w-[52px] h-[52px] sm:w-[59px] sm:h-[59px] rounded-lg bg-[#CC5600] text-white font-bold text-base flex items-center justify-center shadow-sm border border-[#CC5600]', 'w-[52px] h-[52px] sm:w-[59px] sm:h-[59px] rounded-lg bg-white border border-[#D5D5D5] text-[#222222] hover:border-[#CC5600] hover:text-[#CC5600] font-semibold text-base flex items-center justify-center transition-colors'),
@@ -114,9 +102,9 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
                             </svg>
                         </div>
                         <h2 class="text-2xl font-serif text-[#111111] mb-2"><?php esc_html_e('No Articles Found', 'dharmgyan'); ?></h2>
-                        <p class="text-sm text-[#666666] max-w-md mx-auto mb-6"><?php esc_html_e('No articles found in this category or tag. Please explore our other blogs.', 'dharmgyan'); ?></p>
-                        <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts')) ?: home_url('/blog/')); ?>" class="inline-flex items-center gap-2 bg-[#CC5600] text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#B34B00] transition-colors">
-                            <?php esc_html_e('View All Blogs', 'dharmgyan'); ?>
+                        <p class="text-sm text-[#666666] max-w-md mx-auto mb-6"><?php esc_html_e('We are currently preparing inspiring devotional stories and articles. Please check back soon.', 'dharmgyan'); ?></p>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-flex items-center gap-2 bg-[#CC5600] text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#B34B00] transition-colors">
+                            <?php esc_html_e('Return to Home', 'dharmgyan'); ?>
                         </a>
                     </div>
 

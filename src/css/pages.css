@@ -423,7 +423,8 @@ form.checkout_coupon input.input-text {
 
 form.checkout_coupon input.input-text:focus {
     border-color: #CC5600 !important;
-    box-shadow: 0 0 0 3px rgba(204, 86, 0, 0.12) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 form.checkout_coupon button.button[name="apply_coupon"] {
@@ -516,7 +517,8 @@ form.checkout.woocommerce-checkout {
 .woocommerce-input-wrapper select:focus,
 .woocommerce-input-wrapper textarea:focus {
     border-color: #CC5600 !important;
-    box-shadow: 0 0 0 3px rgba(204, 86, 0, 0.12) !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 /* ─── Checkout Container & Table Overflow Fixes ───────────── */
@@ -1118,13 +1120,16 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
 .contact-custom-form input[type="tel"]:focus,
 .contact-custom-form textarea:focus {
     border-color: #C0570A !important;
-    box-shadow: 0 0 0 1px #C0570A !important;
+    outline: none !important;
+    outline-offset: 0 !important;
+    box-shadow: none !important;
 }
 
 .cf7-custom-wrapper input.wpcf7-not-valid,
 .cf7-custom-wrapper textarea.wpcf7-not-valid {
     border-color: #DC2626 !important;
-    box-shadow: 0 0 0 1px #DC2626 !important;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 .cf7-custom-wrapper .wpcf7-not-valid-tip {

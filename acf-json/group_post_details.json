@@ -1,0 +1,172 @@
+{
+    "key": "group_post_details",
+    "title": "Single Post Settings & In-Article CTA",
+    "fields": [
+        {
+            "key": "field_post_cta_tab",
+            "label": "In-Article CTA Banner",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_post_cta_image",
+            "label": "CTA Product Highlight Banner Image",
+            "name": "post_cta_image",
+            "type": "image",
+            "instructions": "Full-width devotional product image banner (1034x644px) displayed inside the post",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all"
+        },
+        {
+            "key": "field_post_cta_button_text",
+            "label": "CTA Button Label",
+            "name": "post_cta_button_text",
+            "type": "text",
+            "instructions": "e.g. Buy it now",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Buy it now",
+            "placeholder": "Buy it now"
+        },
+        {
+            "key": "field_post_cta_button_url",
+            "label": "CTA Button Link",
+            "name": "post_cta_button_url",
+            "type": "url",
+            "instructions": "Destination URL for the Buy it now button",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "25",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "/shop/",
+            "placeholder": "/shop/"
+        },
+        {
+            "key": "field_post_sections_tab",
+            "label": "Bottom Sections",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_post_show_discount_sale",
+            "label": "Show Discount Sale Section",
+            "name": "show_discount_sale",
+            "type": "true_false",
+            "instructions": "Toggle the Discount Sale product carousel at the bottom of the article",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable Discount Sale Section",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_post_show_trending_products",
+            "label": "Show Trending Products Section",
+            "name": "show_trending_products",
+            "type": "true_false",
+            "instructions": "Toggle the Trending Products carousel at the bottom of the article",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable Trending Products Section",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_post_show_testimonials",
+            "label": "Show Testimonials Section",
+            "name": "show_testimonials",
+            "type": "true_false",
+            "instructions": "Toggle the Customer Reviews & Testimonials carousel",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable Testimonials Section",
+            "default_value": 1,
+            "ui": 1
+        },
+        {
+            "key": "field_post_show_trust_badges",
+            "label": "Show Trust Badges Section",
+            "name": "show_trust_badges",
+            "type": "true_false",
+            "instructions": "Toggle the Trust & Authenticity badges section",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable Trust Badges Section",
+            "default_value": 1,
+            "ui": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "ACF Pro field group for Single Blog Post (Figma 418:4389 1:1)"
+}

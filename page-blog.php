@@ -1,7 +1,9 @@
 <?php
 /**
- * The template for displaying archive pages (Categories, Tags, Authors, Dates)
- * Styled matching Figma Blog Archive Layout 1:1
+ * Template Name: Blog
+ * 
+ * Custom Blog Page Template - Pixel-Perfect Figma 1:1
+ * Matching Figma ID: 414:3383 (1920x5867px)
  *
  * @package Dharmgyan
  */
@@ -10,34 +12,44 @@ defined('ABSPATH') || exit;
 
 get_header();
 
-// Fetch ACF fields from blog page if available
-$blog_page_id           = get_option('page_for_posts');
+// Fetch ACF fields for Blog settings (with graceful defaults)
+$blog_page_id           = get_the_ID();
+$header_title           = get_field('blog_header_title', $blog_page_id) ?: __('Our Blogs', 'dharmgyan');
+$posts_per_page_setting = get_field('blog_posts_per_page', $blog_page_id) ?: get_option('posts_per_page', 10);
 $show_discount_sale     = get_field('show_discount_sale', $blog_page_id);
 $show_trending_products = get_field('show_trending_products', $blog_page_id);
 $show_testimonials      = get_field('show_testimonials', $blog_page_id);
 $show_trust_badges      = get_field('show_trust_badges', $blog_page_id);
 
+// Default to showing pre-footer sections if field is not explicitly 0/false
 $show_discount_sale     = $show_discount_sale !== false && $show_discount_sale !== '0';
 $show_trending_products = $show_trending_products !== false && $show_trending_products !== '0';
 $show_testimonials      = $show_testimonials !== false && $show_testimonials !== '0';
 $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !== '0';
+
+// Current page for pagination
+$paged = (get_query_var('paged')) ? get_query_var('paged') : ((get_query_var('page')) ? get_query_var('page') : 1);
+
+// Blog posts query
+$blog_query = new WP_Query(array(
+    'post_type'      => 'post',
+    'post_status'    => 'publish',
+    'posts_per_page' => intval($posts_per_page_setting),
+    'paged'          => $paged,
+));
 ?>
 
 <main id="primary" class="site-main blog-archive-page bg-white min-h-screen">
 
-    <!-- ─── 1. Breadcrumb Bar ─── -->
+    <!-- ─── 1. Breadcrumb Bar (Matching Figma 1920x68px #FFF9F4) ─── -->
     <div class="page-breadcrumb-bar w-full bg-[#FFF9F4] border-b border-[#F5EBE1] py-4 md:py-0 md:h-[68px] flex items-center justify-center mb-8 md:mb-12">
         <div class="max-w-[1580px] mx-auto px-4 flex items-center justify-center text-center flex-wrap gap-2 text-[15px] md:text-[16px] text-[#444444] font-body leading-tight">
             <a href="<?php echo esc_url(home_url('/')); ?>" class="text-[#444444] hover:text-[#CC5600] transition-colors">
                 <?php esc_html_e('Home', 'dharmgyan'); ?>
             </a>
             <span class="text-[#444444] select-none mx-0.5">›</span>
-            <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts')) ?: home_url('/blog/')); ?>" class="text-[#444444] hover:text-[#CC5600] transition-colors">
-                <?php esc_html_e('Our Blogs', 'dharmgyan'); ?>
-            </a>
-            <span class="text-[#444444] select-none mx-0.5">›</span>
             <span class="text-[#444444] font-medium">
-                <?php the_archive_title(); ?>
+                <?php echo esc_html($header_title); ?>
             </span>
         </div>
     </div>
@@ -55,23 +67,12 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
             <!-- Right Content: Blog Post Cards Grid (8 Cols / 1040px in Figma) -->
             <div class="lg:col-span-8 xl:col-span-8 w-full">
 
-                <div class="archive-header mb-8 pb-4 border-b border-[#F2EAE3]">
-                    <h1 class="text-2xl sm:text-3xl font-serif text-[#111111] font-medium">
-                        <?php the_archive_title(); ?>
-                    </h1>
-                    <?php if (get_the_archive_description()) : ?>
-                        <div class="archive-description text-sm text-[#666666] font-body mt-2">
-                            <?php the_archive_description(); ?>
-                        </div>
-                    <?php endif; ?>
-                </div>
-
-                <?php if (have_posts()) : ?>
+                <?php if ($blog_query->have_posts()) : ?>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-12">
                         <?php
-                        while (have_posts()) :
-                            the_post();
+                        while ($blog_query->have_posts()) :
+                            $blog_query->the_post();
                             get_template_part('template-parts/blog/card');
                         endwhile;
                         ?>
@@ -80,13 +81,12 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
                     <!-- ─── 3. Square Figma Pagination (59x59px) ─── -->
                     <div class="blog-pagination flex items-center justify-center gap-3 mt-14 pt-8 border-t border-[#F2EAE3]">
                         <?php
-                        global $wp_query;
                         $big = 999999999;
                         $pages = paginate_links(array(
                             'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
                             'format'    => '?paged=%#%',
-                            'current'   => max(1, get_query_var('paged')),
-                            'total'     => $wp_query->max_num_pages,
+                            'current'   => max(1, $paged),
+                            'total'     => $blog_query->max_num_pages,
                             'type'      => 'array',
                             'prev_text' => '<svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>',
                             'next_text' => '<svg class="w-5 h-5 text-current" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>',
@@ -94,6 +94,7 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
 
                         if (is_array($pages)) {
                             foreach ($pages as $page) {
+                                // Add square styling to pagination links
                                 $page = str_replace(
                                     array('page-numbers current', 'page-numbers'),
                                     array('w-[52px] h-[52px] sm:w-[59px] sm:h-[59px] rounded-lg bg-[#CC5600] text-white font-bold text-base flex items-center justify-center shadow-sm border border-[#CC5600]', 'w-[52px] h-[52px] sm:w-[59px] sm:h-[59px] rounded-lg bg-white border border-[#D5D5D5] text-[#222222] hover:border-[#CC5600] hover:text-[#CC5600] font-semibold text-base flex items-center justify-center transition-colors'),
@@ -105,6 +106,8 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
                         ?>
                     </div>
 
+                    <?php wp_reset_postdata(); ?>
+
                 <?php else : ?>
 
                     <div class="text-center py-16 bg-white border border-[#EAE3DC] rounded-2xl p-8">
@@ -114,9 +117,9 @@ $show_trust_badges      = $show_trust_badges !== false && $show_trust_badges !==
                             </svg>
                         </div>
                         <h2 class="text-2xl font-serif text-[#111111] mb-2"><?php esc_html_e('No Articles Found', 'dharmgyan'); ?></h2>
-                        <p class="text-sm text-[#666666] max-w-md mx-auto mb-6"><?php esc_html_e('No articles found in this category or tag. Please explore our other blogs.', 'dharmgyan'); ?></p>
-                        <a href="<?php echo esc_url(get_permalink(get_option('page_for_posts')) ?: home_url('/blog/')); ?>" class="inline-flex items-center gap-2 bg-[#CC5600] text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#B34B00] transition-colors">
-                            <?php esc_html_e('View All Blogs', 'dharmgyan'); ?>
+                        <p class="text-sm text-[#666666] max-w-md mx-auto mb-6"><?php esc_html_e('We are currently preparing inspiring devotional stories and articles. Please check back soon.', 'dharmgyan'); ?></p>
+                        <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-flex items-center gap-2 bg-[#CC5600] text-white text-sm font-semibold px-6 py-3 rounded-lg hover:bg-[#B34B00] transition-colors">
+                            <?php esc_html_e('Return to Home', 'dharmgyan'); ?>
                         </a>
                     </div>
 

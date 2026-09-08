@@ -8,6 +8,7 @@
 @import "single-product.css";
 @import "shop.css";
 @import "pages.css";
+@import "blog.css";
 
 @import "../../node_modules/swiper/swiper-bundle.min.css";
 
@@ -54,10 +55,46 @@ body {
 }
 
 /* ─── WCAG 2.1 AA Accessibility Utilities ────────────────── */
-:focus-visible {
-  outline: 2px solid #CC5600 !important;
-  outline-offset: 2px !important;
+/* Accessible focus indicator for non-input interactive elements (links, buttons, keyboard tab stops) */
+:focus-visible:not(input):not(textarea):not(select) {
+  outline: 2px solid #CC5600;
+  outline-offset: 2px;
 }
+
+/* Global Form Inputs: On focus, keep ONLY border across the entire site (no outline, no double rings) */
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]),
+textarea,
+select,
+.wpcf7 input[type="text"],
+.wpcf7 input[type="email"],
+.wpcf7 input[type="tel"],
+.wpcf7 input[type="url"],
+.wpcf7 input[type="number"],
+.wpcf7 textarea,
+.wpcf7 select {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+}
+
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):focus,
+input:not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"]):focus-visible,
+textarea:focus,
+textarea:focus-visible,
+select:focus,
+select:focus-visible,
+.wpcf7 input:focus,
+.wpcf7 input:focus-visible,
+.wpcf7 textarea:focus,
+.wpcf7 textarea:focus-visible,
+.wpcf7 select:focus,
+.wpcf7 select:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border-color: #CC5600 !important;
+}
+
 
 /* Skip link styling for high contrast keyboard navigation */
 .skip-link {
