@@ -102,16 +102,16 @@ if (empty($footer_bottom_right)) {
 
 <footer id="colophon" class="site-footer bg-[#FAFAFA] border-t border-[#E5E5E5] text-[#444444] pt-14 pb-8" role="contentinfo">
     <div class="max-w-[1580px] mx-auto px-4">
-        
+
         <!-- Main 4-Column Footer Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-[#E5E5E5]">
-            
+
             <!-- Col 1: Brand, Tagline, Contact & Social Media (lg:col-span-4) -->
             <div class="lg:col-span-4 flex flex-col justify-between">
                 <div>
                     <!-- Logo -->
                     <a href="<?php echo esc_url(home_url('/')); ?>" class="inline-block font-serif text-3xl md:text-[36px] text-[#111111] font-normal leading-none mb-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm" aria-label="<?php echo esc_attr($site_name); ?>">
-                        <?php 
+                        <?php
                         if (!empty($site_logo) && is_array($site_logo) && !empty($site_logo['url'])) {
                             echo '<img src="' . esc_url($site_logo['url']) . '" alt="' . esc_attr($site_name) . '" class="max-h-12 w-auto object-contain" />';
                         } elseif (!empty($custom_logo_id)) {
@@ -121,7 +121,7 @@ if (empty($footer_bottom_right)) {
                         }
                         ?>
                     </a>
-                    
+
                     <!-- Tagline -->
                     <p class="font-body text-[#444444] text-[15px] leading-relaxed max-w-sm mb-6">
                         <?php echo nl2br(esc_html($footer_about)); ?>
@@ -156,7 +156,7 @@ if (empty($footer_bottom_right)) {
                     <!-- Social Media Links (Moved right below Business Hours) -->
                     <?php if (!empty($social_links)) : ?>
                     <div class="footer-social-links flex items-center gap-3 pt-4 text-[#444444]">
-                        <?php 
+                        <?php
                         foreach ($social_links as $item) :
                             $platform = strtolower(trim($item['platform'] ?? ''));
                             $url = trim($item['url'] ?? '');
@@ -207,18 +207,18 @@ if (empty($footer_bottom_right)) {
                 <h2 class="font-body text-base md:text-[18px] font-medium text-[#111111] mb-5">
                     <?php echo esc_html($col2_title); ?>
                 </h2>
-                <?php 
+                <?php
                 if (has_nav_menu('footer')) :
                     wp_nav_menu(array(
                         'theme_location' => 'footer',
                         'container'      => false,
-                        'menu_class'     => 'footer-menu space-y-3 font-body text-[15px]',
+                        'menu_class'     => 'footer-menu space-y-2 font-body text-[15px]',
                         'fallback_cb'    => false,
                         'depth'          => 1,
                     ));
                 else :
                 ?>
-                <ul class="footer-menu space-y-3 font-body text-[15px]">
+                <ul class="footer-menu space-y-2 font-body text-[15px]">
                     <li><a href="<?php echo esc_url(home_url('/about-us/')); ?>" class="hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm"><?php esc_html_e('About Us', 'dharmgyan'); ?></a></li>
                     <li><a href="<?php echo esc_url(home_url('/shipping-policy/')); ?>" class="hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm"><?php esc_html_e('Shipping Policy', 'dharmgyan'); ?></a></li>
                     <li><a href="<?php echo esc_url(home_url('/terms-of-service/')); ?>" class="hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm"><?php esc_html_e('Terms of Service', 'dharmgyan'); ?></a></li>
@@ -235,7 +235,7 @@ if (empty($footer_bottom_right)) {
                 <h2 class="font-body text-base md:text-[18px] font-medium text-[#111111] mb-5">
                     <?php echo esc_html($col3_title); ?>
                 </h2>
-                <?php 
+                <?php
                 if (has_nav_menu('footerlist')) :
                     wp_nav_menu(array(
                         'theme_location' => 'footerlist',
@@ -264,9 +264,9 @@ if (empty($footer_bottom_right)) {
                 <p class="font-body text-sm text-[#717171] mb-4">
                     <?php echo esc_html($newsletter_desc); ?>
                 </p>
-                
+
                 <div class="footer-newsletter-cf7 mb-4">
-                    <?php 
+                    <?php
                     $has_cf7 = !empty($newsletter_shortcode) && (strpos($newsletter_shortcode, '[') !== false) && shortcode_exists('contact-form-7');
                     if ($has_cf7) {
                         echo do_shortcode($newsletter_shortcode);
