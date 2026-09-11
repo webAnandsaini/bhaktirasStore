@@ -35,7 +35,7 @@ if ($product->is_in_stock()) : ?>
 
         <!-- Dual CTA Buttons (Side-by-Side in 1 row matching Figma 1:1) -->
         <div class="product-cta-buttons grid grid-cols-2 gap-3.5 pt-1">
-            <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="single_add_to_cart_button button alt h-[48px] !text-[#111111] !border-[2px] !border-[#C0570A] !text-[#C0570A] !bg-white hover:!bg-[#C0570A] hover:text-white rounded-[4px] font-medium text-sm md:text-base transition-colors flex items-center justify-center cursor-pointer shadow-none">
+            <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="single_add_to_cart_button button alt h-[48px] !text-[#111111] !border-[2px] !border-[#C0570A] !text-[#C0570A] !bg-white hover:!bg-[#C0570A] hover:!text-white rounded-[4px] font-medium text-sm md:text-base transition-colors flex items-center justify-center cursor-pointer shadow-none">
                 <?php echo esc_html($product->single_add_to_cart_text()); ?>
             </button>
             <button type="submit" name="dharmgyan_buy_now" value="1" data-product-id="<?php echo esc_attr($product->get_id()); ?>" class="buy_now_button button h-[48px] bg-[#C0570A] hover:bg-[#A84905] text-white rounded-[4px] font-medium text-sm md:text-base transition-colors shadow-none flex items-center justify-center cursor-pointer">
