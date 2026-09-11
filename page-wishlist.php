@@ -103,8 +103,13 @@ $item_count = count($wishlist_items);
             
             <!-- Bulk Action Strip matching Figma -->
             <div class="flex items-center justify-between py-4 text-sm border-b border-[#F0EAE4] mb-8">
-                <label class="inline-flex items-center gap-2 cursor-pointer select-none font-medium text-[#444444]">
-                    <input type="checkbox" id="wishlist-select-all" class="w-4 h-4 rounded border-gray-300 text-[#CC5600] focus:ring-[#CC5600] cursor-pointer">
+                <label class="inline-flex items-center gap-2.5 cursor-pointer select-none font-medium text-[#444444] hover:text-[#CC5600] transition-colors">
+                    <input type="checkbox" id="wishlist-select-all" class="sr-only">
+                    <span class="select-all-box w-5 h-5 rounded-[4px] border border-[#D5D5D5] bg-white flex items-center justify-center transition-all shadow-xs">
+                        <svg class="select-all-icon w-3.5 h-3.5 text-white opacity-0 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </span>
                     <span><?php esc_html_e('Select All', 'dharmgyan'); ?></span>
                 </label>
 
@@ -145,8 +150,13 @@ $item_count = count($wishlist_items);
                             <!-- Top Card Image & Select Checkbox -->
                             <div class="relative aspect-square overflow-hidden bg-[#FFF9F4]">
                                 
-                                <label class="absolute top-2.5 left-2.5 z-10 p-1 bg-white/90 backdrop-blur-xs rounded-md shadow-xs cursor-pointer">
-                                    <input type="checkbox" name="wishlist_item[]" value="<?php echo esc_attr($item_id); ?>" class="wishlist-item-checkbox w-4 h-4 rounded border-gray-300 text-[#CC5600] focus:ring-[#CC5600] cursor-pointer" aria-label="<?php echo esc_attr(sprintf(__('Select %s', 'dharmgyan'), $product_name)); ?>">
+                                <label class="wishlist-select-label absolute top-2.5 left-2.5 z-10 w-7 h-7 bg-white/95 hover:bg-white rounded-[6px] shadow-xs border border-[#EAE3DC] hover:border-[#CC5600] flex items-center justify-center cursor-pointer transition-all" title="<?php esc_attr_e('Select product', 'dharmgyan'); ?>">
+                                    <input type="checkbox" name="wishlist_item[]" value="<?php echo esc_attr($item_id); ?>" class="wishlist-item-checkbox sr-only" aria-label="<?php echo esc_attr(sprintf(__('Select %s', 'dharmgyan'), $product_name)); ?>">
+                                    <span class="wishlist-checkbox-box w-4 h-4 rounded-[3px] border border-[#CCCCCC] bg-white flex items-center justify-center transition-all">
+                                        <svg class="wishlist-check-icon w-3 h-3 text-white opacity-0 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"></polyline>
+                                        </svg>
+                                    </span>
                                 </label>
 
                                 <!-- Individual Remove Icon (Hover) -->
@@ -272,16 +282,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 2. Select All Checkbox Logic
+    // 2. Select All Checkbox Logic & Sync
     const selectAllCheckbox = document.getElementById('wishlist-select-all');
+    const itemCheckboxes = document.querySelectorAll('.wishlist-item-checkbox');
     if (selectAllCheckbox) {
         selectAllCheckbox.addEventListener('change', function(e) {
-            const itemCheckboxes = document.querySelectorAll('.wishlist-item-checkbox');
+            const isChecked = e.target.checked;
             itemCheckboxes.forEach(cb => {
-                cb.checked = e.target.checked;
+                cb.checked = isChecked;
             });
         });
     }
+
+    itemCheckboxes.forEach(cb => {
+        cb.addEventListener('change', function() {
+            if (!selectAllCheckbox) return;
+            const allChecked = itemCheckboxes.length > 0 && Array.from(itemCheckboxes).every(i => i.checked);
+            selectAllCheckbox.checked = allChecked;
+        });
+    });
 
     // 3. Share Wishlist Button (Copy URL to Clipboard with Feedback)
     const shareBtn = document.getElementById('share-wishlist-btn');
@@ -301,62 +320,87 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 4. Batch Move to Cart
     const moveBtn = document.getElementById('bulk-move-to-cart');
-        if (moveBtn) {
-            moveBtn.addEventListener('click', function() {
-                const checkedItems = document.querySelectorAll('.wishlist-item-checkbox:checked');
-                if (checkedItems.length === 0) {
-                    alert('<?php echo esc_js(__('Please select at least one item.', 'dharmgyan')); ?>');
-                    return;
-                }
+    if (moveBtn) {
+        moveBtn.addEventListener('click', function() {
+            const checkedItems = document.querySelectorAll('.wishlist-item-checkbox:checked');
+            if (checkedItems.length === 0) {
+                alert('<?php echo esc_js(__('Please select at least one item.', 'dharmgyan')); ?>');
+                return;
+            }
+            checkedItems.forEach(cb => {
+                const card = cb.closest('.wishlist-product-card');
+                const addBtn = card ? card.querySelector('.add_to_cart_button') : null;
+                if (addBtn) addBtn.click();
+            });
+        });
+    }
+
+    // 5. Batch Delete Items
+    const deleteBtn = document.getElementById('bulk-delete');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', function() {
+            const checkedItems = document.querySelectorAll('.wishlist-item-checkbox:checked');
+            if (checkedItems.length === 0) {
+                alert('<?php echo esc_js(__('Please select at least one item to delete.', 'dharmgyan')); ?>');
+                return;
+            }
+            if (confirm('<?php echo esc_js(__('Are you sure you want to remove selected items from your wishlist?', 'dharmgyan')); ?>')) {
                 checkedItems.forEach(cb => {
                     const card = cb.closest('.wishlist-product-card');
-                    const addBtn = card ? card.querySelector('.add_to_cart_button') : null;
-                    if (addBtn) addBtn.click();
+                    const removeLink = card ? card.querySelector('a[href*="remove_from_wishlist"]') : null;
+                    if (removeLink) {
+                        removeLink.click();
+                    } else if (card) {
+                        card.remove();
+                    }
                 });
-            });
-        }
+            }
+        });
+    }
 
-        // 5. Batch Delete Items
-        const deleteBtn = document.getElementById('bulk-delete');
-        if (deleteBtn) {
-            deleteBtn.addEventListener('click', function() {
-                const checkedItems = document.querySelectorAll('.wishlist-item-checkbox:checked');
-                if (checkedItems.length === 0) {
-                    alert('<?php echo esc_js(__('Please select at least one item to delete.', 'dharmgyan')); ?>');
-                    return;
-                }
-                if (confirm('<?php echo esc_js(__('Are you sure you want to remove selected items from your wishlist?', 'dharmgyan')); ?>')) {
-                    checkedItems.forEach(cb => {
-                        const card = cb.closest('.wishlist-product-card');
-                        const removeLink = card ? card.querySelector('a[href*="remove_from_wishlist"]') : null;
-                        if (removeLink) {
-                            removeLink.click();
-                        } else if (card) {
-                            card.remove();
-                        }
-                    });
-                }
-            });
-        }
-
-        // 6. Grid View Toggle (5-Column vs 4-Column)
-        const viewCompact = document.getElementById('grid-view-compact');
-        const viewStandard = document.getElementById('grid-view-standard');
-        const grid = document.getElementById('wishlist-grid');
-        if (viewCompact && viewStandard && grid) {
-            viewCompact.addEventListener('click', function() {
-                grid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6';
-                viewCompact.className = 'p-1.5 rounded bg-[#CC5600] text-white shadow-xs';
-                viewStandard.className = 'p-1.5 rounded text-[#717171] hover:text-[#CC5600] transition-colors';
-            });
-            viewStandard.addEventListener('click', function() {
-                grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6';
-                viewStandard.className = 'p-1.5 rounded bg-[#CC5600] text-white shadow-xs';
-                viewCompact.className = 'p-1.5 rounded text-[#717171] hover:text-[#CC5600] transition-colors';
-            });
-        }
+    // 6. Grid View Toggle (5-Column vs 4-Column)
+    const viewCompact = document.getElementById('grid-view-compact');
+    const viewStandard = document.getElementById('grid-view-standard');
+    const grid = document.getElementById('wishlist-grid');
+    if (viewCompact && viewStandard && grid) {
+        viewCompact.addEventListener('click', function() {
+            grid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6';
+            viewCompact.className = 'p-1.5 rounded bg-[#CC5600] text-white shadow-xs';
+            viewStandard.className = 'p-1.5 rounded text-[#717171] hover:text-[#CC5600] transition-colors';
+        });
+        viewStandard.addEventListener('click', function() {
+            grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6';
+            viewStandard.className = 'p-1.5 rounded bg-[#CC5600] text-white shadow-xs';
+            viewCompact.className = 'p-1.5 rounded text-[#717171] hover:text-[#CC5600] transition-colors';
+        });
+    }
 });
 </script>
+
+<style>
+/* Custom Wishlist Checkbox Styles */
+.wishlist-select-label:hover {
+    border-color: #CC5600 !important;
+}
+.wishlist-select-label:hover .wishlist-checkbox-box {
+    border-color: #CC5600 !important;
+}
+.wishlist-item-checkbox:checked + .wishlist-checkbox-box {
+    background-color: #CC5600 !important;
+    border-color: #CC5600 !important;
+}
+.wishlist-item-checkbox:checked + .wishlist-checkbox-box .wishlist-check-icon {
+    opacity: 1 !important;
+}
+
+#wishlist-select-all:checked + .select-all-box {
+    background-color: #CC5600 !important;
+    border-color: #CC5600 !important;
+}
+#wishlist-select-all:checked + .select-all-box .select-all-icon {
+    opacity: 1 !important;
+}
+</style>
 
 <?php
 get_footer();

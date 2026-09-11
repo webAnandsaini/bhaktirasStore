@@ -1494,4 +1494,27 @@ table.woocommerce-orders-table td a.woocommerce-button:hover {
     }
 }
 
+/* ─── Wishlist Custom Selection Checkbox ──────────────────── */
+.wishlist-select-label:hover {
+    border-color: #CC5600 !important;
+}
+.wishlist-select-label:hover .wishlist-checkbox-box {
+    border-color: #CC5600 !important;
+}
+.wishlist-item-checkbox:checked + .wishlist-checkbox-box {
+    background-color: #CC5600 !important;
+    border-color: #CC5600 !important;
+}
+.wishlist-item-checkbox:checked + .wishlist-checkbox-box .wishlist-check-icon {
+    opacity: 1 !important;
+}
+
+#wishlist-select-all:checked + .select-all-box {
+    background-color: #CC5600 !important;
+    border-color: #CC5600 !important;
+}
+#wishlist-select-all:checked + .select-all-box .select-all-icon {
+    opacity: 1 !important;
+}
+
 

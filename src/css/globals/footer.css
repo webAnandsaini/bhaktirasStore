@@ -3,3 +3,33 @@
   background-color: #faf7f2;
   color: #444444;
 }
+
+.site-footer ul.footer-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer ul.footer-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.site-footer ul.footer-menu li a {
+  color: #444444;
+  font-size: 15px;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+
+.site-footer ul.footer-menu li a:hover {
+  color: #CC5600;
+}
+
+.site-footer ul.footer-menu li a:focus-visible {
+  outline: 2px solid #CC5600;
+  outline-offset: 2px;
+  border-radius: 2px;
+}

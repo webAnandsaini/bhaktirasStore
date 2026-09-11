@@ -199,7 +199,9 @@
                         "youtube": "YouTube",
                         "linkedin": "LinkedIn",
                         "twitter": "Twitter",
-                        "whatsapp": "WhatsApp"
+                        "whatsapp": "WhatsApp",
+                        "pinterest": "Pinterest",
+                        "x": "X (Twitter)"
                     },
                     "default_value": "",
                     "allow_null": 0,
@@ -245,6 +247,118 @@
             "maxlength": "",
             "rows": 3,
             "new_lines": "br"
+        },
+        {
+            "key": "field_footer_contact_title",
+            "label": "Footer Contact Title",
+            "name": "footer_contact_title",
+            "type": "text",
+            "instructions": "Title above contact details",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Contact us on",
+            "placeholder": "Contact us on"
+        },
+        {
+            "key": "field_footer_col2_title",
+            "label": "Footer Column 2 Title",
+            "name": "footer_col2_title",
+            "type": "text",
+            "instructions": "Title for Column 2 (Defaults to menu name or 'About Us')",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "About Us",
+            "placeholder": "About Us"
+        },
+        {
+            "key": "field_footer_col3_title",
+            "label": "Footer Column 3 Title",
+            "name": "footer_col3_title",
+            "type": "text",
+            "instructions": "Title for Column 3 (Defaults to menu name or 'Divine Collections')",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Divine Collections",
+            "placeholder": "Divine Collections"
+        },
+        {
+            "key": "field_footer_col4_title",
+            "label": "Footer Column 4 Title",
+            "name": "footer_col4_title",
+            "type": "text",
+            "instructions": "Title for Column 4 (Defaults to 'Customer Care')",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Customer Care",
+            "placeholder": "Customer Care"
+        },
+        {
+            "key": "field_footer_newsletter_shortcode",
+            "label": "Footer Newsletter Shortcode",
+            "name": "footer_newsletter_shortcode",
+            "type": "text",
+            "instructions": "Shortcode for newsletter form (e.g. Contact Form 7 shortcode)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "[contact-form-7 id=\"564\" title=\"Footer Newsletter Form\"]",
+            "placeholder": "[contact-form-7 id=\"564\" title=\"Footer Newsletter Form\"]"
+        },
+        {
+            "key": "field_footer_copyright",
+            "label": "Footer Copyright Text",
+            "name": "footer_copyright",
+            "type": "text",
+            "instructions": "Use {year} for current year and {site_name} for site title",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "© {year} {site_name}. All rights reserved.",
+            "placeholder": "© {year} {site_name}. All rights reserved."
+        },
+        {
+            "key": "field_footer_bottom_right_text",
+            "label": "Footer Bottom Right Text",
+            "name": "footer_bottom_right_text",
+            "type": "text",
+            "instructions": "Text displayed on the bottom right of footer (e.g. Brand of Sankat Mochan)",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Brand of Sankat Mochan",
+            "placeholder": "Brand of Sankat Mochan"
         },
         {
             "key": "field_newsletter_title",
