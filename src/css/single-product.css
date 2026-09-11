@@ -280,10 +280,38 @@
     border-bottom: 1px dotted #CCCCCC;
 }
 
-/* Stock Urgency */
+/* ─── Stock Urgency Pill Card (Figma 1:1) ─────────────────── */
 .stock-urgency-wrap {
-    margin: 0.65rem 0;
+    margin: 0.9rem 0;
 }
+
+.stock-urgency-card {
+    background: linear-gradient(180deg, #FFFDFB 0%, #FFF8F1 100%);
+    border: 1.5px solid #F6C692;
+    border-radius: 9999px;
+    box-shadow: 0 2px 10px rgba(246, 198, 146, 0.18);
+}
+
+.stock-alarm-icon {
+    filter: drop-shadow(0 1px 2px rgba(224, 62, 26, 0.12));
+}
+
+.stock-urgency-track {
+    background-color: #FCE6CF;
+}
+
+.stock-urgency-bar {
+    background-image: 
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.18) 0, rgba(255, 255, 255, 0.18) 8px, transparent 8px, transparent 16px),
+        linear-gradient(90deg, #E03512 0%, #EA6512 45%, #F59E0B 100%);
+    background-color: #EA6512;
+}
+
+.stock-left-badge {
+    background: linear-gradient(135deg, #E64016 0%, #CB2807 100%);
+    box-shadow: 0 2px 6px rgba(203, 40, 7, 0.28);
+}
+
 
 /* ─── Variable Products Table & Swatches ─────────────────── */
 .product-summary-column table.variations {
@@ -580,14 +608,15 @@
     padding-top: 0.25rem !important;
 }
 
-/* "Add to cart" outlined Saffron Button */
+/* "Add to cart" outlined Saffron Button (Matching Figma 1:1) */
 .product-summary-column button.single_add_to_cart_button,
-.product-summary-column .single_add_to_cart_button {
-    height: 50px !important;
-    min-height: 50px !important;
-    border: 1.5px solid #CC5600 !important;
+.product-summary-column .single_add_to_cart_button,
+.product-cta-buttons .single_add_to_cart_button {
+    height: 48px !important;
+    min-height: 48px !important;
+    border: 1.5px solid #C0570A !important;
     background-color: #ffffff !important;
-    color: #CC5600 !important;
+    color: #C0570A !important;
     font-family: var(--font-body, 'Noto Sans', sans-serif);
     font-weight: 500 !important;
     font-size: 15px !important;
@@ -601,30 +630,35 @@
     transition: all 0.2s ease !important;
     box-shadow: none !important;
     text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
     width: 100% !important;
 }
 
 .product-summary-column button.single_add_to_cart_button:hover:not(:disabled),
-.product-summary-column .single_add_to_cart_button:hover:not(:disabled) {
-    background-color: #CC5600 !important;
+.product-summary-column .single_add_to_cart_button:hover:not(:disabled),
+.product-cta-buttons .single_add_to_cart_button:hover:not(:disabled) {
+    background-color: #C0570A !important;
     color: #ffffff !important;
 }
 
 .product-summary-column button.single_add_to_cart_button:disabled,
-.product-summary-column button.single_add_to_cart_button.disabled {
+.product-summary-column button.single_add_to_cart_button.disabled,
+.product-cta-buttons .single_add_to_cart_button:disabled {
     opacity: 0.6 !important;
     cursor: not-allowed !important;
     border-color: #CCCCCC !important;
     color: #999999 !important;
 }
 
-/* "Buy it now" solid Saffron Button */
+/* "Buy it now" solid Saffron Button (Matching Figma 1:1) */
 .product-summary-column button.buy_now_button,
-.product-summary-column .buy_now_button {
-    height: 50px !important;
-    min-height: 50px !important;
-    border: 1.5px solid #CC5600 !important;
-    background-color: #CC5600 !important;
+.product-summary-column .buy_now_button,
+.product-cta-buttons .buy_now_button {
+    height: 48px !important;
+    min-height: 48px !important;
+    border: 1.5px solid #C0570A !important;
+    background-color: #C0570A !important;
     color: #ffffff !important;
     font-family: var(--font-body, 'Noto Sans', sans-serif);
     font-weight: 500 !important;
@@ -637,16 +671,19 @@
     padding: 0 1rem !important;
     cursor: pointer !important;
     transition: all 0.2s ease !important;
-    box-shadow: 0 4px 12px rgba(204, 86, 0, 0.2) !important;
+    box-shadow: none !important;
     text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
     width: 100% !important;
 }
 
 .product-summary-column button.buy_now_button:hover,
-.product-summary-column .buy_now_button:hover {
-    background-color: #B34B00 !important;
-    border-color: #B34B00 !important;
-    box-shadow: 0 6px 16px rgba(179, 75, 0, 0.3) !important;
+.product-summary-column .buy_now_button:hover,
+.product-cta-buttons .buy_now_button:hover {
+    background-color: #A84905 !important;
+    border-color: #A84905 !important;
+    box-shadow: none !important;
 }
 
 /* ─── Highlights & Guarantee Box ─────────────────────────── */

@@ -149,25 +149,81 @@ if ($is_variable) {
                         </div>
                     <?php endif; ?>
 
-                    <!-- 6. Stock Urgency Indicator -->
+                    <!-- 6. Stock Urgency Indicator (Updated Figma Pill Design 1:1) -->
+                    <?php
+                    $stock_qty = $product->get_stock_quantity();
+                    if ($stock_qty && $stock_qty > 0) {
+                        $stock_count = $stock_qty;
+                        $bar_pct     = min(100, max(15, round(($stock_qty / 30) * 100)));
+                    } else {
+                        $stock_count = 41;
+                        $bar_pct     = 68;
+                    }
+                    ?>
                     <div class="stock-urgency-wrap my-3.5">
-                        <div class="text-xs md:text-[13px] text-[#444444] font-body mb-1.5">
-                            <span class="stock-urgency-text">
-                                <?php
-                                $stock_qty = $product->get_stock_quantity();
-                                if ($stock_qty && $stock_qty > 0) {
-                                    echo esc_html(sprintf(__('Hurry Up! Only %d items left in stock!', 'dharmgyan'), $stock_qty));
-                                } else {
-                                    echo esc_html__('Hurry Up! Only 41 items left in stock!', 'dharmgyan');
-                                }
-                                ?>
-                            </span>
-                        </div>
-                        <div class="w-full h-[5px] bg-[#E3E3E3] rounded-full overflow-hidden">
-                            <?php
-                            $bar_pct = ($stock_qty && $stock_qty > 0) ? min(100, max(15, round(($stock_qty / 30) * 100))) : 25;
-                            ?>
-                            <div class="stock-urgency-bar h-full bg-[#111111] rounded-full transition-all duration-300" style="width: <?php echo esc_attr($bar_pct); ?>%;"></div>
+                        <div class="stock-urgency-card relative flex items-center justify-between gap-3 sm:gap-4 px-3.5 sm:px-5 py-2 sm:py-2.5 bg-gradient-to-b from-[#FFFDF9] to-[#FFF8F1] border border-[#F6C692] rounded-full shadow-[0_2px_8px_rgba(246,198,146,0.15)] overflow-visible">
+
+                            <!-- 1. Alarm Clock Icon with Ringing Rays -->
+                            <div class="stock-alarm-icon shrink-0 text-[#E03E1A] flex items-center justify-center" aria-hidden="true">
+                                <svg class="w-8 h-8 sm:w-9 sm:h-9" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Soft circular glow behind clock -->
+                                    <circle cx="20" cy="22" r="14" fill="#FDF3E7" />
+                                    <!-- Left ringing rays -->
+                                    <path d="M4 16L7.5 17.5" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M4 25L7.5 23.5" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- Right ringing rays -->
+                                    <path d="M36 16L32.5 17.5" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M36 25L32.5 23.5" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- Bells & stems -->
+                                    <path d="M11 9C9.8 9 8.8 10 8.8 11.2C8.8 12.1 9.3 12.8 10 13.2C10.8 12.1 11.8 11.1 13 10.4C12.7 9.6 11.9 9 11 9Z" fill="#E03E1A"/>
+                                    <path d="M29 9C28.1 9 27.3 9.6 27 10.4C28.2 11.1 29.2 12.1 30 13.2C30.7 12.8 31.2 12.1 31.2 11.2C31.2 10 30.2 9 29 9Z" fill="#E03E1A"/>
+                                    <path d="M12 8L13.8 10.2" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M28 8L26.2 10.2" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- Top hammer -->
+                                    <path d="M18.5 7.5H21.5" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M20 7.5V9.5" stroke="#E03E1A" stroke-width="2" stroke-linecap="round"/>
+                                    <!-- Clock Face Dial -->
+                                    <circle cx="20" cy="22" r="11" fill="#FFFFFF" stroke="#E03E1A" stroke-width="2.2"/>
+                                    <!-- Clock Hands -->
+                                    <path d="M20 16.5V22L23.5 25" stroke="#E03E1A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="20" cy="22" r="1.3" fill="#E03E1A"/>
+                                    <!-- Clock Legs -->
+                                    <path d="M12.5 31.5L10.5 34.5" stroke="#E03E1A" stroke-width="2.2" stroke-linecap="round"/>
+                                    <path d="M27.5 31.5L29.5 34.5" stroke="#E03E1A" stroke-width="2.2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+
+                            <!-- 2. Text + Progress Bar Column -->
+                            <div class="stock-urgency-content flex-1 min-w-0 flex flex-col justify-center">
+                                <div class="stock-urgency-text-row text-xs sm:text-[13.5px] md:text-[14px] font-body leading-tight mb-1 sm:mb-1.5 flex flex-wrap items-baseline gap-1">
+                                    <span class="stock-hurry-label font-bold text-[#E03E1A]"><?php esc_html_e('Hurry Up!', 'dharmgyan'); ?></span>
+                                    <span class="stock-middle-text text-[#222222] font-normal">
+                                        <?php esc_html_e('Only', 'dharmgyan'); ?>
+                                        <strong class="stock-qty-num font-bold text-[#E03E1A] mx-0.5"><?php echo esc_html($stock_count); ?></strong>
+                                        <?php esc_html_e('items left in stock!', 'dharmgyan'); ?>
+                                    </span>
+                                </div>
+                                <div class="stock-urgency-track w-full h-[7px] sm:h-[8px] bg-[#FCE6CF] rounded-full overflow-hidden p-0">
+                                    <div class="stock-urgency-bar h-full rounded-full transition-all duration-500 ease-out"
+                                         style="width: <?php echo esc_attr($bar_pct); ?>%;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. Right Pill Badge + 3 Urgency Rays -->
+                            <div class="stock-badge-container relative shrink-0 flex items-center">
+                                <div class="stock-left-badge bg-gradient-to-r from-[#E64016] to-[#CB2807] text-white font-bold text-xs sm:text-[13px] px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full shadow-[0_2px_6px_rgba(203,40,7,0.3)] whitespace-nowrap leading-none flex items-center justify-center font-body">
+                                    <span class="stock-badge-qty"><?php echo esc_html($stock_count); ?></span>&nbsp;<span><?php esc_html_e('left', 'dharmgyan'); ?></span>
+                                </div>
+                                <div class="stock-sparks ml-1 sm:ml-1.5 flex items-center shrink-0 select-none" aria-hidden="true">
+                                    <svg class="w-3 sm:w-3.5 h-6 text-[#E03E1A]" viewBox="0 0 14 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 4.5L11 2.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                        <path d="M1.5 12H12.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                        <path d="M2 19.5L11 21.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                                    </svg>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -185,30 +241,26 @@ if ($is_variable) {
                                 <span class="flex-shrink mx-3 text-[11px] font-bold text-[#111111] uppercase tracking-wider">GUARANTEE SAFE CHECKOUT</span>
                                 <div class="flex-grow border-t border-[#E5E5E5]"></div>
                             </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+                            <div class="grid grid-cols-4 gap-2.5 text-center">
                                 <div class="flex flex-col items-center">
-                                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                        <span class="text-[9px] font-bold text-[#333333] uppercase leading-none">SATISFACTION<br/>100%</span>
+                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
+                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/satisfaction.svg'); ?>" alt="<?php esc_attr_e('Satisfaction Guarantee', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
                                     </div>
-                                    <span class="text-[10px] font-semibold text-[#111111] uppercase">GUARANTEED</span>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                        <span class="text-[9px] font-bold text-[#333333] uppercase leading-none">FREE<br/>SHIPPING</span>
+                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
+                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/free-shipping.svg'); ?>" alt="<?php esc_attr_e('FREE SHIPPING', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
                                     </div>
-                                    <span class="text-[10px] font-semibold text-[#111111] uppercase">FREE DELIVERY</span>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                        <span class="text-[9px] font-bold text-[#333333] uppercase leading-none">EASY<br/>RETURN</span>
+                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
+                                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/easy-return.svg'); ?>" alt="<?php esc_attr_e('Easy Return', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
                                     </div>
-                                    <span class="text-[10px] font-semibold text-[#111111] uppercase">7 DAYS RETURN</span>
                                 </div>
                                 <div class="flex flex-col items-center">
-                                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                        <span class="text-[9px] font-bold text-[#333333] uppercase leading-none">CASH ON<br/>DELIVERY</span>
+                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
+                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/cash-delivery.svg'); ?>" alt="<?php esc_attr_e('COD AVAILABLE', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
                                     </div>
-                                    <span class="text-[10px] font-semibold text-[#111111] uppercase">COD AVAILABLE</span>
                                 </div>
                             </div>
                         </div>

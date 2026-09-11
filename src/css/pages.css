@@ -308,24 +308,74 @@ button#place_order:hover {
 }
 
 /* ─── WooCommerce Alert Notices (Info, Message, Error) ───── */
+.woocommerce-notices-wrapper {
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box !important;
+    clear: both !important;
+}
+
 .woocommerce-info,
 .woocommerce-message,
 .woocommerce-error {
     background-color: #FFF9F4 !important;
     border: 1px solid #EAE3DC !important;
-    border-left: 4px solid #CC5600 !important;
+    border-left: 4px solid #C0570A !important;
     border-radius: 6px !important;
-    padding: 14px 20px 14px 44px !important;
+    padding: 14px 20px 14px 50px !important;
     font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
     font-size: 14px !important;
-    color: #444444 !important;
+    line-height: 1.5 !important;
+    color: #333333 !important;
+    margin-top: 1.25rem !important;
     margin-bottom: 1.5rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 1400px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 12px 20px !important;
 }
 
+@media (max-width: 1440px) {
+    .site-main > article > .woocommerce-message,
+    .site-main > article > .woocommerce-info,
+    .site-main > article > .woocommerce-error {
+        width: calc(100% - 2rem) !important;
+        margin-left: 1rem !important;
+        margin-right: 1rem !important;
+    }
+}
+
+.woocommerce-message::before,
 .woocommerce-info::before,
+.woocommerce-error::before {
+    position: absolute !important;
+    left: 18px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    font-family: WooCommerce !important;
+    font-size: 18px !important;
+    line-height: 1 !important;
+}
+
 .woocommerce-message::before {
-    color: #CC5600 !important;
+    content: "\e015" !important;
+    color: #C0570A !important;
+}
+
+.woocommerce-info::before {
+    content: "\e028" !important;
+    color: #C0570A !important;
 }
 
 .woocommerce-error {
@@ -334,12 +384,62 @@ button#place_order:hover {
     color: #991B1B !important;
 }
 
-.woocommerce-info a,
-.woocommerce-message a,
-.woocommerce-error a {
-    color: #CC5600 !important;
+.woocommerce-error::before {
+    content: "\e016" !important;
+    color: #DC2626 !important;
+}
+
+.woocommerce-info a:not(.button),
+.woocommerce-message a:not(.button),
+.woocommerce-error a:not(.button) {
+    color: #C0570A !important;
     font-weight: 600 !important;
     text-decoration: underline !important;
+}
+
+/* Notice Action Buttons (e.g. "View cart") */
+.woocommerce-message .button,
+.woocommerce-info .button,
+.woocommerce-error .button,
+.woocommerce-message a.button,
+.woocommerce-info a.button,
+.woocommerce-error a.button {
+    float: none !important;
+    order: 2 !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 38px !important;
+    padding: 0 20px !important;
+    background-color: #C0570A !important;
+    border: 1px solid #C0570A !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    border-radius: 4px !important;
+    line-height: normal !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    white-space: nowrap !important;
+    box-shadow: none !important;
+}
+
+.woocommerce-message .button:hover,
+.woocommerce-info .button:hover,
+.woocommerce-error .button:hover,
+.woocommerce-message a.button:hover,
+.woocommerce-info a.button:hover,
+.woocommerce-error a.button:hover {
+    background-color: #A84905 !important;
+    border-color: #A84905 !important;
+    color: #ffffff !important;
+    text-decoration: none !important;
 }
 
 /* ─── Clearfix & Float Reset ─────────────────────────────── */
@@ -710,6 +810,106 @@ form.checkout.woocommerce-checkout {
 
 #order_review #payment div.payment_box::before {
     border-bottom-color: #FFF9F4 !important;
+}
+
+/* ─── Checkout Place Order Section & Privacy Policy ──────── */
+#order_review #payment div.place-order {
+    display: flex !important;
+    flex-direction: column !important;
+    float: none !important;
+    width: 100% !important;
+    clear: both !important;
+    padding: 0 !important;
+    margin: 1.25rem 0 0 0 !important;
+    box-sizing: border-box !important;
+}
+
+#order_review #payment .woocommerce-terms-and-conditions-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    float: none !important;
+    width: 100% !important;
+    margin-bottom: 0.75rem !important;
+    clear: both !important;
+}
+
+#order_review #payment .woocommerce-privacy-policy-text {
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+    margin: 0 0 1rem 0 !important;
+    font-size: 12.5px !important;
+    line-height: 1.6 !important;
+    color: #64748B !important;
+    text-align: left !important;
+}
+
+#order_review #payment .woocommerce-privacy-policy-text p {
+    margin: 0 !important;
+    font-size: 12.5px !important;
+    line-height: 1.6 !important;
+    color: #64748B !important;
+}
+
+#order_review #payment .woocommerce-privacy-policy-text a {
+    color: #C0570A !important;
+    font-weight: 600 !important;
+    text-decoration: underline !important;
+}
+
+#order_review #payment .woocommerce-privacy-policy-text a:hover {
+    color: #A84905 !important;
+}
+
+#order_review #payment .woocommerce-terms-and-conditions-checkbox-text {
+    font-size: 13px !important;
+    color: #333333 !important;
+    line-height: 1.5 !important;
+}
+
+#order_review #payment .woocommerce-form__label-for-checkbox {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+    cursor: pointer !important;
+    margin-bottom: 0.75rem !important;
+}
+
+#order_review #payment .woocommerce-form__label-for-checkbox input[type="checkbox"] {
+    margin-top: 3px !important;
+    accent-color: #C0570A !important;
+}
+
+/* Place Order Button - Full Width, Centered, Matching Figma */
+#order_review #payment button#place_order,
+button#place_order {
+    float: none !important;
+    width: 100% !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    background-color: #C0570A !important;
+    color: #ffffff !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.02em !important;
+    border-radius: 4px !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(192, 87, 10, 0.25) !important;
+    margin: 0.5rem 0 0.5rem 0 !important;
+    clear: both !important;
+}
+
+#order_review #payment button#place_order:hover,
+button#place_order:hover {
+    background-color: #A84905 !important;
+    box-shadow: 0 6px 16px rgba(168, 73, 5, 0.35) !important;
 }
 
 /* ─── Wishlist Table Styling (YITH) ──────────────────────── */

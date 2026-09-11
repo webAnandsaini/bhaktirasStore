@@ -265,8 +265,12 @@ export function initSingleProduct() {
         const $ = window.jQuery;
         const priceRow = document.getElementById('single-product-price-row');
         const defaultPriceHtml = priceRow ? (priceRow.dataset.defaultHtml || priceRow.innerHTML) : '';
-        const urgencyText = document.querySelector('.stock-urgency-text');
-        const defaultUrgencyText = urgencyText ? urgencyText.textContent.trim() : '';
+        const urgencyWrap = document.querySelector('.stock-urgency-wrap');
+        const urgencyQty = document.querySelector('.stock-qty-num');
+        const urgencyBadgeQty = document.querySelector('.stock-badge-qty');
+        const urgencyBar = document.querySelector('.stock-urgency-bar');
+        const defaultQty = urgencyQty ? urgencyQty.textContent.trim() : '41';
+        const defaultBarWidth = urgencyBar ? urgencyBar.style.width : '68%';
 
         // Auto-select first available option of each attribute on page load if nothing is selected
         setTimeout(() => {
@@ -314,13 +318,23 @@ export function initSingleProduct() {
                 priceRow.innerHTML = html;
             }
 
-            if (urgencyText && variation) {
+            if (variation) {
                 if (variation.max_qty && variation.max_qty > 0) {
-                    urgencyText.textContent = `Hurry Up! Only ${variation.max_qty} items left in stock!`;
+                    const qty = variation.max_qty;
+                    if (urgencyQty) urgencyQty.textContent = qty;
+                    if (urgencyBadgeQty) urgencyBadgeQty.textContent = qty;
+                    if (urgencyBar) {
+                        const pct = Math.min(100, Math.max(15, Math.round((qty / 30) * 100)));
+                        urgencyBar.style.width = pct + '%';
+                    }
+                    if (urgencyWrap) urgencyWrap.style.display = 'block';
                 } else if (variation.is_in_stock) {
-                    urgencyText.textContent = `In Stock - Ready to dispatch!`;
+                    if (urgencyQty) urgencyQty.textContent = defaultQty;
+                    if (urgencyBadgeQty) urgencyBadgeQty.textContent = defaultQty;
+                    if (urgencyBar) urgencyBar.style.width = defaultBarWidth;
+                    if (urgencyWrap) urgencyWrap.style.display = 'block';
                 } else {
-                    urgencyText.textContent = `Out of stock`;
+                    if (urgencyWrap) urgencyWrap.style.display = 'none';
                 }
             }
         });
@@ -329,9 +343,10 @@ export function initSingleProduct() {
             if (priceRow && defaultPriceHtml) {
                 priceRow.innerHTML = defaultPriceHtml;
             }
-            if (urgencyText && defaultUrgencyText) {
-                urgencyText.textContent = defaultUrgencyText;
-            }
+            if (urgencyQty) urgencyQty.textContent = defaultQty;
+            if (urgencyBadgeQty) urgencyBadgeQty.textContent = defaultQty;
+            if (urgencyBar) urgencyBar.style.width = defaultBarWidth;
+            if (urgencyWrap) urgencyWrap.style.display = 'block';
         });
     }
 }
