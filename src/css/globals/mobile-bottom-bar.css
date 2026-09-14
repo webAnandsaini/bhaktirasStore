@@ -29,6 +29,17 @@
     opacity: 1;
     pointer-events: auto;
   }
+
+  /* When Mini-Cart Drawer or Mobile Menu Drawer is open, hide the bottom bar so it never overlaps buttons */
+  body.mini-cart-open .mobile-bottom-control-bar,
+  body.mobile-drawer-open .mobile-bottom-control-bar,
+  body:has(.header_shopping_cart.is-open) .mobile-bottom-control-bar,
+  body:has(#mobile-drawer:not(.-translate-x-full)) .mobile-bottom-control-bar {
+    transform: translateY(100%) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
 }
 
 .mobile-bottom-nav-item {

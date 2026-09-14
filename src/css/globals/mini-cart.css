@@ -240,7 +240,7 @@ ul.product_list_widget dl.variation {
     background-color: rgba(0, 0, 0, 0.55);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    z-index: 9999;
+    z-index: 100000 !important;
     opacity: 0;
     pointer-events: none;
     transition: opacity 280ms ease;
@@ -249,6 +249,13 @@ ul.product_list_widget dl.variation {
         opacity: 1 !important;
         pointer-events: auto !important;
     }
+}
+
+/* Ensure header stacking context escalates when mini-cart is open */
+.site-header:has(.header_shopping_cart.is-open),
+body.mini-cart-open .site-header {
+    z-index: 100000 !important;
+    position: relative;
 }
 
 /* Mobile Drawer Styles (< 640px) */
@@ -273,7 +280,7 @@ ul.product_list_widget dl.variation {
             border-radius: 0 !important;
             background: #ffffff !important;
             box-shadow: -10px 0 35px rgba(0, 0, 0, 0.25) !important;
-            z-index: 10000 !important;
+            z-index: 100001 !important;
             display: flex !important;
             flex-direction: column !important;
             transform: translateX(100%) !important;

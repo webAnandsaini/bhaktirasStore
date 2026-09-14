@@ -107,12 +107,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const cartDrawer = document.getElementById('header-mini-cart-drawer');
   const cartBackdrop = document.getElementById('mini-cart-backdrop');
   const cartContainer = document.querySelector('.header-cart-content');
+  const siteHeader = document.querySelector('.site-header');
 
   function openCartDrawer() {
     if (cartDrawer && cartBackdrop) {
       cartDrawer.classList.add('is-open');
       cartBackdrop.classList.add('is-open');
       if (cartContainer) cartContainer.classList.add('is-open');
+      if (siteHeader) siteHeader.classList.add('!z-[100000]');
+      document.body.classList.add('mini-cart-open');
       document.body.style.overflow = 'hidden';
       const closeBtn = cartDrawer.querySelector('.mini-cart-close-btn');
       if (closeBtn) {
@@ -126,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
       cartDrawer.classList.remove('is-open');
       cartBackdrop.classList.remove('is-open');
       if (cartContainer) cartContainer.classList.remove('is-open');
+      if (siteHeader) siteHeader.classList.remove('!z-[100000]');
+      document.body.classList.remove('mini-cart-open');
       document.body.style.overflow = '';
       if (cartTrigger) {
         cartTrigger.focus();
