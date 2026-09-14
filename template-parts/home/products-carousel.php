@@ -6,7 +6,7 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('most_viewed_title') ?: (dharmgyan_get_field('trending_title') ?: (dharmgyan_get_field('most_viewed_title', 'option') ?: dharmgyan_get_field('trending_title', 'option')));
+$title = dharmgyan_get_field('most_viewed_title') ?: (dharmgyan_get_field('most_viewed_title', 'option') ?: (dharmgyan_get_field('trending_title') ?: __('Our Most Viewed', 'dharmgyan')));
 
 $selected_products = dharmgyan_get_field('most_viewed_products');
 if (empty($selected_products)) {

@@ -6,11 +6,11 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('discount_sale_title', 'option') ?: (dharmgyan_get_field('discount_sale_title') ?: __('Our Most Discount Sale', 'dharmgyan'));
+$title = dharmgyan_get_field('discount_sale_title') ?: (dharmgyan_get_field('discount_sale_title', 'option') ?: __('Our Most Discount Sale', 'dharmgyan'));
 
-$selected_products = dharmgyan_get_field('discount_sale_products', 'option');
+$selected_products = dharmgyan_get_field('discount_sale_products');
 if (empty($selected_products)) {
-    $selected_products = dharmgyan_get_field('discount_sale_products');
+    $selected_products = dharmgyan_get_field('discount_sale_products', 'option');
 }
 
 if (!empty($selected_products) && is_array($selected_products)) {

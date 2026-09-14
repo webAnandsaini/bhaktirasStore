@@ -66,7 +66,26 @@ function xepress_setup() {
 add_action( 'after_setup_theme', 'xepress_setup' );
 
 
-//// add images size ////
 add_image_size( '1920x600', 1920, 600, true );
 add_image_size( 'dharmgyan-product-thumb', 300, 300, true );
 add_image_size( 'dharmgyan-product-single', 600, 600, true );
+
+/**
+ * Clean & Optimize Search Query:
+ * Focus searches on Products and Blog Articles, preventing utility system pages
+ * (Cart, Checkout, Account, Privacy Policy) from appearing as search results.
+ */
+function dharmgyan_filter_search_query($query) {
+    if (!is_admin() && $query->is_main_query() && $query->is_search()) {
+        $post_type = $query->get('post_type');
+        if (empty($post_type)) {
+            if (class_exists('WooCommerce')) {
+                $query->set('post_type', array('product', 'post'));
+            } else {
+                $query->set('post_type', array('post'));
+            }
+        }
+    }
+}
+add_action('pre_get_posts', 'dharmgyan_filter_search_query');
+

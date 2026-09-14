@@ -6,11 +6,11 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('trending_products_title', 'option') ?: (dharmgyan_get_field('trending_products_title') ?: __('Trending Products', 'dharmgyan'));
+$title = dharmgyan_get_field('trending_products_title') ?: (dharmgyan_get_field('trending_products_title', 'option') ?: __('Trending Products', 'dharmgyan'));
 
-$selected_products = dharmgyan_get_field('trending_products', 'option');
+$selected_products = dharmgyan_get_field('trending_products');
 if (empty($selected_products)) {
-    $selected_products = dharmgyan_get_field('trending_products');
+    $selected_products = dharmgyan_get_field('trending_products', 'option');
 }
 
 if (!empty($selected_products) && is_array($selected_products)) {
@@ -42,7 +42,7 @@ if (!$query->have_posts()) {
 }
 ?>
 
-<section class="home-trending-products-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
+<section class="w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title); ?>">
     <div class="max-w-[1580px] mx-auto px-4">
 
         <!-- Section Header matching Figma Rosarivo 36px -->

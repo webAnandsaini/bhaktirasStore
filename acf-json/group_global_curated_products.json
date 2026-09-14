@@ -6,26 +6,54 @@
             "key": "field_tab_curated_most_viewed",
             "label": "Our Most Viewed",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_most_viewed_title",
             "label": "Section Title",
             "name": "most_viewed_title",
+            "aria-label": "",
             "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "Our Most Viewed",
             "placeholder": "Our Most Viewed",
-            "wrapper": {
-                "width": "50"
-            }
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_most_viewed_products",
             "label": "Select Most Viewed Products",
             "name": "most_viewed_products",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "Select products to display in the 'Our Most Viewed' section (Drag to reorder)",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
             "post_type": [
                 "product"
             ],
@@ -41,34 +69,60 @@
             "min": 0,
             "max": 20,
             "return_format": "id",
-            "wrapper": {
-                "width": "100"
-            }
+            "bidirectional_target": []
         },
         {
             "key": "field_tab_curated_discount_sale",
             "label": "Our Most Discount Sale",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_discount_sale_title_curated",
             "label": "Section Title",
             "name": "discount_sale_title",
+            "aria-label": "",
             "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "Our Most Discount Sale",
             "placeholder": "Our Most Discount Sale",
-            "wrapper": {
-                "width": "50"
-            }
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_discount_sale_products",
             "label": "Select Discount Sale Products",
             "name": "discount_sale_products",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "Select products to display in the 'Our Most Discount Sale' section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
             "post_type": [
                 "product"
             ],
@@ -84,34 +138,60 @@
             "min": 0,
             "max": 20,
             "return_format": "id",
-            "wrapper": {
-                "width": "100"
-            }
+            "bidirectional_target": []
         },
         {
             "key": "field_tab_curated_trending",
             "label": "Trending Products",
             "name": "",
+            "aria-label": "",
             "type": "tab",
-            "placement": "top"
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0,
+            "selected": 0
         },
         {
             "key": "field_trending_products_title_curated",
             "label": "Section Title",
             "name": "trending_products_title",
+            "aria-label": "",
             "type": "text",
+            "instructions": "",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
             "default_value": "Trending Products",
             "placeholder": "Trending Products",
-            "wrapper": {
-                "width": "50"
-            }
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_trending_products",
             "label": "Select Trending Products",
             "name": "trending_products",
+            "aria-label": "",
             "type": "relationship",
             "instructions": "Select products to display in the 'Trending Products' section",
+            "required": false,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
             "post_type": [
                 "product"
             ],
@@ -127,9 +207,7 @@
             "min": 0,
             "max": 20,
             "return_format": "id",
-            "wrapper": {
-                "width": "100"
-            }
+            "bidirectional_target": []
         }
     ],
     "location": [
@@ -142,9 +220,9 @@
         ],
         [
             {
-                "param": "page_template",
+                "param": "post_type",
                 "operator": "==",
-                "value": "template-homepage.php"
+                "value": "page"
             }
         ]
     ],
@@ -155,5 +233,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Global ACF Relationship fields for Curated Products across the storefront"
+    "description": "Global ACF Relationship fields for Curated Products across the storefront",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1789346387
 }
