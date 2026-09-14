@@ -53,6 +53,15 @@ document.addEventListener('DOMContentLoaded', () => {
     menuToggleBtn.addEventListener('click', openDrawer);
   }
 
+  // Mobile Bottom Bar Category Drawer Triggers
+  const bottomCategoriesBtn = document.getElementById('mobile-bottom-nav-categories');
+  if (bottomCategoriesBtn) {
+    bottomCategoriesBtn.addEventListener('click', openDrawer);
+  }
+  document.querySelectorAll('.mobile-drawer-open-trigger').forEach((btn) => {
+    btn.addEventListener('click', openDrawer);
+  });
+
   if (closeBtn) {
     closeBtn.addEventListener('click', closeDrawer);
   }
@@ -92,6 +101,106 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // ─── Mobile Mini-Cart Drawer Interactions (< 640px) ───────────
+  const cartTrigger = document.querySelector('.header-cart-trigger');
+  const cartDrawer = document.getElementById('header-mini-cart-drawer');
+  const cartBackdrop = document.getElementById('mini-cart-backdrop');
+  const cartContainer = document.querySelector('.header-cart-content');
+
+  function openCartDrawer() {
+    if (cartDrawer && cartBackdrop) {
+      cartDrawer.classList.add('is-open');
+      cartBackdrop.classList.add('is-open');
+      if (cartContainer) cartContainer.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = cartDrawer.querySelector('.mini-cart-close-btn');
+      if (closeBtn) {
+        setTimeout(() => closeBtn.focus(), 50);
+      }
+    }
+  }
+
+  function closeCartDrawer() {
+    if (cartDrawer && cartBackdrop) {
+      cartDrawer.classList.remove('is-open');
+      cartBackdrop.classList.remove('is-open');
+      if (cartContainer) cartContainer.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (cartTrigger) {
+        cartTrigger.focus();
+      }
+    }
+  }
+
+  // Header Bag icon click on mobile: slide drawer open
+  if (cartTrigger) {
+    cartTrigger.addEventListener('click', (e) => {
+      if (window.innerWidth <= 639) {
+        e.preventDefault();
+        openCartDrawer();
+      }
+    });
+  }
+
+  // Mobile Bottom Bar Cart icon: slide drawer open unless already on cart page
+  const bottomBarCart = document.querySelector('.mobile-bottom-control-bar a[href*="cart"]');
+  if (bottomBarCart) {
+    bottomBarCart.addEventListener('click', (e) => {
+      if (window.innerWidth <= 639 && !window.location.pathname.includes('/cart')) {
+        e.preventDefault();
+        openCartDrawer();
+      }
+    });
+  }
+
+  // Close button & backdrop clicks (with event delegation for dynamic fragments)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.mini-cart-close-btn') || e.target.closest('#mini-cart-backdrop')) {
+      e.preventDefault();
+      closeCartDrawer();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && cartDrawer && cartDrawer.classList.contains('is-open')) {
+      closeCartDrawer();
+    }
+  });
+
+  // Auto-close on viewport resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 639 && cartDrawer && cartDrawer.classList.contains('is-open')) {
+      closeCartDrawer();
+    }
+  });
+
+  // Mobile Bottom Bar Scroll Threshold Listener (Reveal after 300px, max-width <= 640px)
+  const bottomBar = document.querySelector('.mobile-bottom-control-bar');
+  if (bottomBar) {
+    let ticking = false;
+    const handleBottomBarScroll = () => {
+      const isMobile = window.innerWidth <= 640;
+      const hasScrolledPast300 = window.scrollY > 300;
+      if (isMobile && hasScrolledPast300) {
+        bottomBar.classList.add('is-visible');
+      } else {
+        bottomBar.classList.remove('is-visible');
+      }
+      ticking = false;
+    };
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(handleBottomBarScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    window.addEventListener('resize', handleBottomBarScroll, { passive: true });
+    handleBottomBarScroll();
+  }
 
   // ─── Floating Toast Notification Utility ────────────────────
   function showToast(message, isError = false) {
@@ -241,16 +350,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Function to sync header cart badge immediately
+  // Function to sync header & mobile bottom bar cart badge immediately
   function updateHeaderCartCount(count) {
     const miniCartBadges = document.querySelectorAll('.mini-cart-count');
     miniCartBadges.forEach((badge) => {
+      const isBottomBar = badge.closest('.mobile-bottom-control-bar');
       if (typeof count === 'number' && count > 0) {
         badge.textContent = count;
         badge.classList.remove('hidden');
       } else if (typeof count === 'number' && count === 0) {
         badge.textContent = '0';
-        badge.classList.add('hidden');
+        if (!isBottomBar) {
+          badge.classList.add('hidden');
+        } else {
+          badge.classList.remove('hidden');
+        }
       } else {
         const cur = parseInt(badge.textContent.trim(), 10) || 0;
         badge.textContent = cur + 1;

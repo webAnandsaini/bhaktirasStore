@@ -1,0 +1,281 @@
+/* ==========================================================================
+   My Account Dashboard & Inner Pages Styling (Spiritual Luxury Aesthetic)
+   ========================================================================== */
+
+/* Overall Container & Resets */
+.myaccount-page-wrapper {
+  background-color: #FAFAFA;
+}
+
+.woocommerce-account .woocommerce {
+  width: 100%;
+}
+
+.woocommerce-account .woocommerce-MyAccount-navigation {
+  float: none !important;
+  width: 100% !important;
+}
+
+@media (min-width: 1024px) {
+  .woocommerce-account .woocommerce-MyAccount-navigation {
+    width: 320px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+.woocommerce-account .woocommerce-MyAccount-content {
+  float: none !important;
+  width: 100% !important;
+  min-width: 0 !important;
+}
+
+/* Sidebar Navigation Card */
+.myaccount-nav-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE3DC;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+}
+
+.myaccount-profile-header {
+  background: linear-gradient(135deg, #FCFAF7 0%, #FFF7ED 100%);
+  border-bottom: 1px solid #F0E8DF;
+  padding: 1.5rem;
+}
+
+.myaccount-nav-item a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #444444;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.myaccount-nav-item a:hover {
+  background-color: #FFF9F4;
+  color: #CC5600;
+  transform: translateX(2px);
+}
+
+.myaccount-nav-item.is-active a,
+.myaccount-nav-item.current-menu-item a {
+  background: linear-gradient(135deg, #CC5600 0%, #B34B00 100%);
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px rgba(204, 86, 0, 0.25);
+  transform: translateX(2px);
+}
+
+.myaccount-nav-item.is-active a svg,
+.myaccount-nav-item.current-menu-item a svg {
+  stroke: #FFFFFF !important;
+}
+
+.myaccount-nav-item.is-active a .nav-chevron,
+.myaccount-nav-item.current-menu-item a .nav-chevron {
+  color: #FFFFFF !important;
+  opacity: 1;
+}
+
+/* Support Help Card inside Sidebar */
+.myaccount-support-card {
+  background: linear-gradient(135deg, #FFF9F4 0%, #FFF3E6 100%);
+  border: 1px dashed #E5B869;
+  border-radius: 10px;
+}
+
+/* Main Content Box */
+.myaccount-content-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE3DC;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  padding: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .myaccount-content-card {
+    padding: 2.25rem;
+  }
+}
+
+/* Dashboard Banner */
+.myaccount-welcome-banner {
+  background: linear-gradient(135deg, #FFF9F4 0%, #FAF6F0 100%);
+  border: 1px solid #F0E8DF;
+  border-radius: 10px;
+}
+
+/* Dashboard Action Cards */
+.myaccount-action-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE3DC;
+  border-radius: 10px;
+  padding: 1.25rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.myaccount-action-card:hover {
+  border-color: #CC5600;
+  box-shadow: 0 8px 25px rgba(204, 86, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Orders Table Styling */
+.woocommerce-orders-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #EAE3DC;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.woocommerce-orders-table th {
+  background-color: #FCFAF7;
+  color: #111111;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid #EAE3DC;
+  text-align: left;
+}
+
+.woocommerce-orders-table td {
+  padding: 1rem;
+  font-size: 0.875rem;
+  color: #444444;
+  border-bottom: 1px solid #F3EDE7;
+  vertical-align: middle;
+}
+
+.woocommerce-orders-table tr:last-child td {
+  border-bottom: none;
+}
+
+.woocommerce-orders-table tr:hover td {
+  background-color: #FFFDFB;
+}
+
+/* Order Status Badges */
+.order-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  line-height: 1;
+}
+
+.order-status-completed {
+  background-color: #DCFCE7;
+  color: #15803D;
+}
+
+.order-status-processing {
+  background-color: #FEF3C7;
+  color: #B45309;
+}
+
+.order-status-on-hold {
+  background-color: #DBEAFE;
+  color: #1D4ED8;
+}
+
+.order-status-pending,
+.order-status-failed,
+.order-status-cancelled {
+  background-color: #FEE2E2;
+  color: #B91C1C;
+}
+
+/* Account Details Form Inputs */
+.woocommerce-EditAccountForm .form-row,
+.woocommerce-address-fields .form-row {
+  margin-bottom: 1.25rem;
+}
+
+.woocommerce-EditAccountForm label,
+.woocommerce-address-fields label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #111111;
+  margin-bottom: 0.375rem;
+}
+
+.woocommerce-EditAccountForm input.input-text,
+.woocommerce-address-fields input.input-text,
+.woocommerce-address-fields select {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  font-size: 0.875rem;
+  color: #111111;
+  background-color: #FFFFFF;
+  border: 1px solid #D4D4D4;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.woocommerce-EditAccountForm input.input-text:focus,
+.woocommerce-address-fields input.input-text:focus,
+.woocommerce-address-fields select:focus {
+  outline: none;
+  border-color: #CC5600;
+  box-shadow: 0 0 0 3px rgba(204, 86, 0, 0.12);
+}
+
+.woocommerce-EditAccountForm fieldset {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #EAE3DC;
+}
+
+.woocommerce-EditAccountForm fieldset legend {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111111;
+  padding-bottom: 0.5rem;
+}
+
+/* Primary Action Buttons */
+.myaccount-content-card button.button,
+.myaccount-content-card input.button,
+.myaccount-content-card a.button {
+  background-color: #CC5600 !important;
+  color: #FFFFFF !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem !important;
+  padding: 0.65rem 1.5rem !important;
+  border-radius: 6px !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 8px rgba(204, 86, 0, 0.2) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.myaccount-content-card button.button:hover,
+.myaccount-content-card input.button:hover,
+.myaccount-content-card a.button:hover {
+  background-color: #B34B00 !important;
+  box-shadow: 0 4px 14px rgba(204, 86, 0, 0.3) !important;
+  transform: translateY(-1px) !important;
+}

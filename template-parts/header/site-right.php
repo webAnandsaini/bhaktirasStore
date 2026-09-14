@@ -63,8 +63,21 @@ $is_logged_in = is_user_logged_in();
             <span class="header-cart-text hidden xl:inline"><?php esc_html_e('Bag', 'dharmgyan'); ?></span>
         </a>
 
-        <!-- Mini Cart Flyout -->
-        <div class="header_shopping_cart woocommerce">
+        <!-- Mini Cart Flyout / Mobile Drawer -->
+        <div class="header_shopping_cart woocommerce" id="header-mini-cart-drawer">
+            <!-- Mobile Header with Close Button -->
+            <div class="mini-cart-mobile-header flex items-center justify-between px-4 py-3.5 border-b border-[#EAE3DC] bg-[#FFF9F4] sm:hidden">
+                <div class="flex items-center gap-2">
+                    <span class="text-[#CC5600] text-base">🛍️</span>
+                    <span class="font-bold text-sm text-[#111111]"><?php esc_html_e('Shopping Bag', 'dharmgyan'); ?></span>
+                </div>
+                <button type="button" class="mini-cart-close-btn p-1 text-[#717171] hover:text-[#111111] focus:outline-none" aria-label="<?php esc_attr_e('Close Cart', 'dharmgyan'); ?>">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
             <div class="widget_shopping_cart_content">
                 <?php
                 if (function_exists('woocommerce_mini_cart')) {
@@ -73,6 +86,9 @@ $is_logged_in = is_user_logged_in();
                 ?>
             </div>
         </div>
+
+        <!-- Mobile Mini-Cart Backdrop -->
+        <div id="mini-cart-backdrop" class="fixed inset-0 bg-black/50 z-[999] opacity-0 pointer-events-none transition-opacity duration-300 sm:hidden" aria-hidden="true"></div>
     </div>
 
     <!-- Login / Account Action -->

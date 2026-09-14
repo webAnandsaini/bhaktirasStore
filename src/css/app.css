@@ -2,6 +2,7 @@
 @import "tailwindcss";
 @import "globals/header.css";
 @import "globals/footer.css";
+@import "globals/mobile-bottom-bar.css";
 @import "woocommerce.css";
 @import "globals/mini-cart.css";
 @import "homepage.css";
@@ -9,6 +10,7 @@
 @import "shop.css";
 @import "pages.css";
 @import "blog.css";
+@import "myaccount.css";
 
 @import "../../node_modules/swiper/swiper-bundle.min.css";
 

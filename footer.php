@@ -100,7 +100,7 @@ if (empty($footer_bottom_right)) {
 }
 ?>
 
-<footer id="colophon" class="site-footer bg-[#FAFAFA] border-t border-[#E5E5E5] text-[#444444] pt-14 pb-8" role="contentinfo">
+<footer id="colophon" class="site-footer site-footer-mobile-clearance bg-[#FAFAFA] border-t border-[#E5E5E5] text-[#444444] pt-14 pb-8" role="contentinfo">
     <div class="max-w-[1580px] mx-auto px-4">
 
         <!-- Main 4-Column Footer Grid -->
@@ -302,6 +302,8 @@ if (empty($footer_bottom_right)) {
 
     </div>
 </footer>
+
+<?php get_template_part('template-parts/navigation/mobile-bottom-bar'); ?>
 
 <?php wp_footer(); ?>
 </body>

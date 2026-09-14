@@ -6,71 +6,140 @@
             "key": "field_enable_topbar",
             "label": "Enable Top Notice Bar",
             "name": "enable_topbar",
+            "aria-label": "",
             "type": "true_false",
-            "instructions": "Show or hide the top announcement bar",
+            "instructions": "Show or hide the top announcement strip",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "25",
+                "width": "100",
                 "class": "",
                 "id": ""
             },
             "message": "Enable Top Notice Bar",
             "default_value": 1,
-            "ui": 1
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         },
         {
-            "key": "field_topbar_notice_text",
-            "label": "Topbar Announcement Text",
-            "name": "topbar_notice_text",
-            "type": "text",
-            "instructions": "e.g. 7% OFF on Prepaid",
+            "key": "field_topbar_items",
+            "label": "Topbar Announcement Strip Items (Auto Infinite Slide)",
+            "name": "topbar_items",
+            "aria-label": "",
+            "type": "repeater",
+            "instructions": "Add announcements, discounts, and offers for the continuous right-to-left sliding ticker strip.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "35",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "default_value": "7% OFF on Prepaid",
-            "placeholder": "7% OFF on Prepaid"
-        },
-        {
-            "key": "field_topbar_cta_text",
-            "label": "Topbar CTA Text",
-            "name": "topbar_cta_text",
-            "type": "text",
-            "instructions": "e.g. Shop now!",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "20",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "Shop now!",
-            "placeholder": "Shop now!"
-        },
-        {
-            "key": "field_topbar_cta_link",
-            "label": "Topbar CTA Link",
-            "name": "topbar_cta_link",
-            "type": "text",
-            "instructions": "Link URL for the CTA button",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "20",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "/shop/",
-            "placeholder": "/shop/"
+            "layout": "block",
+            "button_label": "Add Announcement Item",
+            "min": 0,
+            "max": 0,
+            "rows_per_page": 20,
+            "collapsed": "",
+            "sub_fields": [
+                {
+                    "key": "field_topbar_item_icon_image",
+                    "label": "Icon Image",
+                    "name": "icon_image",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "Optional icon image or SVG",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "25",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "array",
+                    "preview_size": "thumbnail",
+                    "library": "all",
+                    "min_width": 0,
+                    "min_height": 0,
+                    "min_size": 0,
+                    "max_width": 0,
+                    "max_height": 0,
+                    "max_size": 0,
+                    "mime_types": "",
+                    "parent_repeater": "field_topbar_items"
+                },
+                {
+                    "key": "field_topbar_item_icon_text",
+                    "label": "Icon \/ Emoji",
+                    "name": "icon_text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "e.g. 🎁, 🚚, 🔒, ✨",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "🎁",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_topbar_items"
+                },
+                {
+                    "key": "field_topbar_item_text",
+                    "label": "Announcement Text",
+                    "name": "text",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": false,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "0": false,
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_topbar_items"
+                },
+                {
+                    "key": "field_topbar_item_link",
+                    "label": "Target Link URL",
+                    "name": "link",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "Optional URL link when clicked",
+                    "required": 0,
+                    "conditional_logic": false,
+                    "wrapper": {
+                        "width": "20",
+                        "class": "",
+                        "id": ""
+                    },
+                    "placeholder": "\/shop\/",
+                    "default_value": "",
+                    "maxlength": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_topbar_items"
+                }
+            ]
         },
         {
             "key": "field_help_page_url",
             "label": "Header Help Link",
             "name": "help_page_url",
+            "aria-label": "",
             "type": "text",
             "instructions": "URL for the Help action in the header",
             "required": 0,
@@ -80,13 +149,17 @@
                 "class": "",
                 "id": ""
             },
-            "default_value": "/contact-us/",
-            "placeholder": "/contact-us/"
+            "default_value": "\/contact-us\/",
+            "placeholder": "\/contact-us\/",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_site_logo",
             "label": "Site Logo",
             "name": "site_logo",
+            "aria-label": "",
             "type": "image",
             "instructions": "Upload your site logo",
             "required": 0,
@@ -111,6 +184,7 @@
             "key": "field_contact_phone",
             "label": "Contact Phone",
             "name": "contact_phone",
+            "aria-label": "",
             "type": "text",
             "instructions": "Main contact phone number",
             "required": 0,
@@ -130,6 +204,7 @@
             "key": "field_contact_email",
             "label": "Contact Email",
             "name": "contact_email",
+            "aria-label": "",
             "type": "email",
             "instructions": "Main contact email address",
             "required": 0,
@@ -140,12 +215,15 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "contact@bhaktirastore.com"
+            "placeholder": "contact@bhaktirastore.com",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_business_hours",
             "label": "Business Hours",
             "name": "business_hours",
+            "aria-label": "",
             "type": "text",
             "instructions": "Business operating hours",
             "required": 0,
@@ -165,6 +243,7 @@
             "key": "field_social_links",
             "label": "Social Media Links",
             "name": "social_links",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Add your social media links",
             "required": 0,
@@ -179,11 +258,13 @@
             "max": 10,
             "layout": "table",
             "button_label": "Add Social Link",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_social_platform",
                     "label": "Platform",
                     "name": "platform",
+                    "aria-label": "",
                     "type": "select",
                     "instructions": "",
                     "required": 1,
@@ -203,18 +284,22 @@
                         "pinterest": "Pinterest",
                         "x": "X (Twitter)"
                     },
-                    "default_value": "",
+                    "default_value": false,
                     "allow_null": 0,
                     "multiple": 0,
                     "ui": 0,
                     "return_format": "value",
                     "ajax": 0,
-                    "placeholder": ""
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_social_links"
                 },
                 {
                     "key": "field_social_url",
                     "label": "URL",
                     "name": "url",
+                    "aria-label": "",
                     "type": "url",
                     "instructions": "",
                     "required": 1,
@@ -225,7 +310,8 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "placeholder": "https://"
+                    "placeholder": "https:\/\/",
+                    "parent_repeater": "field_social_links"
                 }
             ]
         },
@@ -233,6 +319,7 @@
             "key": "field_footer_about",
             "label": "Footer About Text",
             "name": "footer_about",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "About text for the footer section",
             "required": 0,
@@ -252,6 +339,7 @@
             "key": "field_footer_contact_title",
             "label": "Footer Contact Title",
             "name": "footer_contact_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "Title above contact details",
             "required": 0,
@@ -262,12 +350,16 @@
                 "id": ""
             },
             "default_value": "Contact us on",
-            "placeholder": "Contact us on"
+            "placeholder": "Contact us on",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_col2_title",
             "label": "Footer Column 2 Title",
             "name": "footer_col2_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "Title for Column 2 (Defaults to menu name or 'About Us')",
             "required": 0,
@@ -278,12 +370,16 @@
                 "id": ""
             },
             "default_value": "About Us",
-            "placeholder": "About Us"
+            "placeholder": "About Us",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_col3_title",
             "label": "Footer Column 3 Title",
             "name": "footer_col3_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "Title for Column 3 (Defaults to menu name or 'Divine Collections')",
             "required": 0,
@@ -294,12 +390,16 @@
                 "id": ""
             },
             "default_value": "Divine Collections",
-            "placeholder": "Divine Collections"
+            "placeholder": "Divine Collections",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_col4_title",
             "label": "Footer Column 4 Title",
             "name": "footer_col4_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "Title for Column 4 (Defaults to 'Customer Care')",
             "required": 0,
@@ -310,12 +410,16 @@
                 "id": ""
             },
             "default_value": "Customer Care",
-            "placeholder": "Customer Care"
+            "placeholder": "Customer Care",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_newsletter_shortcode",
             "label": "Footer Newsletter Shortcode",
             "name": "footer_newsletter_shortcode",
+            "aria-label": "",
             "type": "text",
             "instructions": "Shortcode for newsletter form (e.g. Contact Form 7 shortcode)",
             "required": 0,
@@ -326,12 +430,16 @@
                 "id": ""
             },
             "default_value": "[contact-form-7 id=\"564\" title=\"Footer Newsletter Form\"]",
-            "placeholder": "[contact-form-7 id=\"564\" title=\"Footer Newsletter Form\"]"
+            "placeholder": "[contact-form-7 id=\"564\" title=\"Footer Newsletter Form\"]",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_copyright",
             "label": "Footer Copyright Text",
             "name": "footer_copyright",
+            "aria-label": "",
             "type": "text",
             "instructions": "Use {year} for current year and {site_name} for site title",
             "required": 0,
@@ -342,12 +450,16 @@
                 "id": ""
             },
             "default_value": "© {year} {site_name}. All rights reserved.",
-            "placeholder": "© {year} {site_name}. All rights reserved."
+            "placeholder": "© {year} {site_name}. All rights reserved.",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_footer_bottom_right_text",
             "label": "Footer Bottom Right Text",
             "name": "footer_bottom_right_text",
+            "aria-label": "",
             "type": "text",
             "instructions": "Text displayed on the bottom right of footer (e.g. Brand of Sankat Mochan)",
             "required": 0,
@@ -358,12 +470,16 @@
                 "id": ""
             },
             "default_value": "Brand of Sankat Mochan",
-            "placeholder": "Brand of Sankat Mochan"
+            "placeholder": "Brand of Sankat Mochan",
+            "maxlength": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_newsletter_title",
             "label": "Newsletter Title",
             "name": "newsletter_title",
+            "aria-label": "",
             "type": "text",
             "instructions": "Title for the newsletter signup section",
             "required": 0,
@@ -383,6 +499,7 @@
             "key": "field_newsletter_description",
             "label": "Newsletter Description",
             "name": "newsletter_description",
+            "aria-label": "",
             "type": "text",
             "instructions": "Description for the newsletter signup section",
             "required": 0,
@@ -402,6 +519,7 @@
             "key": "field_features",
             "label": "Site Features",
             "name": "features",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "Add features to display in footer (Made in India, Best Quality, etc.)",
             "required": 0,
@@ -416,11 +534,13 @@
             "max": 6,
             "layout": "table",
             "button_label": "Add Feature",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_feature_title",
                     "label": "Feature Title",
                     "name": "title",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 1,
@@ -434,12 +554,14 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_features"
                 },
                 {
                     "key": "field_feature_icon",
                     "label": "Feature Icon",
                     "name": "icon",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "Icon symbol or emoji",
                     "required": 0,
@@ -453,9 +575,30 @@
                     "placeholder": "⊙",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_features"
                 }
             ]
+        },
+        {
+            "key": "field_enable_mobile_bottom_bar",
+            "label": "Enable Mobile App Control Bar",
+            "name": "enable_mobile_bottom_bar",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Show the fixed native app-style bottom navigation bar on mobile\/tablet devices.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "100",
+                "class": "",
+                "id": ""
+            },
+            "message": "Enable Mobile Bottom Control Bar",
+            "default_value": 1,
+            "ui": 1,
+            "ui_on_text": "",
+            "ui_off_text": ""
         }
     ],
     "location": [
@@ -474,5 +617,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "General site settings and configuration"
+    "description": "General site settings and configuration",
+    "show_in_rest": false,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1789349589
 }

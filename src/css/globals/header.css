@@ -5,6 +5,33 @@
     border-bottom: 1px solid #EAE3DC;
 }
 
+/* Topbar Continuous Right-to-Left Infinite Slide Marquee */
+@keyframes topbarSlideLeft {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+.topbar-marquee-track {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: topbarSlideLeft 38s linear infinite;
+}
+
+.topbar-marquee-track:hover {
+    animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .topbar-marquee-track {
+        animation-duration: 90s;
+    }
+}
+
 .site-header-middle-bar {
     border-bottom: 1px solid #E5E5E5;
 }

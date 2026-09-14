@@ -1,0 +1,81 @@
+/* ==========================================================================
+   Mobile App-Style Bottom Control Bar (Fixed Bottom Navigation)
+   Only visible on screens <= 640px, revealed after scrolling past 300px
+   ========================================================================== */
+
+/* Hidden by default on screens > 640px */
+.mobile-bottom-control-bar {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .mobile-bottom-control-bar {
+    display: block !important;
+    background-color: #211C27;
+    padding-bottom: max(6px, env(safe-area-inset-bottom, 0px));
+    box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.35);
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* Revealed after 300px scroll */
+  .mobile-bottom-control-bar.is-visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.mobile-bottom-nav-item {
+  color: #B5B0C2;
+  transition: color 0.2s ease, transform 0.15s ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-bottom-nav-item:hover,
+.mobile-bottom-nav-item:focus-visible {
+  color: #E5B869;
+}
+
+.mobile-bottom-nav-item.is-active {
+  color: #E5B869;
+}
+
+.mobile-bottom-nav-item.is-active svg {
+  stroke: #E5B869;
+}
+
+.mobile-nav-dot {
+  animation: navDotPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes navDotPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Page Bottom Clearance: Only apply on Mobile <= 640px when bar is visible */
+@media (max-width: 640px) {
+  body:has(.mobile-bottom-control-bar.is-visible) footer.site-footer,
+  body:has(.mobile-bottom-control-bar.is-visible) .site-footer-mobile-clearance {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+@media (min-width: 641px) {
+  .site-footer-mobile-clearance {
+    padding-bottom: 2rem !important;
+  }
+}
