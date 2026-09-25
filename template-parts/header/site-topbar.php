@@ -24,7 +24,7 @@ if (empty($raw_items) || !is_array($raw_items)) {
     $raw_items = array(
         array(
             'icon_text'  => '🎁',
-            'text'       => __('Shop ₹2,999+ & Get a Free Tulsi Mala', 'dharmgyan'),
+            'text'       => __('Shop ₹4,999+ & Get a Free Tulsi Mala', 'dharmgyan'),
             'link'       => function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/'),
         ),
         array(
@@ -60,10 +60,10 @@ while (count($items_set) < 6) {
 <div class="site-topbar relative w-full bg-[#FFF8F3] border-b border-[#EAE3DC] py-1.5 sm:py-2 overflow-hidden select-none z-30 font-body" role="region" aria-label="<?php esc_attr_e('Announcements', 'dharmgyan'); ?>">
     <div class="topbar-marquee-wrapper relative flex overflow-hidden w-full">
         <div class="topbar-marquee-track flex items-center whitespace-nowrap">
-            
+
             <!-- Set 1 (Original track) -->
             <div class="topbar-marquee-set flex items-center shrink-0">
-                <?php foreach ($items_set as $item): 
+                <?php foreach ($items_set as $item):
                     $icon_img = !empty($item['icon_image']) ? $item['icon_image'] : null;
                     $icon_url = '';
                     if ($icon_img) {
@@ -101,7 +101,7 @@ while (count($items_set) < 6) {
 
             <!-- Set 2 (Identical duplicate for seamless continuous right-to-left loop) -->
             <div class="topbar-marquee-set flex items-center shrink-0" aria-hidden="true">
-                <?php foreach ($items_set as $item): 
+                <?php foreach ($items_set as $item):
                     $icon_img = !empty($item['icon_image']) ? $item['icon_image'] : null;
                     $icon_url = '';
                     if ($icon_img) {

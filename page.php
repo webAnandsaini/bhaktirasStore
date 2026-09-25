@@ -11,8 +11,8 @@ defined('ABSPATH') || exit;
 get_header();
 
 // Determine if this is a specialized WooCommerce or Wishlist page
-$is_special_wc_page = (function_exists('is_cart') && is_cart()) || 
-                      (function_exists('is_checkout') && is_checkout()) || 
+$is_special_wc_page = (function_exists('is_cart') && is_cart()) ||
+                      (function_exists('is_checkout') && is_checkout()) ||
                       (function_exists('is_account_page') && is_account_page());
 ?>
 
@@ -21,7 +21,7 @@ $is_special_wc_page = (function_exists('is_cart') && is_cart()) ||
     <?php while (have_posts()): the_post(); ?>
 
         <?php if ($is_special_wc_page): ?>
-            
+
             <!-- Direct WooCommerce Special Flow (Cart / Checkout / My Account) -->
             <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
                 <?php the_content(); ?>
@@ -39,9 +39,9 @@ $is_special_wc_page = (function_exists('is_cart') && is_cart()) ||
             </div>
 
             <!-- Main Page Content Container -->
-            <div class="max-w-[1100px] mx-auto px-4 pb-16 md:pb-24">
+            <div class="max-w-[1100px] mx-auto px-4 pb-10 md:pb-16 lg:pb-24">
                 <article id="post-<?php the_ID(); ?>" <?php post_class('prose-container'); ?>>
-                    
+
                     <header class="page-header mb-8 text-center">
                         <h1 class="page-title font-body text-2xl md:text-4xl text-[#111111] font-semibold leading-tight mb-3">
                             <?php the_title(); ?>

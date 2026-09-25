@@ -279,3 +279,27 @@
   box-shadow: 0 4px 14px rgba(204, 86, 0, 0.3) !important;
   transform: translateY(-1px) !important;
 }
+
+/* Login & Registration Cards Reset - Prevent duplicate inner border and floating button overflow */
+.myaccount-auth-wrapper form.login,
+.myaccount-auth-wrapper form.register,
+.woocommerce-account form.login,
+.woocommerce-account form.register {
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.woocommerce-account .woocommerce-form-login .woocommerce-form-login__submit,
+.woocommerce-account .woocommerce-form-register .woocommerce-form-register__submit,
+.woocommerce-form-login__submit,
+.woocommerce-form-register__submit {
+  float: none !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+  clear: both !important;
+  display: flex !important;
+}

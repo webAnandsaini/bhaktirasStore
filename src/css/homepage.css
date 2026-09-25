@@ -1,15 +1,15 @@
-/* Clean Swiper Navigation Arrows Matching Figma Spiritual Luxury Aesthetic */
+/* Clean Swiper Navigation Arrows Matching Spiritual Luxury Aesthetic */
 .swiper-button-next,
 .swiper-button-prev {
     width: 44px !important;
     height: 44px !important;
     border-radius: 50% !important;
-    background: rgba(255, 255, 255, 0.95) !important;
+    background: #FFFFFF !important;
     backdrop-filter: blur(8px) !important;
     -webkit-backdrop-filter: blur(8px) !important;
     border: 1px solid #EAE3DC !important;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
-    color: #242424 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+    color: #2B2B2B !important;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     display: flex !important;
     align-items: center !important;
@@ -17,6 +17,7 @@
     cursor: pointer !important;
     margin-top: 0 !important;
     transform: translateY(-50%) !important;
+    z-index: 30 !important;
 }
 
 .swiper-button-next::after,
@@ -29,15 +30,21 @@
 .swiper-button-prev:hover {
     background: #CC5600 !important;
     border-color: #CC5600 !important;
-    color: #ffffff !important;
-    transform: translateY(-50%) scale(1.08) !important;
-    box-shadow: 0 6px 20px rgba(204, 86, 0, 0.35) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-50%) scale(1.06) !important;
+    box-shadow: 0 6px 20px rgba(204, 86, 0, 0.32) !important;
+}
+
+.swiper-button-next:active,
+.swiper-button-prev:active {
+    transform: translateY(-50%) scale(0.96) !important;
 }
 
 .swiper-button-disabled {
     opacity: 0 !important;
     cursor: default !important;
     pointer-events: none !important;
+    visibility: hidden !important;
 }
 
 /* Hero Swiper Pagination Bullets */
@@ -68,3 +75,49 @@
     height: 8px !important;
     border-radius: 9999px !important;
 }
+
+/* Product Videos Reels Card & Poster Full-Height Fix */
+.product-reel-card {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #111111;
+}
+
+.product-reel-card .reel-poster {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+}
+
+.product-reel-card .reel-video {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+}
+
+/* Ensure Product Videos section arrows never clip */
+.home-product-videos-section {
+    position: relative;
+}
+
+.home-product-videos-section .product-videos-prev,
+.home-product-videos-section .product-videos-next {
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    z-index: 30 !important;
+}
+
+.home-product-videos-section .product-videos-prev:hover,
+.home-product-videos-section .product-videos-next:hover {
+    transform: translateY(-50%) scale(1.06) !important;
+}
+

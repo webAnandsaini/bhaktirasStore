@@ -162,8 +162,23 @@ export function initSingleProduct() {
         }
     });
 
-    // 4. Fallback Tab Switching if WC Tabs JS is not active
+    // 4. Responsive Product Tabs & Mobile Accordion Handler
     const tabLinks = document.querySelectorAll('.single-product-tabs-section ul.tabs li a');
+    const accordionToggles = document.querySelectorAll('.mobile-accordion-toggle');
+
+    // On Desktop: Activate first tab by default if none active
+    if (tabLinks.length > 0 && window.innerWidth >= 768) {
+        const activeLink = document.querySelector('.single-product-tabs-section ul.tabs li.active a') || tabLinks[0];
+        if (activeLink) {
+            activeLink.parentElement.classList.add('active');
+            const targetId = activeLink.getAttribute('href');
+            document.querySelectorAll('.woocommerce-Tabs-panel').forEach(p => p.style.display = 'none');
+            const panel = targetId ? document.querySelector(targetId) : null;
+            if (panel) panel.style.display = 'block';
+        }
+    }
+
+    // Desktop Tab Switching
     if (tabLinks.length > 0) {
         tabLinks.forEach(link => {
             link.addEventListener('click', (e) => {
@@ -182,6 +197,66 @@ export function initSingleProduct() {
                     targetPanel.style.display = 'block';
                 }
             });
+        });
+    }
+
+    // Mobile Accordion Toggle (All closed by default)
+    if (accordionToggles.length > 0) {
+        accordionToggles.forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                const parentItem = toggle.closest('.product-tab-accordion-item');
+                const targetSelector = toggle.getAttribute('data-target');
+                const panel = parentItem ? parentItem.querySelector(targetSelector) : null;
+
+                if (!parentItem || !panel) return;
+
+                const isOpen = parentItem.classList.contains('is-open');
+
+                // Close other accordion items on mobile to keep page neat
+                accordionToggles.forEach(otherToggle => {
+                    const otherParent = otherToggle.closest('.product-tab-accordion-item');
+                    if (otherParent && otherParent !== parentItem) {
+                        otherParent.classList.remove('is-open');
+                        otherToggle.setAttribute('aria-expanded', 'false');
+                        const otherPanel = otherParent.querySelector(otherToggle.getAttribute('data-target'));
+                        if (otherPanel && window.innerWidth < 768) {
+                            otherPanel.style.display = 'none';
+                        }
+                    }
+                });
+
+                if (isOpen) {
+                    parentItem.classList.remove('is-open');
+                    toggle.setAttribute('aria-expanded', 'false');
+                    panel.style.display = 'none';
+                } else {
+                    parentItem.classList.add('is-open');
+                    toggle.setAttribute('aria-expanded', 'true');
+                    panel.style.display = 'block';
+                }
+            });
+        });
+
+        // Window resize sync between desktop tabs and mobile accordion
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                const activeLink = document.querySelector('.single-product-tabs-section ul.tabs li.active a') || tabLinks[0];
+                if (activeLink) {
+                    activeLink.parentElement.classList.add('active');
+                    const targetId = activeLink.getAttribute('href');
+                    document.querySelectorAll('.woocommerce-Tabs-panel').forEach(p => p.style.display = 'none');
+                    const panel = targetId ? document.querySelector(targetId) : null;
+                    if (panel) panel.style.display = 'block';
+                }
+            } else {
+                document.querySelectorAll('.product-tab-accordion-item').forEach(item => {
+                    const panel = item.querySelector('.woocommerce-Tabs-panel');
+                    if (panel) {
+                        panel.style.display = item.classList.contains('is-open') ? 'block' : 'none';
+                    }
+                });
+            }
         });
     }
 

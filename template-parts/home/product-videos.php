@@ -7,12 +7,24 @@
  * @package Dharmgyan
  */
 
-$title = dharmgyan_get_field('product_videos_title', 'option') ?: (dharmgyan_get_field('product_videos_title') ?: __('Product Videos', 'dharmgyan'));
-$items = dharmgyan_get_field('product_videos_items', 'option');
+$front_id = (int) get_option('page_on_front');
 
+$title = dharmgyan_get_field('product_videos_title', 'option');
+if (empty($title) && $front_id) {
+    $title = dharmgyan_get_field('product_videos_title', $front_id);
+}
+if (empty($title)) {
+    $title = dharmgyan_get_field('product_videos_title') ?: __('Product Videos', 'dharmgyan');
+}
+
+$items = dharmgyan_get_field('product_videos_items', 'option');
+if (empty($items) && $front_id) {
+    $items = dharmgyan_get_field('product_videos_items', $front_id);
+}
 if (empty($items)) {
     $items = dharmgyan_get_field('product_videos_items');
 }
+
 
 $default_demo_video = get_theme_file_uri('/assets/videos/demo-reel-1.mp4');
 
@@ -87,7 +99,7 @@ if (empty($items) || !is_array($items)) {
     </div>
 
     <!-- Full-Width Edge-to-Edge Swiper Reel Slider -->
-    <div class="w-full px-3 sm:px-6 lg:px-8">
+    <div class="relative w-full max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-14">
         <div class="swiper productVideosSwiper relative w-full overflow-visible py-2">
             <div class="swiper-wrapper items-center">
                 <?php foreach ($items as $item): ?>
@@ -136,6 +148,7 @@ if (empty($items) || !is_array($items)) {
                                 src="<?php echo esc_url($video_url); ?>"
                                 playsinline
                                 loop
+                                muted
                                 preload="metadata"
                             ></video>
 
@@ -143,12 +156,12 @@ if (empty($items) || !is_array($items)) {
                             <img
                                 src="<?php echo esc_url($poster_url); ?>"
                                 alt="<?php echo esc_attr($prod_title ?: __('Product Video', 'dharmgyan')); ?>"
-                                class="reel-poster w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                                class="reel-poster absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out z-0"
                                 loading="lazy"
                             />
 
                             <!-- Gradient Overlay -->
-                            <div class="reel-overlay absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/35 pointer-events-none transition-opacity duration-300"></div>
+                            <div class="reel-overlay absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/25 pointer-events-none transition-opacity duration-300 z-10"></div>
 
                             <!-- Top View Count Badge -->
                             <?php if ($views): ?>
@@ -161,7 +174,7 @@ if (empty($items) || !is_array($items)) {
                             <?php endif; ?>
 
                             <!-- Mute/Unmute Sound Button (shown when playing) -->
-                            <button type="button" class="reel-mute-btn absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center z-20 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:bg-[#CC5600] transition-all cursor-pointer" aria-label="Toggle Mute" onclick="event.stopPropagation();">
+                            <button type="button" class="reel-mute-btn absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-black/60 backdrop-blur-sm text-white flex items-center justify-center z-20 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto hover:bg-[#CC5600] transition-all cursor-pointer shadow-md" aria-label="<?php esc_attr_e('Toggle Sound', 'dharmgyan'); ?>">
                                 <svg class="icon-muted w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
                                     <line x1="23" y1="9" x2="17" y2="15"></line>
@@ -191,7 +204,7 @@ if (empty($items) || !is_array($items)) {
                                 <div class="absolute bottom-3 left-3 right-3 z-20" onclick="event.stopPropagation();">
                                     <a href="<?php echo esc_url($prod_link); ?>" class="flex items-center gap-2.5 bg-white/95 backdrop-blur-sm hover:bg-white p-2 rounded-[5px] shadow-lg transition-colors group/card">
                                         <?php if ($prod_img_url): ?>
-                                            <div class="w-11 h-11 rounded-[3px] overflow-hidden bg-gray-100 flex-shrink-0">
+                                             <div class="w-11 h-11 rounded-[3px] overflow-hidden bg-gray-100 flex-shrink-0">
                                                 <img src="<?php echo esc_url($prod_img_url); ?>" alt="<?php echo esc_attr($prod_title); ?>" class="w-full h-full object-cover" />
                                             </div>
                                         <?php endif; ?>
@@ -213,19 +226,19 @@ if (empty($items) || !is_array($items)) {
                     </div>
                 <?php endforeach; ?>
             </div>
-
-            <!-- Custom Styled Slider Navigation Arrows (Spiritual Luxury Aesthetic) -->
-            <button type="button" class="swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !left-2 md:!left-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Previous Video', 'dharmgyan'); ?>">
-                <svg class="w-5 h-5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </button>
-            <button type="button" class="swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !right-2 md:!right-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Next Video', 'dharmgyan'); ?>">
-                <svg class="w-5 h-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </button>
         </div>
+
+        <!-- Custom Styled Slider Navigation Arrows (Spiritual Luxury Aesthetic) -->
+        <button type="button" class="product-videos-prev swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-md hover:!shadow-xl !text-[#2B2B2B] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 hidden md:flex items-center justify-center after:!hidden group !left-1 sm:!left-2 lg:!left-3 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Previous Video', 'dharmgyan'); ?>">
+            <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <button type="button" class="product-videos-next swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-md hover:!shadow-xl !text-[#2B2B2B] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 hidden md:flex items-center justify-center after:!hidden group !right-1 sm:!right-2 lg:!right-3 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Next Video', 'dharmgyan'); ?>">
+            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
     </div>
 
 </section>

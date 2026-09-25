@@ -213,3 +213,110 @@ h1, h2, h3, .font-serif-display {
 .footer-newsletter-cf7 .wpcf7-spinner {
   margin: 0.25rem 0 0 0 !important;
 }
+
+/* Contact Form 7 Homepage Krishna Banner Styling */
+.home-newsletter-cf7 form.wpcf7-form {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.home-newsletter-cf7 .newsletter-cf7-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .home-newsletter-cf7 .newsletter-cf7-row {
+    flex-direction: row;
+  }
+}
+
+.home-newsletter-cf7 .wpcf7-form-control-wrap {
+  width: 100%;
+  display: block;
+}
+
+.home-newsletter-cf7 input.newsletter-email-input {
+  width: 100%;
+  height: 46px;
+  background-color: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 5px;
+  padding: 0 1rem;
+  font-size: 0.875rem;
+  color: #FFFFFF;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.home-newsletter-cf7 input.newsletter-email-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.home-newsletter-cf7 input.newsletter-email-input:focus {
+  outline: none;
+  border-color: #E5B869;
+  background-color: rgba(0, 0, 0, 0.65);
+  box-shadow: 0 0 0 2px rgba(229, 184, 105, 0.35);
+}
+
+.home-newsletter-cf7 input.newsletter-submit-btn {
+  width: 100%;
+  height: 46px;
+  background-color: #E5B869;
+  color: #1E1E1E;
+  padding: 0 1.75rem;
+  border-radius: 5px;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 640px) {
+  .home-newsletter-cf7 input.newsletter-submit-btn {
+    width: auto;
+  }
+}
+
+.home-newsletter-cf7 input.newsletter-submit-btn:hover {
+  background-color: #D4A758;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.home-newsletter-cf7 .wpcf7-response-output {
+  margin: 0.75rem 0 0 0 !important;
+  padding: 0.625rem 1rem !important;
+  font-size: 0.8125rem !important;
+  border-radius: 6px !important;
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  border: 1px solid #E5B869 !important;
+  color: #E5B869 !important;
+  backdrop-filter: blur(8px);
+}
+
+.home-newsletter-cf7 .wpcf7-not-valid-tip {
+  font-size: 0.75rem;
+  color: #FCA5A5;
+  margin-top: 0.35rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+.home-newsletter-cf7 .wpcf7-spinner {
+  margin: 0;
+  vertical-align: middle;
+}

@@ -102,14 +102,14 @@ if (empty($gallery_items)) {
 
         <!-- Slider Arrows on Main Gallery -->
         <?php if (count($gallery_items) > 1): ?>
-            <button type="button" class="product-main-prev swiper-button-prev !w-10 !h-10 !rounded-full !bg-white/90 hover:!bg-[#CC5600] !text-[#242424] hover:!text-white after:!hidden transition-all duration-300 flex items-center justify-center !left-3 z-20 focus:outline-none shadow-md cursor-pointer opacity-0 group-hover:opacity-100">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
+            <button type="button" class="product-main-prev swiper-button-prev !w-10 !h-10 !rounded-full !bg-white/95 hover:!bg-[#CC5600] !border !border-[#EAE3DC] hover:!border-[#CC5600] !text-[#242424] hover:!text-white after:!hidden transition-all duration-300 flex items-center justify-center !left-3 z-20 focus:outline-none shadow-md cursor-pointer opacity-0 group-hover:opacity-100" aria-label="<?php esc_attr_e('Previous Image', 'dharmgyan'); ?>">
+                <svg class="w-4 h-4 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
             </button>
-            <button type="button" class="product-main-next swiper-button-next !w-10 !h-10 !rounded-full !bg-white/90 hover:!bg-[#CC5600] !text-[#242424] hover:!text-white after:!hidden transition-all duration-300 flex items-center justify-center !right-3 z-20 focus:outline-none shadow-md cursor-pointer opacity-0 group-hover:opacity-100">
-                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
+            <button type="button" class="product-main-next swiper-button-next !w-10 !h-10 !rounded-full !bg-white/95 hover:!bg-[#CC5600] !border !border-[#EAE3DC] hover:!border-[#CC5600] !text-[#242424] hover:!text-white after:!hidden transition-all duration-300 flex items-center justify-center !right-3 z-20 focus:outline-none shadow-md cursor-pointer opacity-0 group-hover:opacity-100" aria-label="<?php esc_attr_e('Next Image', 'dharmgyan'); ?>">
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
             </button>
         <?php endif; ?>
@@ -161,14 +161,14 @@ if (empty($gallery_items)) {
             </div>
             
             <!-- Nav Arrows -->
-            <button type="button" class="lightbox-prev swiper-button-prev !w-12 !h-12 !rounded-full !bg-[#111111]/80 hover:!bg-[#CC5600] !text-white after:!hidden transition-all duration-300 flex items-center justify-center cursor-pointer !left-2 focus:outline-none shadow-xl border border-white/20">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
+            <button type="button" class="lightbox-prev swiper-button-prev !w-12 !h-12 !rounded-full !bg-[#111111]/80 hover:!bg-[#CC5600] !text-white after:!hidden transition-all duration-300 flex items-center justify-center cursor-pointer !left-4 focus:outline-none shadow-xl border border-white/20" aria-label="<?php esc_attr_e('Previous', 'dharmgyan'); ?>">
+                <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
                 </svg>
             </button>
-            <button type="button" class="lightbox-next swiper-button-next !w-12 !h-12 !rounded-full !bg-[#111111]/80 hover:!bg-[#CC5600] !text-white after:!hidden transition-all duration-300 flex items-center justify-center cursor-pointer !right-2 focus:outline-none shadow-xl border border-white/20">
-                <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
+            <button type="button" class="lightbox-next swiper-button-next !w-12 !h-12 !rounded-full !bg-[#111111]/80 hover:!bg-[#CC5600] !text-white after:!hidden transition-all duration-300 flex items-center justify-center cursor-pointer !right-4 focus:outline-none shadow-xl border border-white/20" aria-label="<?php esc_attr_e('Next', 'dharmgyan'); ?>">
+                <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                 </svg>
             </button>
         </div>

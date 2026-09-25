@@ -73,43 +73,52 @@ if (stripos($formatted_title, 'Newsletter') !== false) {
                     <?php echo esc_html($subtitle); ?>
                 </p>
 
-                <!-- Newsletter Form -->
-                <div class="newsletter-banner-form w-full max-w-lg mx-auto mb-6">
-                    <form class="newsletter-ajax-form flex flex-col sm:flex-row items-center justify-center gap-2.5 w-full" onsubmit="event.preventDefault(); this.querySelector('.newsletter-success-msg').classList.remove('hidden'); this.querySelector('.newsletter-input-group').classList.add('hidden');">
-                        
-                        <div class="newsletter-input-group flex flex-col sm:flex-row items-center gap-2.5 w-full">
-                            <!-- Input with Email Icon -->
-                            <div class="relative w-full sm:flex-1">
-                                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#E5B869] pointer-events-none" aria-hidden="true">
-                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect width="20" height="16" x="2" y="4" rx="2"></rect>
-                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                                    </svg>
-                                </span>
-                                <input 
-                                    type="email" 
-                                    name="newsletter_email"
-                                    placeholder="<?php esc_attr_e('Your email address', 'dharmgyan'); ?>" 
-                                    class="w-full h-[44px] bg-black/45 backdrop-blur-md border border-white/35 text-white placeholder-white/70 rounded-[5px] pl-10 pr-4 text-sm focus:outline-none focus:border-[#E5B869] focus:bg-black/60 transition-all font-body shadow-inner" 
-                                    required
-                                />
+                <!-- Newsletter Form (Contact Form 7 'Newsletter') -->
+                <div class="newsletter-banner-form home-newsletter-cf7 w-full max-w-lg mx-auto mb-6">
+                    <?php
+                    $newsletter_shortcode = dharmgyan_get_field('newsletter_shortcode') ?: dharmgyan_get_field('footer_newsletter_shortcode') ?: '[contact-form-7 id="564" title="Newsletter"]';
+                    $has_cf7 = !empty($newsletter_shortcode) && (strpos($newsletter_shortcode, '[') !== false) && shortcode_exists('contact-form-7');
+                    
+                    if ($has_cf7) {
+                        echo do_shortcode($newsletter_shortcode);
+                    } else {
+                    ?>
+                        <form class="newsletter-ajax-form flex flex-col sm:flex-row items-center justify-center gap-2.5 w-full" onsubmit="event.preventDefault(); this.querySelector('.newsletter-success-msg').classList.remove('hidden'); this.querySelector('.newsletter-input-group').classList.add('hidden');">
+                            
+                            <div class="newsletter-input-group flex flex-col sm:flex-row items-center gap-2.5 w-full">
+                                <!-- Input with Email Icon -->
+                                <div class="relative w-full sm:flex-1">
+                                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#E5B869] pointer-events-none" aria-hidden="true">
+                                        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                                        </svg>
+                                    </span>
+                                    <input 
+                                        type="email" 
+                                        name="newsletter_email"
+                                        placeholder="<?php esc_attr_e('Your email address', 'dharmgyan'); ?>" 
+                                        class="w-full h-[44px] bg-black/45 backdrop-blur-md border border-white/35 text-white placeholder-white/70 rounded-[5px] pl-10 pr-4 text-sm focus:outline-none focus:border-[#E5B869] focus:bg-black/60 transition-all font-body shadow-inner" 
+                                        required
+                                    />
+                                </div>
+
+                                <!-- Sign Up Button in Gold -->
+                                <button 
+                                    type="submit" 
+                                    class="w-full sm:w-auto h-[44px] bg-[#E5B869] hover:bg-[#D4A758] text-[#1E1E1E] font-bold text-xs sm:text-[13px] px-7 rounded-[5px] uppercase tracking-wider transition-all duration-200 flex-shrink-0 shadow-md hover:shadow-lg cursor-pointer font-body flex items-center justify-center"
+                                >
+                                    <?php esc_html_e('SIGN UP', 'dharmgyan'); ?>
+                                </button>
                             </div>
 
-                            <!-- Sign Up Button in Gold -->
-                            <button 
-                                type="submit" 
-                                class="w-full sm:w-auto h-[44px] bg-[#E5B869] hover:bg-[#D4A758] text-[#1E1E1E] font-bold text-xs sm:text-[13px] px-7 rounded-[5px] uppercase tracking-wider transition-all duration-200 flex-shrink-0 shadow-md hover:shadow-lg cursor-pointer font-body flex items-center justify-center"
-                            >
-                                <?php esc_html_e('SIGN UP', 'dharmgyan'); ?>
-                            </button>
-                        </div>
+                            <!-- Success Message -->
+                            <div class="newsletter-success-msg hidden w-full py-2.5 px-4 bg-black/60 border border-[#E5B869] rounded-[5px] text-[#E5B869] text-sm font-medium">
+                                <?php esc_html_e('✓ Thank you for subscribing! May you be blessed with peace and joy.', 'dharmgyan'); ?>
+                            </div>
 
-                        <!-- Success Message -->
-                        <div class="newsletter-success-msg hidden w-full py-2.5 px-4 bg-black/60 border border-[#E5B869] rounded-[5px] text-[#E5B869] text-sm font-medium">
-                            <?php esc_html_e('✓ Thank you for subscribing! May you be blessed with peace and joy.', 'dharmgyan'); ?>
-                        </div>
-
-                    </form>
+                        </form>
+                    <?php } ?>
                 </div>
 
                 <!-- 3 Feature Badges underneath Form -->

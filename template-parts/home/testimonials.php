@@ -61,7 +61,7 @@ if (empty($items) || !is_array($items)) {
 ?>
 
 <section class="home-testimonials-section w-full bg-white my-10 md:my-16" aria-label="<?php echo esc_attr($title ?: __('Testimonials', 'dharmgyan')); ?>">
-    <div class="max-w-[1580px] mx-auto px-4">
+    <div class="max-w-[1580px] mx-auto px-4 sm:px-8 lg:px-14 relative">
 
         <!-- Section Header (Only rendered if title exists in backend) -->
         <?php if ($title): ?>
@@ -73,7 +73,7 @@ if (empty($items) || !is_array($items)) {
         <?php endif; ?>
 
         <!-- 5-Card Customer Testimonials Swiper Carousel -->
-        <div class="swiper testimonialSwiper relative w-full overflow-hidden">
+        <div class="swiper testimonialSwiper relative w-full overflow-hidden py-1">
             <div class="swiper-wrapper">
                 <?php foreach ($items as $item): ?>
                     <?php
@@ -165,19 +165,19 @@ if (empty($items) || !is_array($items)) {
                     </div>
                 <?php endforeach; ?>
             </div>
-
-            <!-- Custom Styled Slider Navigation Arrows (Matching Figma spiritual luxury aesthetic) -->
-            <button type="button" class="swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !left-2 md:!left-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Previous Review', 'dharmgyan'); ?>">
-                <svg class="w-5 h-5 transition-transform group-hover:-translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                </svg>
-            </button>
-            <button type="button" class="swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-lg hover:!shadow-xl !text-[#242424] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 flex items-center justify-center after:!hidden group !right-2 md:!right-4 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Next Review', 'dharmgyan'); ?>">
-                <svg class="w-5 h-5 transition-transform group-hover:translate-x-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="9 18 15 12 9 6"></polyline>
-                </svg>
-            </button>
         </div>
+
+        <!-- Custom Styled Slider Navigation Arrows (Matching Figma spiritual luxury aesthetic) -->
+        <button type="button" class="testimonial-prev swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-md hover:!shadow-xl !text-[#2B2B2B] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 hidden md:flex items-center justify-center after:!hidden group !left-1 sm:!left-2 lg:!left-3 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Previous Review', 'dharmgyan'); ?>">
+            <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+        </button>
+        <button type="button" class="testimonial-next swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-md hover:!shadow-xl !text-[#2B2B2B] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 hidden md:flex items-center justify-center after:!hidden group !right-1 sm:!right-2 lg:!right-3 z-30 focus:outline-none cursor-pointer" aria-label="<?php esc_attr_e('Next Review', 'dharmgyan'); ?>">
+            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
 
     </div>
 </section>

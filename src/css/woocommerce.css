@@ -1503,9 +1503,7 @@
 	}
 
     /* Forms */
-    form.login,
-	form.checkout_coupon,
-	form.register {
+	form.checkout_coupon {
 		border: 1px solid #cfc8d8;
 		padding: 20px;
 		margin: 2em 0;
@@ -1971,8 +1969,9 @@
 
 	.woocommerce-form-login {
 		.woocommerce-form-login__submit {
-			float: left;
-			margin-right: 1em;
+			float: none;
+			width: 100%;
+			margin-right: 0;
 		}
 
 		.woocommerce-form-login__rememberme {

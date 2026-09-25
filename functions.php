@@ -122,3 +122,7 @@ require_once(get_template_directory() . '/inc/contact-handler.php');
 // SEO Schema.org JSON-LD & Accessibility Enhancements
 require_once(get_template_directory() . '/inc/seo-schema.php');
 
+// Disable Contact Form 7 automatic paragraph tags to maintain pixel-perfect design
+add_filter('wpcf7_autop_or_not', '__return_false');
+
+

@@ -92,8 +92,17 @@ if (empty($reels) || !is_array($reels)) {
             </div>
 
             <!-- Navigation Arrows -->
-            <div class="swiper-button-next !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
-            <div class="swiper-button-prev !w-10 !h-10 !rounded-full !bg-white !shadow-lg !text-[#242424] after:!text-sm hover:!bg-[#CC5600] hover:!text-white transition-all"></div>
+            <button type="button" class="swiper-button-prev !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-md hover:!shadow-xl !text-[#2B2B2B] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 hidden md:flex items-center justify-center after:!hidden group !left-1 sm:!left-2 lg:!left-3 z-30 focus:outline-none cursor-pointer" aria-label="Previous">
+                <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <button type="button" class="swiper-button-next !w-11 !h-11 md:!w-12 md:!h-12 !rounded-full !bg-white/95 backdrop-blur-md !border !border-[#EAE3DC] hover:!border-[#CC5600] !shadow-md hover:!shadow-xl !text-[#2B2B2B] hover:!text-white hover:!bg-[#CC5600] transition-all duration-300 hidden md:flex items-center justify-center after:!hidden group !right-1 sm:!right-2 lg:!right-3 z-30 focus:outline-none cursor-pointer" aria-label="Next">
+                <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+            </button>
+
         </div>
 
     </div>

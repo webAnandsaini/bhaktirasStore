@@ -78,7 +78,7 @@ if (empty($newsletter_desc)) {
 
 $newsletter_shortcode = dharmgyan_get_field('footer_newsletter_shortcode');
 if (empty($newsletter_shortcode)) {
-    $newsletter_shortcode = '[contact-form-7 id="564" title="Footer Newsletter Form"]';
+    $newsletter_shortcode = '[contact-form-7 id="564" title="Newsletter"]';
 }
 
 // Copyright Text
@@ -100,11 +100,11 @@ if (empty($footer_bottom_right)) {
 }
 ?>
 
-<footer id="colophon" class="site-footer site-footer-mobile-clearance bg-[#FAFAFA] border-t border-[#E5E5E5] text-[#444444] pt-14 pb-8" role="contentinfo">
+<footer id="colophon" class="site-footer site-footer-mobile-clearance bg-[#FAFAFA] border-t border-[#E5E5E5] text-[#444444] pt-8 md:pt-14 pb-8" role="contentinfo">
     <div class="max-w-[1580px] mx-auto px-4">
 
         <!-- Main 4-Column Footer Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-[#E5E5E5]">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-7 md:pb-12 border-b border-[#E5E5E5]">
 
             <!-- Col 1: Brand, Tagline, Contact & Social Media (lg:col-span-4) -->
             <div class="lg:col-span-4 flex flex-col justify-between">
@@ -212,13 +212,13 @@ if (empty($footer_bottom_right)) {
                     wp_nav_menu(array(
                         'theme_location' => 'footer',
                         'container'      => false,
-                        'menu_class'     => 'footer-menu space-y-2 font-body text-[15px]',
+                        'menu_class'     => 'footer-menu space-y-3 font-body text-[15px]',
                         'fallback_cb'    => false,
                         'depth'          => 1,
                     ));
                 else :
                 ?>
-                <ul class="footer-menu space-y-2 font-body text-[15px]">
+                <ul class="footer-menu space-y-3 font-body text-[15px]">
                     <li><a href="<?php echo esc_url(home_url('/about-us/')); ?>" class="hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm"><?php esc_html_e('About Us', 'dharmgyan'); ?></a></li>
                     <li><a href="<?php echo esc_url(home_url('/shipping-policy/')); ?>" class="hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm"><?php esc_html_e('Shipping Policy', 'dharmgyan'); ?></a></li>
                     <li><a href="<?php echo esc_url(home_url('/terms-of-service/')); ?>" class="hover:text-[#CC5600] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CC5600] rounded-sm"><?php esc_html_e('Terms of Service', 'dharmgyan'); ?></a></li>

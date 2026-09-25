@@ -699,46 +699,150 @@
     margin-top: 1.5rem;
 }
 
+/* Desktop Horizontal Tab Bar */
 .single-product-tabs-section ul.tabs {
-    display: flex;
-    justify-content: center;
-    gap: 2.5rem;
-    border-bottom: 1px solid #E3E3E3;
-    padding: 0 0 0.5rem 0;
-    margin: 0 0 2rem 0;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
-
-.single-product-tabs-section ul.tabs::-webkit-scrollbar {
     display: none;
 }
 
-.single-product-tabs-section ul.tabs li {
-    background: transparent !important;
-    border: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
+@media (min-width: 768px) {
+    .single-product-tabs-section ul.tabs {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        border-bottom: 1px solid #E3E3E3;
+        padding: 0 0 0.5rem 0;
+        margin: 0 0 2rem 0;
+    }
+
+    .single-product-tabs-section ul.tabs li {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .single-product-tabs-section ul.tabs li a {
+        font-family: var(--font-body, 'Noto Sans', sans-serif);
+        font-size: 16px;
+        font-weight: 500;
+        color: #717171;
+        padding: 0.5rem 0.25rem 0.85rem 0.25rem;
+        display: block;
+        position: relative;
+        border-bottom: 2px solid transparent;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        white-space: nowrap;
+    }
+
+    .single-product-tabs-section ul.tabs li a:hover,
+    .single-product-tabs-section ul.tabs li.active a {
+        color: #111111 !important;
+        border-bottom-color: #111111 !important;
+    }
+
+    /* On Desktop: Mobile Accordion triggers are completely hidden */
+    .single-product-tabs-section .mobile-accordion-toggle {
+        display: none !important;
+    }
+
+    .single-product-tabs-section .product-tab-accordion-item {
+        border-bottom: none !important;
+    }
+
+    /* Desktop Tab Panels: Handled by JS tab switching */
+    .single-product-tabs-section .woocommerce-Tabs-panel {
+        display: none;
+    }
 }
 
-.single-product-tabs-section ul.tabs li a {
-    font-family: var(--font-body, 'Noto Sans', sans-serif);
-    font-size: 16px;
-    font-weight: 500;
-    color: #717171;
-    padding: 0.5rem 0.25rem 0.85rem 0.25rem;
-    display: block;
-    position: relative;
-    border-bottom: 2px solid transparent;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    white-space: nowrap;
+/* Mobile Accordion Styles (< 768px) */
+@media (max-width: 767px) {
+    .single-product-tabs-section ul.tabs {
+        display: none !important;
+    }
+
+    .single-product-tabs-section .product-tab-accordion-item {
+        border-bottom: 1px solid #EAE3DC;
+        transition: background-color 0.2s ease;
+    }
+
+    .single-product-tabs-section .mobile-accordion-toggle {
+        display: flex !important;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.1rem 0.5rem;
+        text-align: left;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .single-product-tabs-section .mobile-accordion-toggle .accordion-title {
+        font-family: var(--font-serif, 'Cormorant Garamond', Georgia, serif);
+        font-size: 18px;
+        font-weight: 600;
+        color: #242424;
+        transition: color 0.2s ease;
+    }
+
+    .single-product-tabs-section .mobile-accordion-toggle .accordion-icon-wrap {
+        width: 30px;
+        height: 30px;
+        border-radius: 9999px;
+        background: #FAF7F2;
+        border: 1px solid #EAE3DC;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #777777;
+        flex-shrink: 0;
+        transition: all 0.25s ease;
+    }
+
+    /* By Default: All closed on mobile */
+    .single-product-tabs-section .woocommerce-Tabs-panel {
+        display: none;
+        padding: 0.25rem 0.5rem 1.5rem 0.5rem;
+    }
+
+    /* When Accordion Item is Open */
+    .single-product-tabs-section .product-tab-accordion-item.is-open {
+        background-color: #FDFAF6;
+    }
+
+    .single-product-tabs-section .product-tab-accordion-item.is-open .mobile-accordion-toggle .accordion-title {
+        color: #CC5600;
+    }
+
+    .single-product-tabs-section .product-tab-accordion-item.is-open .accordion-icon-wrap {
+        background-color: #CC5600;
+        border-color: #CC5600;
+        color: #FFFFFF;
+        box-shadow: 0 2px 8px rgba(204, 86, 0, 0.25);
+    }
+
+    .single-product-tabs-section .product-tab-accordion-item.is-open .accordion-chevron {
+        transform: rotate(180deg);
+    }
+
+    .single-product-tabs-section .product-tab-accordion-item.is-open .woocommerce-Tabs-panel {
+        display: block !important;
+        animation: fadeInTabAccordion 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 }
 
-.single-product-tabs-section ul.tabs li a:hover,
-.single-product-tabs-section ul.tabs li.active a {
-    color: #111111 !important;
-    border-bottom-color: #111111 !important;
+@keyframes fadeInTabAccordion {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Tab Panels */
