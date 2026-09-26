@@ -327,6 +327,12 @@ export function initShopFilter() {
             chips.push({ type: 'category', value: catSlug, label: label });
         });
 
+        state.product_types.forEach(typeSlug => {
+            const cb = document.querySelector(`.filter-type-checkbox[value="${typeSlug}"]`);
+            const label = cb?.closest('label')?.querySelector('span')?.textContent?.trim() || typeSlug;
+            chips.push({ type: 'product_type', value: typeSlug, label: label });
+        });
+
         state.shapes.forEach(shapeSlug => {
             const cb = document.querySelector(`.filter-shape-checkbox[value="${shapeSlug}"]`);
             const label = cb?.closest('label')?.querySelector('span')?.textContent?.trim() || shapeSlug;
@@ -398,6 +404,8 @@ export function initShopFilter() {
 
                 if (type === 'category') {
                     document.querySelectorAll(`.filter-category-checkbox[value="${value}"]`).forEach(cb => cb.checked = false);
+                } else if (type === 'product_type') {
+                    document.querySelectorAll(`.filter-type-checkbox[value="${value}"]`).forEach(cb => cb.checked = false);
                 } else if (type === 'shape') {
                     document.querySelectorAll(`.filter-shape-checkbox[value="${value}"]`).forEach(cb => cb.checked = false);
                 } else if (type === 'price') {
@@ -442,6 +450,10 @@ export function initShopFilter() {
             formData.append('categories[]', cat);
         });
 
+        state.product_types.forEach(type => {
+            formData.append('product_types[]', type);
+        });
+
         state.shapes.forEach(shape => {
             formData.append('shapes[]', shape);
         });
@@ -481,6 +493,17 @@ export function initShopFilter() {
             const catSlugs = catParam.split(',');
             catSlugs.forEach(slug => {
                 document.querySelectorAll(`.filter-category-checkbox[value="${slug.trim()}"]`).forEach(cb => {
+                    cb.checked = true;
+                });
+                hasCustomParams = true;
+            });
+        }
+
+        const typeParam = params.get('product_type') || params.get('type');
+        if (typeParam) {
+            const typeSlugs = typeParam.split(',');
+            typeSlugs.forEach(slug => {
+                document.querySelectorAll(`.filter-type-checkbox[value="${slug.trim()}"]`).forEach(cb => {
                     cb.checked = true;
                 });
                 hasCustomParams = true;

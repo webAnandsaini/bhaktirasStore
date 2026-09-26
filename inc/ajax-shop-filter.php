@@ -26,16 +26,17 @@ function dharmgyan_ajax_filter_products() {
         wp_die();
     }
 
-    $categories  = isset($_POST['categories']) && is_array($_POST['categories']) ? array_map('sanitize_text_field', wp_unslash($_POST['categories'])) : array();
-    $shapes      = isset($_POST['shapes']) && is_array($_POST['shapes']) ? array_map('sanitize_text_field', wp_unslash($_POST['shapes'])) : array();
-    $min_price   = isset($_POST['min_price']) && $_POST['min_price'] !== '' ? floatval($_POST['min_price']) : null;
-    $max_price   = isset($_POST['max_price']) && $_POST['max_price'] !== '' ? floatval($_POST['max_price']) : null;
-    $in_stock    = isset($_POST['in_stock']) && $_POST['in_stock'] === '1';
-    $on_sale     = isset($_POST['on_sale']) && $_POST['on_sale'] === '1';
-    $orderby     = isset($_POST['orderby']) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'menu_order';
-    $paged       = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
-    $search      = isset($_POST['search']) ? sanitize_text_field(wp_unslash($_POST['search'])) : '';
-    $per_page    = 24;
+    $categories     = isset($_POST['categories']) && is_array($_POST['categories']) ? array_map('sanitize_text_field', wp_unslash($_POST['categories'])) : array();
+    $product_types  = isset($_POST['product_types']) && is_array($_POST['product_types']) ? array_map('sanitize_text_field', wp_unslash($_POST['product_types'])) : array();
+    $shapes         = isset($_POST['shapes']) && is_array($_POST['shapes']) ? array_map('sanitize_text_field', wp_unslash($_POST['shapes'])) : array();
+    $min_price      = isset($_POST['min_price']) && $_POST['min_price'] !== '' ? floatval($_POST['min_price']) : null;
+    $max_price      = isset($_POST['max_price']) && $_POST['max_price'] !== '' ? floatval($_POST['max_price']) : null;
+    $in_stock       = isset($_POST['in_stock']) && $_POST['in_stock'] === '1';
+    $on_sale        = isset($_POST['on_sale']) && $_POST['on_sale'] === '1';
+    $orderby        = isset($_POST['orderby']) ? sanitize_text_field(wp_unslash($_POST['orderby'])) : 'menu_order';
+    $paged          = isset($_POST['paged']) ? max(1, intval($_POST['paged'])) : 1;
+    $search         = isset($_POST['search']) ? sanitize_text_field(wp_unslash($_POST['search'])) : '';
+    $per_page       = 24;
 
     $args = array(
         'post_type'      => 'product',
@@ -61,11 +62,24 @@ function dharmgyan_ajax_filter_products() {
         );
     }
 
-    // Shape / Custom attribute filter if pa_shape taxonomy exists
-    if (!empty($shapes)) {
-        if (taxonomy_exists('pa_shape')) {
+    // Product Type filter
+    if (!empty($product_types)) {
+        if (taxonomy_exists('product_item_type')) {
             $args['tax_query'][] = array(
-                'taxonomy' => 'pa_shape',
+                'taxonomy' => 'product_item_type',
+                'field'    => 'slug',
+                'terms'    => $product_types,
+                'operator' => 'IN',
+            );
+        }
+    }
+
+    // Shape filter (supports product_shape and fallback pa_shape)
+    if (!empty($shapes)) {
+        $shape_tax = taxonomy_exists('product_shape') ? 'product_shape' : (taxonomy_exists('pa_shape') ? 'pa_shape' : '');
+        if ($shape_tax) {
+            $args['tax_query'][] = array(
+                'taxonomy' => $shape_tax,
                 'field'    => 'slug',
                 'terms'    => $shapes,
                 'operator' => 'IN',

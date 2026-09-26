@@ -8,7 +8,7 @@
 // Fetch Categories dynamically from WooCommerce
 $product_categories = get_terms(array(
     'taxonomy'   => 'product_cat',
-    'hide_empty' => false,
+    'hide_empty' => true,
     'parent'     => 0,
 ));
 
@@ -29,6 +29,18 @@ $price_query = $wpdb->get_row("
 
 $store_min_price = $price_query && $price_query->min_price ? floor($price_query->min_price) : 500;
 $store_max_price = $price_query && $price_query->max_price ? ceil($price_query->max_price) : 25000;
+
+// Fetch Product Types dynamically
+$product_types = get_terms(array(
+    'taxonomy'   => 'product_item_type',
+    'hide_empty' => true,
+));
+
+// Fetch Shapes dynamically
+$product_shapes = get_terms(array(
+    'taxonomy'   => 'product_shape',
+    'hide_empty' => true,
+));
 ?>
 
 <div class="filter-sidebar-panel w-full bg-white border border-[#EAE3DC] rounded-[5px] p-5 shadow-xs font-body text-[#444444]">
@@ -60,53 +72,94 @@ $store_max_price = $price_query && $price_query->max_price ? ceil($price_query->
             <span class="font-bold text-sm text-[#3A3A3A] group-hover:text-[#CC5600] transition-colors"><?php esc_html_e('Collection', 'dharmgyan'); ?></span>
             <svg class="w-3.5 h-3.5 text-[#3A3A3A] transform transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
-        <div class="filter-accordion-content mt-3 space-y-2 max-h-60 overflow-y-auto pr-1 scrollbar-thin">
+        <div class="filter-accordion-content mt-3 space-y-2 max-h-72 overflow-y-auto pr-1 scrollbar-thin">
             <?php if (!empty($product_categories) && !is_wp_error($product_categories)): ?>
                 <?php foreach ($product_categories as $cat): ?>
                     <?php 
                     if ($cat->slug === 'uncategorized') continue;
                     $is_checked = ($current_cat_slug === $cat->slug);
                     $count_display = $cat->count > 0 ? $cat->count : 0;
+
+                    // Fetch child categories for this parent category
+                    $sub_categories = get_terms(array(
+                        'taxonomy'   => 'product_cat',
+                        'hide_empty' => true,
+                        'parent'     => $cat->term_id,
+                    ));
                     ?>
-                    <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                        <div class="flex items-center gap-2.5">
-                            <input 
-                                type="checkbox" 
-                                name="category_filter[]" 
-                                value="<?php echo esc_attr($cat->slug); ?>" 
-                                class="filter-category-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 transition cursor-pointer"
-                                <?php checked($is_checked, true); ?>
-                            />
-                            <span class="font-normal"><?php echo esc_html($cat->name); ?></span>
-                        </div>
-                        <span class="text-xs text-[#555555] font-body">(<?php echo esc_html($count_display); ?>)</span>
-                    </label>
+                    <div class="category-filter-item">
+                        <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] font-semibold hover:text-[#CC5600] transition-colors select-none py-0.5">
+                            <div class="flex items-center gap-2.5">
+                                <input 
+                                    type="checkbox" 
+                                    name="category_filter[]" 
+                                    value="<?php echo esc_attr($cat->slug); ?>" 
+                                    class="filter-category-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 transition cursor-pointer"
+                                    <?php checked($is_checked, true); ?>
+                                />
+                                <span><?php echo esc_html($cat->name); ?></span>
+                            </div>
+                            <span class="text-xs text-[#555555] font-body">(<?php echo esc_html($count_display); ?>)</span>
+                        </label>
+
+                        <?php if (!empty($sub_categories) && !is_wp_error($sub_categories)): ?>
+                            <div class="ml-4 pl-2.5 border-l border-[#EAE3DC] space-y-1 my-1">
+                                <?php foreach ($sub_categories as $sub_cat): ?>
+                                    <?php
+                                    $is_sub_checked = ($current_cat_slug === $sub_cat->slug);
+                                    $sub_count_display = $sub_cat->count > 0 ? $sub_cat->count : 0;
+                                    ?>
+                                    <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[12.5px] text-[#444444] hover:text-[#CC5600] transition-colors select-none py-0.5">
+                                        <div class="flex items-center gap-2">
+                                            <input 
+                                                type="checkbox" 
+                                                name="category_filter[]" 
+                                                value="<?php echo esc_attr($sub_cat->slug); ?>" 
+                                                class="filter-category-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 transition cursor-pointer"
+                                                <?php checked($is_sub_checked, true); ?>
+                                            />
+                                            <span><?php echo esc_html($sub_cat->name); ?></span>
+                                        </div>
+                                        <span class="text-[11px] text-[#777777] font-body">(<?php echo esc_html($sub_count_display); ?>)</span>
+                                    </label>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                    </div>
                 <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-xs text-gray-400 py-1"><?php esc_html_e('No collections found.', 'dharmgyan'); ?></p>
             <?php endif; ?>
         </div>
     </div>
 
-    <!-- 2. Product Type Accordion -->
+    <!-- 2. Product Type Accordion (Dynamic) -->
     <div class="filter-accordion-item border-b border-[#E5E5E5] py-3.5">
         <button type="button" class="filter-accordion-toggle w-full flex items-center justify-between text-left group focus:outline-none cursor-pointer" aria-expanded="true">
             <span class="font-bold text-sm text-[#3A3A3A] group-hover:text-[#CC5600] transition-colors"><?php esc_html_e('Product Type', 'dharmgyan'); ?></span>
             <svg class="w-3.5 h-3.5 text-[#3A3A3A] transform transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
-        <div class="filter-accordion-content mt-3 space-y-2">
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="product_type_filter[]" value="wall-art" class="filter-type-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Wall Art</span>
-                </div>
-                <span class="text-xs text-[#555555]">(28)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="product_type_filter[]" value="home-decor" class="filter-type-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Home Decor</span>
-                </div>
-                <span class="text-xs text-[#555555]">(10)</span>
-            </label>
+        <div class="filter-accordion-content mt-3 space-y-2 max-h-56 overflow-y-auto pr-1 scrollbar-thin">
+            <?php if (!empty($product_types) && !is_wp_error($product_types)): ?>
+                <?php foreach ($product_types as $ptype): 
+                    $count_display = $ptype->count > 0 ? $ptype->count : 0;
+                ?>
+                    <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
+                        <div class="flex items-center gap-2.5">
+                            <input 
+                                type="checkbox" 
+                                name="product_type_filter[]" 
+                                value="<?php echo esc_attr($ptype->slug); ?>" 
+                                class="filter-type-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" 
+                            />
+                            <span><?php echo esc_html($ptype->name); ?></span>
+                        </div>
+                        <span class="text-xs text-[#555555]">(<?php echo esc_html($count_display); ?>)</span>
+                    </label>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-xs text-gray-400 py-1"><?php esc_html_e('No product types found.', 'dharmgyan'); ?></p>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -167,62 +220,33 @@ $store_max_price = $price_query && $price_query->max_price ? ceil($price_query->
         </div>
     </div>
 
-    <!-- 4. Shape Accordion (Figma Section @ y=973) -->
+    <!-- 4. Shape Accordion (Dynamic) -->
     <div class="filter-accordion-item border-b border-[#E5E5E5] py-3.5">
         <button type="button" class="filter-accordion-toggle w-full flex items-center justify-between text-left group focus:outline-none cursor-pointer" aria-expanded="true">
             <span class="font-bold text-sm text-[#3A3A3A] group-hover:text-[#CC5600] transition-colors"><?php esc_html_e('Shape', 'dharmgyan'); ?></span>
             <svg class="w-3.5 h-3.5 text-[#3A3A3A] transform transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
         <div class="filter-accordion-content mt-3 space-y-2 max-h-56 overflow-y-auto pr-1 scrollbar-thin">
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="horizontal" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Horizontal Wall Hanging</span>
-                </div>
-                <span class="text-xs text-[#555555]">(103)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="round" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Round</span>
-                </div>
-                <span class="text-xs text-[#555555]">(30)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="set-of-2" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Set of 2 Wall Art</span>
-                </div>
-                <span class="text-xs text-[#555555]">(4)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="set-of-3" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Set of 3 Wall Art</span>
-                </div>
-                <span class="text-xs text-[#555555]">(116)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="set-of-4" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Set of 4 Wall Art</span>
-                </div>
-                <span class="text-xs text-[#555555]">(16)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="square" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Square Wall Decor</span>
-                </div>
-                <span class="text-xs text-[#555555]">(153)</span>
-            </label>
-            <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
-                <div class="flex items-center gap-2.5">
-                    <input type="checkbox" name="shape_filter[]" value="vertical" class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" />
-                    <span>Vertical Wall Art</span>
-                </div>
-                <span class="text-xs text-[#555555]">(390)</span>
-            </label>
+            <?php if (!empty($product_shapes) && !is_wp_error($product_shapes)): ?>
+                <?php foreach ($product_shapes as $shape): 
+                    $count_display = $shape->count > 0 ? $shape->count : 0;
+                ?>
+                    <label class="flex items-center justify-between group cursor-pointer text-xs md:text-[13px] text-[#222222] hover:text-[#CC5600] transition-colors select-none py-0.5">
+                        <div class="flex items-center gap-2.5">
+                            <input 
+                                type="checkbox" 
+                                name="shape_filter[]" 
+                                value="<?php echo esc_attr($shape->slug); ?>" 
+                                class="filter-shape-checkbox w-3.5 h-3.5 rounded text-[#CC5600] focus:ring-[#CC5600] border-gray-300 cursor-pointer" 
+                            />
+                            <span><?php echo esc_html($shape->name); ?></span>
+                        </div>
+                        <span class="text-xs text-[#555555]">(<?php echo esc_html($count_display); ?>)</span>
+                    </label>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p class="text-xs text-gray-400 py-1"><?php esc_html_e('No shapes found.', 'dharmgyan'); ?></p>
+            <?php endif; ?>
         </div>
     </div>
 

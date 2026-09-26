@@ -1,0 +1,47 @@
+{
+    "key": "taxonomy_product_shape",
+    "title": "Shapes",
+    "menu_order": 0,
+    "active": true,
+    "taxonomy": "product_shape",
+    "object_type": [
+        "product"
+    ],
+    "advanced_configuration": true,
+    "labels": {
+        "name": "Shapes",
+        "singular_name": "Shape",
+        "menu_name": "Shapes",
+        "all_items": "All Shapes",
+        "edit_item": "Edit Shape",
+        "view_item": "View Shape",
+        "update_item": "Update Shape",
+        "add_new_item": "Add New Shape",
+        "new_item_name": "New Shape Name",
+        "parent_item": "Parent Shape",
+        "parent_item_colon": "Parent Shape:",
+        "search_items": "Search Shapes",
+        "not_found": "No shapes found",
+        "back_to_items": "← Go to Shapes"
+    },
+    "description": "Shapes taxonomy for WooCommerce products",
+    "hierarchical": true,
+    "public": true,
+    "publicly_queryable": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": true,
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "shape",
+        "with_front": false,
+        "rewrite_hierarchical": true
+    },
+    "show_in_rest": true,
+    "rest_base": "",
+    "rest_controller_class": "WP_REST_Terms_Controller",
+    "rest_namespace": "wp/v2"
+}

@@ -110,6 +110,9 @@ function dharmgyan_get_field($selector, $post_id = false)
     return $val;
 }
 
+// Custom Taxonomies (Product Types & Shapes for Products)
+require_once(get_template_directory() . '/inc/custom-taxonomies.php');
+
 // AJAX Shop and Category Filtering
 require_once(get_template_directory() . '/inc/ajax-shop-filter.php');
 

@@ -1,0 +1,47 @@
+{
+    "key": "taxonomy_product_item_type",
+    "title": "Product Types",
+    "menu_order": 0,
+    "active": true,
+    "taxonomy": "product_item_type",
+    "object_type": [
+        "product"
+    ],
+    "advanced_configuration": true,
+    "labels": {
+        "name": "Product Types",
+        "singular_name": "Product Type",
+        "menu_name": "Product Types",
+        "all_items": "All Product Types",
+        "edit_item": "Edit Product Type",
+        "view_item": "View Product Type",
+        "update_item": "Update Product Type",
+        "add_new_item": "Add New Product Type",
+        "new_item_name": "New Product Type Name",
+        "parent_item": "Parent Product Type",
+        "parent_item_colon": "Parent Product Type:",
+        "search_items": "Search Product Types",
+        "not_found": "No product types found",
+        "back_to_items": "← Go to Product Types"
+    },
+    "description": "Product Types taxonomy for WooCommerce products",
+    "hierarchical": true,
+    "public": true,
+    "publicly_queryable": true,
+    "show_ui": true,
+    "show_in_menu": true,
+    "show_in_nav_menus": true,
+    "show_tagcloud": false,
+    "show_in_quick_edit": true,
+    "show_admin_column": true,
+    "rewrite": {
+        "permalink_rewrite": "custom_permalink",
+        "slug": "product-type",
+        "with_front": false,
+        "rewrite_hierarchical": true
+    },
+    "show_in_rest": true,
+    "rest_base": "",
+    "rest_controller_class": "WP_REST_Terms_Controller",
+    "rest_namespace": "wp/v2"
+}

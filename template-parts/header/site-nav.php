@@ -9,7 +9,7 @@ $categories = array();
 if (taxonomy_exists('product_cat')) {
     $categories = get_terms(array(
         'taxonomy'   => 'product_cat',
-        'hide_empty' => false,
+        'hide_empty' => true,
         'parent'     => 0,
         'number'     => 12,
     ));
@@ -44,21 +44,54 @@ $social_tw  = dharmgyan_get_field('social_twitter', 'option');
 
                 <!-- Dropdown Menu -->
                 <?php if (!empty($categories) && !is_wp_error($categories)): ?>
-                    <div id="categories-dropdown-menu" role="menu" aria-labelledby="categories-dropdown-btn" class="categories-dropdown-menu absolute top-full left-0 w-64 bg-white border border-[#E5E5E5] rounded-[4px] shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50 transform group-hover:translate-y-0 translate-y-1">
-                        <?php foreach ($categories as $cat): ?>
-                            <?php
-                            $cat_link = get_term_link($cat);
-                            $cat_count = $cat->count;
-                            ?>
-                            <a href="<?php echo esc_url($cat_link); ?>" role="menuitem" class="flex items-center justify-between px-4 py-2.5 text-[14px] text-[#444444] hover:text-[#CC5600] hover:bg-[#FFF8F3] transition-colors focus:outline-none focus:bg-[#FFF8F3] focus:text-[#CC5600]">
-                                <span class="font-medium"><?php echo esc_html($cat->name); ?></span>
-                                <span class="text-xs text-[#717171] bg-gray-100 px-2 py-0.5 rounded-full" aria-label="<?php echo esc_attr(sprintf(__('%d products', 'dharmgyan'), $cat_count)); ?>"><?php echo esc_html($cat_count); ?></span>
-                            </a>
-                        <?php endforeach; ?>
+                    <div id="categories-dropdown-menu" role="menu" aria-labelledby="categories-dropdown-btn" class="categories-dropdown-menu absolute top-full left-0 w-[320px] bg-white border border-[#EAE3DC] rounded-[8px] shadow-xl p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 transform group-hover:translate-y-0 translate-y-1">
+                        <div class="max-h-[420px] overflow-y-auto scrollbar-thin pr-1 space-y-1">
+                            <?php foreach ($categories as $cat): ?>
+                                <?php
+                                if ($cat->slug === 'uncategorized') continue;
+                                $cat_link = get_term_link($cat);
+                                $cat_count = $cat->count;
 
-                        <div class="border-t border-[#E5E5E5] mt-1 pt-1">
-                            <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" role="menuitem" class="block px-4 py-2 text-xs font-semibold text-[#CC5600] hover:underline focus:outline-none">
-                                <?php esc_html_e('View All Collections →', 'dharmgyan'); ?>
+                                // Fetch child categories for this parent category
+                                $sub_categories = get_terms(array(
+                                    'taxonomy'   => 'product_cat',
+                                    'hide_empty' => true,
+                                    'parent'     => $cat->term_id,
+                                ));
+                                ?>
+                                <div class="category-dropdown-group">
+                                    <!-- Parent Category -->
+                                    <a href="<?php echo esc_url($cat_link); ?>" role="menuitem" class="flex items-center justify-between px-3 py-2 text-[14px] text-[#111111] font-semibold hover:text-[#CC5600] hover:bg-[#FFF8F3] rounded-[5px] transition-colors focus:outline-none">
+                                        <span><?php echo esc_html($cat->name); ?></span>
+                                        <span class="text-[11px] font-medium text-[#666666] bg-[#F2ECE6] px-2 py-0.5 rounded-full" aria-label="<?php echo esc_attr(sprintf(__('%d products', 'dharmgyan'), $cat_count)); ?>"><?php echo esc_html($cat_count); ?></span>
+                                    </a>
+
+                                    <!-- Sub Categories List -->
+                                    <?php if (!empty($sub_categories) && !is_wp_error($sub_categories)): ?>
+                                        <div class="ml-3 pl-3 border-l-2 border-[#F3ECE4] my-1 space-y-0.5">
+                                            <?php foreach ($sub_categories as $sub_cat): ?>
+                                                <?php
+                                                $sub_link = get_term_link($sub_cat);
+                                                $sub_count = $sub_cat->count;
+                                                ?>
+                                                <a href="<?php echo esc_url($sub_link); ?>" role="menuitem" class="group flex items-center justify-between px-2.5 py-1.5 text-[13px] text-[#555555] hover:text-[#CC5600] hover:bg-[#FFF5ED] rounded-[4px] transition-all focus:outline-none">
+                                                    <span class="font-normal flex items-center gap-2">
+                                                        <span class="w-1.5 h-1.5 rounded-full bg-[#D4C8BC] group-hover:bg-[#CC5600] transition-colors"></span>
+                                                        <?php echo esc_html($sub_cat->name); ?>
+                                                    </span>
+                                                    <span class="text-[11px] text-[#777777] bg-[#F7F3EE] group-hover:bg-white px-2 py-0.5 rounded-full transition-colors"><?php echo esc_html($sub_count); ?></span>
+                                                </a>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="border-t border-[#F0ECE7] mt-2 pt-2 px-1">
+                            <a href="<?php echo esc_url(function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : home_url('/shop/')); ?>" role="menuitem" class="flex items-center justify-between px-3 py-1.5 text-xs font-semibold text-[#CC5600] hover:text-[#B34B00] hover:bg-[#FFF8F3] rounded-[4px] transition-colors focus:outline-none">
+                                <span><?php esc_html_e('View All Collections', 'dharmgyan'); ?></span>
+                                <span>→</span>
                             </a>
                         </div>
                     </div>

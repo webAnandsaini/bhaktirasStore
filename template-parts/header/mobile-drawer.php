@@ -9,7 +9,7 @@ $categories = array();
 if (taxonomy_exists('product_cat')) {
     $categories = get_terms(array(
         'taxonomy'   => 'product_cat',
-        'hide_empty' => false,
+        'hide_empty' => true,
         'parent'     => 0,
         'number'     => 15,
     ));
@@ -47,15 +47,66 @@ $is_logged_in = is_user_logged_in();
             <?php if (!empty($categories) && !is_wp_error($categories)): ?>
                 <ul class="space-y-1">
                     <?php foreach ($categories as $cat): ?>
+                        <?php
+                        $sub_categories = get_terms(array(
+                            'taxonomy'   => 'product_cat',
+                            'hide_empty' => true,
+                            'parent'     => $cat->term_id,
+                        ));
+                        ?>
                         <li>
-                            <a href="<?php echo esc_url(get_term_link($cat)); ?>" class="flex items-center justify-between py-2 text-sm font-medium text-[#444444] hover:text-[#CC5600] transition-colors">
+                            <a href="<?php echo esc_url(get_term_link($cat)); ?>" class="flex items-center justify-between py-2 text-sm font-semibold text-[#111111] hover:text-[#CC5600] transition-colors">
                                 <span><?php echo esc_html($cat->name); ?></span>
                                 <span class="text-xs text-[#717171] bg-gray-100 px-2 py-0.5 rounded-full"><?php echo esc_html($cat->count); ?></span>
                             </a>
+
+                            <?php if (!empty($sub_categories) && !is_wp_error($sub_categories)): ?>
+                                <ul class="pl-4 ml-2 border-l border-[#EAE3DC] space-y-1 my-1">
+                                    <?php foreach ($sub_categories as $sub_cat): ?>
+                                        <li>
+                                            <a href="<?php echo esc_url(get_term_link($sub_cat)); ?>" class="flex items-center justify-between py-1 text-xs text-[#444444] hover:text-[#CC5600] transition-colors">
+                                                <span class="flex items-center gap-1.5">
+                                                    <span class="text-[#CC5600]">↳</span>
+                                                    <?php echo esc_html($sub_cat->name); ?>
+                                                </span>
+                                                <span class="text-[11px] text-[#777777] bg-gray-50 px-1.5 py-0.2 rounded-full"><?php echo esc_html($sub_cat->count); ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
                         </li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
+        </div>
+
+        <!-- Main Navigation Section -->
+        <div class="border-t border-[#E5E5E5] pt-4">
+            <p class="text-xs font-bold uppercase tracking-wider text-[#717171] mb-3"><?php esc_html_e('Main Menu', 'dharmgyan'); ?></p>
+            <?php
+            if (has_nav_menu('primary')) {
+                wp_nav_menu(array(
+                    'theme_location' => 'primary',
+                    'container'      => false,
+                    'menu_class'     => 'space-y-2 text-sm font-medium text-[#444444] [&_a]:block [&_a]:py-1 [&_a]:hover:text-[#CC5600] [&_a]:transition-colors [&_ul.sub-menu]:pl-4 [&_ul.sub-menu]:space-y-1 [&_ul.sub-menu]:my-1',
+                    'fallback_cb'    => false,
+                    'depth'          => 2,
+                ));
+            } else {
+                ?>
+                <ul class="space-y-2 text-sm font-medium text-[#444444]">
+                    <li><a href="<?php echo esc_url(home_url('/shop/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('All Collections', 'dharmgyan'); ?></a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-category/aarti-diya/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Pooja Samagri', 'dharmgyan'); ?></a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-category/collections/god-statue/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('God Statue', 'dharmgyan'); ?></a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-category/collections/rudraksha/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Rudraksha', 'dharmgyan'); ?></a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-category/collections/bracelets/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Bracelets', 'dharmgyan'); ?></a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-category/collections/jap-mala/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Jap Mala', 'dharmgyan'); ?></a></li>
+                    <li><a href="<?php echo esc_url(home_url('/product-category/home-decor/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Home Decor', 'dharmgyan'); ?></a></li>
+                </ul>
+                <?php
+            }
+            ?>
         </div>
 
         <!-- Quick Links -->
@@ -63,7 +114,6 @@ $is_logged_in = is_user_logged_in();
             <p class="text-xs font-bold uppercase tracking-wider text-[#717171] mb-3"><?php esc_html_e('Quick Links', 'dharmgyan'); ?></p>
             <ul class="space-y-2 text-sm font-medium text-[#444444]">
                 <li><a href="<?php echo esc_url(home_url('/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Home', 'dharmgyan'); ?></a></li>
-                <li><a href="<?php echo esc_url(home_url('/shop/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Shop All', 'dharmgyan'); ?></a></li>
                 <li><a href="<?php echo esc_url($wishlist_url); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('My Wishlist', 'dharmgyan'); ?></a></li>
                 <li><a href="<?php echo esc_url($account_url); ?>" class="block py-1 hover:text-[#CC5600]"><?php echo $is_logged_in ? esc_html__('My Account', 'dharmgyan') : esc_html__('Login / Register', 'dharmgyan'); ?></a></li>
                 <li><a href="<?php echo esc_url(home_url('/contact-us/')); ?>" class="block py-1 hover:text-[#CC5600]"><?php esc_html_e('Contact Us', 'dharmgyan'); ?></a></li>
