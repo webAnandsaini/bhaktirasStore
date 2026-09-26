@@ -235,32 +235,43 @@ if ($is_variable) {
                     $enable_guarantee = dharmgyan_get_field('enable_guarantee_box', 'option');
                     if ($enable_guarantee !== false && $enable_guarantee !== '0'):
                     ?>
-                        <div class="product-guarantee-box border border-[#E2E8F0] rounded-[6px] p-3.5 bg-white my-3.5">
-                            <div class="relative flex py-2 items-center mb-2">
-                                <div class="flex-grow border-t border-[#E5E5E5]"></div>
-                                <span class="flex-shrink mx-3 text-[11px] font-bold text-[#111111] uppercase tracking-wider">GUARANTEE SAFE CHECKOUT</span>
-                                <div class="flex-grow border-t border-[#E5E5E5]"></div>
-                            </div>
-                            <div class="grid grid-cols-4 gap-2.5 text-center">
-                                <div class="flex flex-col items-center">
-                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/satisfaction.svg'); ?>" alt="<?php esc_attr_e('Satisfaction Guarantee', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
+                        <div class="product-guarantee-box border border-[#E2E8F0] rounded-[6px] px-3 py-4 bg-white my-4 shadow-sm" aria-label="<?php esc_attr_e('Guarantee safe checkout', 'dharmgyan'); ?>">
+                            <?php $icon_base = get_template_directory_uri() . '/assets/images/icons'; ?>
+                            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+                                <!-- Item 1: Free Shipping -->
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-2 flex items-center justify-center">
+                                        <img src="<?php echo esc_url($icon_base . '/badge-free-shipping.png'); ?>" alt="<?php esc_attr_e('FREE SHIPPING', 'dharmgyan'); ?>" class="w-full h-full object-contain" />
                                     </div>
+                                    <h4 class="font-serif font-bold text-xs sm:text-[13px] text-[#111111] uppercase tracking-wide leading-tight mb-1"><?php esc_html_e('FREE SHIPPING', 'dharmgyan'); ?></h4>
+                                    <p class="font-body text-[11px] sm:text-xs text-[#666666] leading-tight"><?php esc_html_e('Across India, at no extra cost', 'dharmgyan'); ?></p>
                                 </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                    <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/free-shipping.svg'); ?>" alt="<?php esc_attr_e('FREE SHIPPING', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
+
+                                <!-- Item 2: 24/7 Support -->
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-2 flex items-center justify-center">
+                                        <img src="<?php echo esc_url($icon_base . '/badge-customer-support.png'); ?>" alt="<?php esc_attr_e('24/7 SUPPORT', 'dharmgyan'); ?>" class="w-full h-full object-contain" />
                                     </div>
+                                    <h4 class="font-serif font-bold text-xs sm:text-[13px] text-[#111111] uppercase tracking-wide leading-tight mb-1"><?php esc_html_e('24/7 SUPPORT', 'dharmgyan'); ?></h4>
+                                    <p class="font-body text-[11px] sm:text-xs text-[#666666] leading-tight"><?php esc_html_e('We\'re here for you anytime', 'dharmgyan'); ?></p>
                                 </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                     <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/easy-return.svg'); ?>" alt="<?php esc_attr_e('Easy Return', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
+
+                                <!-- Item 3: 100% Secure Payments -->
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-2 flex items-center justify-center">
+                                        <img src="<?php echo esc_url($icon_base . '/badge-secured-payment.png'); ?>" alt="<?php esc_attr_e('100% SECURE PAYMENTS', 'dharmgyan'); ?>" class="w-full h-full object-contain" />
                                     </div>
+                                    <h4 class="font-serif font-bold text-xs sm:text-[13px] text-[#111111] uppercase tracking-wide leading-tight mb-1"><?php esc_html_e('100% SECURE PAYMENTS', 'dharmgyan'); ?></h4>
+                                    <p class="font-body text-[11px] sm:text-xs text-[#666666] leading-tight"><?php esc_html_e('COD, UPI & Cards Accepted', 'dharmgyan'); ?></p>
                                 </div>
-                                <div class="flex flex-col items-center">
-                                    <div class="size-[50px] md:size-[70px] rounded-full border-2 border-dashed border-[#D2691E] p-1 flex items-center justify-center mb-1">
-                                        <img src="<?php echo esc_url(get_template_directory_uri() . '/assets/images/icons/cash-delivery.svg'); ?>" alt="<?php esc_attr_e('COD AVAILABLE', 'dharmgyan'); ?>" class="size-[50px] md:size-[70px]" />
+
+                                <!-- Item 4: Made In India -->
+                                <div class="flex flex-col items-center text-center">
+                                    <div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mb-2 flex items-center justify-center">
+                                        <img src="<?php echo esc_url($icon_base . '/badge-made-in-india.png'); ?>" alt="<?php esc_attr_e('MADE IN INDIA', 'dharmgyan'); ?>" class="w-full h-full object-contain" />
                                     </div>
+                                    <h4 class="font-serif font-bold text-xs sm:text-[13px] text-[#111111] uppercase tracking-wide leading-tight mb-1"><?php esc_html_e('MADE IN INDIA', 'dharmgyan'); ?></h4>
+                                    <p class="font-body text-[11px] sm:text-xs text-[#666666] leading-tight"><?php esc_html_e('Proudly crafted in our homeland', 'dharmgyan'); ?></p>
                                 </div>
                             </div>
                         </div>

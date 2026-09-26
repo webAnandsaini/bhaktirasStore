@@ -777,11 +777,36 @@
         },
         {
             "key": "field_feature_banner_image",
-            "label": "Banner Image",
+            "label": "Desktop Banner Image",
             "name": "feature_banner_image",
             "aria-label": "",
             "type": "image",
-            "instructions": "Full-width devotional banner image",
+            "instructions": "Full-width desktop banner image",
+            "required": 0,
+            "conditional_logic": false,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": 0,
+            "min_height": 0,
+            "min_size": 0,
+            "max_width": 0,
+            "max_height": 0,
+            "max_size": 0,
+            "mime_types": ""
+        },
+        {
+            "key": "field_feature_banner_image_mobile",
+            "label": "Mobile Banner Image (Square / Mobile)",
+            "name": "feature_banner_image_mobile",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "Square or mobile-optimized banner image for mobile screens",
             "required": 0,
             "conditional_logic": false,
             "wrapper": {

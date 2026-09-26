@@ -69,7 +69,7 @@ $product_shapes = get_terms(array(
     <!-- 1. Collection / Categories Accordion -->
     <div class="filter-accordion-item border-b border-[#E5E5E5] py-3.5">
         <button type="button" class="filter-accordion-toggle w-full flex items-center justify-between text-left group focus:outline-none cursor-pointer" aria-expanded="true">
-            <span class="font-bold text-sm text-[#3A3A3A] group-hover:text-[#CC5600] transition-colors"><?php esc_html_e('Collection', 'dharmgyan'); ?></span>
+            <span class="font-bold text-sm text-[#3A3A3A] group-hover:text-[#CC5600] transition-colors"><?php esc_html_e('All Collection', 'dharmgyan'); ?></span>
             <svg class="w-3.5 h-3.5 text-[#3A3A3A] transform transition-transform duration-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
         </button>
         <div class="filter-accordion-content mt-3 space-y-2 max-h-72 overflow-y-auto pr-1 scrollbar-thin">

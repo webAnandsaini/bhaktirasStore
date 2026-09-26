@@ -439,6 +439,81 @@
     box-shadow: 0 1px 3px rgba(204, 86, 0, 0.15) !important;
 }
 
+/* Beautiful 3D Color Circle Dot for Variations */
+.product-summary-column .color-swatch-dot,
+.variable-item .color-swatch-dot {
+    display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 50% !important;
+    margin-right: 6px !important;
+    vertical-align: middle !important;
+    flex-shrink: 0 !important;
+    box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.18) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.product-summary-column li.variable-item:hover:not(.disabled):not(.out-of-stock) .color-swatch-dot {
+    transform: scale(1.15) !important;
+}
+
+.product-summary-column li.variable-item.selected .color-swatch-dot,
+.product-summary-column li.variable-item:has(input:checked) .color-swatch-dot {
+    transform: scale(1.1) !important;
+    box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.3), 0 0 0 1.5px #CC5600 !important;
+}
+
+/* Color Fallbacks */
+.product-summary-column li.variable-item[data-value="gray"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-value="grey"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Gray"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Grey"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #9CA3AF, #4B5563 60%, #1F2937 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="green"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Green"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #4ADE80, #16A34A 60%, #14532D 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="red"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Red"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #FF5555, #DC2626 60%, #991B1B 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="yellow"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Yellow"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #FDE047, #EAB308 60%, #854D0E 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="blue"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Blue"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #60A5FA, #2563EB 60%, #1E3A8A 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="pink"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Pink"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #F472B6, #EC4899 60%, #831843 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="black"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Black"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #4B5563, #111827 60%, #000000 100%) !important;
+}
+
+.product-summary-column li.variable-item[data-value="white"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="White"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #F1F5F9 70%, #CBD5E1 100%) !important;
+    border-color: #CBD5E1 !important;
+}
+
+.product-summary-column li.variable-item[data-value="clear"] .color-swatch-dot,
+.product-summary-column li.variable-item[data-title="Clear"] .color-swatch-dot {
+    background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E2E8F0 60%, #94A3B8 100%) !important;
+    border-color: #94A3B8 !important;
+}
+
 /* Eradicate the plugin cross variable */
 :root,
 .product-summary-column,

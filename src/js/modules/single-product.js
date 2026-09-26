@@ -369,6 +369,96 @@ export function initSingleProduct() {
             }
         }, 150);
 
+        // ─── Color Swatch Circle Dot Enhancer ───
+        const colorGradients = {
+            'red': 'radial-gradient(circle at 35% 35%, #FF5555, #DC2626 60%, #991B1B 100%)',
+            'green': 'radial-gradient(circle at 35% 35%, #4ADE80, #16A34A 60%, #14532D 100%)',
+            'gray': 'radial-gradient(circle at 35% 35%, #9CA3AF, #4B5563 60%, #1F2937 100%)',
+            'grey': 'radial-gradient(circle at 35% 35%, #9CA3AF, #4B5563 60%, #1F2937 100%)',
+            'yellow': 'radial-gradient(circle at 35% 35%, #FDE047, #EAB308 60%, #854D0E 100%)',
+            'blue': 'radial-gradient(circle at 35% 35%, #60A5FA, #2563EB 60%, #1E3A8A 100%)',
+            'pink': 'radial-gradient(circle at 35% 35%, #F472B6, #EC4899 60%, #831843 100%)',
+            'black': 'radial-gradient(circle at 35% 35%, #4B5563, #111827 60%, #000000 100%)',
+            'white': 'radial-gradient(circle at 35% 35%, #FFFFFF 0%, #F1F5F9 70%, #CBD5E1 100%)',
+            'orange': 'radial-gradient(circle at 35% 35%, #FB923C, #EA580C 60%, #7C2D12 100%)',
+            'purple': 'radial-gradient(circle at 35% 35%, #C084FC, #9333EA 60%, #581C87 100%)',
+            'violet': 'radial-gradient(circle at 35% 35%, #C084FC, #7C3AED 60%, #4C1D95 100%)',
+            'brown': 'radial-gradient(circle at 35% 35%, #A16207, #78350F 60%, #451A03 100%)',
+            'gold': 'linear-gradient(135deg, #FFE259 0%, #FFA751 100%)',
+            'golden': 'linear-gradient(135deg, #FFE259 0%, #FFA751 100%)',
+            'silver': 'linear-gradient(135deg, #E0E0E0 0%, #F5F5F5 50%, #9E9E9E 100%)',
+            'bronze': 'radial-gradient(circle at 35% 35%, #F97316, #C2410C 60%, #7C2D12 100%)',
+            'copper': 'radial-gradient(circle at 35% 35%, #F97316, #C2410C 60%, #7C2D12 100%)',
+            'beige': 'radial-gradient(circle at 35% 35%, #FEF3C7, #FDE68A 60%, #D97706 100%)',
+            'clear': 'radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E2E8F0 60%, #94A3B8 100%)',
+            'transparent': 'radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E2E8F0 60%, #94A3B8 100%)',
+            'maroon': 'radial-gradient(circle at 35% 35%, #991B1B, #7F1D1D 60%, #450A0A 100%)',
+            'navy': 'radial-gradient(circle at 35% 35%, #1E3A8A, #1E1B4B 60%, #0F172A 100%)',
+            'teal': 'radial-gradient(circle at 35% 35%, #2DD4BF, #0D9488 60%, #115E59 100%)',
+            'cyan': 'radial-gradient(circle at 35% 35%, #22D3EE, #0891B2 60%, #164E63 100%)',
+            'multicolor': 'conic-gradient(#FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000)',
+            'multi': 'conic-gradient(#FF0000, #FFFF00, #00FF00, #00FFFF, #0000FF, #FF00FF, #FF0000)'
+        };
+
+        function enhanceColorSwatches() {
+            const form = document.querySelector('form.variations_form');
+            if (!form) return;
+
+            const rows = form.querySelectorAll('.variation-row, tr, .wvs-attribute-behavior, .variations tbody tr');
+            rows.forEach(row => {
+                const labelText = (row.querySelector('label, th')?.textContent || '').toLowerCase();
+                const isColorAttr = labelText.includes('color') || labelText.includes('colour') || (row.dataset?.attribute_name && row.dataset.attribute_name.includes('color'));
+
+                const items = row.querySelectorAll('li.variable-item, .wvs-radio-variable-item');
+                items.forEach(item => {
+                    const rawVal = (item.dataset.value || item.dataset.title || item.getAttribute('aria-label') || item.textContent || '').trim().toLowerCase();
+                    if (!rawVal) return;
+
+                    let bgStyle = colorGradients[rawVal];
+                    if (!bgStyle) {
+                        for (const [cKey, cGrad] of Object.entries(colorGradients)) {
+                            if (rawVal.includes(cKey)) {
+                                bgStyle = cGrad;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (isColorAttr || bgStyle) {
+                        item.classList.add('color-swatch-wrap');
+                        let dot = item.querySelector('.color-swatch-dot');
+                        const contents = item.querySelector('.variable-item-contents') || item;
+                        contents.classList.add('color-swatch-wrap');
+                        if (!dot) {
+                            dot = document.createElement('span');
+                            dot.className = 'color-swatch-dot';
+                            const spanTag = contents.querySelector('span') || contents.firstChild;
+                            if (spanTag) {
+                                contents.insertBefore(dot, spanTag);
+                            } else {
+                                contents.appendChild(dot);
+                            }
+                        }
+
+                        if (!bgStyle) {
+                            bgStyle = `radial-gradient(circle at 35% 35%, ${rawVal}, #444444)`;
+                        }
+
+                        dot.style.background = bgStyle;
+                        if (rawVal === 'white' || rawVal === 'clear' || rawVal === 'transparent') {
+                            dot.style.borderColor = '#CBD5E1';
+                        }
+                    }
+                });
+            });
+        }
+
+        enhanceColorSwatches();
+        setTimeout(enhanceColorSwatches, 100);
+        setTimeout(enhanceColorSwatches, 300);
+        setTimeout(enhanceColorSwatches, 800);
+        $(document).on('woocommerce_variation_has_changed wvs_items_rendered updated_wc_div check_variations', enhanceColorSwatches);
+
         $(document).on('found_variation', 'form.variations_form', function (event, variation) {
             const form = this;
             const notice = form.querySelector('.variation-select-notice');
