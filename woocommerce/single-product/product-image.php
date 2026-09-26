@@ -25,7 +25,7 @@ if ($post_thumbnail_id) {
     $gallery_items[] = array(
         'id'        => $post_thumbnail_id,
         'full_url'  => wp_get_attachment_image_url($post_thumbnail_id, 'full'),
-        'large_url' => wp_get_attachment_image_url($post_thumbnail_id, 'woocommerce_single') ?: wp_get_attachment_image_url($post_thumbnail_id, 'large'),
+        'large_url' => wp_get_attachment_image_url($post_thumbnail_id, 'full') ?: wp_get_attachment_image_url($post_thumbnail_id, 'woocommerce_single'),
         'thumb_url' => wp_get_attachment_image_url($post_thumbnail_id, 'thumbnail'),
         'alt'       => get_post_meta($post_thumbnail_id, '_wp_attachment_image_alt', true) ?: $product_title,
     );
@@ -36,7 +36,7 @@ if (!empty($attachment_ids)) {
         $gallery_items[] = array(
             'id'        => $attachment_id,
             'full_url'  => wp_get_attachment_image_url($attachment_id, 'full'),
-            'large_url' => wp_get_attachment_image_url($attachment_id, 'woocommerce_single') ?: wp_get_attachment_image_url($attachment_id, 'large'),
+            'large_url' => wp_get_attachment_image_url($attachment_id, 'full') ?: wp_get_attachment_image_url($attachment_id, 'woocommerce_single'),
             'thumb_url' => wp_get_attachment_image_url($attachment_id, 'thumbnail'),
             'alt'       => get_post_meta($attachment_id, '_wp_attachment_image_alt', true) ?: $product_title,
         );
@@ -69,8 +69,8 @@ if (empty($gallery_items)) {
                             data-full-src="<?php echo esc_url($item['full_url']); ?>"
                             alt="<?php echo esc_attr($item['alt']); ?>"
                             class="gallery-slide-img w-full h-full object-cover object-center cursor-pointer"
-                            width="769"
-                            height="769"
+                            width="744"
+                            height="744"
                             loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>"
                         />
                     </div>

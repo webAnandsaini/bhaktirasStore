@@ -80,7 +80,7 @@ if ($is_variable) {
             <!-- 2-Column Main Buy Section (Left: Gallery, Right: Summary/Buy Box) -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 xl:gap-14 items-start mb-12 md:mb-16">
 
-                <!-- Left: 769px Gallery Viewer (Sticky on Desktop) -->
+                <!-- Left: 744px Gallery Viewer (Sticky on Desktop) -->
                 <div id="product-images-wrapper" class="product-image-column w-full lg:sticky lg:top-24 z-10">
                     <?php
                     /**
@@ -91,7 +91,7 @@ if ($is_variable) {
                     ?>
                 </div>
 
-                <!-- Right: 769px Summary & Buy Box (100% Pixel-Perfect Figma 1:1) -->
+                <!-- Right: Summary & Buy Box (100% Pixel-Perfect Figma 1:1) -->
                 <div id="product-summary-wrapper" class="product-summary-column w-full font-body">
 
                     <!-- 1. Product Title -->

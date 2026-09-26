@@ -50,7 +50,7 @@ function xepress_setup() {
 		'woocommerce',
 		array(
 			'thumbnail_image_width' => 300,
-			'single_image_width'    => 600,
+			'single_image_width'    => 744,
 			'product_grid'          => array(
 				'default_rows'    => 3,
 				'min_rows'        => 2,
