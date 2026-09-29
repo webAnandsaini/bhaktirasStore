@@ -247,3 +247,191 @@
         filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.04));
     }
 }
+
+/* ─── Order Received (Thank You) & Order Pay Styling ─────── */
+.thankyou-page-wrapper,
+.order-pay-wrapper,
+.woocommerce-order,
+.woocommerce-checkout {
+    font-family: var(--font-body, 'Noto Sans', sans-serif);
+}
+
+.woocommerce-order-details,
+.woocommerce-customer-details {
+    margin-top: 2rem !important;
+}
+
+.woocommerce-order-details__title,
+.woocommerce-column__title,
+.woocommerce-order-details h2,
+.woocommerce-customer-details h2 {
+    font-family: var(--font-serif, 'Rosarivo', serif) !important;
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: #111111 !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 0.5rem !important;
+    border-bottom: 1.5px solid #EAE3DC !important;
+}
+
+.woocommerce-table--order-details,
+.shop_table.order_details {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03) !important;
+    margin-bottom: 2rem !important;
+}
+
+.woocommerce-table--order-details th,
+.woocommerce-table--order-details td,
+.shop_table.order_details th,
+.shop_table.order_details td {
+    padding: 14px 18px !important;
+    font-size: 0.875rem !important;
+    color: #333333 !important;
+    border-bottom: 1px solid #F3EFEA !important;
+    vertical-align: middle !important;
+}
+
+.woocommerce-table--order-details thead th,
+.shop_table.order_details thead th {
+    background-color: #FCFAF7 !important;
+    font-weight: 600 !important;
+    color: #111111 !important;
+    text-transform: uppercase !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.05em !important;
+}
+
+.woocommerce-table--order-details tfoot th,
+.shop_table.order_details tfoot th {
+    background-color: #FCFAF7 !important;
+    font-weight: 500 !important;
+    color: #555555 !important;
+    text-align: right !important;
+    border-right: 1px solid #F3EFEA !important;
+}
+
+.woocommerce-table--order-details tfoot td,
+.shop_table.order_details tfoot td {
+    background-color: #FCFAF7 !important;
+    font-weight: 600 !important;
+    color: #111111 !important;
+    text-align: right !important;
+}
+
+.woocommerce-table--order-details tfoot tr:last-child th,
+.woocommerce-table--order-details tfoot tr:last-child td,
+.shop_table.order_details tfoot tr:last-child th,
+.shop_table.order_details tfoot tr:last-child td {
+    border-bottom: none !important;
+    font-size: 1rem !important;
+    font-weight: 700 !important;
+    color: #CC5600 !important;
+}
+
+/* Customer Address Cards (Billing & Shipping) */
+.woocommerce-customer-details {
+    display: grid !important;
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+}
+
+@media (min-width: 640px) {
+    .woocommerce-customer-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
+
+.woocommerce-columns--addresses .woocommerce-column,
+.woocommerce-customer-details address {
+    background: #FFFFFF !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    font-style: normal !important;
+    font-size: 0.875rem !important;
+    line-height: 1.6 !important;
+    color: #444444 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+.woocommerce-customer-details address p {
+    margin-top: 8px !important;
+    color: #111111 !important;
+    font-weight: 500 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+/* Order Pay Form & Payment Buttons (Fixing "ay Now Cancel" unstyled text) */
+#order_review #payment,
+.woocommerce-pay #payment {
+    background: #FCFAF7 !important;
+    border: 1px solid #EAE3DC !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+}
+
+#order_review #place_order,
+.woocommerce-pay #place_order,
+button#place_order,
+.order-pay-wrapper button[type="submit"] {
+    background-color: #CC5600 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 0.9375rem !important;
+    padding: 12px 28px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 4px rgba(204, 86, 0, 0.2) !important;
+}
+
+#order_review #place_order:hover,
+.woocommerce-pay #place_order:hover,
+button#place_order:hover {
+    background-color: #B34B00 !important;
+}
+
+.order-pay-wrapper a.button.cancel,
+#order_review a.button.cancel {
+    color: #717171 !important;
+    font-size: 0.875rem !important;
+    text-decoration: underline !important;
+    padding: 8px 16px !important;
+    transition: color 0.15s ease !important;
+}
+
+.order-pay-wrapper a.button.cancel:hover,
+#order_review a.button.cancel:hover {
+    color: #CC5600 !important;
+}
+
+/* Pay for Order Notice Box */
+.woocommerce-notice,
+.woocommerce-info,
+.woocommerce-message,
+.woocommerce-error {
+    border-radius: 6px !important;
+    padding: 12px 16px !important;
+    font-size: 0.875rem !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.woocommerce-info {
+    background-color: #FFFDF9 !important;
+    border: 1px solid #FDE68A !important;
+    border-left: 4px solid #CC5600 !important;
+    color: #78350F !important;
+}
