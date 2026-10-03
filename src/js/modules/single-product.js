@@ -401,18 +401,33 @@ export function initSingleProduct() {
         };
 
         function enhanceColorSwatches() {
-            const form = document.querySelector('form.variations_form');
-            if (!form) return;
+            const containers = document.querySelectorAll('form.variations_form, .variations_form, .product-summary-column, .single-product-page-wrapper');
+            if (!containers.length) return;
 
-            const rows = form.querySelectorAll('.variation-row, tr, .wvs-attribute-behavior, .variations tbody tr');
-            rows.forEach(row => {
-                const labelText = (row.querySelector('label, th')?.textContent || '').toLowerCase();
-                const isColorAttr = labelText.includes('color') || labelText.includes('colour') || (row.dataset?.attribute_name && row.dataset.attribute_name.includes('color'));
-
-                const items = row.querySelectorAll('li.variable-item, .wvs-radio-variable-item');
+            containers.forEach(container => {
+                const items = container.querySelectorAll('li.variable-item, .wvs-radio-variable-item');
                 items.forEach(item => {
+                    const row = item.closest('.variation-row, tr, .wvs-attribute-behavior, .variations tbody tr, ul.variable-items-wrapper, div.wvs-archive-variations-wrapper') || item.parentElement;
+                    const labelText = (row ? (row.querySelector('label, th, .wvs-attribute-label')?.textContent || '') : '').toLowerCase();
+                    const attrName = (item.dataset.attribute_name || row?.dataset?.attribute_name || item.closest('[data-attribute_name]')?.dataset?.attribute_name || '').toLowerCase();
+                    
+                    const isColorAttr = labelText.includes('color') || labelText.includes('colour') || labelText.includes('finish') || labelText.includes('engraving') ||
+                                        attrName.includes('color') || attrName.includes('finish') || attrName.includes('engraving');
+
                     const rawVal = (item.dataset.value || item.dataset.title || item.getAttribute('aria-label') || item.textContent || '').trim().toLowerCase();
-                    if (!rawVal) return;
+                    const titleText = item.dataset.title || item.getAttribute('aria-label') || item.dataset.value || item.textContent || '';
+                    if (!rawVal && !titleText) return;
+
+                    const wvsColorSpan = item.querySelector('.variable-item-span-color');
+                    let inlineColor = '';
+                    if (wvsColorSpan) {
+                        inlineColor = wvsColorSpan.style.backgroundColor || wvsColorSpan.style.background || '';
+                        if (!inlineColor && wvsColorSpan.getAttribute('style')) {
+                            const styleAttr = wvsColorSpan.getAttribute('style');
+                            const match = styleAttr.match(/background(?:-color)?\s*:\s*([^;]+)/i);
+                            if (match) inlineColor = match[1].trim();
+                        }
+                    }
 
                     let bgStyle = colorGradients[rawVal];
                     if (!bgStyle) {
@@ -424,20 +439,33 @@ export function initSingleProduct() {
                         }
                     }
 
-                    if (isColorAttr || bgStyle) {
+                    if (!bgStyle && inlineColor) {
+                        bgStyle = `radial-gradient(circle at 35% 35%, ${inlineColor}, #333333)`;
+                    }
+
+                    const isColorItem = isColorAttr || item.classList.contains('color-variable-item') || !!bgStyle || item.dataset.wvstype === 'color' || !!wvsColorSpan;
+
+                    if (isColorItem) {
                         item.classList.add('color-swatch-wrap');
-                        let dot = item.querySelector('.color-swatch-dot');
+                        item.style.setProperty('min-width', 'unset', 'important');
+                        item.style.setProperty('width', 'auto', 'important');
+                        item.style.setProperty('height', 'auto', 'important');
+                        item.style.setProperty('flex', '0 0 auto', 'important');
+
                         const contents = item.querySelector('.variable-item-contents') || item;
                         contents.classList.add('color-swatch-wrap');
+
+                        // Hide WVS default flat color square span
+                        if (wvsColorSpan) {
+                            wvsColorSpan.style.setProperty('display', 'none', 'important');
+                        }
+
+                        // Check/Create 3D Color Dot
+                        let dot = contents.querySelector('.color-swatch-dot');
                         if (!dot) {
                             dot = document.createElement('span');
                             dot.className = 'color-swatch-dot';
-                            const spanTag = contents.querySelector('span') || contents.firstChild;
-                            if (spanTag) {
-                                contents.insertBefore(dot, spanTag);
-                            } else {
-                                contents.appendChild(dot);
-                            }
+                            contents.insertBefore(dot, contents.firstChild);
                         }
 
                         if (!bgStyle) {
@@ -448,16 +476,73 @@ export function initSingleProduct() {
                         if (rawVal === 'white' || rawVal === 'clear' || rawVal === 'transparent') {
                             dot.style.borderColor = '#CBD5E1';
                         }
+
+                        // Check/Create Text Span for label
+                        let existingText = contents.querySelector('.variable-item-span-text, .variable-item-span-button, .color-swatch-label');
+                        if (!existingText || !existingText.textContent.trim()) {
+                            let labelSpan = contents.querySelector('.color-swatch-label');
+                            if (!labelSpan) {
+                                labelSpan = document.createElement('span');
+                                labelSpan.className = 'variable-item-span variable-item-span-text color-swatch-label';
+                                contents.appendChild(labelSpan);
+                            }
+                            const cleanText = titleText.trim();
+                            const formattedTitle = cleanText.replace(/\b\w/g, c => c.toUpperCase());
+                            labelSpan.textContent = formattedTitle;
+                        } else {
+                            existingText.classList.add('color-swatch-label');
+                            existingText.style.setProperty('display', 'inline-block', 'important');
+                            const cleanText = (existingText.textContent || titleText).trim();
+                            if (cleanText) {
+                                existingText.textContent = cleanText.replace(/\b\w/g, c => c.toUpperCase());
+                            }
+                        }
                     }
                 });
             });
         }
 
+        function syncAttributeLabelWidths() {
+            const summary = document.querySelector('.product-summary-column, .single-product-page-wrapper, form.variations_form');
+            if (!summary) return;
+
+            const labels = summary.querySelectorAll('table.variations th.label, .product-qty-row .product-qty-label, .product-qty-row > span:first-child');
+            if (!labels.length) return;
+
+            labels.forEach(lbl => {
+                lbl.style.width = 'auto';
+                lbl.style.minWidth = 'unset';
+                lbl.style.maxWidth = 'none';
+            });
+
+            let maxLabelWidth = 0;
+            labels.forEach(lbl => {
+                const targetEl = lbl.querySelector('label') || lbl;
+                const width = Math.ceil(targetEl.getBoundingClientRect().width);
+                if (width > maxLabelWidth) maxLabelWidth = width;
+            });
+
+            const finalWidth = Math.max(65, maxLabelWidth + 16);
+
+            labels.forEach(lbl => {
+                lbl.style.setProperty('width', `${finalWidth}px`, 'important');
+                lbl.style.setProperty('min-width', `${finalWidth}px`, 'important');
+                lbl.style.setProperty('max-width', `${finalWidth}px`, 'important');
+            });
+        }
+
         enhanceColorSwatches();
-        setTimeout(enhanceColorSwatches, 100);
-        setTimeout(enhanceColorSwatches, 300);
-        setTimeout(enhanceColorSwatches, 800);
-        $(document).on('woocommerce_variation_has_changed wvs_items_rendered updated_wc_div check_variations', enhanceColorSwatches);
+        syncAttributeLabelWidths();
+
+        setTimeout(() => { enhanceColorSwatches(); syncAttributeLabelWidths(); }, 100);
+        setTimeout(() => { enhanceColorSwatches(); syncAttributeLabelWidths(); }, 300);
+        setTimeout(() => { enhanceColorSwatches(); syncAttributeLabelWidths(); }, 800);
+
+        window.addEventListener('resize', syncAttributeLabelWidths);
+        $(document).on('woocommerce_variation_has_changed wvs_items_rendered updated_wc_div check_variations', () => {
+            enhanceColorSwatches();
+            syncAttributeLabelWidths();
+        });
 
         $(document).on('found_variation', 'form.variations_form', function (event, variation) {
             const form = this;

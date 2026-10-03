@@ -785,7 +785,7 @@ function dharmgyan_tab_description_content()
                         <?php if (!empty($materials)): ?>
                             <tr class="border-b border-[#F0EAE4] bg-[#FCFAF7]">
                                 <th class="py-2.5 px-4 font-medium text-[#717171] w-1/3"><?php esc_html_e('Material', 'dharmgyan'); ?></th>
-                                <td class="py-2.5 px-4 text-[#242424] font-semibold"><?php echo esc_html($materials); ?></td>
+                                <td class="py-2.5 px-4 text-[#242424] font-medium prose prose-sm max-w-none [&>p:first-child]:mt-0 [&>p:last-child]:mb-0"><?php echo wp_kses_post($materials); ?></td>
                             </tr>
                         <?php endif; ?>
                         <?php if (!empty($dimensions)): ?>

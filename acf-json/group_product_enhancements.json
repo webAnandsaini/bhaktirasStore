@@ -6,6 +6,7 @@
             "key": "field_product_spiritual_significance",
             "label": "Spiritual Significance",
             "name": "spiritual_significance",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "Describe the spiritual or religious significance of this product",
             "required": 0,
@@ -25,6 +26,7 @@
             "key": "field_product_ritual_usage",
             "label": "Ritual Usage",
             "name": "ritual_usage",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "Describe how this product is used in rituals or ceremonies",
             "required": 0,
@@ -44,7 +46,8 @@
             "key": "field_product_materials",
             "label": "Materials Used",
             "name": "materials",
-            "type": "text",
+            "aria-label": "",
+            "type": "wysiwyg",
             "instructions": "List the materials used in making this product",
             "required": 0,
             "conditional_logic": 0,
@@ -54,15 +57,17 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "e.g., Brass, Copper, Wood",
-            "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "allow_in_bindings": 0,
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0,
+            "delay": 0
         },
         {
             "key": "field_product_dimensions",
             "label": "Dimensions",
             "name": "dimensions",
+            "aria-label": "",
             "type": "text",
             "instructions": "Product dimensions (Length x Width x Height)",
             "required": 0,
@@ -82,6 +87,7 @@
             "key": "field_product_weight",
             "label": "Weight",
             "name": "weight",
+            "aria-label": "",
             "type": "text",
             "instructions": "Product weight",
             "required": 0,
@@ -101,6 +107,7 @@
             "key": "field_product_care_instructions",
             "label": "Care Instructions",
             "name": "care_instructions",
+            "aria-label": "",
             "type": "textarea",
             "instructions": "Instructions for maintaining and caring for this product",
             "required": 0,
@@ -120,6 +127,7 @@
             "key": "field_product_gallery",
             "label": "Additional Product Images",
             "name": "product_gallery",
+            "aria-label": "",
             "type": "gallery",
             "instructions": "Additional images showing different angles or details",
             "required": 0,
@@ -147,6 +155,7 @@
             "key": "field_product_video",
             "label": "Product Video",
             "name": "product_video",
+            "aria-label": "",
             "type": "url",
             "instructions": "URL to product demonstration video",
             "required": 0,
@@ -157,12 +166,13 @@
                 "id": ""
             },
             "default_value": "",
-            "placeholder": "https://"
+            "placeholder": "https:\/\/"
         },
         {
             "key": "field_product_featured",
             "label": "Featured Product",
             "name": "featured_product",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "Mark this product as featured on homepage",
             "required": 0,
@@ -182,6 +192,7 @@
             "key": "field_product_best_seller",
             "label": "Best Seller",
             "name": "best_seller",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "Mark this product as a best seller",
             "required": 0,
@@ -196,75 +207,6 @@
             "ui": 1,
             "ui_on_text": "",
             "ui_off_text": ""
-        },
-        {
-            "key": "field_product_faqs",
-            "label": "Product FAQs",
-            "name": "product_faqs",
-            "type": "repeater",
-            "instructions": "Add product-specific Frequently Asked Questions and Answers for this item's FAQ tab.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "field_faq_question",
-            "min": 0,
-            "max": 0,
-            "layout": "block",
-            "button_label": "Add FAQ Question",
-            "sub_fields": [
-                {
-                    "key": "field_faq_question",
-                    "label": "Question",
-                    "name": "question",
-                    "type": "text",
-                    "instructions": "Enter the FAQ question",
-                    "required": 1,
-                    "placeholder": "e.g., How to clean and care for this sacred idol?",
-                    "wrapper": {
-                        "width": "100"
-                    }
-                },
-                {
-                    "key": "field_faq_answer",
-                    "label": "Answer",
-                    "name": "answer",
-                    "type": "textarea",
-                    "instructions": "Enter the answer",
-                    "required": 1,
-                    "placeholder": "Enter detailed answer here...",
-                    "rows": 3,
-                    "new_lines": "wpautop",
-                    "wrapper": {
-                        "width": "100"
-                    }
-                }
-            ]
-        },
-        {
-            "key": "field_product_highlights",
-            "label": "Key Features & Highlights (Bullet Points)",
-            "name": "product_highlights",
-            "type": "textarea",
-            "instructions": "Enter product bullet points (one per line). For best SEO practice, you can also leave this empty and simply use the native WooCommerce Short Description field!",
-            "required": 0,
-            "placeholder": "Made with High Quality 3 MM acrylic sheet\nUnidirectional pixel perfect direct printing\nScratch Free & Unbreakable",
-            "rows": 5,
-            "new_lines": ""
-        },
-        {
-            "key": "field_product_custom_shipping",
-            "label": "Custom Shipping & Delivery Note",
-            "name": "product_custom_shipping",
-            "type": "textarea",
-            "instructions": "Optional: override the global shipping policy for this specific product.",
-            "required": 0,
-            "placeholder": "Delivered in 4-6 business days. Express dispatch available.",
-            "rows": 3,
-            "new_lines": "wpautop"
         }
     ],
     "location": [
@@ -283,5 +225,10 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": true,
-    "description": "Enhanced fields for WooCommerce products with spiritual significance"
+    "description": "Enhanced fields for WooCommerce products with spiritual significance",
+    "show_in_rest": 0,
+    "display_title": "",
+    "allow_ai_access": false,
+    "ai_description": "",
+    "modified": 1790989441
 }

@@ -331,10 +331,11 @@
     background: transparent !important;
 }
 
+table.variations th.label,
 .product-summary-column table.variations th.label {
-    width: 90px !important;
-    min-width: 90px !important;
-    max-width: 90px !important;
+    width: auto;
+    min-width: unset;
+    max-width: none;
     flex-shrink: 0 !important;
     text-align: left !important;
     padding: 0 !important;
@@ -342,8 +343,11 @@
     border: none !important;
     background: transparent !important;
     vertical-align: middle !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
 }
 
+table.variations th.label label,
 .product-summary-column table.variations th.label label {
     font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
     font-size: 13px !important;
@@ -352,7 +356,21 @@
     margin: 0 !important;
     line-height: 1.2 !important;
     white-space: nowrap !important;
-    display: block !important;
+    display: inline-block !important;
+    width: auto !important;
+    max-width: none !important;
+    overflow: visible !important;
+}
+
+.product-summary-column .product-qty-row .product-qty-label,
+.product-summary-column .product-qty-row > span:first-child {
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #111111 !important;
+    white-space: nowrap !important;
+    display: inline-block !important;
+    box-sizing: border-box !important;
 }
 
 /* Hide any dynamic selected attribute text inside <label> to prevent ugly multi-line text wrapping */
@@ -393,7 +411,9 @@
 }
 
 /* Woo Variation Swatches Customization */
-.product-summary-column ul.variable-items-wrapper {
+.woo-variation-swatches .variable-items-wrapper,
+.product-summary-column ul.variable-items-wrapper,
+ul.variable-items-wrapper {
     display: inline-flex !important;
     flex-wrap: wrap !important;
     gap: 8px !important;
@@ -402,36 +422,51 @@
     list-style: none !important;
 }
 
-.product-summary-column li.variable-item {
-    margin: 0 !important;
+.woo-variation-swatches .variable-items-wrapper li.variable-item,
+.product-summary-column li.variable-item,
+ul.variable-items-wrapper li.variable-item,
+li.variable-item.color-variable-item,
+li.variable-item.button-variable-item,
+li.variable-item.image-variable-item,
+li.variable-item.radio-variable-item,
+li.variable-item.color-swatch-wrap {
+    width: auto !important;
+    min-width: unset !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 36px !important;
+    padding: 6px 14px !important;
     border-radius: 8px !important;
     border: 1px solid #CCCCCC !important;
     background-color: #ffffff !important;
     color: #717171 !important;
     box-shadow: none !important;
-    padding: 6px 14px !important;
-    min-width: unset !important;
-    min-height: 36px !important;
-    height: auto !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    gap: 6px !important;
     font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
-    font-size: 12px !important;
+    font-size: 13px !important;
     font-weight: 500 !important;
     cursor: pointer !important;
     transition: all 0.15s ease !important;
     box-sizing: border-box !important;
     position: relative !important;
+    overflow: visible !important;
+    flex: 0 0 auto !important;
 }
 
-.product-summary-column li.variable-item:hover:not(.disabled):not(.out-of-stock) {
+.woo-variation-swatches .variable-items-wrapper li.variable-item:hover:not(.disabled):not(.out-of-stock),
+.product-summary-column li.variable-item:hover:not(.disabled):not(.out-of-stock),
+li.variable-item:hover:not(.disabled):not(.out-of-stock) {
     border-color: #CC5600 !important;
     color: #CC5600 !important;
 }
 
+.woo-variation-swatches .variable-items-wrapper li.variable-item.selected,
 .product-summary-column li.variable-item.selected,
-.product-summary-column li.variable-item:has(input:checked) {
+li.variable-item.selected,
+li.variable-item:has(input:checked) {
     border: 1.5px solid #CC5600 !important;
     color: #CC5600 !important;
     background-color: #ffffff !important;
@@ -439,14 +474,40 @@
     box-shadow: 0 1px 3px rgba(204, 86, 0, 0.15) !important;
 }
 
+/* Hide default WVS flat color square span */
+.woo-variation-swatches .variable-items-wrapper .variable-item-span-color,
+.product-summary-column .variable-item-span-color,
+.variable-item-span-color {
+    display: none !important;
+}
+
+/* Ensure item contents container behaves as inline-flex container */
+.woo-variation-swatches .variable-items-wrapper li.variable-item .variable-item-contents,
+.product-summary-column li.variable-item .variable-item-contents,
+li.variable-item .variable-item-contents,
+.variable-item-contents {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
 /* Beautiful 3D Color Circle Dot for Variations */
 .product-summary-column .color-swatch-dot,
-.variable-item .color-swatch-dot {
+.variable-item .color-swatch-dot,
+.color-swatch-dot {
     display: inline-block !important;
     width: 14px !important;
     height: 14px !important;
     border-radius: 50% !important;
-    margin-right: 6px !important;
+    margin-right: 2px !important;
     vertical-align: middle !important;
     flex-shrink: 0 !important;
     box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.18) !important;
@@ -454,98 +515,120 @@
     transition: transform 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-.product-summary-column li.variable-item:hover:not(.disabled):not(.out-of-stock) .color-swatch-dot {
+.woo-variation-swatches .variable-items-wrapper li.variable-item:hover:not(.disabled):not(.out-of-stock) .color-swatch-dot,
+.product-summary-column li.variable-item:hover:not(.disabled):not(.out-of-stock) .color-swatch-dot,
+li.variable-item:hover:not(.disabled):not(.out-of-stock) .color-swatch-dot {
     transform: scale(1.15) !important;
 }
 
+.woo-variation-swatches .variable-items-wrapper li.variable-item.selected .color-swatch-dot,
 .product-summary-column li.variable-item.selected .color-swatch-dot,
-.product-summary-column li.variable-item:has(input:checked) .color-swatch-dot {
+li.variable-item.selected .color-swatch-dot,
+li.variable-item:has(input:checked) .color-swatch-dot {
     transform: scale(1.1) !important;
     box-shadow: inset -1px -1px 2px rgba(0, 0, 0, 0.3), 0 0 0 1.5px #CC5600 !important;
 }
 
+/* Label text span inside swatch */
+.color-swatch-label,
+.variable-item-span-text {
+    display: inline-block !important;
+    font-family: var(--font-body, 'Noto Sans', sans-serif) !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    line-height: 1 !important;
+    color: inherit !important;
+    white-space: nowrap !important;
+}
+
 /* Color Fallbacks */
-.product-summary-column li.variable-item[data-value="gray"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-value="grey"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Gray"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Grey"] .color-swatch-dot {
+li.variable-item[data-value="gray"] .color-swatch-dot,
+li.variable-item[data-value="grey"] .color-swatch-dot,
+li.variable-item[data-title="Gray"] .color-swatch-dot,
+li.variable-item[data-title="Grey"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #9CA3AF, #4B5563 60%, #1F2937 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="green"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Green"] .color-swatch-dot {
+li.variable-item[data-value="green"] .color-swatch-dot,
+li.variable-item[data-title="Green"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #4ADE80, #16A34A 60%, #14532D 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="red"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Red"] .color-swatch-dot {
+li.variable-item[data-value="red"] .color-swatch-dot,
+li.variable-item[data-title="Red"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #FF5555, #DC2626 60%, #991B1B 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="yellow"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Yellow"] .color-swatch-dot {
+li.variable-item[data-value="yellow"] .color-swatch-dot,
+li.variable-item[data-title="Yellow"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #FDE047, #EAB308 60%, #854D0E 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="blue"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Blue"] .color-swatch-dot {
+li.variable-item[data-value="blue"] .color-swatch-dot,
+li.variable-item[data-title="Blue"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #60A5FA, #2563EB 60%, #1E3A8A 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="pink"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Pink"] .color-swatch-dot {
+li.variable-item[data-value="pink"] .color-swatch-dot,
+li.variable-item[data-title="Pink"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #F472B6, #EC4899 60%, #831843 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="black"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Black"] .color-swatch-dot {
+li.variable-item[data-value="black"] .color-swatch-dot,
+li.variable-item[data-title="Black"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #4B5563, #111827 60%, #000000 100%) !important;
 }
 
-.product-summary-column li.variable-item[data-value="white"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="White"] .color-swatch-dot {
+li.variable-item[data-value="white"] .color-swatch-dot,
+li.variable-item[data-title="White"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #F1F5F9 70%, #CBD5E1 100%) !important;
     border-color: #CBD5E1 !important;
 }
 
-.product-summary-column li.variable-item[data-value="clear"] .color-swatch-dot,
-.product-summary-column li.variable-item[data-title="Clear"] .color-swatch-dot {
+li.variable-item[data-value="clear"] .color-swatch-dot,
+li.variable-item[data-title="Clear"] .color-swatch-dot {
     background: radial-gradient(circle at 35% 35%, #FFFFFF 0%, #E2E8F0 60%, #94A3B8 100%) !important;
     border-color: #94A3B8 !important;
 }
 
-/* Eradicate the plugin cross variable */
+/* Eradicate all plugin tick & cross variables */
 :root,
 .product-summary-column,
+.woo-variation-swatches,
 .variable-items-wrapper,
-.variable-item {
+.variable-item,
+.variable-item-contents {
     --wvs-cross: none !important;
+    --wvs-tick: none !important;
 }
 
-/* Remove all cross signs, masks, and pseudo-elements on disabled, out-of-stock, and no-stock swatches */
-.product-summary-column .variable-items-wrapper .variable-item.disabled::before,
-.product-summary-column .variable-items-wrapper .variable-item.disabled::after,
-.product-summary-column .variable-items-wrapper .variable-item.disabled .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.disabled .variable-item-contents::after,
-.product-summary-column .variable-items-wrapper .variable-item.disabled:hover .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.out-of-stock::before,
-.product-summary-column .variable-items-wrapper .variable-item.out-of-stock::after,
-.product-summary-column .variable-items-wrapper .variable-item.out-of-stock .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.out-of-stock .variable-item-contents::after,
-.product-summary-column .variable-items-wrapper .variable-item.out-of-stock:hover .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.no-stock::before,
-.product-summary-column .variable-items-wrapper .variable-item.no-stock::after,
-.product-summary-column .variable-items-wrapper .variable-item.no-stock .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.no-stock .variable-item-contents::after,
-.product-summary-column .variable-items-wrapper .variable-item.no-stock:hover .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled::before,
-.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled::after,
-.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled .variable-item-contents::before,
-.product-summary-column .variable-items-wrapper .variable-item.wvs-disabled .variable-item-contents::after {
+/* Remove all checkmarks (::before), tick icons, crosses, masks, and pseudo-elements on all swatch items & contents */
+.woo-variation-swatches .variable-items-wrapper .variable-item::before,
+.woo-variation-swatches .variable-items-wrapper .variable-item::after,
+.woo-variation-swatches .variable-items-wrapper .variable-item .variable-item-contents::before,
+.woo-variation-swatches .variable-items-wrapper .variable-item .variable-item-contents::after,
+.product-summary-column .variable-items-wrapper .variable-item::before,
+.product-summary-column .variable-items-wrapper .variable-item::after,
+.product-summary-column .variable-items-wrapper .variable-item .variable-item-contents::before,
+.product-summary-column .variable-items-wrapper .variable-item .variable-item-contents::after,
+.variable-items-wrapper .variable-item::before,
+.variable-items-wrapper .variable-item::after,
+.variable-items-wrapper .variable-item .variable-item-contents::before,
+.variable-items-wrapper .variable-item .variable-item-contents::after,
+li.variable-item::before,
+li.variable-item::after,
+li.variable-item .variable-item-contents::before,
+li.variable-item .variable-item-contents::after,
+.variable-item-contents::before,
+.variable-item-contents::after,
+.color-swatch-wrap::before,
+.color-swatch-wrap::after {
     display: none !important;
     content: none !important;
     background: none !important;
     background-image: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
 }
 
 /* Clean, subtle Light Gray Pill with disabled interactions */
